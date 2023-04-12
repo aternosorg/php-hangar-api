@@ -25,7 +25,7 @@ class VersionSearchOptions
     {
         $this->pagination = (new RequestPagination())
             ->setOffset(0)
-            ->setLimit(100);
+            ->setLimit(25);
     }
 
     /**

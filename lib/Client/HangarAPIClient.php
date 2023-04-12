@@ -159,7 +159,7 @@ class HangarAPIClient
 
         $pagination ??= (new RequestPagination())
             ->setOffset(0)
-            ->setLimit(100);
+            ->setLimit(25);
 
         $result = $this->projects->getProjectWatchers($namespace->getOwner(), $namespace->getSlug(), $pagination);
         return new ProjectWatcherList(
@@ -201,7 +201,7 @@ class HangarAPIClient
 
         $pagination ??= (new RequestPagination())
             ->setOffset(0)
-            ->setLimit(100);
+            ->setLimit(25);
 
         $result = $this->projects->getProjectStarGazers($namespace->getOwner(), $namespace->getSlug(), $pagination);
         return new ProjectStarGazersList(
@@ -225,7 +225,7 @@ class HangarAPIClient
 
         $pagination ??= (new RequestPagination())
             ->setOffset(0)
-            ->setLimit(100);
+            ->setLimit(25);
 
         $result = $this->projects->getProjectMembers($namespace->getOwner(), $namespace->getSlug(), $pagination);
         return new ProjectMemberList($this, $result, $namespace, $pagination);
@@ -360,7 +360,7 @@ class HangarAPIClient
 
         $pagination ??= (new RequestPagination())
             ->setOffset(0)
-            ->setLimit(100);
+            ->setLimit(25);
 
         $result = $this->users->getUserWatching($username, $pagination);
         return new WatchedProjectList(
@@ -384,7 +384,7 @@ class HangarAPIClient
 
         $pagination ??= (new RequestPagination())
             ->setOffset(0)
-            ->setLimit(100);
+            ->setLimit(25);
 
         $result = $this->users->showStarred($username, $pagination);
         return new StarredProjectList(
@@ -408,7 +408,7 @@ class HangarAPIClient
 
         $pagination ??= (new RequestPagination())
             ->setOffset(0)
-            ->setLimit(100);
+            ->setLimit(25);
 
         $result = $this->users->showStarred($username, $pagination);
         return new PinnedProjectList(
@@ -430,7 +430,7 @@ class HangarAPIClient
 
         $pagination ??= (new RequestPagination())
             ->setOffset(0)
-            ->setLimit(100);
+            ->setLimit(25);
 
         $result = $this->users->getStaff($pagination);
         return new StaffList(
@@ -451,7 +451,7 @@ class HangarAPIClient
 
         $pagination ??= (new RequestPagination())
             ->setOffset(0)
-            ->setLimit(100);
+            ->setLimit(25);
 
         $result = $this->users->getAuthors($pagination);
         return new AuthorList(
