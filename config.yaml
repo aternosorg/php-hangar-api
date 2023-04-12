@@ -1,0 +1,6 @@
+invokerPackage: Aternos\HangarApi
+artifactVersion: 1.0.0
+generatorName: php
+outputDir: .
+sourceFolder: src
+inputSpec: https://hangar.papermc.io/v3/api-docs.yaml
