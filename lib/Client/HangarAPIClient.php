@@ -112,7 +112,7 @@ class HangarAPIClient
      * @return ProjectList
      * @throws ApiException
      */
-    public function getProjects(ProjectSearchOptions $options): ProjectList
+    public function getProjects(ProjectSearchOptions $options = new ProjectSearchOptions()): ProjectList
     {
         $this->authenticate();
 
@@ -321,7 +321,7 @@ class HangarAPIClient
      * @return UserList
      * @throws ApiException
      */
-    public function getUsers(UserSearchOptions $options): UserList
+    public function getUsers(UserSearchOptions $options = new UserSearchOptions()): UserList
     {
         $this->authenticate();
 
