@@ -44,14 +44,6 @@ class ProjectList extends ResultList
     }
 
     /**
-     * @return Project[]|null
-     */
-    public function getProjects(): ?array
-    {
-        return $this->results;
-    }
-
-    /**
      * @return Pagination|null
      */
     public function getPagination(): ?Pagination
