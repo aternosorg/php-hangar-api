@@ -76,6 +76,25 @@ class ClientTest extends TestCase
         $this->assertNotNull($project->getData()->getSettings());
     }
 
+    protected function assertValidCompactProject($project): void
+    {
+        $this->assertNotNull($project);
+        $this->assertNotNull($project->getData());
+        $this->assertValidNamespace($project->getData()->getNamespace());
+        $this->assertNotNull($project->getData()->getName());
+        $this->assertNotNull($project->getData()->getStats());
+        $this->assertNotNull($project->getData()->getStats()->getViews());
+        $this->assertNotNull($project->getData()->getStats()->getDownloads());
+        $this->assertNotNull($project->getData()->getStats()->getRecentViews());
+        $this->assertNotNull($project->getData()->getStats()->getRecentDownloads());
+        $this->assertNotNull($project->getData()->getStats()->getStars());
+        $this->assertNotNull($project->getData()->getStats()->getWatchers());
+        $this->assertNotNull($project->getData()->getCategory());
+        $this->assertNotNull(ProjectCategory::from($project->getData()->getCategory()));
+        $this->assertNotNull($project->getData()->getLastUpdated());
+        $this->assertNotNull($project->getData()->getVisibility());
+    }
+
     protected function isSameProject($a, $b): bool
     {
         if (!$a || !$b) {
@@ -424,8 +443,28 @@ class ClientTest extends TestCase
         $this->assertNotNull($watched);
         $this->assertNotEmpty($watched->getResults());
 
-        foreach ($watched as $project) {
-            $this->assertValidProject($project);
+        foreach ($watched->getResults() as $project) {
+            $this->assertValidCompactProject($project);
+        }
+    }
+
+    /**
+     * Test case for getProjectsStarredByUser
+     * @throws ApiException
+     */
+    public function testGetProjectsStarredByUser()
+    {
+        $user = $this->apiClient->getUser("JulianVennen");
+        $this->assertNotNull($user);
+        $this->assertNotNull($user->getData());
+        $this->assertEquals("JulianVennen", $user->getData()->getName());
+
+        $starred =  $user->getStarredProjects();
+        $this->assertNotNull($starred);
+        $this->assertNotEmpty($starred->getResults());
+
+        foreach ($starred->getResults() as $project) {
+            $this->assertValidCompactProject($project);
         }
     }
 }
