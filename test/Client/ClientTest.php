@@ -468,13 +468,60 @@ class ClientTest extends TestCase
     }
 
     /**
-     * Test case for getUsers
+     * Test case for getStaff
      * @throws ApiException
      */
     public function testGetStaff()
     {
         $pagination = (new RequestPagination())->setLimit(1);
         $users = $this->apiClient->getStaff($pagination);
+        $this->assertFalse($users->hasPreviousPage());
+
+        $firstUserOfPage = [];
+        for ($i = 0; $i < 3; $i++) {
+            $this->assertNotNull($users);
+            $this->assertNotNull($users->getResults());
+            $this->assertNotEmpty($users->getResults());
+            $firstUserOfPage[$i] = $users->getResults()[0];
+
+            foreach ($users->getResults() as $user) {
+                $this->assertNotNull($user);
+                $this->assertNotNull($user->getData());
+                $this->assertNotNull($user->getData()->getName());
+            }
+
+            $this->assertTrue($users->hasNextPage());
+            $users = $users->getNextPage();
+        }
+
+        for ($i = 2; $i >= 0; $i--) {
+            $this->assertTrue($users->hasPreviousPage());
+            $users = $users->getPreviousPage();
+
+            $this->assertNotNull($users);
+            $this->assertNotNull($users->getResults());
+            $this->assertNotEmpty($users->getResults());
+            $this->assertEquals($firstUserOfPage[$i]->getData()->getName(), $users->getResults()[0]->getData()->getName());
+            $firstUserOfPage[$i] = $users->getResults()[0];
+
+            foreach ($users->getResults() as $user) {
+                $this->assertNotNull($user);
+                $this->assertNotNull($user->getData());
+                $this->assertNotNull($user->getData()->getName());
+            }
+            $this->assertTrue($users->hasNextPage());
+        }
+        $this->assertFalse($users->hasPreviousPage());
+    }
+
+    /**
+     * Test case for getAuthors
+     * @throws ApiException
+     */
+    public function testGetAuthors()
+    {
+        $pagination = (new RequestPagination())->setLimit(10);
+        $users = $this->apiClient->getAuthors($pagination);
         $this->assertFalse($users->hasPreviousPage());
 
         $firstUserOfPage = [];
