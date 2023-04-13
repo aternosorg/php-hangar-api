@@ -49,10 +49,10 @@ class User
 
     /**
      * Get a list of projects this user has pinned
-     * @return PinnedProjectList
+     * @return CompactProject[]
      * @throws ApiException
      */
-    public function getPinnedProjects(): PinnedProjectList
+    public function getPinnedProjects(): array
     {
         return $this->client->getProjectsPinnedByUser($this->user->getName());
     }

@@ -404,24 +404,17 @@ class HangarAPIClient
     /**
      * Get a list of projects a user has starred
      * @param string $username
-     * @param RequestPagination|null $pagination
-     * @return PinnedProjectList
+     * @return CompactProject[]
      * @throws ApiException
      */
-    public function getProjectsPinnedByUser(string $username, ?RequestPagination $pagination = null): PinnedProjectList
+    public function getProjectsPinnedByUser(string $username): array
     {
         $this->authenticate();
 
-        $pagination ??= (new RequestPagination())
-            ->setOffset(0)
-            ->setLimit(25);
-
-        $result = $this->users->showStarred($username, $pagination);
-        return new PinnedProjectList(
-            $this,
+        $result = $this->users->getUserPinnedProjects($username);
+        return array_map(
+            fn($project) => new CompactProject($this, $project),
             $result,
-            $username,
-            $pagination,
         );
     }
 
