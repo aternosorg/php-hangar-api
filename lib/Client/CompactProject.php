@@ -8,6 +8,7 @@ use Aternos\HangarApi\Client\List\ProjectVersionList;
 use Aternos\HangarApi\Client\List\UserList;
 use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
+use Aternos\HangarApi\Model\DayProjectStats;
 use Aternos\HangarApi\Model\ProjectCompact;
 use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
@@ -88,7 +89,7 @@ class CompactProject
      * Days without downloads/views are not be included
      * @param DateTime|null $from default: project creation date
      * @param DateTime|null $to default: now
-     * @return array<string, VersionStats>
+     * @return array<string, DayProjectStats>
      * @throws ApiException
      */
     public function getDailyStats(?DateTime $from = null, ?DateTime $to = null): array
