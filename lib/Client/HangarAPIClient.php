@@ -7,7 +7,6 @@ use Aternos\HangarApi\Api\ProjectsApi;
 use Aternos\HangarApi\Api\UsersApi;
 use Aternos\HangarApi\Api\VersionsApi;
 use Aternos\HangarApi\ApiException;
-use Aternos\HangarApi\Client\List\CompactProject\PinnedProjectList;
 use Aternos\HangarApi\Client\List\CompactProject\StarredProjectList;
 use Aternos\HangarApi\Client\List\ProjectList;
 use Aternos\HangarApi\Client\List\ProjectMemberList;

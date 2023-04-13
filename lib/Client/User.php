@@ -3,7 +3,6 @@
 namespace Aternos\HangarApi\Client;
 
 use Aternos\HangarApi\ApiException;
-use Aternos\HangarApi\Client\List\CompactProject\PinnedProjectList;
 use Aternos\HangarApi\Client\List\CompactProject\StarredProjectList;
 use Aternos\HangarApi\Client\List\CompactProject\WatchedProjectList;
 use Aternos\HangarApi\Client\List\ProjectList;
