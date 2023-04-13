@@ -26,7 +26,9 @@ use Aternos\HangarApi\Configuration;
 use Aternos\HangarApi\Model\DayProjectStats;
 use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
+use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
+use DateTimeInterface;
 
 class HangarAPIClient
 {
@@ -172,20 +174,25 @@ class HangarAPIClient
 
     /**
      * Get a list of daily project stats
-     * defaults to only returning the stats for today
-     * @param ProjectNamespace $namespace
-     * @param DateTime|null $from
-     * @param DateTime|null $to
-     * @return DayProjectStats[]
+     * Days without downloads/views will not be included
+     * @param string $owner
+     * @param string $slug
+     * @param DateTime $from
+     * @param DateTime|null $to default: now
+     * @return array<string, DayProjectStats>
      * @throws ApiException
      */
-    public function getProjectDayStats(ProjectNamespace $namespace, ?DateTime $from = null, ?DateTime $to = null): array
+    public function getDailyProjectStats(string $owner, string $slug, DateTime $from, ?DateTime $to = null): array
     {
         $this->authenticate();
 
-        $from ??= new DateTime();
         $to ??= new DateTime();
-        return $this->projects->showProjectStats($namespace->getOwner(), $namespace->getSlug(), $from, $to);
+        return $this->projects->showProjectStats(
+            $owner,
+            $slug,
+            $from->format(DateTimeInterface::RFC3339),
+            $to->format(DateTimeInterface::RFC3339)
+        );
     }
 
     /**
@@ -286,24 +293,23 @@ class HangarAPIClient
 
     /**
      * Get a list of daily version stats
-     * defaults to only returning the stats for today
+     * Days without downloads/views will not be included
      * @param Version $version
      * @param Platform $platform
-     * @param DateTime|null $from
-     * @param DateTime|null $to
-     * @return array
+     * @param DateTime $from
+     * @param DateTime|null $to default: now
+     * @return array<string, VersionStats>
      * @throws ApiException
      */
-    public function getProjectVersionDayStats(
+    public function getDailyProjectVersionStats(
         Version   $version,
         Platform  $platform,
-        ?DateTime $from = null,
+        DateTime $from,
         ?DateTime $to = null
     ): array
     {
         $this->authenticate();
 
-        $from ??= new DateTime();
         $to ??= new DateTime();
 
         return $this->versions->showVersionStats(
@@ -311,8 +317,8 @@ class HangarAPIClient
             $version->getProjectNamespace()->getSlug(),
             $version->getData()->getName(),
             $platform->value,
-            $from,
-            $to,
+            $from->format(DateTimeInterface::RFC3339),
+            $to->format(DateTimeInterface::RFC3339),
         );
     }
 

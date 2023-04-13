@@ -1375,8 +1375,8 @@ class VersionsApi
      * @param  string $slug The slug of the project to return stats for (required)
      * @param  string $name The version to return the stats for (required)
      * @param  string $platform The platform of the version to return stats for (required)
-     * @param  \DateTime $from_date The first date to include in the result (required)
-     * @param  \DateTime $to_date The last date to include in the result (required)
+     * @param  string $from_date The first date to include in the result (required)
+     * @param  string $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStats'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response
@@ -1398,8 +1398,8 @@ class VersionsApi
      * @param  string $slug The slug of the project to return stats for (required)
      * @param  string $name The version to return the stats for (required)
      * @param  string $platform The platform of the version to return stats for (required)
-     * @param  \DateTime $from_date The first date to include in the result (required)
-     * @param  \DateTime $to_date The last date to include in the result (required)
+     * @param  string $from_date The first date to include in the result (required)
+     * @param  string $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStats'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response
@@ -1549,8 +1549,8 @@ class VersionsApi
      * @param  string $slug The slug of the project to return stats for (required)
      * @param  string $name The version to return the stats for (required)
      * @param  string $platform The platform of the version to return stats for (required)
-     * @param  \DateTime $from_date The first date to include in the result (required)
-     * @param  \DateTime $to_date The last date to include in the result (required)
+     * @param  string $from_date The first date to include in the result (required)
+     * @param  string $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStats'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1575,8 +1575,8 @@ class VersionsApi
      * @param  string $slug The slug of the project to return stats for (required)
      * @param  string $name The version to return the stats for (required)
      * @param  string $platform The platform of the version to return stats for (required)
-     * @param  \DateTime $from_date The first date to include in the result (required)
-     * @param  \DateTime $to_date The last date to include in the result (required)
+     * @param  string $from_date The first date to include in the result (required)
+     * @param  string $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStats'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1630,8 +1630,8 @@ class VersionsApi
      * @param  string $slug The slug of the project to return stats for (required)
      * @param  string $name The version to return the stats for (required)
      * @param  string $platform The platform of the version to return stats for (required)
-     * @param  \DateTime $from_date The first date to include in the result (required)
-     * @param  \DateTime $to_date The last date to include in the result (required)
+     * @param  string $from_date The first date to include in the result (required)
+     * @param  string $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStats'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

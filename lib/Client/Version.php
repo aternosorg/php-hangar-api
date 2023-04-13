@@ -51,14 +51,21 @@ class Version
     }
 
     /**
+     * Fetch a daily list of statistics for this version
+     * Days without downloads/views are not be included
      * @param Platform $platform
-     * @param DateTime|null $from
-     * @param DateTime|null $to
-     * @return VersionStats[]
+     * @param DateTime|null $from default: version creation date
+     * @param DateTime|null $to default: now
+     * @return array<string, VersionStats>
      * @throws ApiException
      */
-    public function getStats(Platform $platform, ?DateTime $from = null, ?DateTime $to = null): array
+    public function getDailyStats(Platform $platform, ?DateTime $from = null, ?DateTime $to = null): array
     {
-        return $this->client->getProjectVersionDayStats($this, $platform, $from, $to);
+        return $this->client->getDailyProjectVersionStats(
+            $this,
+            $platform,
+            $from ?? $this->getData()->getCreatedAt(),
+            $to
+        );
     }
 }
