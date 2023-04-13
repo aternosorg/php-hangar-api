@@ -396,4 +396,36 @@ class ClientTest extends TestCase
         }
         $this->assertFalse($users->hasPreviousPage());
     }
+
+    /**
+     * Test case for getUser
+     * @throws ApiException
+     */
+    public function testGetUser()
+    {
+        $user = $this->apiClient->getUser("Aternos");
+        $this->assertNotNull($user);
+        $this->assertNotNull($user->getData());
+        $this->assertEquals("Aternos", $user->getData()->getName());
+    }
+
+    /**
+     * Test case for getProjectsWatchedByUser
+     * @throws ApiException
+     */
+    public function testGetProjectsWatchedByUser()
+    {
+        $user = $this->apiClient->getUser("JulianVennen");
+        $this->assertNotNull($user);
+        $this->assertNotNull($user->getData());
+        $this->assertEquals("JulianVennen", $user->getData()->getName());
+
+        $watched =  $user->getWatchedProjects();
+        $this->assertNotNull($watched);
+        $this->assertNotEmpty($watched->getResults());
+
+        foreach ($watched as $project) {
+            $this->assertValidProject($project);
+        }
+    }
 }
