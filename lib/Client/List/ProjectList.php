@@ -9,6 +9,12 @@ use Aternos\HangarApi\Client\Project;
 use Aternos\HangarApi\Model\PaginatedResultProject;
 use Aternos\HangarApi\Model\Pagination;
 
+/**
+ * Class ProjectList
+ *
+ * @package Aternos\HangarApi\Client\List
+ * @description A paginated list of projects
+ */
 class ProjectList extends ResultList
 {
     /**

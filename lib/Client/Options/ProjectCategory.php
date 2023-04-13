@@ -2,6 +2,12 @@
 
 namespace Aternos\HangarApi\Client\Options;
 
+/**
+ * Class ProjectCategory
+ *
+ * @package Aternos\HangarApi\Client\Options
+ * @description The category of a project
+ */
 enum ProjectCategory: string
 {
     case ADMIN_TOOLS = 'admin_tools';

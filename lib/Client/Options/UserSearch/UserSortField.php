@@ -2,6 +2,12 @@
 
 namespace Aternos\HangarApi\Client\Options\UserSearch;
 
+/**
+ * Class UserSortField
+ *
+ * @package Aternos\HangarApi\Client\Options\UserSearch
+ * @description The field to sort the user search results by.
+ */
 enum UserSortField: string
 {
     case NAME = 'name';

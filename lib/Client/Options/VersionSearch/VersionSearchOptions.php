@@ -7,6 +7,12 @@ use Aternos\HangarApi\Client\Project;
 use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
 
+/**
+ * Class VersionSearchOptions
+ *
+ * @package Aternos\HangarApi\Client\Options\VersionSearch
+ * @description Options for searching versions. Only the namespace is required.
+ */
 class VersionSearchOptions
 {
     protected ProjectNamespace $projectNamespace;
@@ -21,11 +27,12 @@ class VersionSearchOptions
 
     protected ?string $platformVersion = null;
 
-    public function __construct()
+    public function __construct(ProjectNamespace $projectNamespace)
     {
         $this->pagination = (new RequestPagination())
             ->setOffset(0)
             ->setLimit(25);
+        $this->projectNamespace = $projectNamespace;
     }
 
     /**

@@ -8,6 +8,12 @@ use Aternos\HangarApi\Model\PaginatedResultUser;
 use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
 
+/**
+ * Class ProjectWatcherList
+ *
+ * @package Aternos\HangarApi\Client\List\User
+ * @description A paginated list of project watchers
+ */
 class ProjectWatcherList extends UserList
 {
     public function __construct(

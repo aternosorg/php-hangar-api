@@ -29,6 +29,12 @@ use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
 use DateTimeInterface;
 
+/**
+ * Class HangarAPIClient
+ *
+ * @package Aternos\HangarApi\Client
+ * @description This class is the main entry point for the hangar api. It provides methods to access all hangar api endpoints.
+ */
 class HangarAPIClient
 {
 

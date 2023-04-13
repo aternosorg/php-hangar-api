@@ -10,6 +10,12 @@ use Aternos\HangarApi\Model\ProjectMember;
 use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
 
+/**
+ * Class ProjectMemberList
+ *
+ * @package Aternos\HangarApi\Client\List
+ * @description A paginated list of project members
+ */
 class ProjectMemberList
 {
     public function __construct(

@@ -8,6 +8,12 @@ use Aternos\HangarApi\Model\PaginatedResultProjectCompact;
 use Aternos\HangarApi\Model\Pagination;
 use Aternos\HangarApi\Model\RequestPagination;
 
+/**
+ * Class CompactProjectList
+ *
+ * @package Aternos\HangarApi\Client\List
+ * @description A paginated list of compact projects
+ */
 abstract class CompactProjectList extends ResultList
 {
     /**

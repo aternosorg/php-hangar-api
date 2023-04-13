@@ -7,6 +7,12 @@ use Aternos\HangarApi\Client\List\UserList;
 use Aternos\HangarApi\Model\PaginatedResultUser;
 use Aternos\HangarApi\Model\RequestPagination;
 
+/**
+ * Class StaffList
+ *
+ * @package Aternos\HangarApi\Client\List\User
+ * @description A paginated list of staff members
+ */
 class StaffList extends UserList
 {
     public function __construct(HangarAPIClient $client, PaginatedResultUser $result, protected RequestPagination $requestPagination)

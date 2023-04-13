@@ -8,6 +8,12 @@ use Aternos\HangarApi\Client\Version;
 use Aternos\HangarApi\Model\PaginatedResultVersion;
 use Aternos\HangarApi\Model\Pagination;
 
+/**
+ * Class ProjectVersionList
+ *
+ * @package Aternos\HangarApi\Client\List
+ * @description A paginated list of versions
+ */
 class ProjectVersionList extends ResultList
 {
     /**

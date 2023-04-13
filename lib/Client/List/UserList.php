@@ -8,6 +8,12 @@ use Aternos\HangarApi\Client\User;
 use Aternos\HangarApi\Model\PaginatedResultUser;
 use Aternos\HangarApi\Model\Pagination;
 
+/**
+ * Class UserList
+ *
+ * @package Aternos\HangarApi\Client\List
+ * @description A paginated list of users
+ */
 class UserList extends ResultList
 {
     /**

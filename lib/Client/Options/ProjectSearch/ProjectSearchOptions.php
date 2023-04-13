@@ -6,6 +6,12 @@ use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\ProjectCategory;
 use Aternos\HangarApi\Model\RequestPagination;
 
+/**
+ * Class ProjectSearchOptions
+ *
+ * @package Aternos\HangarApi\Client\Options\ProjectSearch
+ * @description Options for searching projects. All options are optional.
+ */
 class ProjectSearchOptions
 {
     protected RequestPagination $pagination;

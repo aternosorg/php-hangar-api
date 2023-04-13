@@ -8,6 +8,12 @@ use Aternos\HangarApi\Client\List\CompactProject\WatchedProjectList;
 use Aternos\HangarApi\Client\List\ProjectList;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 
+/**
+ * Class User
+ *
+ * @package Aternos\HangarApi\Client
+ * @description This class wraps a hangar user and allows you to fetch additional data.
+ */
 class User
 {
     public function __construct(

@@ -11,6 +11,12 @@ use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Model\ProjectStats;
 use DateTime;
 
+/**
+ * Class Project
+ *
+ * @package Aternos\HangarApi\Client
+ * @description This class wraps a full project on hangar and allows you to fetch additional data.
+ */
 class Project
 {
     public function __construct(
@@ -38,7 +44,7 @@ class Project
      */
     public function getVersions(?string $channel = null, ?Platform $platform = null, ?string $platformVersion = null): ProjectVersionList
     {
-        $options = new VersionSearchOptions();
+        $options = new VersionSearchOptions($this->getData()->getNamespace());
         $options->setProject($this);
         $options->setChannel($channel);
         $options->setPlatform($platform);

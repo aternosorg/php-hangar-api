@@ -8,6 +8,12 @@ use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
 
+/**
+ * Class Version
+ *
+ * @package Aternos\HangarApi\Client
+ * @description This class wraps a version of a project on hangar and allows you to fetch additional data.
+ */
 class Version
 {
     public function __construct(

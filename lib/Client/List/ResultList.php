@@ -5,6 +5,12 @@ namespace Aternos\HangarApi\Client\List;
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Model\Pagination;
 
+/**
+ * Class ResultList
+ *
+ * @package Aternos\HangarApi\Client\List
+ * @description A paginated list of results
+ */
 abstract class ResultList
 {
     /**

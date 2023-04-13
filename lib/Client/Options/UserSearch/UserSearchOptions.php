@@ -4,6 +4,12 @@ namespace Aternos\HangarApi\Client\Options\UserSearch;
 
 use Aternos\HangarApi\Model\RequestPagination;
 
+/**
+ * Class UserSearchOptions
+ *
+ * @package Aternos\HangarApi\Client\Options\UserSearch
+ * @description Options for searching users. All options are optional.
+ */
 class UserSearchOptions
 {
     protected RequestPagination $pagination;

@@ -9,10 +9,15 @@ use Aternos\HangarApi\Client\List\UserList;
 use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Model\ProjectCompact;
-use Aternos\HangarApi\Model\ProjectStats;
 use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
 
+/**
+ * Class CompactProject
+ *
+ * @package Aternos\HangarApi\Client
+ * @description This class wraps a compact project (a project with fewer fields) and allows you to fetch additional data.
+ */
 class CompactProject
 {
     public function __construct(
@@ -50,8 +55,7 @@ class CompactProject
      */
     public function getVersions(?string $channel = null, ?Platform $platform = null, ?string $platformVersion = null): ProjectVersionList
     {
-        $options = new VersionSearchOptions();
-        $options->setProjectNamespace($this->getData()->getNamespace());
+        $options = new VersionSearchOptions($this->getData()->getNamespace());
         $options->setChannel($channel);
         $options->setPlatform($platform);
         $options->setPlatformVersion($platformVersion);

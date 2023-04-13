@@ -2,6 +2,12 @@
 
 namespace Aternos\HangarApi\Client\Options\ProjectSearch;
 
+/**
+ * Class ProjectSortField
+ *
+ * @package Aternos\HangarApi\Client\Options\ProjectSearch
+ * @description The field to sort the project search results by.
+ */
 enum ProjectSortField: string
 {
     case STARS = 'stars';
