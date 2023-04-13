@@ -102,10 +102,12 @@ class HangarAPIClient
      * This is only required to access non-public content or actions but if set will be used for all requests.
      * You can generate an API key in the {@link https://hangar.papermc.io/auth/settings/api-keys Account settings}
      * @param string|null $apiKey
+     * @return $this
      */
-    public function setApiKey(?string $apiKey): void
+    public function setApiKey(?string $apiKey): static
     {
         $this->apiKey = $apiKey;
+        return $this;
     }
 
     /**
