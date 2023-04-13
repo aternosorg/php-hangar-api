@@ -8,6 +8,7 @@ use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\ProjectCategory;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Client\Options\UserSearch\UserSearchOptions;
+use Aternos\HangarApi\Model\RequestPagination;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
@@ -368,8 +369,6 @@ class ClientTest extends TestCase
         }
     }
 
-
-
     /**
      * Test case for getUsers
      * @throws ApiException
@@ -466,5 +465,52 @@ class ClientTest extends TestCase
         foreach ($starred->getResults() as $project) {
             $this->assertValidCompactProject($project);
         }
+    }
+
+    /**
+     * Test case for getUsers
+     * @throws ApiException
+     */
+    public function testGetStaff()
+    {
+        $pagination = (new RequestPagination())->setLimit(1);
+        $users = $this->apiClient->getStaff($pagination);
+        $this->assertFalse($users->hasPreviousPage());
+
+        $firstUserOfPage = [];
+        for ($i = 0; $i < 3; $i++) {
+            $this->assertNotNull($users);
+            $this->assertNotNull($users->getResults());
+            $this->assertNotEmpty($users->getResults());
+            $firstUserOfPage[$i] = $users->getResults()[0];
+
+            foreach ($users->getResults() as $user) {
+                $this->assertNotNull($user);
+                $this->assertNotNull($user->getData());
+                $this->assertNotNull($user->getData()->getName());
+            }
+
+            $this->assertTrue($users->hasNextPage());
+            $users = $users->getNextPage();
+        }
+
+        for ($i = 2; $i >= 0; $i--) {
+            $this->assertTrue($users->hasPreviousPage());
+            $users = $users->getPreviousPage();
+
+            $this->assertNotNull($users);
+            $this->assertNotNull($users->getResults());
+            $this->assertNotEmpty($users->getResults());
+            $this->assertEquals($firstUserOfPage[$i]->getData()->getName(), $users->getResults()[0]->getData()->getName());
+            $firstUserOfPage[$i] = $users->getResults()[0];
+
+            foreach ($users->getResults() as $user) {
+                $this->assertNotNull($user);
+                $this->assertNotNull($user->getData());
+                $this->assertNotNull($user->getData()->getName());
+            }
+            $this->assertTrue($users->hasNextPage());
+        }
+        $this->assertFalse($users->hasPreviousPage());
     }
 }
