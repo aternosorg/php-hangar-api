@@ -4,7 +4,7 @@ namespace Aternos\HangarApi\Client\Options;
 
 enum Platform: string
 {
-    case PAPER = 'paper';
-    case WATERFALL = 'waterfall';
-    case VELOCITY = 'velocity';
+    case PAPER = 'PAPER';
+    case WATERFALL = 'WATERFALL';
+    case VELOCITY = 'VELOCITY';
 }
