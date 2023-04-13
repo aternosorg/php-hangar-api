@@ -4,6 +4,7 @@ namespace Aternos\HangarApi\Test\Client;
 
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
+use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\ProjectCategory;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use PHPUnit\Framework\TestCase;
@@ -296,11 +297,12 @@ class ClientTest extends TestCase
      * Test case for fetching project day stats
      * @throws ApiException
      */
-    public function testGetProjectDayStats()
+    public function testGetDailyProjectStats()
     {
         $project = $this->apiClient->getProject("Aternos", "mclogs");
         $this->assertNotNull($project);
         $this->assertValidProject($project);
+
         $stats = $project->getDailyStats();
         $this->assertNotNull($stats);
         $this->assertNotEmpty($stats);
@@ -310,6 +312,39 @@ class ClientTest extends TestCase
             $this->assertNotNull($stat);
             $this->assertNotNull($stat->getDownloads());
             $this->assertNotNull($stat->getViews());
+        }
+    }
+
+    /**
+     * Test case for fetching project day stats
+     * This is currently broken because hangar returns an HTTP 500 error: https://github.com/HangarMC/Hangar/issues/1140
+     * @throws ApiException
+     */
+    public function testGetDailyProjectVersionStats()
+    {
+        $project = $this->apiClient->getProject("Aternos", "mclogs");
+        $this->assertNotNull($project);
+        $this->assertValidProject($project);
+
+        $versions = $project->getVersions();
+        $this->assertNotNull($versions);
+        $this->assertNotEmpty($versions->getResults());
+        foreach ($versions->getResults() as $version) {
+            foreach ($version->getData()->getStats()->getPlatformDownloads() as $platform => $downloads) {
+                if ($downloads > 0) {
+                    $stats = $version->getDailyStats(Platform::from($platform));
+                    $this->assertNotNull($stats);
+                    $this->assertNotEmpty($stats);
+
+                    foreach ($stats as $day => $stat) {
+                        $this->assertNotNull($day);
+                        $this->assertNotNull($stat);
+                        $this->assertNotNull($stat->getTotalDownloads());
+                        $this->assertNotNull($stat->getPlatformDownloads());
+                    }
+                    break 2;
+                }
+            }
         }
     }
 }
