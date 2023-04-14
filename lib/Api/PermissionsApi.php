@@ -133,7 +133,7 @@ class PermissionsApi
      *
      * Checks whether you have all the provided permissions
      *
-     * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
+     * @param string[] $permissions The permissions to check (required)
      * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The project slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
@@ -154,7 +154,7 @@ class PermissionsApi
      *
      * Checks whether you have all the provided permissions
      *
-     * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
+     * @param string[] $permissions The permissions to check (required)
      * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The project slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
@@ -303,7 +303,7 @@ class PermissionsApi
      *
      * Checks whether you have all the provided permissions
      *
-     * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
+     * @param string[] $permissions The permissions to check (required)
      * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The project slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
@@ -327,7 +327,7 @@ class PermissionsApi
      *
      * Checks whether you have all the provided permissions
      *
-     * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
+     * @param string[] $permissions The permissions to check (required)
      * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The project slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
@@ -380,7 +380,7 @@ class PermissionsApi
     /**
      * Create request for operation 'hasAll'
      *
-     * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
+     * @param string[] $permissions The permissions to check (required)
      * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The project slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
@@ -518,7 +518,7 @@ class PermissionsApi
      *
      * Checks whether you have at least one of the provided permissions
      *
-     * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
+     * @param string[] $permissions The permissions to check (required)
      * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName (optional)
      * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
@@ -539,7 +539,7 @@ class PermissionsApi
      *
      * Checks whether you have at least one of the provided permissions
      *
-     * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
+     * @param string[] $permissions The permissions to check (required)
      * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName (optional)
      * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
@@ -688,7 +688,7 @@ class PermissionsApi
      *
      * Checks whether you have at least one of the provided permissions
      *
-     * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
+     * @param string[] $permissions The permissions to check (required)
      * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName (optional)
      * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
@@ -712,7 +712,7 @@ class PermissionsApi
      *
      * Checks whether you have at least one of the provided permissions
      *
-     * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
+     * @param string[] $permissions The permissions to check (required)
      * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName (optional)
      * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
@@ -765,7 +765,7 @@ class PermissionsApi
     /**
      * Create request for operation 'hasAny'
      *
-     * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
+     * @param string[] $permissions The permissions to check (required)
      * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName (optional)
      * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
