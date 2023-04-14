@@ -3,6 +3,7 @@
 namespace Aternos\HangarApi\Client;
 
 use Aternos\HangarApi\Api\AuthenticationApi;
+use Aternos\HangarApi\Api\PermissionsApi;
 use Aternos\HangarApi\Api\ProjectsApi;
 use Aternos\HangarApi\Api\UsersApi;
 use Aternos\HangarApi\Api\VersionsApi;
@@ -23,8 +24,10 @@ use Aternos\HangarApi\Client\Options\UserSearch\UserSearchOptions;
 use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Configuration;
 use Aternos\HangarApi\Model\DayProjectStats;
+use Aternos\HangarApi\Model\NamedPermission;
 use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
+use Aternos\HangarApi\Model\UserPermissions;
 use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
 use DateTimeInterface;
@@ -52,6 +55,8 @@ class HangarAPIClient
 
     protected AuthenticationApi $authentication;
 
+    protected PermissionsApi $permissions;
+
     public function __construct(Configuration $configuration = null)
     {
         $this->setConfiguration($configuration ?? (new Configuration())
@@ -69,26 +74,28 @@ class HangarAPIClient
         $this->versions = new VersionsApi(null, $this->configuration);
         $this->users = new UsersApi(null, $this->configuration);
         $this->authentication = new AuthenticationApi(null, $this->configuration);
+        $this->permissions = new PermissionsApi(null, $this->configuration);
         return $this;
     }
 
     /**
      * @throws ApiException
      */
-    protected function authenticate(): void
+    protected function authenticate(): bool
     {
         if (!$this->apiKey) {
-            return;
+            return false;
         }
 
         if ($this->jwt && $this->jwt->isValid()) {
-            return;
+            return true;
         }
 
         $data = $this->authentication->authenticate($this->apiKey);
         $this->jwt = new JWT($data->getToken(), $data->getExpiresIn());
         $this->configuration->setAccessToken($this->jwt->getToken());
         $this->setConfiguration($this->configuration);
+        return true;
     }
 
     /**
@@ -112,7 +119,37 @@ class HangarAPIClient
     public function setApiKey(?string $apiKey): static
     {
         $this->apiKey = $apiKey;
+        $this->jwt = null;
         return $this;
+    }
+
+    /**
+     * @param string[] $permissions (value of {@see NamedPermission})
+     * @param string|null $owner
+     * @param string|null $project
+     * @return bool
+     * @throws ApiException
+     */
+    public function has_permissions(array $permissions, ?string $owner = null, ?string $project = null): bool
+    {
+        if (!$this->authenticate()) {
+            return sizeof($permissions) === 0 || sizeof($permissions) === 1 &&
+                $permissions[0] === NamedPermission::VIEW_PUBLIC_INFO;
+        }
+
+        return $this->permissions->hasAll($permissions, $owner, $project)->getResult();
+    }
+
+    /**
+     * @param string $permission (value of {@see NamedPermission})
+     * @param string|null $owner
+     * @param string|null $project
+     * @return bool
+     * @throws ApiException
+     */
+    public function has_permission(string $permission, ?string $owner = null, ?string $project = null): bool
+    {
+        return $this->has_permissions([$permission], $owner, $project);
     }
 
     /**
@@ -193,7 +230,12 @@ class HangarAPIClient
     {
         $this->authenticate();
 
+        if (!$this->has_permission(NamedPermission::IS_SUBJECT_MEMBER, $owner, $slug)) {
+            throw new ApiException('You need the is_subject_member permission to view project statistics');
+        }
+
         $to ??= new DateTime();
+
         return $this->projects->showProjectStats(
             $owner,
             $slug,
@@ -316,6 +358,13 @@ class HangarAPIClient
     {
         $this->authenticate();
 
+        if (!$this->has_permission(
+            NamedPermission::IS_SUBJECT_MEMBER,
+            $version->getProjectNamespace()->getOwner(),
+            $version->getProjectNamespace()->getSlug())) {
+            throw new ApiException('You need the is_subject_member permission to view version statistics');
+        }
+
         $to ??= new DateTime();
 
         return $this->versions->showVersionStats(
@@ -353,6 +402,10 @@ class HangarAPIClient
     public function getUser(string $username): User
     {
         $this->authenticate();
+
+        if (!$this->has_permission(NamedPermission::VIEW_PUBLIC_INFO)) {
+            throw new ApiException('You need the view_public_info permission to view users');
+        }
 
         $result = $this->users->getUser($username);
         return new User($this, $result);
@@ -431,6 +484,10 @@ class HangarAPIClient
     public function getStaff(?RequestPagination $pagination = null): StaffList
     {
         $this->authenticate();
+
+        if (!$this->has_permission(NamedPermission::VIEW_PUBLIC_INFO)) {
+            throw new ApiException('You need the view_public_info permission to view staff');
+        }
 
         $pagination ??= (new RequestPagination())
             ->setOffset(0)
