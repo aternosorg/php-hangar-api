@@ -121,4 +121,14 @@ class CompactProject
     {
         return $this->client->getProjectMembers($this->project->getNamespace());
     }
+
+    /**
+     * Get the owner of this project
+     * @return User
+     * @throws ApiException
+     */
+    public function getOwner(): User
+    {
+        return $this->client->getUser($this->project->getNamespace()->getOwner());
+    }
 }

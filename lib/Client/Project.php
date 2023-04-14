@@ -9,7 +9,6 @@ use Aternos\HangarApi\Client\List\UserList;
 use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Model\DayProjectStats;
-use Aternos\HangarApi\Model\ProjectStats;
 use DateTime;
 
 /**
@@ -110,5 +109,15 @@ class Project
     public function getMembers(): ProjectMemberList
     {
         return $this->client->getProjectMembers($this->project->getNamespace());
+    }
+
+    /**
+     * Get the owner of this project
+     * @return User
+     * @throws ApiException
+     */
+    public function getOwner(): User
+    {
+        return $this->client->getUser($this->project->getNamespace()->getOwner());
     }
 }
