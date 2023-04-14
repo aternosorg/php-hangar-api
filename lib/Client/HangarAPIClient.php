@@ -310,7 +310,6 @@ class HangarAPIClient
      */
     public function getDailyProjectVersionStats(
         Version   $version,
-        Platform  $platform,
         DateTime $from,
         ?DateTime $to = null
     ): array
@@ -323,7 +322,6 @@ class HangarAPIClient
             $version->getProjectNamespace()->getOwner(),
             $version->getProjectNamespace()->getSlug(),
             $version->getData()->getName(),
-            $platform->value,
             $from->format(DateTimeInterface::RFC3339),
             $to->format(DateTimeInterface::RFC3339),
         );

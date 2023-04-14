@@ -351,9 +351,9 @@ class ClientTest extends TestCase
         $this->assertNotNull($versions);
         $this->assertNotEmpty($versions->getResults());
         foreach ($versions->getResults() as $version) {
-            foreach ($version->getData()->getStats()->getPlatformDownloads() as $platform => $downloads) {
+            foreach ($version->getData()->getStats()->getPlatformDownloads() as $downloads) {
                 if ($downloads > 0) {
-                    $stats = $version->getDailyStats(Platform::from($platform));
+                    $stats = $version->getDailyStats();
                     $this->assertNotNull($stats);
                     $this->assertNotEmpty($stats);
 
