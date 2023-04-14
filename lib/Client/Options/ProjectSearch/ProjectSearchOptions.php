@@ -16,7 +16,7 @@ class ProjectSearchOptions
 {
     protected RequestPagination $pagination;
     protected bool $order_with_relevance = true;
-    protected ?ProjectSortField $sort = null;
+    protected ?ProjectSortField $sortField = null;
     protected ?ProjectCategory $category = null;
     protected ?Platform $platform = null;
     protected ?string $owner = null;
@@ -107,18 +107,18 @@ class ProjectSearchOptions
     /**
      * @return ProjectSortField|null
      */
-    public function getSort(): ?ProjectSortField
+    public function getSortField(): ?ProjectSortField
     {
-        return $this->sort;
+        return $this->sortField;
     }
 
     /**
      * @param ProjectSortField|null $sort
      * @return static
      */
-    public function setSort(?ProjectSortField $sort): static
+    public function setSortField(?ProjectSortField $sort): static
     {
-        $this->sort = $sort;
+        $this->sortField = $sort;
         return $this;
     }
 
