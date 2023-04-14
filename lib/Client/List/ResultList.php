@@ -2,21 +2,49 @@
 
 namespace Aternos\HangarApi\Client\List;
 
+use ArrayAccess;
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Model\Pagination;
+use Countable;
+use Iterator;
 
 /**
  * Class ResultList
  *
  * @package Aternos\HangarApi\Client\List
  * @description A paginated list of results
+ * @template T
  */
-abstract class ResultList
+abstract class ResultList implements Iterator, ArrayAccess, Countable
 {
+    protected int $iterator = 0;
+
+    protected function __construct(
+        protected Pagination $pagination,
+
+        /**
+         * @var T[]
+         */
+        protected array $results,
+    )
+    {
+    }
+
+    /**
+     * @return T[]
+     */
+    public function getResults(): array
+    {
+        return $this->results;
+    }
+
     /**
      * @return Pagination|null
      */
-    public abstract function getPagination(): ?Pagination;
+    public function getPagination(): ?Pagination
+    {
+        return $this->pagination;
+    }
 
     /**
      * @param int $offset
@@ -90,5 +118,93 @@ abstract class ResultList
         }
 
         return $this->getOffset($this->getPreviousOffset());
+    }
+
+    /**
+     * @inheritDoc
+     * @return T
+     */
+    public function current(): mixed
+    {
+        return $this->results[$this->iterator];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function next(): void
+    {
+        $this->iterator++;
+    }
+
+    /**
+     * @inheritDoc
+     * @return int
+     */
+    public function key(): int
+    {
+        return $this->iterator;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function valid(): bool
+    {
+        return array_key_exists($this->iterator, $this->results);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function rewind(): void
+    {
+        $this->iterator = 0;
+    }
+
+    /**
+     * @inheritDoc
+     * @param int $offset
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->results[$offset]);
+    }
+
+    /**
+     * @inheritDoc
+     * @param int $offset
+     * @return T
+     */
+    public function offsetGet(mixed $offset): mixed
+    {
+        return $this->results[$offset];
+    }
+
+    /**
+     * @inheritDoc
+     * @param int $offset
+     * @param T $value
+     */
+    public function offsetSet(mixed $offset, mixed $value): void
+    {
+        $this->results[$offset] = $value;
+    }
+
+    /**
+     * @inheritDoc
+     * @param int $offset
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->results[$offset]);
+    }
+
+    /**
+     * @return int
+     */
+    public function count(): int
+    {
+        return count($this->results);
     }
 }

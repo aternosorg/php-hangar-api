@@ -4,6 +4,7 @@ namespace Aternos\HangarApi\Test\Client;
 
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
+use Aternos\HangarApi\Client\List\ResultList;
 use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\ProjectCategory;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
@@ -96,6 +97,15 @@ class ClientTest extends TestCase
         $this->assertNotNull($project->getData()->getVisibility());
     }
 
+    protected function assertValidResultList($list): void
+    {
+        $this->assertNotNull($list);
+        $this->assertInstanceOf(ResultList::class, $list);
+        $this->assertNotEmpty($list);
+        $this->assertNotNull($list->getResults());
+        $this->assertNotEmpty($list->getResults());
+    }
+
     protected function isSameProject($a, $b): bool
     {
         if (!$a || !$b) {
@@ -141,12 +151,10 @@ class ClientTest extends TestCase
 
         $firstProjectOfPages = [];
         for ($i = 0; $i < 3; $i++) {
-            $this->assertNotNull($projectList);
-            $this->assertNotNull($projectList->getResults());
-            $this->assertNotEmpty($projectList->getResults());
-            $firstProjectOfPages[$i] = $projectList->getResults()[0];
+            $this->assertValidResultList($projectList);
+            $firstProjectOfPages[$i] = $projectList[0];
 
-            foreach ($projectList->getResults() as $project) {
+            foreach ($projectList as $project) {
                 $this->assertValidProject($project);
             }
 
@@ -158,13 +166,10 @@ class ClientTest extends TestCase
             $this->assertTrue($projectList->hasPreviousPage());
             $projectList = $projectList->getPreviousPage();
 
-            $this->assertNotNull($projectList);
-            $this->assertNotNull($projectList->getResults());
-            $this->assertNotEmpty($projectList->getResults());
-            $this->assertTrue($this->isSameProject($firstProjectOfPages[$i], $projectList->getResults()[0]));
-            $firstProjectOfPages[$i] = $projectList->getResults()[0];
+            $this->assertValidResultList($projectList);
+            $this->assertTrue($this->isSameProject($firstProjectOfPages[$i], $projectList[0]));
 
-            foreach ($projectList->getResults() as $project) {
+            foreach ($projectList as $project) {
                 $this->assertValidProject($project);
             }
             $this->assertTrue($projectList->hasNextPage());
@@ -186,12 +191,10 @@ class ClientTest extends TestCase
 
         $firstProjectOfPages = [];
         for ($i = 0; $i < 3; $i++) {
-            $this->assertNotNull($projectList);
-            $this->assertNotNull($projectList->getResults());
-            $this->assertNotEmpty($projectList->getResults());
-            $firstProjectOfPages[$i] = $projectList->getResults()[0];
+            $this->assertValidResultList($projectList);
+            $firstProjectOfPages[$i] = $projectList[0];
 
-            foreach ($projectList->getResults() as $project) {
+            foreach ($projectList as $project) {
                 $this->assertValidProject($project);
                 $this->assertEquals(ProjectCategory::ADMIN_TOOLS->value, $project->getData()->getCategory());
             }
@@ -204,13 +207,10 @@ class ClientTest extends TestCase
             $this->assertTrue($projectList->hasPreviousPage());
             $projectList = $projectList->getPreviousPage();
 
-            $this->assertNotNull($projectList);
-            $this->assertNotNull($projectList->getResults());
-            $this->assertNotEmpty($projectList->getResults());
-            $this->assertTrue($this->isSameProject($firstProjectOfPages[$i], $projectList->getResults()[0]));
-            $firstProjectOfPages[$i] = $projectList->getResults()[0];
+            $this->assertValidResultList($projectList);
+            $this->assertTrue($this->isSameProject($firstProjectOfPages[$i], $projectList[0]));
 
-            foreach ($projectList->getResults() as $project) {
+            foreach ($projectList as $project) {
                 $this->assertValidProject($project);
                 $this->assertEquals(ProjectCategory::ADMIN_TOOLS->value, $project->getData()->getCategory());
             }
@@ -229,12 +229,9 @@ class ClientTest extends TestCase
         $options->setOwner("Aternos");
         $options->setLimit(10);
         $projectList = $this->apiClient->getProjects($options);
-        $this->assertNotNull($projectList);
-        $this->assertFalse($projectList->hasPreviousPage());
-        $this->assertNotNull($projectList->getResults());
-        $this->assertNotEmpty($projectList->getResults());
+        $this->assertValidResultList($projectList);
 
-        foreach ($projectList->getResults() as $project) {
+        foreach ($projectList as $project) {
             $this->assertValidProject($project);
             $this->assertEquals("Aternos", $project->getData()->getNamespace()->getOwner());
         }
@@ -259,7 +256,7 @@ class ClientTest extends TestCase
         $versions = $project->getVersions();
         $this->assertNotNull($versions);
         $this->assertNotEmpty($versions);
-        foreach ($versions->getResults() as $version) {
+        foreach ($versions as $version) {
             $this->assertEquals($project, $version->getProject());
             $fetched = $project->getVersion($version->getData()->getName());
             $this->assertEquals($version->getData()->getName(), $fetched->getData()->getName());
@@ -278,8 +275,7 @@ class ClientTest extends TestCase
         $this->assertEquals("Aternos", $project->getData()->getNamespace()->getOwner());
 
         $members = $project->getMembers();
-        $this->assertNotNull($members);
-        $this->assertNotEmpty($members->getResults());
+        $this->assertValidResultList($members);
         $this->assertNotEmpty(array_filter($members->getResults(), function ($member) {
             return $member->getUser() == "Aternos";
         }));
@@ -297,16 +293,14 @@ class ClientTest extends TestCase
         $this->assertEquals("Aternos", $project->getData()->getNamespace()->getOwner());
 
         $watchers = $project->getWatchers();
-        $this->assertNotNull($watchers);
-        $this->assertNotEmpty($watchers->getResults());
+        $this->assertValidResultList($watchers);
         $this->assertNotEmpty(array_filter($watchers->getResults(), function ($watcher) {
             return $watcher->getData()->getName() == "JulianVennen";
         }));
 
-        foreach ($watchers->getResults() as $watcher) {
+        foreach ($watchers as $watcher) {
             $projects = $watcher->getWatchedProjects();
-            $this->assertNotNull($projects);
-            $this->assertNotEmpty($projects->getResults());
+            $this->assertValidResultList($projects);
             $this->assertNotEmpty(array_filter($projects->getResults(), function ($watchedProject) use ($project) {
                 return $this->isSameProject($watchedProject, $project);
             }));
@@ -347,9 +341,8 @@ class ClientTest extends TestCase
         $this->assertValidProject($project);
 
         $versions = $project->getVersions();
-        $this->assertNotNull($versions);
-        $this->assertNotEmpty($versions->getResults());
-        foreach ($versions->getResults() as $version) {
+        $this->assertValidResultList($versions);
+        foreach ($versions as $version) {
             foreach ($version->getData()->getStats()->getPlatformDownloads() as $downloads) {
                 if ($downloads > 0) {
                     $stats = $version->getDailyStats();
@@ -379,12 +372,10 @@ class ClientTest extends TestCase
 
         $firstUserOfPage = [];
         for ($i = 0; $i < 3; $i++) {
-            $this->assertNotNull($users);
-            $this->assertNotNull($users->getResults());
-            $this->assertNotEmpty($users->getResults());
-            $firstUserOfPage[$i] = $users->getResults()[0];
+            $this->assertValidResultList($users);
+            $firstUserOfPage[$i] = $users[0];
 
-            foreach ($users->getResults() as $user) {
+            foreach ($users as $user) {
                 $this->assertNotNull($user);
                 $this->assertNotNull($user->getData());
                 $this->assertNotNull($user->getData()->getName());
@@ -398,13 +389,10 @@ class ClientTest extends TestCase
             $this->assertTrue($users->hasPreviousPage());
             $users = $users->getPreviousPage();
 
-            $this->assertNotNull($users);
-            $this->assertNotNull($users->getResults());
-            $this->assertNotEmpty($users->getResults());
-            $this->assertEquals($firstUserOfPage[$i]->getData()->getName(), $users->getResults()[0]->getData()->getName());
-            $firstUserOfPage[$i] = $users->getResults()[0];
+            $this->assertValidResultList($users);
+            $this->assertEquals($firstUserOfPage[$i]->getData()->getName(), $users[0]->getData()->getName());
 
-            foreach ($users->getResults() as $user) {
+            foreach ($users as $user) {
                 $this->assertNotNull($user);
                 $this->assertNotNull($user->getData());
                 $this->assertNotNull($user->getData()->getName());
@@ -438,10 +426,9 @@ class ClientTest extends TestCase
         $this->assertEquals("JulianVennen", $user->getData()->getName());
 
         $watched =  $user->getWatchedProjects();
-        $this->assertNotNull($watched);
-        $this->assertNotEmpty($watched->getResults());
+        $this->assertValidResultList($watched);
 
-        foreach ($watched->getResults() as $project) {
+        foreach ($watched as $project) {
             $this->assertValidCompactProject($project);
         }
     }
@@ -458,10 +445,9 @@ class ClientTest extends TestCase
         $this->assertEquals("JulianVennen", $user->getData()->getName());
 
         $starred =  $user->getStarredProjects();
-        $this->assertNotNull($starred);
-        $this->assertNotEmpty($starred->getResults());
+        $this->assertValidResultList($starred);
 
-        foreach ($starred->getResults() as $project) {
+        foreach ($starred as $project) {
             $this->assertValidCompactProject($project);
         }
     }
@@ -478,12 +464,10 @@ class ClientTest extends TestCase
 
         $firstUserOfPage = [];
         for ($i = 0; $i < 3; $i++) {
-            $this->assertNotNull($users);
-            $this->assertNotNull($users->getResults());
-            $this->assertNotEmpty($users->getResults());
-            $firstUserOfPage[$i] = $users->getResults()[0];
+            $this->assertValidResultList($users);
+            $firstUserOfPage[$i] = $users[0];
 
-            foreach ($users->getResults() as $user) {
+            foreach ($users as $user) {
                 $this->assertNotNull($user);
                 $this->assertNotNull($user->getData());
                 $this->assertNotNull($user->getData()->getName());
@@ -497,13 +481,10 @@ class ClientTest extends TestCase
             $this->assertTrue($users->hasPreviousPage());
             $users = $users->getPreviousPage();
 
-            $this->assertNotNull($users);
-            $this->assertNotNull($users->getResults());
-            $this->assertNotEmpty($users->getResults());
-            $this->assertEquals($firstUserOfPage[$i]->getData()->getName(), $users->getResults()[0]->getData()->getName());
-            $firstUserOfPage[$i] = $users->getResults()[0];
+            $this->assertValidResultList($users);
+            $this->assertEquals($firstUserOfPage[$i]->getData()->getName(), $users[0]->getData()->getName());
 
-            foreach ($users->getResults() as $user) {
+            foreach ($users as $user) {
                 $this->assertNotNull($user);
                 $this->assertNotNull($user->getData());
                 $this->assertNotNull($user->getData()->getName());
@@ -525,12 +506,10 @@ class ClientTest extends TestCase
 
         $firstUserOfPage = [];
         for ($i = 0; $i < 3; $i++) {
-            $this->assertNotNull($users);
-            $this->assertNotNull($users->getResults());
-            $this->assertNotEmpty($users->getResults());
-            $firstUserOfPage[$i] = $users->getResults()[0];
+            $this->assertValidResultList($users);
+            $firstUserOfPage[$i] = $users[0];
 
-            foreach ($users->getResults() as $user) {
+            foreach ($users as $user) {
                 $this->assertNotNull($user);
                 $this->assertNotNull($user->getData());
                 $this->assertNotNull($user->getData()->getName());
@@ -544,13 +523,10 @@ class ClientTest extends TestCase
             $this->assertTrue($users->hasPreviousPage());
             $users = $users->getPreviousPage();
 
-            $this->assertNotNull($users);
-            $this->assertNotNull($users->getResults());
-            $this->assertNotEmpty($users->getResults());
-            $this->assertEquals($firstUserOfPage[$i]->getData()->getName(), $users->getResults()[0]->getData()->getName());
-            $firstUserOfPage[$i] = $users->getResults()[0];
+            $this->assertValidResultList($users);
+            $this->assertEquals($firstUserOfPage[$i]->getData()->getName(), $users[0]->getData()->getName());
 
-            foreach ($users->getResults() as $user) {
+            foreach ($users as $user) {
                 $this->assertNotNull($user);
                 $this->assertNotNull($user->getData());
                 $this->assertNotNull($user->getData()->getName());

@@ -5,8 +5,6 @@ namespace Aternos\HangarApi\Client\List;
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Model\PaginatedResultProjectMember;
-use Aternos\HangarApi\Model\Pagination;
-use Aternos\HangarApi\Model\ProjectMember;
 use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
 
@@ -16,28 +14,16 @@ use Aternos\HangarApi\Model\RequestPagination;
  * @package Aternos\HangarApi\Client\List
  * @description A paginated list of project members
  */
-class ProjectMemberList
+class ProjectMemberList extends ResultList
 {
     public function __construct(
         protected HangarAPIClient $client,
-        protected PaginatedResultProjectMember $result,
+        PaginatedResultProjectMember $result,
         protected ProjectNamespace  $namespace,
         protected RequestPagination $requestPagination,
     )
     {
-    }
-
-    /**
-     * @return ProjectMember[]|null
-     */
-    public function getResults(): ?array
-    {
-        return $this->result->getResult();
-    }
-
-    public function getPagination(): ?Pagination
-    {
-        return $this->result->getPagination();
+        parent::__construct($result->getPagination(), $result->getResult() ?? []);
     }
 
     /**

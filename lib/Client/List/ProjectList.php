@@ -7,38 +7,26 @@ use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Client\Project;
 use Aternos\HangarApi\Model\PaginatedResultProject;
-use Aternos\HangarApi\Model\Pagination;
+use Aternos\HangarApi\Model\Project as ProjectModel;
 
 /**
  * Class ProjectList
  *
  * @package Aternos\HangarApi\Client\List
  * @description A paginated list of projects
+ * @extends ResultList<Project>
  */
 class ProjectList extends ResultList
 {
-    /**
-     * @var Project[]
-     */
-    protected array $results = [];
-
     public function __construct(
         protected HangarAPIClient $client,
-        protected PaginatedResultProject $result,
+        PaginatedResultProject $result,
         protected ?ProjectSearchOptions $options,
     )
     {
-        $this->results = array_map(function (\Aternos\HangarApi\Model\Project $project) {
+        parent::__construct($result->getPagination(), array_map(function (ProjectModel $project) {
             return new Project($this->client, $project);
-        }, $result->getResult());
-    }
-
-    /**
-     * @return Project[]
-     */
-    public function getResults(): array
-    {
-        return $this->results;
+        }, $result->getResult()));
     }
 
     /**
@@ -47,14 +35,6 @@ class ProjectList extends ResultList
     public function getOptions(): ProjectSearchOptions
     {
         return $this->options;
-    }
-
-    /**
-     * @return Pagination|null
-     */
-    public function getPagination(): ?Pagination
-    {
-        return $this->result->getPagination();
     }
 
     /**

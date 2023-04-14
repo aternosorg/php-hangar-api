@@ -6,48 +6,31 @@ use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Client\Version;
 use Aternos\HangarApi\Model\PaginatedResultVersion;
-use Aternos\HangarApi\Model\Pagination;
+use Aternos\HangarApi\Model\Version as VersionModel;
 
 /**
  * Class ProjectVersionList
  *
  * @package Aternos\HangarApi\Client\List
  * @description A paginated list of versions
+ * @extends ResultList<Version>
  */
 class ProjectVersionList extends ResultList
 {
-    /**
-     * @var Version[]
-     */
-    protected array $results = [];
-
     public function __construct(
         protected HangarAPIClient $client,
-        protected PaginatedResultVersion $result,
+        PaginatedResultVersion $result,
         protected VersionSearchOptions $options,
     )
     {
-        $this->results = array_map(function (\Aternos\HangarApi\Model\Version $version) use ($options) {
+        parent::__construct($result->getPagination(), array_map(function (VersionModel $version) use ($options) {
             return new Version(
                 $this->client,
                 $version,
                 $options->getProjectNamespace(),
                 $options->getProject(),
             );
-        }, $result->getResult());
-    }
-
-    /**
-     * @return Version[]
-     */
-    public function getResults(): array
-    {
-        return $this->results;
-    }
-
-    public function getPagination(): ?Pagination
-    {
-        return $this->result->getPagination();
+        }, $result->getResult()));
     }
 
     public function getOffset(int $offset): static
