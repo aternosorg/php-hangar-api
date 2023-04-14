@@ -1,6 +1,6 @@
 <?php
 /**
- * UserPermissions
+ * CompactRole
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Aternos\HangarApi\ObjectSerializer;
 
 /**
- * UserPermissions Class Doc Comment
+ * CompactRole Class Doc Comment
  *
  * @category Class
  * @package  Aternos\HangarApi
@@ -40,7 +40,7 @@ use \Aternos\HangarApi\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
+class CompactRole implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserPermissions';
+    protected static $openAPIModelName = 'CompactRole';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,10 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => '\Aternos\HangarApi\Model\PermissionType',
-        'permission_bin_string' => 'string',
-        'permissions' => '\Aternos\HangarApi\Model\NamedPermission[]'
+        'title' => 'string',
+        'color' => '\Aternos\HangarApi\Model\Color',
+        'rank' => 'int',
+        'category' => 'string'
     ];
 
     /**
@@ -70,9 +71,10 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'permission_bin_string' => null,
-        'permissions' => null
+        'title' => null,
+        'color' => null,
+        'rank' => 'int32',
+        'category' => null
     ];
 
     /**
@@ -81,9 +83,10 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'type' => false,
-		'permission_bin_string' => false,
-		'permissions' => false
+        'title' => false,
+		'color' => false,
+		'rank' => false,
+		'category' => false
     ];
 
     /**
@@ -172,9 +175,10 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'permission_bin_string' => 'permissionBinString',
-        'permissions' => 'permissions'
+        'title' => 'title',
+        'color' => 'color',
+        'rank' => 'rank',
+        'category' => 'category'
     ];
 
     /**
@@ -183,9 +187,10 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'permission_bin_string' => 'setPermissionBinString',
-        'permissions' => 'setPermissions'
+        'title' => 'setTitle',
+        'color' => 'setColor',
+        'rank' => 'setRank',
+        'category' => 'setCategory'
     ];
 
     /**
@@ -194,9 +199,10 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'permission_bin_string' => 'getPermissionBinString',
-        'permissions' => 'getPermissions'
+        'title' => 'getTitle',
+        'color' => 'getColor',
+        'rank' => 'getRank',
+        'category' => 'getCategory'
     ];
 
     /**
@@ -256,9 +262,10 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('permission_bin_string', $data ?? [], null);
-        $this->setIfExists('permissions', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('color', $data ?? [], null);
+        $this->setIfExists('rank', $data ?? [], null);
+        $this->setIfExists('category', $data ?? [], null);
     }
 
     /**
@@ -304,82 +311,109 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets type
-     *
-     * @return \Aternos\HangarApi\Model\PermissionType|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param \Aternos\HangarApi\Model\PermissionType|null $type type
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets permission_bin_string
+     * Gets title
      *
      * @return string|null
      */
-    public function getPermissionBinString()
+    public function getTitle()
     {
-        return $this->container['permission_bin_string'];
+        return $this->container['title'];
     }
 
     /**
-     * Sets permission_bin_string
+     * Sets title
      *
-     * @param string|null $permission_bin_string permission_bin_string
+     * @param string|null $title title
      *
      * @return self
      */
-    public function setPermissionBinString($permission_bin_string)
+    public function setTitle($title)
     {
-        if (is_null($permission_bin_string)) {
-            throw new \InvalidArgumentException('non-nullable permission_bin_string cannot be null');
+        if (is_null($title)) {
+            throw new \InvalidArgumentException('non-nullable title cannot be null');
         }
-        $this->container['permission_bin_string'] = $permission_bin_string;
+        $this->container['title'] = $title;
 
         return $this;
     }
 
     /**
-     * Gets permissions
+     * Gets color
      *
-     * @return \Aternos\HangarApi\Model\NamedPermission[]|null
+     * @return \Aternos\HangarApi\Model\Color|null
      */
-    public function getPermissions()
+    public function getColor()
     {
-        return $this->container['permissions'];
+        return $this->container['color'];
     }
 
     /**
-     * Sets permissions
+     * Sets color
      *
-     * @param \Aternos\HangarApi\Model\NamedPermission[]|null $permissions permissions
+     * @param \Aternos\HangarApi\Model\Color|null $color color
      *
      * @return self
      */
-    public function setPermissions($permissions)
+    public function setColor($color)
     {
-        if (is_null($permissions)) {
-            throw new \InvalidArgumentException('non-nullable permissions cannot be null');
+        if (is_null($color)) {
+            throw new \InvalidArgumentException('non-nullable color cannot be null');
         }
-        $this->container['permissions'] = $permissions;
+        $this->container['color'] = $color;
+
+        return $this;
+    }
+
+    /**
+     * Gets rank
+     *
+     * @return int|null
+     */
+    public function getRank()
+    {
+        return $this->container['rank'];
+    }
+
+    /**
+     * Sets rank
+     *
+     * @param int|null $rank rank
+     *
+     * @return self
+     */
+    public function setRank($rank)
+    {
+        if (is_null($rank)) {
+            throw new \InvalidArgumentException('non-nullable rank cannot be null');
+        }
+        $this->container['rank'] = $rank;
+
+        return $this;
+    }
+
+    /**
+     * Gets category
+     *
+     * @return string|null
+     */
+    public function getCategory()
+    {
+        return $this->container['category'];
+    }
+
+    /**
+     * Sets category
+     *
+     * @param string|null $category category
+     *
+     * @return self
+     */
+    public function setCategory($category)
+    {
+        if (is_null($category)) {
+            throw new \InvalidArgumentException('non-nullable category cannot be null');
+        }
+        $this->container['category'] = $category;
 
         return $this;
     }
