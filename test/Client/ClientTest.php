@@ -268,7 +268,6 @@ class ClientTest extends TestCase
 
     /**
      * Test case for fetching members of a project
-     * This endpoint is currently broken due to a bug in the paper API docs: https://github.com/HangarMC/Hangar/issues/1138
      * @throws ApiException
      */
     public function testGetProjectMembers()
