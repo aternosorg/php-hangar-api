@@ -1,6 +1,8 @@
 {
-    "version": "1.0.0",
+    "name": "aternos/php-hangar-api",
+    "type": "library",
     "description": "PHP Client for the Hangar API. This client is based on the openapi spec.",
+    "version": "1.0.0",
     "keywords": [
         "hangar",
         "papermc",
