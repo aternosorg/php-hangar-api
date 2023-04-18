@@ -26,8 +26,10 @@ use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Configuration;
 use Aternos\HangarApi\Model\DayProjectStats;
 use Aternos\HangarApi\Model\NamedPermission;
+use Aternos\HangarApi\Model\PageEditForm;
 use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
+use Aternos\HangarApi\Model\StringContent;
 use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
 use DateTimeInterface;
@@ -544,7 +546,7 @@ class HangarAPIClient
             $this,
             $author,
             $slug,
-            $this->pages->getMainPage($author, $slug)
+            $this->pages->getMainPage($author, $slug),
         );
     }
 
@@ -569,7 +571,64 @@ class HangarAPIClient
             $this,
             $author,
             $slug,
-            $this->pages->getPage($author, $slug, $path)
+            $this->pages->getPage($author, $slug, $path),
+        );
+    }
+
+    /**
+     * @param string $author
+     * @param string $slug
+     * @param string $content
+     * @return ProjectPage
+     * @throws ApiException
+     */
+    public function editProjectMainPage(string $author, string $slug, string $content): ProjectPage
+    {
+        $this->authenticate();
+
+        if (!$this->has_permission(NamedPermission::EDIT_PAGE)) {
+            throw new ApiException('You need the edit_page permission to edit project pages');
+        }
+
+        $form = new StringContent();
+        $form->setContent($content);
+        $this->pages->editMainPage($author, $slug, $form);
+
+        return new ProjectPage(
+            $this,
+            $author,
+            $slug,
+            $content,
+        );
+    }
+
+    /**
+     * @param string $author
+     * @param string $slug
+     * @param string $path
+     * @param string $content
+     * @return ProjectPage
+     * @throws ApiException
+     */
+    public function editProjectPage(string $author, string $slug, string $path, string $content): ProjectPage
+    {
+        $this->authenticate();
+
+        if (!$this->has_permission(NamedPermission::EDIT_PAGE)) {
+            throw new ApiException('You need the edit_page permission to edit project pages');
+        }
+
+        $form = new PageEditForm();
+        $form->setContent($content);
+        $form->setPath($path);
+        $this->pages->editPage($author, $slug, $form);
+
+        return new ProjectPage(
+            $this,
+            $author,
+            $slug,
+            $content,
+            $path,
         );
     }
 }

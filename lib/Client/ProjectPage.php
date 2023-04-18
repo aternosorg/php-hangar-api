@@ -19,6 +19,7 @@ class ProjectPage
     }
 
     /**
+     * Get the page content (markdown)
      * @return string
      */
     public function getContent(): string
@@ -27,6 +28,19 @@ class ProjectPage
     }
 
     /**
+     * Set the page content (markdown)
+     * @param string $content
+     * @return $this
+     */
+    public function setContent(string $content): static
+    {
+        $this->content = $content;
+        return $this;
+    }
+
+    /**
+     * Get the project this page belongs to
+     * This method will make an API request if the project is not set
      * @return Project
      * @throws ApiException
      */
@@ -36,20 +50,44 @@ class ProjectPage
     }
 
     /**
+     * Set the project this page belongs to
      * @param Project|null $project
-     * @return ProjectPage
+     * @return $this
      */
-    public function setProject(?Project $project): ProjectPage
+    public function setProject(?Project $project): static
     {
         $this->project = $project;
         return $this;
     }
 
     /**
+     * Get the path to this page
      * @return string
      */
     public function getPath(): string
     {
         return $this->path;
+    }
+
+    /**
+     * Set the path to this page
+     * @param string $path
+     * @return $this
+     */
+    public function setPath(string $path): static
+    {
+        $this->path = $path;
+        return $this;
+    }
+
+    /**
+     * Save the page content
+     * @return $this
+     * @throws ApiException
+     */
+    public function save(): static
+    {
+        $this->client->editProjectPage($this->owner, $this->slug, $this->path, $this->content);
+        return $this;
     }
 }
