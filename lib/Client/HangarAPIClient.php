@@ -129,13 +129,14 @@ class HangarAPIClient
     }
 
     /**
+     * Check if the user has all the given permissions
      * @param string[] $permissions (value of {@see NamedPermission})
      * @param string|null $owner
      * @param string|null $project
      * @return bool
      * @throws ApiException
      */
-    public function has_permissions(array $permissions, ?string $owner = null, ?string $project = null): bool
+    public function hasPermissions(array $permissions, ?string $owner = null, ?string $project = null): bool
     {
         if (!$this->authenticate()) {
             return sizeof($permissions) === 0 || sizeof($permissions) === 1 &&
@@ -146,15 +147,16 @@ class HangarAPIClient
     }
 
     /**
+     * Check if the user has a specific permission
      * @param string $permission (value of {@see NamedPermission})
      * @param string|null $owner
      * @param string|null $project
      * @return bool
      * @throws ApiException
      */
-    public function has_permission(string $permission, ?string $owner = null, ?string $project = null): bool
+    public function hasPermission(string $permission, ?string $owner = null, ?string $project = null): bool
     {
-        return $this->has_permissions([$permission], $owner, $project);
+        return $this->hasPermissions([$permission], $owner, $project);
     }
 
     /**
@@ -224,6 +226,8 @@ class HangarAPIClient
     /**
      * Get a list of daily project stats
      * Days without downloads/views will not be included
+     *
+     * Requires the is_subject_member permission
      * @param string $owner
      * @param string $slug
      * @param DateTime $from
@@ -235,7 +239,7 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        if (!$this->has_permission(NamedPermission::IS_SUBJECT_MEMBER, $owner, $slug)) {
+        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $owner, $slug)) {
             throw new ApiException('You need the is_subject_member permission to view project statistics');
         }
 
@@ -348,8 +352,9 @@ class HangarAPIClient
     /**
      * Get a list of daily version stats
      * Days without downloads/views will not be included
+     *
+     * Requires the is_subject_member permission
      * @param Version $version
-     * @param Platform $platform
      * @param DateTime $from
      * @param DateTime|null $to default: now
      * @return array<string, VersionStats>
@@ -363,7 +368,7 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        if (!$this->has_permission(
+        if (!$this->hasPermission(
             NamedPermission::IS_SUBJECT_MEMBER,
             $version->getProjectNamespace()->getOwner(),
             $version->getProjectNamespace()->getSlug())) {
@@ -400,6 +405,8 @@ class HangarAPIClient
 
     /**
      * Get a single user
+     *
+     * Requires the view_public_info permission
      * @param string $username
      * @return User
      * @throws ApiException
@@ -408,7 +415,7 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        if (!$this->has_permission(NamedPermission::VIEW_PUBLIC_INFO)) {
+        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO)) {
             throw new ApiException('You need the view_public_info permission to view users');
         }
 
@@ -482,6 +489,9 @@ class HangarAPIClient
     }
 
     /**
+     * Get a list of hangar staff
+     *
+     * Requires the view_public_info permission
      * @param RequestPagination|null $pagination
      * @return StaffList
      * @throws ApiException
@@ -490,7 +500,7 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        if (!$this->has_permission(NamedPermission::VIEW_PUBLIC_INFO)) {
+        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO)) {
             throw new ApiException('You need the view_public_info permission to view staff');
         }
 
@@ -507,6 +517,7 @@ class HangarAPIClient
     }
 
     /**
+     * Get the authors of a project
      * @param RequestPagination|null $pagination
      * @return AuthorList
      * @throws ApiException
@@ -529,6 +540,8 @@ class HangarAPIClient
 
     /**
      * Get the main page of a project
+     *
+     * Requires the view_public_info permission
      * @param string $author
      * @param string $slug
      * @return ProjectPage
@@ -538,7 +551,7 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        if (!$this->has_permission(NamedPermission::VIEW_PUBLIC_INFO)) {
+        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO, $author, $slug)) {
             throw new ApiException('You need the view_public_info permission to view project pages');
         }
 
@@ -552,7 +565,10 @@ class HangarAPIClient
 
     /**
      * Get a page from a project
+     * Starting and trailing slashes are ignored by the Hangar API
      * Calling this with an empty path is equivalent to calling getProjectMainPage
+     *
+     * Requires the view_public_info permission
      * @param string $author
      * @param string $slug
      * @param string $path
@@ -563,7 +579,7 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        if (!$this->has_permission(NamedPermission::VIEW_PUBLIC_INFO)) {
+        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO, $author, $slug)) {
             throw new ApiException('You need the view_public_info permission to view project pages');
         }
 
@@ -576,6 +592,9 @@ class HangarAPIClient
     }
 
     /**
+     * Edit the main page of a project
+     *
+     * Requires the edit_page permission
      * @param string $author
      * @param string $slug
      * @param string $content
@@ -586,7 +605,7 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        if (!$this->has_permission(NamedPermission::EDIT_PAGE)) {
+        if (!$this->hasPermission(NamedPermission::EDIT_PAGE, $author, $slug)) {
             throw new ApiException('You need the edit_page permission to edit project pages');
         }
 
@@ -603,6 +622,10 @@ class HangarAPIClient
     }
 
     /**
+     * Edit any page of a project
+     * Starting and trailing slashes are ignored by the Hangar API
+     *
+     * Requires the edit_page permission
      * @param string $author
      * @param string $slug
      * @param string $path
@@ -614,7 +637,7 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        if (!$this->has_permission(NamedPermission::EDIT_PAGE)) {
+        if (!$this->hasPermission(NamedPermission::EDIT_PAGE, $author, $slug)) {
             throw new ApiException('You need the edit_page permission to edit project pages');
         }
 
