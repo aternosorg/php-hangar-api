@@ -120,4 +120,32 @@ class Project
     {
         return $this->client->getUser($this->project->getNamespace()->getOwner());
     }
+
+    /**
+     * Get the main page of this project
+     * @return ProjectPage
+     * @throws ApiException
+     */
+    public function getMainPage(): ProjectPage
+    {
+        return $this->client->getProjectMainPage(
+            $this->project->getNamespace()->getOwner(),
+            $this->project->getNamespace()->getSlug(),
+        );
+    }
+
+    /**
+     * Get a page of this project
+     * @param string $path
+     * @return ProjectPage
+     * @throws ApiException
+     */
+    public function getPage(string $path): ProjectPage
+    {
+        return $this->client->getProjectPage(
+            $this->project->getNamespace()->getOwner(),
+            $this->project->getNamespace()->getSlug(),
+            $path,
+        );
+    }
 }

@@ -10,7 +10,6 @@ use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Model\DayProjectStats;
 use Aternos\HangarApi\Model\ProjectCompact;
-use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
 
 /**
@@ -130,5 +129,33 @@ class CompactProject
     public function getOwner(): User
     {
         return $this->client->getUser($this->project->getNamespace()->getOwner());
+    }
+
+    /**
+     * Get the main page of this project
+     * @return ProjectPage
+     * @throws ApiException
+     */
+    public function getMainPage(): ProjectPage
+    {
+        return $this->client->getProjectMainPage(
+            $this->project->getNamespace()->getOwner(),
+            $this->project->getNamespace()->getSlug(),
+        );
+    }
+
+    /**
+     * Get a page of this project
+     * @param string $path
+     * @return ProjectPage
+     * @throws ApiException
+     */
+    public function getPage(string $path): ProjectPage
+    {
+        return $this->client->getProjectPage(
+            $this->project->getNamespace()->getOwner(),
+            $this->project->getNamespace()->getSlug(),
+            $path,
+        );
     }
 }

@@ -3,12 +3,14 @@
 namespace Aternos\HangarApi\Client;
 
 use Aternos\HangarApi\Api\AuthenticationApi;
+use Aternos\HangarApi\Api\PagesApi;
 use Aternos\HangarApi\Api\PermissionsApi;
 use Aternos\HangarApi\Api\ProjectsApi;
 use Aternos\HangarApi\Api\UsersApi;
 use Aternos\HangarApi\Api\VersionsApi;
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\List\CompactProject\StarredProjectList;
+use Aternos\HangarApi\Client\List\CompactProject\WatchedProjectList;
 use Aternos\HangarApi\Client\List\ProjectList;
 use Aternos\HangarApi\Client\List\ProjectMemberList;
 use Aternos\HangarApi\Client\List\ProjectVersionList;
@@ -17,7 +19,6 @@ use Aternos\HangarApi\Client\List\User\ProjectStarGazersList;
 use Aternos\HangarApi\Client\List\User\ProjectWatcherList;
 use Aternos\HangarApi\Client\List\User\StaffList;
 use Aternos\HangarApi\Client\List\UserList;
-use Aternos\HangarApi\Client\List\CompactProject\WatchedProjectList;
 use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Client\Options\UserSearch\UserSearchOptions;
@@ -27,7 +28,6 @@ use Aternos\HangarApi\Model\DayProjectStats;
 use Aternos\HangarApi\Model\NamedPermission;
 use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
-use Aternos\HangarApi\Model\UserPermissions;
 use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
 use DateTimeInterface;
@@ -57,6 +57,8 @@ class HangarAPIClient
 
     protected PermissionsApi $permissions;
 
+    protected PagesApi $pages;
+
     public function __construct(Configuration $configuration = null)
     {
         $this->setConfiguration($configuration ?? (new Configuration())
@@ -75,6 +77,7 @@ class HangarAPIClient
         $this->users = new UsersApi(null, $this->configuration);
         $this->authentication = new AuthenticationApi(null, $this->configuration);
         $this->permissions = new PermissionsApi(null, $this->configuration);
+        $this->pages = new PagesApi(null, $this->configuration);
         return $this;
     }
 
@@ -519,6 +522,54 @@ class HangarAPIClient
             $this,
             $result,
             $pagination,
+        );
+    }
+
+    /**
+     * Get the main page of a project
+     * @param string $author
+     * @param string $slug
+     * @return ProjectPage
+     * @throws ApiException
+     */
+    public function getProjectMainPage(string $author, string $slug): ProjectPage
+    {
+        $this->authenticate();
+
+        if (!$this->has_permission(NamedPermission::VIEW_PUBLIC_INFO)) {
+            throw new ApiException('You need the view_public_info permission to view project pages');
+        }
+
+        return new ProjectPage(
+            $this,
+            $author,
+            $slug,
+            $this->pages->getMainPage($author, $slug)
+        );
+    }
+
+    /**
+     * Get a page from a project
+     * Calling this with an empty path is equivalent to calling getProjectMainPage
+     * @param string $author
+     * @param string $slug
+     * @param string $path
+     * @return ProjectPage
+     * @throws ApiException
+     */
+    public function getProjectPage(string $author, string $slug, string $path): ProjectPage
+    {
+        $this->authenticate();
+
+        if (!$this->has_permission(NamedPermission::VIEW_PUBLIC_INFO)) {
+            throw new ApiException('You need the view_public_info permission to view project pages');
+        }
+
+        return new ProjectPage(
+            $this,
+            $author,
+            $slug,
+            $this->pages->getPage($author, $slug, $path)
         );
     }
 }

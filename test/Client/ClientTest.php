@@ -5,10 +5,8 @@ namespace Aternos\HangarApi\Test\Client;
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Client\List\ResultList;
-use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\ProjectCategory;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
-use Aternos\HangarApi\Client\Options\UserSearch\UserSearchOptions;
 use Aternos\HangarApi\Model\RequestPagination;
 use PHPUnit\Framework\TestCase;
 
@@ -534,5 +532,29 @@ class ClientTest extends TestCase
             $this->assertTrue($users->hasNextPage());
         }
         $this->assertFalse($users->hasPreviousPage());
+    }
+
+    /**
+     * Test case for getProjectPage and getProjectMainPage
+     * @throws ApiException
+     */
+    public function testGetProjectPage()
+    {
+        $page = $this->apiClient->getProjectMainPage("Aternos", "mclogs");
+        $this->assertNotNull($page);
+        $this->assertNotNull($page->getContent());
+        $this->assertNotEmpty($page->getContent());
+        $this->assertNotNull($page->getPath());
+        $project = $page->getProject();
+        $this->assertEquals($page->getContent(), $project->getMainPage()->getContent());
+
+        $configPage = $project->getPage("Config");
+        $this->assertNotNull($configPage);
+        $this->assertNotNull($configPage->getContent());
+        $this->assertNotEmpty($configPage->getContent());
+        $this->assertNotNull($configPage->getPath());
+        $this->assertEquals($configPage->getContent(), $project->getPage("Config")->getContent());
+        $this->assertEquals($configPage->getContent(), $project->getPage("/Config")->getContent());
+        $this->assertEquals($configPage->getContent(), $project->getPage("/Config/")->getContent());
     }
 }
