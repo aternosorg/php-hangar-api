@@ -131,3 +131,19 @@ $starredProjects = $user->getStarredProjects();
 // get the projects a user is watching (paginated)
 $watchedProjects = $user->getWatchedProjects();
 ```
+
+## Project Pages
+```php
+// get the main page of a project
+$page = $hangarClient->getProjectMainPage("Aternos", "mclogs");
+
+// get other pages
+$page = $hangarClient->getProjectPage("Aternos", "mclogs", "Config");
+
+// get a page from a project
+$page = $project->getPage("Config");
+
+// edit a page
+$page->setContent("New content");
+$page->save();
+```
