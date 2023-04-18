@@ -295,7 +295,7 @@ class ClientTest extends TestCase
         $watchers = $project->getWatchers();
         $this->assertValidResultList($watchers);
         $this->assertNotEmpty(array_filter($watchers->getResults(), function ($watcher) {
-            return $watcher->getData()->getName() == "JulianVennen";
+            return $watcher->getData()->getName() == "Julian";
         }));
 
         foreach ($watchers as $watcher) {
@@ -420,10 +420,10 @@ class ClientTest extends TestCase
      */
     public function testGetProjectsWatchedByUser()
     {
-        $user = $this->apiClient->getUser("JulianVennen");
+        $user = $this->apiClient->getUser("Julian");
         $this->assertNotNull($user);
         $this->assertNotNull($user->getData());
-        $this->assertEquals("JulianVennen", $user->getData()->getName());
+        $this->assertEquals("Julian", $user->getData()->getName());
 
         $watched =  $user->getWatchedProjects();
         $this->assertValidResultList($watched);
@@ -439,10 +439,10 @@ class ClientTest extends TestCase
      */
     public function testGetProjectsStarredByUser()
     {
-        $user = $this->apiClient->getUser("JulianVennen");
+        $user = $this->apiClient->getUser("Julian");
         $this->assertNotNull($user);
         $this->assertNotNull($user->getData());
-        $this->assertEquals("JulianVennen", $user->getData()->getName());
+        $this->assertEquals("Julian", $user->getData()->getName());
 
         $starred =  $user->getStarredProjects();
         $this->assertValidResultList($starred);
