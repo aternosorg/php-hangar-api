@@ -42,3 +42,5 @@ jobs:
 
       - name: Run phpunit tests
         run: vendor/bin/phpunit --colors=always --testdox
+        env:
+          HANGAR_API_KEY: ${{ secrets.HANGAR_API_KEY }}
