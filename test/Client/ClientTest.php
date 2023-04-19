@@ -311,6 +311,10 @@ class ClientTest extends TestCase
      */
     public function testGetDailyProjectStats()
     {
+        if (!getenv("HANGAR_API_KEY")) {
+            $this->markTestSkipped("This test requires authentication.");
+        }
+
         $project = $this->apiClient->getProject("Aternos", "mclogs");
         $this->assertNotNull($project);
         $this->assertValidProject($project);
@@ -334,6 +338,10 @@ class ClientTest extends TestCase
      */
     public function testGetDailyProjectVersionStats()
     {
+        if (!getenv("HANGAR_API_KEY")) {
+            $this->markTestSkipped("This test requires authentication.");
+        }
+
         $project = $this->apiClient->getProject("Aternos", "mclogs");
         $this->assertNotNull($project);
         $this->assertValidProject($project);
