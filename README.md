@@ -147,3 +147,9 @@ $page = $project->getPage("Config");
 $page->setContent("New content");
 $page->save();
 ```
+
+## Updating the generated code
+The generated code can be updated by installing the [openapi generator](https://openapi-generator.tech/docs/installation) running the following command:
+```bash
+openapi-generator-cli generate -c config.yaml
+```
