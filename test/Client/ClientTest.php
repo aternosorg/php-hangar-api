@@ -299,6 +299,12 @@ class ClientTest extends TestCase
         foreach ($watchers as $watcher) {
             $projects = $watcher->getWatchedProjects();
             $this->assertValidResultList($projects);
+
+            if ($projects->hasNextPage()) {
+                // let's ignore people watching hundreds of projects to not spam the api
+                continue;
+            }
+
             $this->assertNotEmpty(array_filter($projects->getResults(), function ($watchedProject) use ($project) {
                 return $this->isSameProject($watchedProject, $project);
             }));
