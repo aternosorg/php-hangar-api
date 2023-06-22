@@ -122,7 +122,7 @@ foreach ($stats as $date => $stat) {
 // get a user
 $user = $hangarClient->getUser("Aternos");
 
-// get all users (paginated)
+// get all projects of a user (paginated)
 $projects = $user->getProjects();
 
 // get the projects a user has starred (paginated)
