@@ -7,6 +7,7 @@ use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Client\List\ResultList;
 use Aternos\HangarApi\Client\Options\ProjectCategory;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
+use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
 use PHPUnit\Framework\TestCase;
 
@@ -49,7 +50,7 @@ class ClientTest extends TestCase
     protected function assertValidNamespace($namespace): void
     {
         $this->assertNotNull($namespace);
-        $this->assertInstanceOf(\Aternos\HangarApi\Model\ProjectNamespace::class, $namespace);
+        $this->assertInstanceOf(ProjectNamespace::class, $namespace);
         $this->assertNotNull($namespace->getOwner());
         $this->assertNotNull($namespace->getSlug());
     }
@@ -246,7 +247,7 @@ class ClientTest extends TestCase
      */
     public function testGetProject()
     {
-        $project = $this->apiClient->getProject("Aternos", "mclogs");
+        $project = $this->apiClient->getProject("mclogs");
         $this->assertNotNull($project);
         $this->assertValidProject($project);
         $this->assertEquals("Aternos", $project->getData()->getNamespace()->getOwner());
@@ -267,7 +268,7 @@ class ClientTest extends TestCase
      */
     public function testGetProjectMembers()
     {
-        $project = $this->apiClient->getProject("Aternos", "motdgg");
+        $project = $this->apiClient->getProject("motdgg");
         $this->assertNotNull($project);
         $this->assertValidProject($project);
         $this->assertEquals("Aternos", $project->getData()->getNamespace()->getOwner());
@@ -285,7 +286,7 @@ class ClientTest extends TestCase
      */
     public function testGetProjectWatchers()
     {
-        $project = $this->apiClient->getProject("Aternos", "motdgg");
+        $project = $this->apiClient->getProject("motdgg");
         $this->assertNotNull($project);
         $this->assertValidProject($project);
         $this->assertEquals("Aternos", $project->getData()->getNamespace()->getOwner());
@@ -321,7 +322,7 @@ class ClientTest extends TestCase
             $this->markTestSkipped("This test requires authentication.");
         }
 
-        $project = $this->apiClient->getProject("Aternos", "mclogs");
+        $project = $this->apiClient->getProject("mclogs");
         $this->assertNotNull($project);
         $this->assertValidProject($project);
 
@@ -348,7 +349,7 @@ class ClientTest extends TestCase
             $this->markTestSkipped("This test requires authentication.");
         }
 
-        $project = $this->apiClient->getProject("Aternos", "mclogs");
+        $project = $this->apiClient->getProject("mclogs");
         $this->assertNotNull($project);
         $this->assertValidProject($project);
 
@@ -471,7 +472,7 @@ class ClientTest extends TestCase
     public function testGetStaff()
     {
         $pagination = (new RequestPagination())->setLimit(1);
-        $users = $this->apiClient->getStaff($pagination);
+        $users = $this->apiClient->getStaff("",$pagination);
         $this->assertFalse($users->hasPreviousPage());
 
         $firstUserOfPage = [];
@@ -513,7 +514,7 @@ class ClientTest extends TestCase
     public function testGetAuthors()
     {
         $pagination = (new RequestPagination())->setLimit(10);
-        $users = $this->apiClient->getAuthors($pagination);
+        $users = $this->apiClient->getAuthors("", $pagination);
         $this->assertFalse($users->hasPreviousPage());
 
         $firstUserOfPage = [];
@@ -554,7 +555,7 @@ class ClientTest extends TestCase
      */
     public function testGetProjectPage()
     {
-        $page = $this->apiClient->getProjectMainPage("Aternos", "mclogs");
+        $page = $this->apiClient->getProjectMainPage("mclogs");
         $this->assertNotNull($page);
         $this->assertNotNull($page->getContent());
         $this->assertNotEmpty($page->getContent());
