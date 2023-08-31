@@ -29,7 +29,7 @@ class ClientTest extends TestCase
     public function setUp(): void
     {
         $this->apiClient = new HangarAPIClient();
-        $this->apiClient->setUserAgent("aternos/php-hangar-api@1.0.0 (contact@aternos.org)");
+        $this->apiClient->setUserAgent("aternos/php-hangar-api@2.0.0 (contact@aternos.org)");
         $this->apiClient->setApiKey(getenv("HANGAR_API_KEY"));
     }
 

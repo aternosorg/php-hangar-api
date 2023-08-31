@@ -63,7 +63,7 @@ class HangarAPIClient
     public function __construct(Configuration $configuration = null)
     {
         $this->setConfiguration($configuration ?? (new Configuration())
-            ->setUserAgent("php-hangar-api/1.0.0"));
+            ->setUserAgent("php-hangar-api/2.0.0"));
     }
 
     /**
