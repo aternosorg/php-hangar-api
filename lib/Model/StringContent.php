@@ -306,7 +306,7 @@ class StringContent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets content
      *
-     * @param string $content content
+     * @param string $content A non-null, non-empty string
      *
      * @return self
      */

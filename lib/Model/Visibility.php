@@ -27,12 +27,12 @@
  */
 
 namespace Aternos\HangarApi\Model;
-use \Aternos\HangarApi\ObjectSerializer;
 
 /**
  * Visibility Class Doc Comment
  *
  * @category Class
+ * @description The visibility of a project or version
  * @package  Aternos\HangarApi
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

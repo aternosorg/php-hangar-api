@@ -136,7 +136,6 @@ class PagesApi
      *
      * Edits the main page of a project
      *
-     * @param  string $author The author of the project to change the page for (required)
      * @param  string $slug The slug of the project to change the page for (required)
      * @param  \Aternos\HangarApi\Model\StringContent $string_content string_content (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['editMainPage'] to see the possible values for this operation
@@ -145,9 +144,9 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function editMainPage($author, $slug, $string_content, string $contentType = self::contentTypes['editMainPage'][0])
+    public function editMainPage($slug, $string_content, string $contentType = self::contentTypes['editMainPage'][0])
     {
-        $this->editMainPageWithHttpInfo($author, $slug, $string_content, $contentType);
+        $this->editMainPageWithHttpInfo($slug, $string_content, $contentType);
     }
 
     /**
@@ -155,7 +154,6 @@ class PagesApi
      *
      * Edits the main page of a project
      *
-     * @param  string $author The author of the project to change the page for (required)
      * @param  string $slug The slug of the project to change the page for (required)
      * @param  \Aternos\HangarApi\Model\StringContent $string_content (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['editMainPage'] to see the possible values for this operation
@@ -164,9 +162,9 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function editMainPageWithHttpInfo($author, $slug, $string_content, string $contentType = self::contentTypes['editMainPage'][0])
+    public function editMainPageWithHttpInfo($slug, $string_content, string $contentType = self::contentTypes['editMainPage'][0])
     {
-        $request = $this->editMainPageRequest($author, $slug, $string_content, $contentType);
+        $request = $this->editMainPageRequest($slug, $string_content, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -217,7 +215,6 @@ class PagesApi
      *
      * Edits the main page of a project
      *
-     * @param  string $author The author of the project to change the page for (required)
      * @param  string $slug The slug of the project to change the page for (required)
      * @param  \Aternos\HangarApi\Model\StringContent $string_content (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['editMainPage'] to see the possible values for this operation
@@ -225,9 +222,9 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function editMainPageAsync($author, $slug, $string_content, string $contentType = self::contentTypes['editMainPage'][0])
+    public function editMainPageAsync($slug, $string_content, string $contentType = self::contentTypes['editMainPage'][0])
     {
-        return $this->editMainPageAsyncWithHttpInfo($author, $slug, $string_content, $contentType)
+        return $this->editMainPageAsyncWithHttpInfo($slug, $string_content, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -240,7 +237,6 @@ class PagesApi
      *
      * Edits the main page of a project
      *
-     * @param  string $author The author of the project to change the page for (required)
      * @param  string $slug The slug of the project to change the page for (required)
      * @param  \Aternos\HangarApi\Model\StringContent $string_content (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['editMainPage'] to see the possible values for this operation
@@ -248,10 +244,10 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function editMainPageAsyncWithHttpInfo($author, $slug, $string_content, string $contentType = self::contentTypes['editMainPage'][0])
+    public function editMainPageAsyncWithHttpInfo($slug, $string_content, string $contentType = self::contentTypes['editMainPage'][0])
     {
         $returnType = '';
-        $request = $this->editMainPageRequest($author, $slug, $string_content, $contentType);
+        $request = $this->editMainPageRequest($slug, $string_content, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -279,7 +275,6 @@ class PagesApi
     /**
      * Create request for operation 'editMainPage'
      *
-     * @param  string $author The author of the project to change the page for (required)
      * @param  string $slug The slug of the project to change the page for (required)
      * @param  \Aternos\HangarApi\Model\StringContent $string_content (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['editMainPage'] to see the possible values for this operation
@@ -287,15 +282,8 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function editMainPageRequest($author, $slug, $string_content, string $contentType = self::contentTypes['editMainPage'][0])
+    public function editMainPageRequest($slug, $string_content, string $contentType = self::contentTypes['editMainPage'][0])
     {
-
-        // verify the required parameter 'author' is set
-        if ($author === null || (is_array($author) && count($author) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $author when calling editMainPage'
-            );
-        }
 
         // verify the required parameter 'slug' is set
         if ($slug === null || (is_array($slug) && count($slug) === 0)) {
@@ -312,7 +300,7 @@ class PagesApi
         }
 
 
-        $resourcePath = '/api/v1/pages/editmain/{author}/{slug}';
+        $resourcePath = '/api/v1/pages/editmain/{slug}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -321,14 +309,6 @@ class PagesApi
 
 
 
-        // path params
-        if ($author !== null) {
-            $resourcePath = str_replace(
-                '{' . 'author' . '}',
-                ObjectSerializer::toPathValue($author),
-                $resourcePath
-            );
-        }
         // path params
         if ($slug !== null) {
             $resourcePath = str_replace(
@@ -408,7 +388,6 @@ class PagesApi
      *
      * Edits a page of a project
      *
-     * @param  string $author The author of the project to change the page for (required)
      * @param  string $slug The slug of the project to change the page for (required)
      * @param  \Aternos\HangarApi\Model\PageEditForm $page_edit_form page_edit_form (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['editPage'] to see the possible values for this operation
@@ -417,9 +396,9 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function editPage($author, $slug, $page_edit_form, string $contentType = self::contentTypes['editPage'][0])
+    public function editPage($slug, $page_edit_form, string $contentType = self::contentTypes['editPage'][0])
     {
-        $this->editPageWithHttpInfo($author, $slug, $page_edit_form, $contentType);
+        $this->editPageWithHttpInfo($slug, $page_edit_form, $contentType);
     }
 
     /**
@@ -427,7 +406,6 @@ class PagesApi
      *
      * Edits a page of a project
      *
-     * @param  string $author The author of the project to change the page for (required)
      * @param  string $slug The slug of the project to change the page for (required)
      * @param  \Aternos\HangarApi\Model\PageEditForm $page_edit_form (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['editPage'] to see the possible values for this operation
@@ -436,9 +414,9 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function editPageWithHttpInfo($author, $slug, $page_edit_form, string $contentType = self::contentTypes['editPage'][0])
+    public function editPageWithHttpInfo($slug, $page_edit_form, string $contentType = self::contentTypes['editPage'][0])
     {
-        $request = $this->editPageRequest($author, $slug, $page_edit_form, $contentType);
+        $request = $this->editPageRequest($slug, $page_edit_form, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -489,7 +467,6 @@ class PagesApi
      *
      * Edits a page of a project
      *
-     * @param  string $author The author of the project to change the page for (required)
      * @param  string $slug The slug of the project to change the page for (required)
      * @param  \Aternos\HangarApi\Model\PageEditForm $page_edit_form (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['editPage'] to see the possible values for this operation
@@ -497,9 +474,9 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function editPageAsync($author, $slug, $page_edit_form, string $contentType = self::contentTypes['editPage'][0])
+    public function editPageAsync($slug, $page_edit_form, string $contentType = self::contentTypes['editPage'][0])
     {
-        return $this->editPageAsyncWithHttpInfo($author, $slug, $page_edit_form, $contentType)
+        return $this->editPageAsyncWithHttpInfo($slug, $page_edit_form, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -512,7 +489,6 @@ class PagesApi
      *
      * Edits a page of a project
      *
-     * @param  string $author The author of the project to change the page for (required)
      * @param  string $slug The slug of the project to change the page for (required)
      * @param  \Aternos\HangarApi\Model\PageEditForm $page_edit_form (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['editPage'] to see the possible values for this operation
@@ -520,10 +496,10 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function editPageAsyncWithHttpInfo($author, $slug, $page_edit_form, string $contentType = self::contentTypes['editPage'][0])
+    public function editPageAsyncWithHttpInfo($slug, $page_edit_form, string $contentType = self::contentTypes['editPage'][0])
     {
         $returnType = '';
-        $request = $this->editPageRequest($author, $slug, $page_edit_form, $contentType);
+        $request = $this->editPageRequest($slug, $page_edit_form, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -551,7 +527,6 @@ class PagesApi
     /**
      * Create request for operation 'editPage'
      *
-     * @param  string $author The author of the project to change the page for (required)
      * @param  string $slug The slug of the project to change the page for (required)
      * @param  \Aternos\HangarApi\Model\PageEditForm $page_edit_form (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['editPage'] to see the possible values for this operation
@@ -559,15 +534,8 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function editPageRequest($author, $slug, $page_edit_form, string $contentType = self::contentTypes['editPage'][0])
+    public function editPageRequest($slug, $page_edit_form, string $contentType = self::contentTypes['editPage'][0])
     {
-
-        // verify the required parameter 'author' is set
-        if ($author === null || (is_array($author) && count($author) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $author when calling editPage'
-            );
-        }
 
         // verify the required parameter 'slug' is set
         if ($slug === null || (is_array($slug) && count($slug) === 0)) {
@@ -584,7 +552,7 @@ class PagesApi
         }
 
 
-        $resourcePath = '/api/v1/pages/edit/{author}/{slug}';
+        $resourcePath = '/api/v1/pages/edit/{slug}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -593,14 +561,6 @@ class PagesApi
 
 
 
-        // path params
-        if ($author !== null) {
-            $resourcePath = str_replace(
-                '{' . 'author' . '}',
-                ObjectSerializer::toPathValue($author),
-                $resourcePath
-            );
-        }
         // path params
         if ($slug !== null) {
             $resourcePath = str_replace(
@@ -680,7 +640,6 @@ class PagesApi
      *
      * Returns the main page of a project
      *
-     * @param  string $author The author of the project to return the page for (required)
      * @param  string $slug The slug of the project to return the page for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMainPage'] to see the possible values for this operation
      *
@@ -688,9 +647,9 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return string|string|string
      */
-    public function getMainPage($author, $slug, string $contentType = self::contentTypes['getMainPage'][0])
+    public function getMainPage($slug, string $contentType = self::contentTypes['getMainPage'][0])
     {
-        list($response) = $this->getMainPageWithHttpInfo($author, $slug, $contentType);
+        list($response) = $this->getMainPageWithHttpInfo($slug, $contentType);
         return $response;
     }
 
@@ -699,7 +658,6 @@ class PagesApi
      *
      * Returns the main page of a project
      *
-     * @param  string $author The author of the project to return the page for (required)
      * @param  string $slug The slug of the project to return the page for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMainPage'] to see the possible values for this operation
      *
@@ -707,9 +665,9 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return array of string|string|string, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getMainPageWithHttpInfo($author, $slug, string $contentType = self::contentTypes['getMainPage'][0])
+    public function getMainPageWithHttpInfo($slug, string $contentType = self::contentTypes['getMainPage'][0])
     {
-        $request = $this->getMainPageRequest($author, $slug, $contentType);
+        $request = $this->getMainPageRequest($slug, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -846,16 +804,15 @@ class PagesApi
      *
      * Returns the main page of a project
      *
-     * @param  string $author The author of the project to return the page for (required)
      * @param  string $slug The slug of the project to return the page for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMainPage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMainPageAsync($author, $slug, string $contentType = self::contentTypes['getMainPage'][0])
+    public function getMainPageAsync($slug, string $contentType = self::contentTypes['getMainPage'][0])
     {
-        return $this->getMainPageAsyncWithHttpInfo($author, $slug, $contentType)
+        return $this->getMainPageAsyncWithHttpInfo($slug, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -868,17 +825,16 @@ class PagesApi
      *
      * Returns the main page of a project
      *
-     * @param  string $author The author of the project to return the page for (required)
      * @param  string $slug The slug of the project to return the page for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMainPage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMainPageAsyncWithHttpInfo($author, $slug, string $contentType = self::contentTypes['getMainPage'][0])
+    public function getMainPageAsyncWithHttpInfo($slug, string $contentType = self::contentTypes['getMainPage'][0])
     {
         $returnType = 'string';
-        $request = $this->getMainPageRequest($author, $slug, $contentType);
+        $request = $this->getMainPageRequest($slug, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -919,22 +875,14 @@ class PagesApi
     /**
      * Create request for operation 'getMainPage'
      *
-     * @param  string $author The author of the project to return the page for (required)
      * @param  string $slug The slug of the project to return the page for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMainPage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getMainPageRequest($author, $slug, string $contentType = self::contentTypes['getMainPage'][0])
+    public function getMainPageRequest($slug, string $contentType = self::contentTypes['getMainPage'][0])
     {
-
-        // verify the required parameter 'author' is set
-        if ($author === null || (is_array($author) && count($author) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $author when calling getMainPage'
-            );
-        }
 
         // verify the required parameter 'slug' is set
         if ($slug === null || (is_array($slug) && count($slug) === 0)) {
@@ -944,7 +892,7 @@ class PagesApi
         }
 
 
-        $resourcePath = '/api/v1/pages/main/{author}/{slug}';
+        $resourcePath = '/api/v1/pages/main/{slug}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -953,14 +901,6 @@ class PagesApi
 
 
 
-        // path params
-        if ($author !== null) {
-            $resourcePath = str_replace(
-                '{' . 'author' . '}',
-                ObjectSerializer::toPathValue($author),
-                $resourcePath
-            );
-        }
         // path params
         if ($slug !== null) {
             $resourcePath = str_replace(
@@ -1029,7 +969,6 @@ class PagesApi
      *
      * Returns a page of a project
      *
-     * @param  string $author The author of the project to return the page for (required)
      * @param  string $slug The slug of the project to return the page for (required)
      * @param  string $path The path of the page (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPage'] to see the possible values for this operation
@@ -1038,9 +977,9 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return string|string|string
      */
-    public function getPage($author, $slug, $path, string $contentType = self::contentTypes['getPage'][0])
+    public function getPage($slug, $path, string $contentType = self::contentTypes['getPage'][0])
     {
-        list($response) = $this->getPageWithHttpInfo($author, $slug, $path, $contentType);
+        list($response) = $this->getPageWithHttpInfo($slug, $path, $contentType);
         return $response;
     }
 
@@ -1049,7 +988,6 @@ class PagesApi
      *
      * Returns a page of a project
      *
-     * @param  string $author The author of the project to return the page for (required)
      * @param  string $slug The slug of the project to return the page for (required)
      * @param  string $path The path of the page (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPage'] to see the possible values for this operation
@@ -1058,9 +996,9 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return array of string|string|string, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPageWithHttpInfo($author, $slug, $path, string $contentType = self::contentTypes['getPage'][0])
+    public function getPageWithHttpInfo($slug, $path, string $contentType = self::contentTypes['getPage'][0])
     {
-        $request = $this->getPageRequest($author, $slug, $path, $contentType);
+        $request = $this->getPageRequest($slug, $path, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1197,7 +1135,6 @@ class PagesApi
      *
      * Returns a page of a project
      *
-     * @param  string $author The author of the project to return the page for (required)
      * @param  string $slug The slug of the project to return the page for (required)
      * @param  string $path The path of the page (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPage'] to see the possible values for this operation
@@ -1205,9 +1142,9 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPageAsync($author, $slug, $path, string $contentType = self::contentTypes['getPage'][0])
+    public function getPageAsync($slug, $path, string $contentType = self::contentTypes['getPage'][0])
     {
-        return $this->getPageAsyncWithHttpInfo($author, $slug, $path, $contentType)
+        return $this->getPageAsyncWithHttpInfo($slug, $path, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1220,7 +1157,6 @@ class PagesApi
      *
      * Returns a page of a project
      *
-     * @param  string $author The author of the project to return the page for (required)
      * @param  string $slug The slug of the project to return the page for (required)
      * @param  string $path The path of the page (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPage'] to see the possible values for this operation
@@ -1228,10 +1164,10 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPageAsyncWithHttpInfo($author, $slug, $path, string $contentType = self::contentTypes['getPage'][0])
+    public function getPageAsyncWithHttpInfo($slug, $path, string $contentType = self::contentTypes['getPage'][0])
     {
         $returnType = 'string';
-        $request = $this->getPageRequest($author, $slug, $path, $contentType);
+        $request = $this->getPageRequest($slug, $path, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1272,7 +1208,6 @@ class PagesApi
     /**
      * Create request for operation 'getPage'
      *
-     * @param  string $author The author of the project to return the page for (required)
      * @param  string $slug The slug of the project to return the page for (required)
      * @param  string $path The path of the page (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPage'] to see the possible values for this operation
@@ -1280,15 +1215,8 @@ class PagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPageRequest($author, $slug, $path, string $contentType = self::contentTypes['getPage'][0])
+    public function getPageRequest($slug, $path, string $contentType = self::contentTypes['getPage'][0])
     {
-
-        // verify the required parameter 'author' is set
-        if ($author === null || (is_array($author) && count($author) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $author when calling getPage'
-            );
-        }
 
         // verify the required parameter 'slug' is set
         if ($slug === null || (is_array($slug) && count($slug) === 0)) {
@@ -1305,7 +1233,7 @@ class PagesApi
         }
 
 
-        $resourcePath = '/api/v1/pages/page/{author}/{slug}';
+        $resourcePath = '/api/v1/pages/page/{slug}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1323,14 +1251,6 @@ class PagesApi
         ) ?? []);
 
 
-        // path params
-        if ($author !== null) {
-            $resourcePath = str_replace(
-                '{' . 'author' . '}',
-                ObjectSerializer::toPathValue($author),
-                $resourcePath
-            );
-        }
         // path params
         if ($slug !== null) {
             $resourcePath = str_replace(

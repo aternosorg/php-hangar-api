@@ -27,7 +27,6 @@
  */
 
 namespace Aternos\HangarApi\Model;
-use \Aternos\HangarApi\ObjectSerializer;
 
 /**
  * NamedPermission Class Doc Comment
@@ -104,8 +103,6 @@ class NamedPermission
 
     public const EDIT_ALL_USER_SETTINGS = 'edit_all_user_settings';
 
-    public const SEE_IP_ADDRESSES = 'see_ip_addresses';
-
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -143,8 +140,7 @@ class NamedPermission
             self::RESTORE_PROJECT,
             self::HARD_DELETE_PROJECT,
             self::HARD_DELETE_VERSION,
-            self::EDIT_ALL_USER_SETTINGS,
-            self::SEE_IP_ADDRESSES
+            self::EDIT_ALL_USER_SETTINGS
         ];
     }
 }

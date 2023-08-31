@@ -143,7 +143,6 @@ class ProjectsApi
      *
      * Returns info on a specific project
      *
-     * @param  string $author The author of the project to return (required)
      * @param  string $slug The slug of the project to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProject'] to see the possible values for this operation
      *
@@ -151,9 +150,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\Project|\Aternos\HangarApi\Model\Project|\Aternos\HangarApi\Model\Project
      */
-    public function getProject($author, $slug, string $contentType = self::contentTypes['getProject'][0])
+    public function getProject($slug, string $contentType = self::contentTypes['getProject'][0])
     {
-        list($response) = $this->getProjectWithHttpInfo($author, $slug, $contentType);
+        list($response) = $this->getProjectWithHttpInfo($slug, $contentType);
         return $response;
     }
 
@@ -162,7 +161,6 @@ class ProjectsApi
      *
      * Returns info on a specific project
      *
-     * @param  string $author The author of the project to return (required)
      * @param  string $slug The slug of the project to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProject'] to see the possible values for this operation
      *
@@ -170,9 +168,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\Project|\Aternos\HangarApi\Model\Project|\Aternos\HangarApi\Model\Project, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getProjectWithHttpInfo($author, $slug, string $contentType = self::contentTypes['getProject'][0])
+    public function getProjectWithHttpInfo($slug, string $contentType = self::contentTypes['getProject'][0])
     {
-        $request = $this->getProjectRequest($author, $slug, $contentType);
+        $request = $this->getProjectRequest($slug, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -309,16 +307,15 @@ class ProjectsApi
      *
      * Returns info on a specific project
      *
-     * @param  string $author The author of the project to return (required)
      * @param  string $slug The slug of the project to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProject'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProjectAsync($author, $slug, string $contentType = self::contentTypes['getProject'][0])
+    public function getProjectAsync($slug, string $contentType = self::contentTypes['getProject'][0])
     {
-        return $this->getProjectAsyncWithHttpInfo($author, $slug, $contentType)
+        return $this->getProjectAsyncWithHttpInfo($slug, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -331,17 +328,16 @@ class ProjectsApi
      *
      * Returns info on a specific project
      *
-     * @param  string $author The author of the project to return (required)
      * @param  string $slug The slug of the project to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProject'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProjectAsyncWithHttpInfo($author, $slug, string $contentType = self::contentTypes['getProject'][0])
+    public function getProjectAsyncWithHttpInfo($slug, string $contentType = self::contentTypes['getProject'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\Project';
-        $request = $this->getProjectRequest($author, $slug, $contentType);
+        $request = $this->getProjectRequest($slug, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -382,22 +378,14 @@ class ProjectsApi
     /**
      * Create request for operation 'getProject'
      *
-     * @param  string $author The author of the project to return (required)
      * @param  string $slug The slug of the project to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProject'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProjectRequest($author, $slug, string $contentType = self::contentTypes['getProject'][0])
+    public function getProjectRequest($slug, string $contentType = self::contentTypes['getProject'][0])
     {
-
-        // verify the required parameter 'author' is set
-        if ($author === null || (is_array($author) && count($author) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $author when calling getProject'
-            );
-        }
 
         // verify the required parameter 'slug' is set
         if ($slug === null || (is_array($slug) && count($slug) === 0)) {
@@ -407,7 +395,7 @@ class ProjectsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}';
+        $resourcePath = '/api/v1/projects/{slug}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -416,14 +404,6 @@ class ProjectsApi
 
 
 
-        // path params
-        if ($author !== null) {
-            $resourcePath = str_replace(
-                '{' . 'author' . '}',
-                ObjectSerializer::toPathValue($author),
-                $resourcePath
-            );
-        }
         // path params
         if ($slug !== null) {
             $resourcePath = str_replace(
@@ -496,7 +476,6 @@ class ProjectsApi
      *
      * Returns the members of a project
      *
-     * @param  string $author The author of the project to return members for (required)
      * @param  string $slug The slug of the project to return members for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectMembers'] to see the possible values for this operation
@@ -505,9 +484,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PaginatedResultProjectMember|\Aternos\HangarApi\Model\PaginatedResultProjectMember|\Aternos\HangarApi\Model\PaginatedResultProjectMember
      */
-    public function getProjectMembers($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectMembers'][0])
+    public function getProjectMembers($slug, $pagination, string $contentType = self::contentTypes['getProjectMembers'][0])
     {
-        list($response) = $this->getProjectMembersWithHttpInfo($author, $slug, $pagination, $contentType);
+        list($response) = $this->getProjectMembersWithHttpInfo($slug, $pagination, $contentType);
         return $response;
     }
 
@@ -516,7 +495,6 @@ class ProjectsApi
      *
      * Returns the members of a project
      *
-     * @param  string $author The author of the project to return members for (required)
      * @param  string $slug The slug of the project to return members for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectMembers'] to see the possible values for this operation
@@ -525,9 +503,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\PaginatedResultProjectMember|\Aternos\HangarApi\Model\PaginatedResultProjectMember|\Aternos\HangarApi\Model\PaginatedResultProjectMember, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getProjectMembersWithHttpInfo($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectMembers'][0])
+    public function getProjectMembersWithHttpInfo($slug, $pagination, string $contentType = self::contentTypes['getProjectMembers'][0])
     {
-        $request = $this->getProjectMembersRequest($author, $slug, $pagination, $contentType);
+        $request = $this->getProjectMembersRequest($slug, $pagination, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -664,7 +642,6 @@ class ProjectsApi
      *
      * Returns the members of a project
      *
-     * @param  string $author The author of the project to return members for (required)
      * @param  string $slug The slug of the project to return members for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectMembers'] to see the possible values for this operation
@@ -672,9 +649,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProjectMembersAsync($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectMembers'][0])
+    public function getProjectMembersAsync($slug, $pagination, string $contentType = self::contentTypes['getProjectMembers'][0])
     {
-        return $this->getProjectMembersAsyncWithHttpInfo($author, $slug, $pagination, $contentType)
+        return $this->getProjectMembersAsyncWithHttpInfo($slug, $pagination, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -687,7 +664,6 @@ class ProjectsApi
      *
      * Returns the members of a project
      *
-     * @param  string $author The author of the project to return members for (required)
      * @param  string $slug The slug of the project to return members for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectMembers'] to see the possible values for this operation
@@ -695,10 +671,10 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProjectMembersAsyncWithHttpInfo($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectMembers'][0])
+    public function getProjectMembersAsyncWithHttpInfo($slug, $pagination, string $contentType = self::contentTypes['getProjectMembers'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PaginatedResultProjectMember';
-        $request = $this->getProjectMembersRequest($author, $slug, $pagination, $contentType);
+        $request = $this->getProjectMembersRequest($slug, $pagination, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -739,7 +715,6 @@ class ProjectsApi
     /**
      * Create request for operation 'getProjectMembers'
      *
-     * @param  string $author The author of the project to return members for (required)
      * @param  string $slug The slug of the project to return members for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectMembers'] to see the possible values for this operation
@@ -747,15 +722,8 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProjectMembersRequest($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectMembers'][0])
+    public function getProjectMembersRequest($slug, $pagination, string $contentType = self::contentTypes['getProjectMembers'][0])
     {
-
-        // verify the required parameter 'author' is set
-        if ($author === null || (is_array($author) && count($author) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $author when calling getProjectMembers'
-            );
-        }
 
         // verify the required parameter 'slug' is set
         if ($slug === null || (is_array($slug) && count($slug) === 0)) {
@@ -772,7 +740,7 @@ class ProjectsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}/members';
+        $resourcePath = '/api/v1/projects/{slug}/members';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -790,14 +758,6 @@ class ProjectsApi
         ) ?? []);
 
 
-        // path params
-        if ($author !== null) {
-            $resourcePath = str_replace(
-                '{' . 'author' . '}',
-                ObjectSerializer::toPathValue($author),
-                $resourcePath
-            );
-        }
         // path params
         if ($slug !== null) {
             $resourcePath = str_replace(
@@ -870,7 +830,6 @@ class ProjectsApi
      *
      * Returns the stargazers of a project
      *
-     * @param  string $author The author of the project to return stargazers for (required)
      * @param  string $slug The slug of the project to return stargazers for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectStargazers'] to see the possible values for this operation
@@ -879,9 +838,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser
      */
-    public function getProjectStargazers($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectStargazers'][0])
+    public function getProjectStargazers($slug, $pagination, string $contentType = self::contentTypes['getProjectStargazers'][0])
     {
-        list($response) = $this->getProjectStargazersWithHttpInfo($author, $slug, $pagination, $contentType);
+        list($response) = $this->getProjectStargazersWithHttpInfo($slug, $pagination, $contentType);
         return $response;
     }
 
@@ -890,7 +849,6 @@ class ProjectsApi
      *
      * Returns the stargazers of a project
      *
-     * @param  string $author The author of the project to return stargazers for (required)
      * @param  string $slug The slug of the project to return stargazers for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectStargazers'] to see the possible values for this operation
@@ -899,9 +857,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getProjectStargazersWithHttpInfo($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectStargazers'][0])
+    public function getProjectStargazersWithHttpInfo($slug, $pagination, string $contentType = self::contentTypes['getProjectStargazers'][0])
     {
-        $request = $this->getProjectStargazersRequest($author, $slug, $pagination, $contentType);
+        $request = $this->getProjectStargazersRequest($slug, $pagination, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1038,7 +996,6 @@ class ProjectsApi
      *
      * Returns the stargazers of a project
      *
-     * @param  string $author The author of the project to return stargazers for (required)
      * @param  string $slug The slug of the project to return stargazers for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectStargazers'] to see the possible values for this operation
@@ -1046,9 +1003,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProjectStargazersAsync($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectStargazers'][0])
+    public function getProjectStargazersAsync($slug, $pagination, string $contentType = self::contentTypes['getProjectStargazers'][0])
     {
-        return $this->getProjectStargazersAsyncWithHttpInfo($author, $slug, $pagination, $contentType)
+        return $this->getProjectStargazersAsyncWithHttpInfo($slug, $pagination, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1061,7 +1018,6 @@ class ProjectsApi
      *
      * Returns the stargazers of a project
      *
-     * @param  string $author The author of the project to return stargazers for (required)
      * @param  string $slug The slug of the project to return stargazers for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectStargazers'] to see the possible values for this operation
@@ -1069,10 +1025,10 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProjectStargazersAsyncWithHttpInfo($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectStargazers'][0])
+    public function getProjectStargazersAsyncWithHttpInfo($slug, $pagination, string $contentType = self::contentTypes['getProjectStargazers'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PaginatedResultUser';
-        $request = $this->getProjectStargazersRequest($author, $slug, $pagination, $contentType);
+        $request = $this->getProjectStargazersRequest($slug, $pagination, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1113,7 +1069,6 @@ class ProjectsApi
     /**
      * Create request for operation 'getProjectStargazers'
      *
-     * @param  string $author The author of the project to return stargazers for (required)
      * @param  string $slug The slug of the project to return stargazers for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectStargazers'] to see the possible values for this operation
@@ -1121,15 +1076,8 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProjectStargazersRequest($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectStargazers'][0])
+    public function getProjectStargazersRequest($slug, $pagination, string $contentType = self::contentTypes['getProjectStargazers'][0])
     {
-
-        // verify the required parameter 'author' is set
-        if ($author === null || (is_array($author) && count($author) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $author when calling getProjectStargazers'
-            );
-        }
 
         // verify the required parameter 'slug' is set
         if ($slug === null || (is_array($slug) && count($slug) === 0)) {
@@ -1146,7 +1094,7 @@ class ProjectsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}/stargazers';
+        $resourcePath = '/api/v1/projects/{slug}/stargazers';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1164,14 +1112,6 @@ class ProjectsApi
         ) ?? []);
 
 
-        // path params
-        if ($author !== null) {
-            $resourcePath = str_replace(
-                '{' . 'author' . '}',
-                ObjectSerializer::toPathValue($author),
-                $resourcePath
-            );
-        }
         // path params
         if ($slug !== null) {
             $resourcePath = str_replace(
@@ -1244,7 +1184,6 @@ class ProjectsApi
      *
      * Returns the watchers of a project
      *
-     * @param  string $author The author of the project to return watchers for (required)
      * @param  string $slug The slug of the project to return watchers for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectWatchers'] to see the possible values for this operation
@@ -1253,9 +1192,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser
      */
-    public function getProjectWatchers($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectWatchers'][0])
+    public function getProjectWatchers($slug, $pagination, string $contentType = self::contentTypes['getProjectWatchers'][0])
     {
-        list($response) = $this->getProjectWatchersWithHttpInfo($author, $slug, $pagination, $contentType);
+        list($response) = $this->getProjectWatchersWithHttpInfo($slug, $pagination, $contentType);
         return $response;
     }
 
@@ -1264,7 +1203,6 @@ class ProjectsApi
      *
      * Returns the watchers of a project
      *
-     * @param  string $author The author of the project to return watchers for (required)
      * @param  string $slug The slug of the project to return watchers for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectWatchers'] to see the possible values for this operation
@@ -1273,9 +1211,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getProjectWatchersWithHttpInfo($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectWatchers'][0])
+    public function getProjectWatchersWithHttpInfo($slug, $pagination, string $contentType = self::contentTypes['getProjectWatchers'][0])
     {
-        $request = $this->getProjectWatchersRequest($author, $slug, $pagination, $contentType);
+        $request = $this->getProjectWatchersRequest($slug, $pagination, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1412,7 +1350,6 @@ class ProjectsApi
      *
      * Returns the watchers of a project
      *
-     * @param  string $author The author of the project to return watchers for (required)
      * @param  string $slug The slug of the project to return watchers for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectWatchers'] to see the possible values for this operation
@@ -1420,9 +1357,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProjectWatchersAsync($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectWatchers'][0])
+    public function getProjectWatchersAsync($slug, $pagination, string $contentType = self::contentTypes['getProjectWatchers'][0])
     {
-        return $this->getProjectWatchersAsyncWithHttpInfo($author, $slug, $pagination, $contentType)
+        return $this->getProjectWatchersAsyncWithHttpInfo($slug, $pagination, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1435,7 +1372,6 @@ class ProjectsApi
      *
      * Returns the watchers of a project
      *
-     * @param  string $author The author of the project to return watchers for (required)
      * @param  string $slug The slug of the project to return watchers for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectWatchers'] to see the possible values for this operation
@@ -1443,10 +1379,10 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProjectWatchersAsyncWithHttpInfo($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectWatchers'][0])
+    public function getProjectWatchersAsyncWithHttpInfo($slug, $pagination, string $contentType = self::contentTypes['getProjectWatchers'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PaginatedResultUser';
-        $request = $this->getProjectWatchersRequest($author, $slug, $pagination, $contentType);
+        $request = $this->getProjectWatchersRequest($slug, $pagination, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1487,7 +1423,6 @@ class ProjectsApi
     /**
      * Create request for operation 'getProjectWatchers'
      *
-     * @param  string $author The author of the project to return watchers for (required)
      * @param  string $slug The slug of the project to return watchers for (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectWatchers'] to see the possible values for this operation
@@ -1495,15 +1430,8 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProjectWatchersRequest($author, $slug, $pagination, string $contentType = self::contentTypes['getProjectWatchers'][0])
+    public function getProjectWatchersRequest($slug, $pagination, string $contentType = self::contentTypes['getProjectWatchers'][0])
     {
-
-        // verify the required parameter 'author' is set
-        if ($author === null || (is_array($author) && count($author) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $author when calling getProjectWatchers'
-            );
-        }
 
         // verify the required parameter 'slug' is set
         if ($slug === null || (is_array($slug) && count($slug) === 0)) {
@@ -1520,7 +1448,7 @@ class ProjectsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}/watchers';
+        $resourcePath = '/api/v1/projects/{slug}/watchers';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1538,14 +1466,6 @@ class ProjectsApi
         ) ?? []);
 
 
-        // path params
-        if ($author !== null) {
-            $resourcePath = str_replace(
-                '{' . 'author' . '}',
-                ObjectSerializer::toPathValue($author),
-                $resourcePath
-            );
-        }
         // path params
         if ($slug !== null) {
             $resourcePath = str_replace(
@@ -1619,7 +1539,7 @@ class ProjectsApi
      * Searches the projects on Hangar
      *
      * @param  RequestPagination $pagination Pagination information (required)
-     * @param  bool $order_with_relevance Whether projects should be sorted by the relevance to the given query (optional, default to true)
+     * @param  bool $prioritize_exact_match Whether to prioritize the project with an exact name match if present (optional, default to true)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $category A category to filter for (optional)
      * @param  string $platform A platform to filter for (optional)
@@ -1634,9 +1554,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PaginatedResultProject|\Aternos\HangarApi\Model\PaginatedResultProject|\Aternos\HangarApi\Model\PaginatedResultProject
      */
-    public function getProjects($pagination, $order_with_relevance = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $license = null, $version = null, $tag = null, string $contentType = self::contentTypes['getProjects'][0])
+    public function getProjects($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $license = null, $version = null, $tag = null, string $contentType = self::contentTypes['getProjects'][0])
     {
-        list($response) = $this->getProjectsWithHttpInfo($pagination, $order_with_relevance, $sort, $category, $platform, $owner, $q, $license, $version, $tag, $contentType);
+        list($response) = $this->getProjectsWithHttpInfo($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $q, $license, $version, $tag, $contentType);
         return $response;
     }
 
@@ -1646,7 +1566,7 @@ class ProjectsApi
      * Searches the projects on Hangar
      *
      * @param  RequestPagination $pagination Pagination information (required)
-     * @param  bool $order_with_relevance Whether projects should be sorted by the relevance to the given query (optional, default to true)
+     * @param  bool $prioritize_exact_match Whether to prioritize the project with an exact name match if present (optional, default to true)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $category A category to filter for (optional)
      * @param  string $platform A platform to filter for (optional)
@@ -1661,9 +1581,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\PaginatedResultProject|\Aternos\HangarApi\Model\PaginatedResultProject|\Aternos\HangarApi\Model\PaginatedResultProject, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getProjectsWithHttpInfo($pagination, $order_with_relevance = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $license = null, $version = null, $tag = null, string $contentType = self::contentTypes['getProjects'][0])
+    public function getProjectsWithHttpInfo($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $license = null, $version = null, $tag = null, string $contentType = self::contentTypes['getProjects'][0])
     {
-        $request = $this->getProjectsRequest($pagination, $order_with_relevance, $sort, $category, $platform, $owner, $q, $license, $version, $tag, $contentType);
+        $request = $this->getProjectsRequest($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $q, $license, $version, $tag, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1801,7 +1721,7 @@ class ProjectsApi
      * Searches the projects on Hangar
      *
      * @param  RequestPagination $pagination Pagination information (required)
-     * @param  bool $order_with_relevance Whether projects should be sorted by the relevance to the given query (optional, default to true)
+     * @param  bool $prioritize_exact_match Whether to prioritize the project with an exact name match if present (optional, default to true)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $category A category to filter for (optional)
      * @param  string $platform A platform to filter for (optional)
@@ -1815,9 +1735,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProjectsAsync($pagination, $order_with_relevance = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $license = null, $version = null, $tag = null, string $contentType = self::contentTypes['getProjects'][0])
+    public function getProjectsAsync($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $license = null, $version = null, $tag = null, string $contentType = self::contentTypes['getProjects'][0])
     {
-        return $this->getProjectsAsyncWithHttpInfo($pagination, $order_with_relevance, $sort, $category, $platform, $owner, $q, $license, $version, $tag, $contentType)
+        return $this->getProjectsAsyncWithHttpInfo($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $q, $license, $version, $tag, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1831,7 +1751,7 @@ class ProjectsApi
      * Searches the projects on Hangar
      *
      * @param  RequestPagination $pagination Pagination information (required)
-     * @param  bool $order_with_relevance Whether projects should be sorted by the relevance to the given query (optional, default to true)
+     * @param  bool $prioritize_exact_match Whether to prioritize the project with an exact name match if present (optional, default to true)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $category A category to filter for (optional)
      * @param  string $platform A platform to filter for (optional)
@@ -1845,10 +1765,10 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProjectsAsyncWithHttpInfo($pagination, $order_with_relevance = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $license = null, $version = null, $tag = null, string $contentType = self::contentTypes['getProjects'][0])
+    public function getProjectsAsyncWithHttpInfo($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $license = null, $version = null, $tag = null, string $contentType = self::contentTypes['getProjects'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PaginatedResultProject';
-        $request = $this->getProjectsRequest($pagination, $order_with_relevance, $sort, $category, $platform, $owner, $q, $license, $version, $tag, $contentType);
+        $request = $this->getProjectsRequest($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $q, $license, $version, $tag, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1890,7 +1810,7 @@ class ProjectsApi
      * Create request for operation 'getProjects'
      *
      * @param  RequestPagination $pagination Pagination information (required)
-     * @param  bool $order_with_relevance Whether projects should be sorted by the relevance to the given query (optional, default to true)
+     * @param  bool $prioritize_exact_match Whether to prioritize the project with an exact name match if present (optional, default to true)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $category A category to filter for (optional)
      * @param  string $platform A platform to filter for (optional)
@@ -1904,7 +1824,7 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProjectsRequest($pagination, $order_with_relevance = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $license = null, $version = null, $tag = null, string $contentType = self::contentTypes['getProjects'][0])
+    public function getProjectsRequest($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $license = null, $version = null, $tag = null, string $contentType = self::contentTypes['getProjects'][0])
     {
 
         // verify the required parameter 'pagination' is set
@@ -1933,8 +1853,8 @@ class ProjectsApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order_with_relevance,
-            'orderWithRelevance', // param base name
+            $prioritize_exact_match,
+            'prioritizeExactMatch', // param base name
             'boolean', // openApiType
             'form', // style
             true, // explode
@@ -2087,7 +2007,6 @@ class ProjectsApi
      *
      * Returns the stats for a project
      *
-     * @param  string $author The author of the project to return stats for (required)
      * @param  string $slug The slug of the project to return stats for (required)
      * @param  string $from_date The first date to include in the result (required)
      * @param  string $to_date The last date to include in the result (required)
@@ -2097,9 +2016,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return array<string,\Aternos\HangarApi\Model\DayProjectStats>|array<string,\Aternos\HangarApi\Model\DayProjectStats>|array<string,\Aternos\HangarApi\Model\DayProjectStats>
      */
-    public function showProjectStats($author, $slug, $from_date, $to_date, string $contentType = self::contentTypes['showProjectStats'][0])
+    public function showProjectStats($slug, $from_date, $to_date, string $contentType = self::contentTypes['showProjectStats'][0])
     {
-        list($response) = $this->showProjectStatsWithHttpInfo($author, $slug, $from_date, $to_date, $contentType);
+        list($response) = $this->showProjectStatsWithHttpInfo($slug, $from_date, $to_date, $contentType);
         return $response;
     }
 
@@ -2108,7 +2027,6 @@ class ProjectsApi
      *
      * Returns the stats for a project
      *
-     * @param  string $author The author of the project to return stats for (required)
      * @param  string $slug The slug of the project to return stats for (required)
      * @param  string $from_date The first date to include in the result (required)
      * @param  string $to_date The last date to include in the result (required)
@@ -2118,9 +2036,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return array of array<string,\Aternos\HangarApi\Model\DayProjectStats>|array<string,\Aternos\HangarApi\Model\DayProjectStats>|array<string,\Aternos\HangarApi\Model\DayProjectStats>, HTTP status code, HTTP response headers (array of strings)
      */
-    public function showProjectStatsWithHttpInfo($author, $slug, $from_date, $to_date, string $contentType = self::contentTypes['showProjectStats'][0])
+    public function showProjectStatsWithHttpInfo($slug, $from_date, $to_date, string $contentType = self::contentTypes['showProjectStats'][0])
     {
-        $request = $this->showProjectStatsRequest($author, $slug, $from_date, $to_date, $contentType);
+        $request = $this->showProjectStatsRequest($slug, $from_date, $to_date, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2257,7 +2175,6 @@ class ProjectsApi
      *
      * Returns the stats for a project
      *
-     * @param  string $author The author of the project to return stats for (required)
      * @param  string $slug The slug of the project to return stats for (required)
      * @param  string $from_date The first date to include in the result (required)
      * @param  string $to_date The last date to include in the result (required)
@@ -2266,9 +2183,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function showProjectStatsAsync($author, $slug, $from_date, $to_date, string $contentType = self::contentTypes['showProjectStats'][0])
+    public function showProjectStatsAsync($slug, $from_date, $to_date, string $contentType = self::contentTypes['showProjectStats'][0])
     {
-        return $this->showProjectStatsAsyncWithHttpInfo($author, $slug, $from_date, $to_date, $contentType)
+        return $this->showProjectStatsAsyncWithHttpInfo($slug, $from_date, $to_date, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2281,7 +2198,6 @@ class ProjectsApi
      *
      * Returns the stats for a project
      *
-     * @param  string $author The author of the project to return stats for (required)
      * @param  string $slug The slug of the project to return stats for (required)
      * @param  string $from_date The first date to include in the result (required)
      * @param  string $to_date The last date to include in the result (required)
@@ -2290,10 +2206,10 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function showProjectStatsAsyncWithHttpInfo($author, $slug, $from_date, $to_date, string $contentType = self::contentTypes['showProjectStats'][0])
+    public function showProjectStatsAsyncWithHttpInfo($slug, $from_date, $to_date, string $contentType = self::contentTypes['showProjectStats'][0])
     {
         $returnType = 'array<string,\Aternos\HangarApi\Model\DayProjectStats>';
-        $request = $this->showProjectStatsRequest($author, $slug, $from_date, $to_date, $contentType);
+        $request = $this->showProjectStatsRequest($slug, $from_date, $to_date, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2334,7 +2250,6 @@ class ProjectsApi
     /**
      * Create request for operation 'showProjectStats'
      *
-     * @param  string $author The author of the project to return stats for (required)
      * @param  string $slug The slug of the project to return stats for (required)
      * @param  string $from_date The first date to include in the result (required)
      * @param  string $to_date The last date to include in the result (required)
@@ -2343,15 +2258,8 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function showProjectStatsRequest($author, $slug, $from_date, $to_date, string $contentType = self::contentTypes['showProjectStats'][0])
+    public function showProjectStatsRequest($slug, $from_date, $to_date, string $contentType = self::contentTypes['showProjectStats'][0])
     {
-
-        // verify the required parameter 'author' is set
-        if ($author === null || (is_array($author) && count($author) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $author when calling showProjectStats'
-            );
-        }
 
         // verify the required parameter 'slug' is set
         if ($slug === null || (is_array($slug) && count($slug) === 0)) {
@@ -2375,7 +2283,7 @@ class ProjectsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}/stats';
+        $resourcePath = '/api/v1/projects/{slug}/stats';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2402,14 +2310,6 @@ class ProjectsApi
         ) ?? []);
 
 
-        // path params
-        if ($author !== null) {
-            $resourcePath = str_replace(
-                '{' . 'author' . '}',
-                ObjectSerializer::toPathValue($author),
-                $resourcePath
-            );
-        }
         // path params
         if ($slug !== null) {
             $resourcePath = str_replace(

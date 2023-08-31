@@ -48,6 +48,8 @@ class ChannelFlag
 
     public const PINNED = 'PINNED';
 
+    public const SENDS_NOTIFICATIONS = 'SENDS_NOTIFICATIONS';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -57,7 +59,8 @@ class ChannelFlag
         return [
             self::FROZEN,
             self::UNSTABLE,
-            self::PINNED
+            self::PINNED,
+            self::SENDS_NOTIFICATIONS
         ];
     }
 }

@@ -146,6 +146,7 @@ class UsersApi
      *
      * Returns all users with at least one public project
      *
+     * @param  string $query The search query (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuthors'] to see the possible values for this operation
@@ -154,9 +155,9 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser
      */
-    public function getAuthors($pagination, $sort = null, string $contentType = self::contentTypes['getAuthors'][0])
+    public function getAuthors($query, $pagination, $sort = null, string $contentType = self::contentTypes['getAuthors'][0])
     {
-        list($response) = $this->getAuthorsWithHttpInfo($pagination, $sort, $contentType);
+        list($response) = $this->getAuthorsWithHttpInfo($query, $pagination, $sort, $contentType);
         return $response;
     }
 
@@ -165,6 +166,7 @@ class UsersApi
      *
      * Returns all users with at least one public project
      *
+     * @param  string $query The search query (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuthors'] to see the possible values for this operation
@@ -173,9 +175,9 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAuthorsWithHttpInfo($pagination, $sort = null, string $contentType = self::contentTypes['getAuthors'][0])
+    public function getAuthorsWithHttpInfo($query, $pagination, $sort = null, string $contentType = self::contentTypes['getAuthors'][0])
     {
-        $request = $this->getAuthorsRequest($pagination, $sort, $contentType);
+        $request = $this->getAuthorsRequest($query, $pagination, $sort, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -312,6 +314,7 @@ class UsersApi
      *
      * Returns all users with at least one public project
      *
+     * @param  string $query The search query (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuthors'] to see the possible values for this operation
@@ -319,9 +322,9 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAuthorsAsync($pagination, $sort = null, string $contentType = self::contentTypes['getAuthors'][0])
+    public function getAuthorsAsync($query, $pagination, $sort = null, string $contentType = self::contentTypes['getAuthors'][0])
     {
-        return $this->getAuthorsAsyncWithHttpInfo($pagination, $sort, $contentType)
+        return $this->getAuthorsAsyncWithHttpInfo($query, $pagination, $sort, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -334,6 +337,7 @@ class UsersApi
      *
      * Returns all users with at least one public project
      *
+     * @param  string $query The search query (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuthors'] to see the possible values for this operation
@@ -341,10 +345,10 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAuthorsAsyncWithHttpInfo($pagination, $sort = null, string $contentType = self::contentTypes['getAuthors'][0])
+    public function getAuthorsAsyncWithHttpInfo($query, $pagination, $sort = null, string $contentType = self::contentTypes['getAuthors'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PaginatedResultUser';
-        $request = $this->getAuthorsRequest($pagination, $sort, $contentType);
+        $request = $this->getAuthorsRequest($query, $pagination, $sort, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -385,6 +389,7 @@ class UsersApi
     /**
      * Create request for operation 'getAuthors'
      *
+     * @param  string $query The search query (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuthors'] to see the possible values for this operation
@@ -392,8 +397,15 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAuthorsRequest($pagination, $sort = null, string $contentType = self::contentTypes['getAuthors'][0])
+    public function getAuthorsRequest($query, $pagination, $sort = null, string $contentType = self::contentTypes['getAuthors'][0])
     {
+
+        // verify the required parameter 'query' is set
+        if ($query === null || (is_array($query) && count($query) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $query when calling getAuthors'
+            );
+        }
 
         // verify the required parameter 'pagination' is set
         if ($pagination === null || (is_array($pagination) && count($pagination) === 0)) {
@@ -411,6 +423,15 @@ class UsersApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $query,
+            'query', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $pagination,
@@ -495,6 +516,7 @@ class UsersApi
      *
      * Returns Hangar staff
      *
+     * @param  string $query The search query (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaff'] to see the possible values for this operation
@@ -503,9 +525,9 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser
      */
-    public function getStaff($pagination, $sort = null, string $contentType = self::contentTypes['getStaff'][0])
+    public function getStaff($query, $pagination, $sort = null, string $contentType = self::contentTypes['getStaff'][0])
     {
-        list($response) = $this->getStaffWithHttpInfo($pagination, $sort, $contentType);
+        list($response) = $this->getStaffWithHttpInfo($query, $pagination, $sort, $contentType);
         return $response;
     }
 
@@ -514,6 +536,7 @@ class UsersApi
      *
      * Returns Hangar staff
      *
+     * @param  string $query The search query (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaff'] to see the possible values for this operation
@@ -522,9 +545,9 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser|\Aternos\HangarApi\Model\PaginatedResultUser, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getStaffWithHttpInfo($pagination, $sort = null, string $contentType = self::contentTypes['getStaff'][0])
+    public function getStaffWithHttpInfo($query, $pagination, $sort = null, string $contentType = self::contentTypes['getStaff'][0])
     {
-        $request = $this->getStaffRequest($pagination, $sort, $contentType);
+        $request = $this->getStaffRequest($query, $pagination, $sort, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -661,6 +684,7 @@ class UsersApi
      *
      * Returns Hangar staff
      *
+     * @param  string $query The search query (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaff'] to see the possible values for this operation
@@ -668,9 +692,9 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaffAsync($pagination, $sort = null, string $contentType = self::contentTypes['getStaff'][0])
+    public function getStaffAsync($query, $pagination, $sort = null, string $contentType = self::contentTypes['getStaff'][0])
     {
-        return $this->getStaffAsyncWithHttpInfo($pagination, $sort, $contentType)
+        return $this->getStaffAsyncWithHttpInfo($query, $pagination, $sort, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -683,6 +707,7 @@ class UsersApi
      *
      * Returns Hangar staff
      *
+     * @param  string $query The search query (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaff'] to see the possible values for this operation
@@ -690,10 +715,10 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaffAsyncWithHttpInfo($pagination, $sort = null, string $contentType = self::contentTypes['getStaff'][0])
+    public function getStaffAsyncWithHttpInfo($query, $pagination, $sort = null, string $contentType = self::contentTypes['getStaff'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PaginatedResultUser';
-        $request = $this->getStaffRequest($pagination, $sort, $contentType);
+        $request = $this->getStaffRequest($query, $pagination, $sort, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -734,6 +759,7 @@ class UsersApi
     /**
      * Create request for operation 'getStaff'
      *
+     * @param  string $query The search query (required)
      * @param  RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaff'] to see the possible values for this operation
@@ -741,8 +767,15 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getStaffRequest($pagination, $sort = null, string $contentType = self::contentTypes['getStaff'][0])
+    public function getStaffRequest($query, $pagination, $sort = null, string $contentType = self::contentTypes['getStaff'][0])
     {
+
+        // verify the required parameter 'query' is set
+        if ($query === null || (is_array($query) && count($query) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $query when calling getStaff'
+            );
+        }
 
         // verify the required parameter 'pagination' is set
         if ($pagination === null || (is_array($pagination) && count($pagination) === 0)) {
@@ -760,6 +793,15 @@ class UsersApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $query,
+            'query', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $pagination,

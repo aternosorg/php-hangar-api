@@ -35,6 +35,7 @@ use \Aternos\HangarApi\ObjectSerializer;
  * UploadedVersion Class Doc Comment
  *
  * @category Class
+ * @description A version that has been uploaded
  * @package  Aternos\HangarApi
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -302,7 +303,7 @@ class UploadedVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets url
      *
-     * @param string|null $url url
+     * @param string|null $url URL of the uploaded version
      *
      * @return self
      */
