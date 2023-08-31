@@ -3,7 +3,6 @@
 namespace Aternos\HangarApi\Client;
 
 use Aternos\HangarApi\ApiException;
-use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
@@ -44,7 +43,7 @@ class Version
             return $this->project;
         }
 
-        $this->project = $this->client->getProject($this->projectNamespace->getOwner(), $this->projectNamespace->getSlug());
+        $this->project = $this->client->getProject($this->projectNamespace->getSlug());
         return $this->project;
     }
 
