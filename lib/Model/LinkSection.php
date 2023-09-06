@@ -356,7 +356,7 @@ class LinkSection implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string $type type
+     * @param string $type Type of the link. Either SIDEBAR or TOP
      *
      * @return self
      */

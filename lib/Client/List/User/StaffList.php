@@ -2,10 +2,7 @@
 
 namespace Aternos\HangarApi\Client\List\User;
 
-use Aternos\HangarApi\Client\HangarAPIClient;
-use Aternos\HangarApi\Client\List\UserList;
-use Aternos\HangarApi\Model\PaginatedResultUser;
-use Aternos\HangarApi\Model\RequestPagination;
+use Aternos\HangarApi\Client\List\QueryableAndSortableUserList;
 
 /**
  * Class StaffList
@@ -13,17 +10,12 @@ use Aternos\HangarApi\Model\RequestPagination;
  * @package Aternos\HangarApi\Client\List\User
  * @description A paginated list of staff members
  */
-class StaffList extends UserList
+class StaffList extends QueryableAndSortableUserList
 {
-    public function __construct(HangarAPIClient $client, PaginatedResultUser $result, protected RequestPagination $requestPagination)
-    {
-        parent::__construct($client, $result, null);
-    }
-
     public function getOffset(int $offset): static
     {
         $pagination = clone $this->requestPagination;
         $pagination->setOffset($offset);
-        return $this->client->getStaff($pagination);
+        return $this->client->getStaff($this->query, $pagination, $this->sort);
     }
 }

@@ -399,7 +399,7 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string|null $name The unique name of the project
      *
      * @return self
      */
@@ -507,7 +507,7 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets last_updated
      *
-     * @param \DateTime|null $last_updated last_updated
+     * @param \DateTime|null $last_updated The last time the project was updated
      *
      * @return self
      */
@@ -561,7 +561,7 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets avatar_url
      *
-     * @param string|null $avatar_url avatar_url
+     * @param string|null $avatar_url The url to the project's icon
      *
      * @return self
      */
@@ -588,7 +588,7 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description description
+     * @param string|null $description The short description of the project
      *
      * @return self
      */

@@ -35,6 +35,7 @@ use \Aternos\HangarApi\ObjectSerializer;
  * PluginDependency Class Doc Comment
  *
  * @category Class
+ * @description Map of each platform&#39;s plugin dependencies
  * @package  Aternos\HangarApi
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -59,8 +60,8 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'name' => 'string',
         'required' => 'bool',
-        'namespace' => '\Aternos\HangarApi\Model\ProjectNamespace',
-        'external_url' => 'string'
+        'external_url' => 'string',
+        'platform' => '\Aternos\HangarApi\Model\Platform'
     ];
 
     /**
@@ -73,8 +74,8 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'name' => null,
         'required' => null,
-        'namespace' => null,
-        'external_url' => null
+        'external_url' => null,
+        'platform' => null
     ];
 
     /**
@@ -85,8 +86,8 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'name' => false,
 		'required' => false,
-		'namespace' => false,
-		'external_url' => false
+		'external_url' => false,
+		'platform' => false
     ];
 
     /**
@@ -177,8 +178,8 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'name' => 'name',
         'required' => 'required',
-        'namespace' => 'namespace',
-        'external_url' => 'externalUrl'
+        'external_url' => 'externalUrl',
+        'platform' => 'platform'
     ];
 
     /**
@@ -189,8 +190,8 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'name' => 'setName',
         'required' => 'setRequired',
-        'namespace' => 'setNamespace',
-        'external_url' => 'setExternalUrl'
+        'external_url' => 'setExternalUrl',
+        'platform' => 'setPlatform'
     ];
 
     /**
@@ -201,8 +202,8 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'name' => 'getName',
         'required' => 'getRequired',
-        'namespace' => 'getNamespace',
-        'external_url' => 'getExternalUrl'
+        'external_url' => 'getExternalUrl',
+        'platform' => 'getPlatform'
     ];
 
     /**
@@ -264,8 +265,8 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('required', $data ?? [], null);
-        $this->setIfExists('namespace', $data ?? [], null);
         $this->setIfExists('external_url', $data ?? [], null);
+        $this->setIfExists('platform', $data ?? [], null);
     }
 
     /**
@@ -323,7 +324,7 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string|null $name Name of the plugin dependency. For non-external dependencies, this should be the Hangar project name
      *
      * @return self
      */
@@ -350,7 +351,7 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets required
      *
-     * @param bool|null $required required
+     * @param bool|null $required Whether the dependency is required for the plugin to function
      *
      * @return self
      */
@@ -360,33 +361,6 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable required cannot be null');
         }
         $this->container['required'] = $required;
-
-        return $this;
-    }
-
-    /**
-     * Gets namespace
-     *
-     * @return \Aternos\HangarApi\Model\ProjectNamespace|null
-     */
-    public function getNamespace()
-    {
-        return $this->container['namespace'];
-    }
-
-    /**
-     * Sets namespace
-     *
-     * @param \Aternos\HangarApi\Model\ProjectNamespace|null $namespace namespace
-     *
-     * @return self
-     */
-    public function setNamespace($namespace)
-    {
-        if (is_null($namespace)) {
-            throw new \InvalidArgumentException('non-nullable namespace cannot be null');
-        }
-        $this->container['namespace'] = $namespace;
 
         return $this;
     }
@@ -404,7 +378,7 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets external_url
      *
-     * @param string|null $external_url external_url
+     * @param string|null $external_url External url to download the dependency from if not a Hangar project, else null
      *
      * @return self
      */
@@ -414,6 +388,33 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable external_url cannot be null');
         }
         $this->container['external_url'] = $external_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets platform
+     *
+     * @return \Aternos\HangarApi\Model\Platform|null
+     */
+    public function getPlatform()
+    {
+        return $this->container['platform'];
+    }
+
+    /**
+     * Sets platform
+     *
+     * @param \Aternos\HangarApi\Model\Platform|null $platform platform
+     *
+     * @return self
+     */
+    public function setPlatform($platform)
+    {
+        if (is_null($platform)) {
+            throw new \InvalidArgumentException('non-nullable platform cannot be null');
+        }
+        $this->container['platform'] = $platform;
 
         return $this;
     }

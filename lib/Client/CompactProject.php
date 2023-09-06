@@ -22,7 +22,7 @@ class CompactProject
 {
     public function __construct(
         protected HangarAPIClient $client,
-        protected ProjectCompact $project,
+        protected ProjectCompact  $project,
     )
     {
     }
@@ -42,7 +42,7 @@ class CompactProject
      */
     public function getProject(): Project
     {
-        return $this->client->getProject($this->project->getNamespace()->getOwner(), $this->project->getNamespace()->getSlug());
+        return $this->client->getProject($this->project->getNamespace()->getSlug());
     }
 
     /**
@@ -94,7 +94,6 @@ class CompactProject
     public function getDailyStats(?DateTime $from = null, ?DateTime $to = null): array
     {
         return $this->client->getDailyProjectStats(
-            $this->project->getNamespace()->getOwner(),
             $this->project->getNamespace()->getSlug(),
             $from ?? $this->getData()->getCreatedAt(),
             $to
@@ -138,10 +137,7 @@ class CompactProject
      */
     public function getMainPage(): ProjectPage
     {
-        return $this->client->getProjectMainPage(
-            $this->project->getNamespace()->getOwner(),
-            $this->project->getNamespace()->getSlug(),
-        );
+        return $this->client->getProjectMainPage($this->project->getNamespace()->getSlug());
     }
 
     /**
@@ -152,10 +148,6 @@ class CompactProject
      */
     public function getPage(string $path): ProjectPage
     {
-        return $this->client->getProjectPage(
-            $this->project->getNamespace()->getOwner(),
-            $this->project->getNamespace()->getSlug(),
-            $path,
-        );
+        return $this->client->getProjectPage($this->project->getNamespace()->getSlug(), $path);
     }
 }

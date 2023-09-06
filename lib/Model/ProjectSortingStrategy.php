@@ -52,8 +52,6 @@ class ProjectSortingStrategy
 
     public const UPDATED = 'updated';
 
-    public const ONLY_RELEVANCE = 'only_relevance';
-
     public const RECENT_VIEWS = 'recent_views';
 
     public const RECENT_DOWNLOADS = 'recent_downloads';
@@ -70,7 +68,6 @@ class ProjectSortingStrategy
             self::VIEWS,
             self::NEWEST,
             self::UPDATED,
-            self::ONLY_RELEVANCE,
             self::RECENT_VIEWS,
             self::RECENT_DOWNLOADS
         ];

@@ -33,6 +33,7 @@ use \Aternos\HangarApi\ObjectSerializer;
  * Platform Class Doc Comment
  *
  * @category Class
+ * @description Server platform
  * @package  Aternos\HangarApi
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

@@ -343,7 +343,7 @@ class PlatformVersionDownload implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets external_url
      *
-     * @param string|null $external_url external_url
+     * @param string|null $external_url External download url if not directly uploaded to Hangar
      *
      * @return self
      */
@@ -370,7 +370,7 @@ class PlatformVersionDownload implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets download_url
      *
-     * @param string|null $download_url download_url
+     * @param string|null $download_url Hangar download url if not an external download
      *
      * @return self
      */

@@ -19,7 +19,6 @@ use Aternos\HangarApi\Client\List\User\ProjectStarGazersList;
 use Aternos\HangarApi\Client\List\User\ProjectWatcherList;
 use Aternos\HangarApi\Client\List\User\StaffList;
 use Aternos\HangarApi\Client\List\UserList;
-use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Client\Options\UserSearch\UserSearchOptions;
 use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
@@ -64,7 +63,7 @@ class HangarAPIClient
     public function __construct(Configuration $configuration = null)
     {
         $this->setConfiguration($configuration ?? (new Configuration())
-            ->setUserAgent("php-hangar-api/1.0.0"));
+            ->setUserAgent("php-hangar-api/2.0.0"));
     }
 
     /**
@@ -129,34 +128,32 @@ class HangarAPIClient
     }
 
     /**
-     * Check if the user has all the given permissions
+     * Check if the user has all the given permissions for a project
      * @param string[] $permissions (value of {@see NamedPermission})
-     * @param string|null $owner
      * @param string|null $project
      * @return bool
      * @throws ApiException
      */
-    public function hasPermissions(array $permissions, ?string $owner = null, ?string $project = null): bool
+    public function hasPermissions(array $permissions, ?string $project = null): bool
     {
         if (!$this->authenticate()) {
             return sizeof($permissions) === 0 || sizeof($permissions) === 1 &&
                 $permissions[0] === NamedPermission::VIEW_PUBLIC_INFO;
         }
 
-        return $this->permissions->hasAll($permissions, $owner, $project)->getResult();
+        return $this->permissions->hasAll($permissions, $project)->getResult();
     }
 
     /**
      * Check if the user has a specific permission
      * @param string $permission (value of {@see NamedPermission})
-     * @param string|null $owner
      * @param string|null $project
      * @return bool
      * @throws ApiException
      */
-    public function hasPermission(string $permission, ?string $owner = null, ?string $project = null): bool
+    public function hasPermission(string $permission, ?string $project = null): bool
     {
-        return $this->hasPermissions([$permission], $owner, $project);
+        return $this->hasPermissions([$permission], $project);
     }
 
     /**
@@ -186,16 +183,15 @@ class HangarAPIClient
 
     /**
      * Get a single project
-     * @param string $author
-     * @param string $name
+     * @param string $slug
      * @return Project
      * @throws ApiException
      */
-    public function getProject(string $author, string $name): Project
+    public function getProject(string $slug): Project
     {
         $this->authenticate();
 
-        $result = $this->projects->getProject($author, $name);
+        $result = $this->projects->getProject($slug);
         return new Project($this, $result);
     }
 
@@ -214,7 +210,7 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectWatchers($namespace->getOwner(), $namespace->getSlug(), $pagination);
+        $result = $this->projects->getProjectWatchers($namespace->getSlug(), $pagination);
         return new ProjectWatcherList(
             $this,
             $result,
@@ -228,25 +224,23 @@ class HangarAPIClient
      * Days without downloads/views will not be included
      *
      * Requires the is_subject_member permission
-     * @param string $owner
      * @param string $slug
      * @param DateTime $from
      * @param DateTime|null $to default: now
      * @return array<string, DayProjectStats>
      * @throws ApiException
      */
-    public function getDailyProjectStats(string $owner, string $slug, DateTime $from, ?DateTime $to = null): array
+    public function getDailyProjectStats(string $slug, DateTime $from, ?DateTime $to = null): array
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $owner, $slug)) {
+        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $slug)) {
             throw new ApiException('You need the is_subject_member permission to view project statistics');
         }
 
         $to ??= new DateTime();
 
         return $this->projects->showProjectStats(
-            $owner,
             $slug,
             $from->format(DateTimeInterface::RFC3339),
             $to->format(DateTimeInterface::RFC3339)
@@ -268,7 +262,7 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectStarGazers($namespace->getOwner(), $namespace->getSlug(), $pagination);
+        $result = $this->projects->getProjectStarGazers($namespace->getSlug(), $pagination);
         return new ProjectStarGazersList(
             $this,
             $result,
@@ -292,7 +286,7 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectMembers($namespace->getOwner(), $namespace->getSlug(), $pagination);
+        $result = $this->projects->getProjectMembers($namespace->getSlug(), $pagination);
         return new ProjectMemberList($this, $result, $namespace, $pagination);
     }
 
@@ -317,7 +311,6 @@ class HangarAPIClient
         }
 
         $result = $this->versions->listVersions(
-            $options->getProjectNamespace()->getOwner(),
             $options->getProjectNamespace()->getSlug(),
             $options->getPagination(),
             $options->getChannel(),
@@ -340,7 +333,7 @@ class HangarAPIClient
         $this->authenticate();
 
         $namespace = $project instanceof Project ? $project->getData()->getNamespace() : $project;
-        $result = $this->versions->showVersion($namespace->getOwner(), $namespace->getSlug(), $name);
+        $result = $this->versions->showVersion($namespace->getSlug(), $name);
         return new Version(
             $this,
             $result,
@@ -360,25 +353,17 @@ class HangarAPIClient
      * @return array<string, VersionStats>
      * @throws ApiException
      */
-    public function getDailyProjectVersionStats(
-        Version   $version,
-        DateTime $from,
-        ?DateTime $to = null
-    ): array
+    public function getDailyProjectVersionStats(Version $version, DateTime $from, ?DateTime $to = null): array
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(
-            NamedPermission::IS_SUBJECT_MEMBER,
-            $version->getProjectNamespace()->getOwner(),
-            $version->getProjectNamespace()->getSlug())) {
+        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $version->getProjectNamespace()->getSlug())) {
             throw new ApiException('You need the is_subject_member permission to view version statistics');
         }
 
         $to ??= new DateTime();
 
         return $this->versions->showVersionStats(
-            $version->getProjectNamespace()->getOwner(),
             $version->getProjectNamespace()->getSlug(),
             $version->getData()->getName(),
             $from->format(DateTimeInterface::RFC3339),
@@ -492,11 +477,13 @@ class HangarAPIClient
      * Get a list of hangar staff
      *
      * Requires the view_public_info permission
+     * @param string $query Search query. Default: "" (all)
      * @param RequestPagination|null $pagination
+     * @param string|null $sort Optional name of the field to sort the results by
      * @return StaffList
      * @throws ApiException
      */
-    public function getStaff(?RequestPagination $pagination = null): StaffList
+    public function getStaff(string $query = "", ?RequestPagination $pagination = null, ?string $sort = null): StaffList
     {
         $this->authenticate();
 
@@ -508,21 +495,25 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->users->getStaff($pagination);
+        $result = $this->users->getStaff($query, $pagination, $sort);
         return new StaffList(
             $this,
             $result,
             $pagination,
+            $query,
+            $sort
         );
     }
 
     /**
-     * Get the authors of a project
+     * Search the API for project authors matching the search query
+     * @param string $query Search query. Default: "" (all)
      * @param RequestPagination|null $pagination
+     * @param string|null $sort Optional name of the field to sort the results by
      * @return AuthorList
      * @throws ApiException
      */
-    public function getAuthors(?RequestPagination $pagination = null): AuthorList
+    public function getAuthors(string $query = "", ?RequestPagination $pagination = null, ?string $sort = null): AuthorList
     {
         $this->authenticate();
 
@@ -530,11 +521,13 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->users->getAuthors($pagination);
+        $result = $this->users->getAuthors($query, $pagination);
         return new AuthorList(
             $this,
             $result,
             $pagination,
+            $query,
+            $sort
         );
     }
 
@@ -542,24 +535,22 @@ class HangarAPIClient
      * Get the main page of a project
      *
      * Requires the view_public_info permission
-     * @param string $author
      * @param string $slug
      * @return ProjectPage
      * @throws ApiException
      */
-    public function getProjectMainPage(string $author, string $slug): ProjectPage
+    public function getProjectMainPage(string $slug): ProjectPage
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO, $author, $slug)) {
+        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO, $slug)) {
             throw new ApiException('You need the view_public_info permission to view project pages');
         }
 
         return new ProjectPage(
             $this,
-            $author,
             $slug,
-            $this->pages->getMainPage($author, $slug),
+            $this->pages->getMainPage($slug),
         );
     }
 
@@ -569,25 +560,23 @@ class HangarAPIClient
      * Calling this with an empty path is equivalent to calling getProjectMainPage
      *
      * Requires the view_public_info permission
-     * @param string $author
      * @param string $slug
      * @param string $path
      * @return ProjectPage
      * @throws ApiException
      */
-    public function getProjectPage(string $author, string $slug, string $path): ProjectPage
+    public function getProjectPage(string $slug, string $path): ProjectPage
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO, $author, $slug)) {
+        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO, $slug)) {
             throw new ApiException('You need the view_public_info permission to view project pages');
         }
 
         return new ProjectPage(
             $this,
-            $author,
             $slug,
-            $this->pages->getPage($author, $slug, $path),
+            $this->pages->getPage($slug, $path),
         );
     }
 
@@ -595,27 +584,25 @@ class HangarAPIClient
      * Edit the main page of a project
      *
      * Requires the edit_page permission
-     * @param string $author
      * @param string $slug
      * @param string $content
      * @return ProjectPage
      * @throws ApiException
      */
-    public function editProjectMainPage(string $author, string $slug, string $content): ProjectPage
+    public function editProjectMainPage(string $slug, string $content): ProjectPage
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::EDIT_PAGE, $author, $slug)) {
+        if (!$this->hasPermission(NamedPermission::EDIT_PAGE, $slug)) {
             throw new ApiException('You need the edit_page permission to edit project pages');
         }
 
         $form = new StringContent();
         $form->setContent($content);
-        $this->pages->editMainPage($author, $slug, $form);
+        $this->pages->editMainPage($slug, $form);
 
         return new ProjectPage(
             $this,
-            $author,
             $slug,
             $content,
         );
@@ -626,29 +613,27 @@ class HangarAPIClient
      * Starting and trailing slashes are ignored by the Hangar API
      *
      * Requires the edit_page permission
-     * @param string $author
      * @param string $slug
      * @param string $path
      * @param string $content
      * @return ProjectPage
      * @throws ApiException
      */
-    public function editProjectPage(string $author, string $slug, string $path, string $content): ProjectPage
+    public function editProjectPage(string $slug, string $path, string $content): ProjectPage
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::EDIT_PAGE, $author, $slug)) {
+        if (!$this->hasPermission(NamedPermission::EDIT_PAGE, $slug)) {
             throw new ApiException('You need the edit_page permission to edit project pages');
         }
 
         $form = new PageEditForm();
         $form->setContent($content);
         $form->setPath($path);
-        $this->pages->editPage($author, $slug, $form);
+        $this->pages->editPage($slug, $form);
 
         return new ProjectPage(
             $this,
-            $author,
             $slug,
             $content,
             $path,

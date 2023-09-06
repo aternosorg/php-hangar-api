@@ -59,6 +59,7 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'created_at' => '\DateTime',
         'name' => 'string',
+        'description' => 'string',
         'color' => '\Aternos\HangarApi\Model\Color',
         'flags' => '\Aternos\HangarApi\Model\ChannelFlag[]'
     ];
@@ -73,6 +74,7 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'created_at' => 'date-time',
         'name' => null,
+        'description' => null,
         'color' => null,
         'flags' => null
     ];
@@ -85,6 +87,7 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'created_at' => false,
 		'name' => false,
+		'description' => false,
 		'color' => false,
 		'flags' => false
     ];
@@ -177,6 +180,7 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'created_at' => 'createdAt',
         'name' => 'name',
+        'description' => 'description',
         'color' => 'color',
         'flags' => 'flags'
     ];
@@ -189,6 +193,7 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'created_at' => 'setCreatedAt',
         'name' => 'setName',
+        'description' => 'setDescription',
         'color' => 'setColor',
         'flags' => 'setFlags'
     ];
@@ -201,6 +206,7 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'created_at' => 'getCreatedAt',
         'name' => 'getName',
+        'description' => 'getDescription',
         'color' => 'getColor',
         'flags' => 'getFlags'
     ];
@@ -264,6 +270,7 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('color', $data ?? [], null);
         $this->setIfExists('flags', $data ?? [], null);
     }
@@ -360,6 +367,33 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
 
         return $this;
     }

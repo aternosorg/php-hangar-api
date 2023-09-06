@@ -134,7 +134,6 @@ class PermissionsApi
      * Checks whether you have all the provided permissions
      *
      * @param string[] $permissions The permissions to check (required)
-     * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The project slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAll'] to see the possible values for this operation
@@ -143,9 +142,9 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PermissionCheck|\Aternos\HangarApi\Model\PermissionCheck|\Aternos\HangarApi\Model\PermissionCheck
      */
-    public function hasAll($permissions, $author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAll'][0])
+    public function hasAll($permissions, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAll'][0])
     {
-        list($response) = $this->hasAllWithHttpInfo($permissions, $author, $slug, $organization, $contentType);
+        list($response) = $this->hasAllWithHttpInfo($permissions, $slug, $organization, $contentType);
         return $response;
     }
 
@@ -155,7 +154,6 @@ class PermissionsApi
      * Checks whether you have all the provided permissions
      *
      * @param string[] $permissions The permissions to check (required)
-     * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The project slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAll'] to see the possible values for this operation
@@ -164,9 +162,9 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\PermissionCheck|\Aternos\HangarApi\Model\PermissionCheck|\Aternos\HangarApi\Model\PermissionCheck, HTTP status code, HTTP response headers (array of strings)
      */
-    public function hasAllWithHttpInfo($permissions, $author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAll'][0])
+    public function hasAllWithHttpInfo($permissions, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAll'][0])
     {
-        $request = $this->hasAllRequest($permissions, $author, $slug, $organization, $contentType);
+        $request = $this->hasAllRequest($permissions, $slug, $organization, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -304,7 +302,6 @@ class PermissionsApi
      * Checks whether you have all the provided permissions
      *
      * @param string[] $permissions The permissions to check (required)
-     * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The project slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAll'] to see the possible values for this operation
@@ -312,9 +309,9 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function hasAllAsync($permissions, $author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAll'][0])
+    public function hasAllAsync($permissions, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAll'][0])
     {
-        return $this->hasAllAsyncWithHttpInfo($permissions, $author, $slug, $organization, $contentType)
+        return $this->hasAllAsyncWithHttpInfo($permissions, $slug, $organization, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -328,7 +325,6 @@ class PermissionsApi
      * Checks whether you have all the provided permissions
      *
      * @param string[] $permissions The permissions to check (required)
-     * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The project slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAll'] to see the possible values for this operation
@@ -336,10 +332,10 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function hasAllAsyncWithHttpInfo($permissions, $author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAll'][0])
+    public function hasAllAsyncWithHttpInfo($permissions, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAll'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PermissionCheck';
-        $request = $this->hasAllRequest($permissions, $author, $slug, $organization, $contentType);
+        $request = $this->hasAllRequest($permissions, $slug, $organization, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -381,7 +377,6 @@ class PermissionsApi
      * Create request for operation 'hasAll'
      *
      * @param string[] $permissions The permissions to check (required)
-     * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The project slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAll'] to see the possible values for this operation
@@ -389,7 +384,7 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function hasAllRequest($permissions, $author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAll'][0])
+    public function hasAllRequest($permissions, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAll'][0])
     {
 
         // verify the required parameter 'permissions' is set
@@ -408,7 +403,6 @@ class PermissionsApi
 
 
 
-
         $resourcePath = '/api/v1/permissions/hasAll';
         $formParams = [];
         $queryParams = [];
@@ -424,15 +418,6 @@ class PermissionsApi
             'form', // style
             true, // explode
             true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $author,
-            'author', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -519,7 +504,6 @@ class PermissionsApi
      * Checks whether you have at least one of the provided permissions
      *
      * @param string[] $permissions The permissions to check (required)
-     * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName (optional)
      * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAny'] to see the possible values for this operation
@@ -528,9 +512,9 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PermissionCheck|\Aternos\HangarApi\Model\PermissionCheck|\Aternos\HangarApi\Model\PermissionCheck
      */
-    public function hasAny($permissions, $author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAny'][0])
+    public function hasAny($permissions, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAny'][0])
     {
-        list($response) = $this->hasAnyWithHttpInfo($permissions, $author, $slug, $organization, $contentType);
+        list($response) = $this->hasAnyWithHttpInfo($permissions, $slug, $organization, $contentType);
         return $response;
     }
 
@@ -540,7 +524,6 @@ class PermissionsApi
      * Checks whether you have at least one of the provided permissions
      *
      * @param string[] $permissions The permissions to check (required)
-     * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName (optional)
      * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAny'] to see the possible values for this operation
@@ -549,9 +532,9 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\PermissionCheck|\Aternos\HangarApi\Model\PermissionCheck|\Aternos\HangarApi\Model\PermissionCheck, HTTP status code, HTTP response headers (array of strings)
      */
-    public function hasAnyWithHttpInfo($permissions, $author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAny'][0])
+    public function hasAnyWithHttpInfo($permissions, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAny'][0])
     {
-        $request = $this->hasAnyRequest($permissions, $author, $slug, $organization, $contentType);
+        $request = $this->hasAnyRequest($permissions, $slug, $organization, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -689,7 +672,6 @@ class PermissionsApi
      * Checks whether you have at least one of the provided permissions
      *
      * @param string[] $permissions The permissions to check (required)
-     * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName (optional)
      * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAny'] to see the possible values for this operation
@@ -697,9 +679,9 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function hasAnyAsync($permissions, $author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAny'][0])
+    public function hasAnyAsync($permissions, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAny'][0])
     {
-        return $this->hasAnyAsyncWithHttpInfo($permissions, $author, $slug, $organization, $contentType)
+        return $this->hasAnyAsyncWithHttpInfo($permissions, $slug, $organization, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -713,7 +695,6 @@ class PermissionsApi
      * Checks whether you have at least one of the provided permissions
      *
      * @param string[] $permissions The permissions to check (required)
-     * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName (optional)
      * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAny'] to see the possible values for this operation
@@ -721,10 +702,10 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function hasAnyAsyncWithHttpInfo($permissions, $author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAny'][0])
+    public function hasAnyAsyncWithHttpInfo($permissions, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAny'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PermissionCheck';
-        $request = $this->hasAnyRequest($permissions, $author, $slug, $organization, $contentType);
+        $request = $this->hasAnyRequest($permissions, $slug, $organization, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -766,7 +747,6 @@ class PermissionsApi
      * Create request for operation 'hasAny'
      *
      * @param string[] $permissions The permissions to check (required)
-     * @param  string $author The owner of the project to check permissions in. Must not be used together with &#x60;organizationName (optional)
      * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAny'] to see the possible values for this operation
@@ -774,7 +754,7 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function hasAnyRequest($permissions, $author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAny'][0])
+    public function hasAnyRequest($permissions, $slug = null, $organization = null, string $contentType = self::contentTypes['hasAny'][0])
     {
 
         // verify the required parameter 'permissions' is set
@@ -784,7 +764,6 @@ class PermissionsApi
             );
         }
         
-
 
 
 
@@ -803,15 +782,6 @@ class PermissionsApi
             'form', // style
             true, // explode
             true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $author,
-            'author', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -897,7 +867,6 @@ class PermissionsApi
      *
      * Returns your permissions
      *
-     * @param  string $author The owner of the project to get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showPermissions'] to see the possible values for this operation
@@ -906,9 +875,9 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\UserPermissions|\Aternos\HangarApi\Model\UserPermissions|\Aternos\HangarApi\Model\UserPermissions
      */
-    public function showPermissions($author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['showPermissions'][0])
+    public function showPermissions($slug = null, $organization = null, string $contentType = self::contentTypes['showPermissions'][0])
     {
-        list($response) = $this->showPermissionsWithHttpInfo($author, $slug, $organization, $contentType);
+        list($response) = $this->showPermissionsWithHttpInfo($slug, $organization, $contentType);
         return $response;
     }
 
@@ -917,7 +886,6 @@ class PermissionsApi
      *
      * Returns your permissions
      *
-     * @param  string $author The owner of the project to get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showPermissions'] to see the possible values for this operation
@@ -926,9 +894,9 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\UserPermissions|\Aternos\HangarApi\Model\UserPermissions|\Aternos\HangarApi\Model\UserPermissions, HTTP status code, HTTP response headers (array of strings)
      */
-    public function showPermissionsWithHttpInfo($author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['showPermissions'][0])
+    public function showPermissionsWithHttpInfo($slug = null, $organization = null, string $contentType = self::contentTypes['showPermissions'][0])
     {
-        $request = $this->showPermissionsRequest($author, $slug, $organization, $contentType);
+        $request = $this->showPermissionsRequest($slug, $organization, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1065,7 +1033,6 @@ class PermissionsApi
      *
      * Returns your permissions
      *
-     * @param  string $author The owner of the project to get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showPermissions'] to see the possible values for this operation
@@ -1073,9 +1040,9 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function showPermissionsAsync($author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['showPermissions'][0])
+    public function showPermissionsAsync($slug = null, $organization = null, string $contentType = self::contentTypes['showPermissions'][0])
     {
-        return $this->showPermissionsAsyncWithHttpInfo($author, $slug, $organization, $contentType)
+        return $this->showPermissionsAsyncWithHttpInfo($slug, $organization, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1088,7 +1055,6 @@ class PermissionsApi
      *
      * Returns your permissions
      *
-     * @param  string $author The owner of the project to get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showPermissions'] to see the possible values for this operation
@@ -1096,10 +1062,10 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function showPermissionsAsyncWithHttpInfo($author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['showPermissions'][0])
+    public function showPermissionsAsyncWithHttpInfo($slug = null, $organization = null, string $contentType = self::contentTypes['showPermissions'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\UserPermissions';
-        $request = $this->showPermissionsRequest($author, $slug, $organization, $contentType);
+        $request = $this->showPermissionsRequest($slug, $organization, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1140,7 +1106,6 @@ class PermissionsApi
     /**
      * Create request for operation 'showPermissions'
      *
-     * @param  string $author The owner of the project to get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
      * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showPermissions'] to see the possible values for this operation
@@ -1148,9 +1113,8 @@ class PermissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function showPermissionsRequest($author = null, $slug = null, $organization = null, string $contentType = self::contentTypes['showPermissions'][0])
+    public function showPermissionsRequest($slug = null, $organization = null, string $contentType = self::contentTypes['showPermissions'][0])
     {
-
 
 
 
@@ -1162,15 +1126,6 @@ class PermissionsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $author,
-            'author', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $slug,

@@ -309,7 +309,7 @@ class ApiSession implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets token
      *
-     * @param string|null $token token
+     * @param string|null $token JWT used for authentication
      *
      * @return self
      */
@@ -336,7 +336,7 @@ class ApiSession implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets expires_in
      *
-     * @param int|null $expires_in expires_in
+     * @param int|null $expires_in Milliseconds this JWT expires in
      *
      * @return self
      */
