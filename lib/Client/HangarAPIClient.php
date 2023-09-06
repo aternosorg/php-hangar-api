@@ -477,13 +477,13 @@ class HangarAPIClient
      * Get a list of hangar staff
      *
      * Requires the view_public_info permission
-     * @param string $query Search query
+     * @param string $query Search query. Default: "" (all)
      * @param RequestPagination|null $pagination
      * @param string|null $sort Optional name of the field to sort the results by
      * @return StaffList
      * @throws ApiException
      */
-    public function getStaff(string $query, ?RequestPagination $pagination = null, ?string $sort = null): StaffList
+    public function getStaff(string $query = "", ?RequestPagination $pagination = null, ?string $sort = null): StaffList
     {
         $this->authenticate();
 
@@ -507,13 +507,13 @@ class HangarAPIClient
 
     /**
      * Search the API for project authors matching the search query
-     * @param string $query Search query
+     * @param string $query Search query. Default: "" (all)
      * @param RequestPagination|null $pagination
      * @param string|null $sort Optional name of the field to sort the results by
      * @return AuthorList
      * @throws ApiException
      */
-    public function getAuthors(string $query, ?RequestPagination $pagination = null, ?string $sort = null): AuthorList
+    public function getAuthors(string $query = "", ?RequestPagination $pagination = null, ?string $sort = null): AuthorList
     {
         $this->authenticate();
 
