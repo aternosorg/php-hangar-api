@@ -1,6 +1,6 @@
 <?php
 /**
- * UserNameChange
+ * MultipartFileOrUrl
  *
  * PHP version 7.4
  *
@@ -32,15 +32,16 @@ use \ArrayAccess;
 use \Aternos\HangarApi\ObjectSerializer;
 
 /**
- * UserNameChange Class Doc Comment
+ * MultipartFileOrUrl Class Doc Comment
  *
  * @category Class
+ * @description List of different jars/external links that are part of the version
  * @package  Aternos\HangarApi
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
+class MultipartFileOrUrl implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserNameChange';
+    protected static $openAPIModelName = 'MultipartFileOrUrl';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +58,8 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'old_name' => 'string',
-        'new_name' => 'string',
-        'date' => '\DateTime'
+        'platforms' => '\Aternos\HangarApi\Model\Platform[]',
+        'external_url' => 'string'
     ];
 
     /**
@@ -70,9 +70,8 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'old_name' => null,
-        'new_name' => null,
-        'date' => 'date-time'
+        'platforms' => null,
+        'external_url' => null
     ];
 
     /**
@@ -81,9 +80,8 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'old_name' => false,
-		'new_name' => false,
-		'date' => false
+        'platforms' => false,
+		'external_url' => false
     ];
 
     /**
@@ -172,9 +170,8 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'old_name' => 'oldName',
-        'new_name' => 'newName',
-        'date' => 'date'
+        'platforms' => 'platforms',
+        'external_url' => 'externalUrl'
     ];
 
     /**
@@ -183,9 +180,8 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'old_name' => 'setOldName',
-        'new_name' => 'setNewName',
-        'date' => 'setDate'
+        'platforms' => 'setPlatforms',
+        'external_url' => 'setExternalUrl'
     ];
 
     /**
@@ -194,9 +190,8 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'old_name' => 'getOldName',
-        'new_name' => 'getNewName',
-        'date' => 'getDate'
+        'platforms' => 'getPlatforms',
+        'external_url' => 'getExternalUrl'
     ];
 
     /**
@@ -256,9 +251,8 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('old_name', $data ?? [], null);
-        $this->setIfExists('new_name', $data ?? [], null);
-        $this->setIfExists('date', $data ?? [], null);
+        $this->setIfExists('platforms', $data ?? [], null);
+        $this->setIfExists('external_url', $data ?? [], null);
     }
 
     /**
@@ -304,82 +298,55 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets old_name
+     * Gets platforms
      *
-     * @return string|null
+     * @return \Aternos\HangarApi\Model\Platform[]|null
      */
-    public function getOldName()
+    public function getPlatforms()
     {
-        return $this->container['old_name'];
+        return $this->container['platforms'];
     }
 
     /**
-     * Sets old_name
+     * Sets platforms
      *
-     * @param string|null $old_name old_name
+     * @param \Aternos\HangarApi\Model\Platform[]|null $platforms List of platforms this jar runs on
      *
      * @return self
      */
-    public function setOldName($old_name)
+    public function setPlatforms($platforms)
     {
-        if (is_null($old_name)) {
-            throw new \InvalidArgumentException('non-nullable old_name cannot be null');
+        if (is_null($platforms)) {
+            throw new \InvalidArgumentException('non-nullable platforms cannot be null');
         }
-        $this->container['old_name'] = $old_name;
+        $this->container['platforms'] = $platforms;
 
         return $this;
     }
 
     /**
-     * Gets new_name
+     * Gets external_url
      *
      * @return string|null
      */
-    public function getNewName()
+    public function getExternalUrl()
     {
-        return $this->container['new_name'];
+        return $this->container['external_url'];
     }
 
     /**
-     * Sets new_name
+     * Sets external_url
      *
-     * @param string|null $new_name new_name
+     * @param string|null $external_url External url to download the jar from if not provided via an attached jar, else null
      *
      * @return self
      */
-    public function setNewName($new_name)
+    public function setExternalUrl($external_url)
     {
-        if (is_null($new_name)) {
-            throw new \InvalidArgumentException('non-nullable new_name cannot be null');
+        if (is_null($external_url)) {
+            throw new \InvalidArgumentException('non-nullable external_url cannot be null');
         }
-        $this->container['new_name'] = $new_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets date
-     *
-     * @return \DateTime|null
-     */
-    public function getDate()
-    {
-        return $this->container['date'];
-    }
-
-    /**
-     * Sets date
-     *
-     * @param \DateTime|null $date date
-     *
-     * @return self
-     */
-    public function setDate($date)
-    {
-        if (is_null($date)) {
-            throw new \InvalidArgumentException('non-nullable date cannot be null');
-        }
-        $this->container['date'] = $date;
+        $this->container['external_url'] = $external_url;
 
         return $this;
     }
