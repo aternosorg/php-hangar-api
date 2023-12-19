@@ -1,6 +1,6 @@
 <?php
 /**
- * UserNameChange
+ * VersionUpload
  *
  * PHP version 7.4
  *
@@ -32,15 +32,16 @@ use \ArrayAccess;
 use \Aternos\HangarApi\ObjectSerializer;
 
 /**
- * UserNameChange Class Doc Comment
+ * VersionUpload Class Doc Comment
  *
  * @category Class
+ * @description Version data. See the VersionUpload schema for more info
  * @package  Aternos\HangarApi
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
+class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserNameChange';
+    protected static $openAPIModelName = 'VersionUpload';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +58,12 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'old_name' => 'string',
-        'new_name' => 'string',
-        'date' => '\DateTime'
+        'version' => 'string',
+        'plugin_dependencies' => 'array<string,\Aternos\HangarApi\Model\PluginDependency[]>',
+        'platform_dependencies' => 'array<string,string[]>',
+        'description' => 'string',
+        'files' => '\Aternos\HangarApi\Model\MultipartFileOrUrl[]',
+        'channel' => 'string'
     ];
 
     /**
@@ -70,9 +74,12 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'old_name' => null,
-        'new_name' => null,
-        'date' => 'date-time'
+        'version' => null,
+        'plugin_dependencies' => null,
+        'platform_dependencies' => null,
+        'description' => null,
+        'files' => null,
+        'channel' => null
     ];
 
     /**
@@ -81,9 +88,12 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'old_name' => false,
-		'new_name' => false,
-		'date' => false
+        'version' => false,
+		'plugin_dependencies' => false,
+		'platform_dependencies' => false,
+		'description' => false,
+		'files' => false,
+		'channel' => false
     ];
 
     /**
@@ -172,9 +182,12 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'old_name' => 'oldName',
-        'new_name' => 'newName',
-        'date' => 'date'
+        'version' => 'version',
+        'plugin_dependencies' => 'pluginDependencies',
+        'platform_dependencies' => 'platformDependencies',
+        'description' => 'description',
+        'files' => 'files',
+        'channel' => 'channel'
     ];
 
     /**
@@ -183,9 +196,12 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'old_name' => 'setOldName',
-        'new_name' => 'setNewName',
-        'date' => 'setDate'
+        'version' => 'setVersion',
+        'plugin_dependencies' => 'setPluginDependencies',
+        'platform_dependencies' => 'setPlatformDependencies',
+        'description' => 'setDescription',
+        'files' => 'setFiles',
+        'channel' => 'setChannel'
     ];
 
     /**
@@ -194,9 +210,12 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'old_name' => 'getOldName',
-        'new_name' => 'getNewName',
-        'date' => 'getDate'
+        'version' => 'getVersion',
+        'plugin_dependencies' => 'getPluginDependencies',
+        'platform_dependencies' => 'getPlatformDependencies',
+        'description' => 'getDescription',
+        'files' => 'getFiles',
+        'channel' => 'getChannel'
     ];
 
     /**
@@ -256,9 +275,12 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('old_name', $data ?? [], null);
-        $this->setIfExists('new_name', $data ?? [], null);
-        $this->setIfExists('date', $data ?? [], null);
+        $this->setIfExists('version', $data ?? [], null);
+        $this->setIfExists('plugin_dependencies', $data ?? [], null);
+        $this->setIfExists('platform_dependencies', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('files', $data ?? [], null);
+        $this->setIfExists('channel', $data ?? [], null);
     }
 
     /**
@@ -288,6 +310,20 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['version'] === null) {
+            $invalidProperties[] = "'version' can't be null";
+        }
+        if (!is_null($this->container['files']) && (count($this->container['files']) > 3)) {
+            $invalidProperties[] = "invalid value for 'files', number of items must be less than or equal to 3.";
+        }
+
+        if (!is_null($this->container['files']) && (count($this->container['files']) < 1)) {
+            $invalidProperties[] = "invalid value for 'files', number of items must be greater than or equal to 1.";
+        }
+
+        if ($this->container['channel'] === null) {
+            $invalidProperties[] = "'channel' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -304,82 +340,170 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets old_name
+     * Gets version
      *
-     * @return string|null
+     * @return string
      */
-    public function getOldName()
+    public function getVersion()
     {
-        return $this->container['old_name'];
+        return $this->container['version'];
     }
 
     /**
-     * Sets old_name
+     * Sets version
      *
-     * @param string|null $old_name old_name
+     * @param string $version Version string of the version to be published
      *
      * @return self
      */
-    public function setOldName($old_name)
+    public function setVersion($version)
     {
-        if (is_null($old_name)) {
-            throw new \InvalidArgumentException('non-nullable old_name cannot be null');
+        if (is_null($version)) {
+            throw new \InvalidArgumentException('non-nullable version cannot be null');
         }
-        $this->container['old_name'] = $old_name;
+        $this->container['version'] = $version;
 
         return $this;
     }
 
     /**
-     * Gets new_name
+     * Gets plugin_dependencies
      *
-     * @return string|null
+     * @return array<string,\Aternos\HangarApi\Model\PluginDependency[]>|null
      */
-    public function getNewName()
+    public function getPluginDependencies()
     {
-        return $this->container['new_name'];
+        return $this->container['plugin_dependencies'];
     }
 
     /**
-     * Sets new_name
+     * Sets plugin_dependencies
      *
-     * @param string|null $new_name new_name
+     * @param array<string,\Aternos\HangarApi\Model\PluginDependency[]>|null $plugin_dependencies Map of each platform's plugin dependencies
      *
      * @return self
      */
-    public function setNewName($new_name)
+    public function setPluginDependencies($plugin_dependencies)
     {
-        if (is_null($new_name)) {
-            throw new \InvalidArgumentException('non-nullable new_name cannot be null');
+        if (is_null($plugin_dependencies)) {
+            throw new \InvalidArgumentException('non-nullable plugin_dependencies cannot be null');
         }
-        $this->container['new_name'] = $new_name;
+        $this->container['plugin_dependencies'] = $plugin_dependencies;
 
         return $this;
     }
 
     /**
-     * Gets date
+     * Gets platform_dependencies
      *
-     * @return \DateTime|null
+     * @return array<string,string[]>|null
      */
-    public function getDate()
+    public function getPlatformDependencies()
     {
-        return $this->container['date'];
+        return $this->container['platform_dependencies'];
     }
 
     /**
-     * Sets date
+     * Sets platform_dependencies
      *
-     * @param \DateTime|null $date date
+     * @param array<string,string[]>|null $platform_dependencies Map of platforms and their versions this version runs on
      *
      * @return self
      */
-    public function setDate($date)
+    public function setPlatformDependencies($platform_dependencies)
     {
-        if (is_null($date)) {
-            throw new \InvalidArgumentException('non-nullable date cannot be null');
+        if (is_null($platform_dependencies)) {
+            throw new \InvalidArgumentException('non-nullable platform_dependencies cannot be null');
         }
-        $this->container['date'] = $date;
+        $this->container['platform_dependencies'] = $platform_dependencies;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets files
+     *
+     * @return \Aternos\HangarApi\Model\MultipartFileOrUrl[]|null
+     */
+    public function getFiles()
+    {
+        return $this->container['files'];
+    }
+
+    /**
+     * Sets files
+     *
+     * @param \Aternos\HangarApi\Model\MultipartFileOrUrl[]|null $files files
+     *
+     * @return self
+     */
+    public function setFiles($files)
+    {
+        if (is_null($files)) {
+            throw new \InvalidArgumentException('non-nullable files cannot be null');
+        }
+
+        if ((count($files) > 3)) {
+            throw new \InvalidArgumentException('invalid value for $files when calling VersionUpload., number of items must be less than or equal to 3.');
+        }
+        if ((count($files) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $files when calling VersionUpload., number of items must be greater than or equal to 1.');
+        }
+        $this->container['files'] = $files;
+
+        return $this;
+    }
+
+    /**
+     * Gets channel
+     *
+     * @return string
+     */
+    public function getChannel()
+    {
+        return $this->container['channel'];
+    }
+
+    /**
+     * Sets channel
+     *
+     * @param string $channel Channel of the version to be published under
+     *
+     * @return self
+     */
+    public function setChannel($channel)
+    {
+        if (is_null($channel)) {
+            throw new \InvalidArgumentException('non-nullable channel cannot be null');
+        }
+        $this->container['channel'] = $channel;
 
         return $this;
     }
