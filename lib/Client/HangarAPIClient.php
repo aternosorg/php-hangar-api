@@ -32,6 +32,7 @@ use Aternos\HangarApi\Model\StringContent;
 use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
 use DateTimeInterface;
+use GuzzleHttp\ClientInterface;
 
 /**
  * Class HangarAPIClient
@@ -48,6 +49,8 @@ class HangarAPIClient
 
     protected ?JWT $jwt = null;
 
+    protected ?ClientInterface $httpClient;
+
     protected ProjectsApi $projects;
 
     protected VersionsApi $versions;
@@ -60,10 +63,17 @@ class HangarAPIClient
 
     protected PagesApi $pages;
 
-    public function __construct(Configuration $configuration = null)
+    public function __construct(
+        Configuration    $configuration = null,
+        ?string          $apiKey = null,
+        ?ClientInterface $httpClient = null,
+        ?string          $userAgent = null,
+    )
     {
+        $this->apiKey = $apiKey;
+        $this->httpClient = $httpClient;
         $this->setConfiguration($configuration ?? (new Configuration())
-            ->setUserAgent("php-hangar-api/2.0.0"));
+            ->setUserAgent($userAgent ?? "php-hangar-api/2.0.0"));
     }
 
     /**
@@ -73,12 +83,12 @@ class HangarAPIClient
     public function setConfiguration(Configuration $configuration): static
     {
         $this->configuration = $configuration;
-        $this->projects = new ProjectsApi(null, $this->configuration);
-        $this->versions = new VersionsApi(null, $this->configuration);
-        $this->users = new UsersApi(null, $this->configuration);
-        $this->authentication = new AuthenticationApi(null, $this->configuration);
-        $this->permissions = new PermissionsApi(null, $this->configuration);
-        $this->pages = new PagesApi(null, $this->configuration);
+        $this->projects = new ProjectsApi($this->httpClient, $this->configuration);
+        $this->versions = new VersionsApi($this->httpClient, $this->configuration);
+        $this->users = new UsersApi($this->httpClient, $this->configuration);
+        $this->authentication = new AuthenticationApi($this->httpClient, $this->configuration);
+        $this->permissions = new PermissionsApi($this->httpClient, $this->configuration);
+        $this->pages = new PagesApi($this->httpClient, $this->configuration);
         return $this;
     }
 
@@ -125,6 +135,18 @@ class HangarAPIClient
         $this->apiKey = $apiKey;
         $this->jwt = null;
         return $this;
+    }
+
+    /**
+     * Set the HTTP client used for all requests.
+     * When null, the default HTTP client from Guzzle will be used.
+     * @param ClientInterface|null $httpClient
+     * @return $this
+     */
+    public function setHttpClient(?ClientInterface $httpClient): static
+    {
+        $this->httpClient = $httpClient;
+        return $this->setConfiguration($this->configuration);
     }
 
     /**
