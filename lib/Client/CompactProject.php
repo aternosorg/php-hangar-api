@@ -36,13 +36,22 @@ class CompactProject
     }
 
     /**
+     * Get the slug of this project (shorthand for getData()->getNamespace()->getSlug())
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->project->getNamespace()->getSlug();
+    }
+
+    /**
      * Get the full project data
      * @return Project
      * @throws ApiException
      */
     public function getProject(): Project
     {
-        return $this->client->getProject($this->project->getNamespace()->getSlug());
+        return $this->client->getProject($this->getSlug());
     }
 
     /**
@@ -55,11 +64,11 @@ class CompactProject
      */
     public function getVersions(?string $channel = null, ?Platform $platform = null, ?string $platformVersion = null): ProjectVersionList
     {
-        $options = new VersionSearchOptions($this->getData()->getNamespace());
+        $options = new VersionSearchOptions($this->getSlug());
         $options->setChannel($channel);
         $options->setPlatform($platform);
         $options->setPlatformVersion($platformVersion);
-        return $this->client->getProjectVersions($this->project->getNamespace(), $options);
+        return $this->client->getProjectVersions($this->getSlug(), $options);
     }
 
     /**
@@ -70,7 +79,7 @@ class CompactProject
      */
     public function getVersion(string $name): Version
     {
-        return $this->client->getProjectVersion($this->getData()->getNamespace(), $name);
+        return $this->client->getProjectVersion($this->getSlug(), $name);
     }
 
     /**
@@ -80,7 +89,7 @@ class CompactProject
      */
     public function getWatchers(): UserList
     {
-        return $this->client->getProjectWatchers($this->project->getNamespace());
+        return $this->client->getProjectWatchers($this->getSlug());
     }
 
     /**
@@ -94,7 +103,7 @@ class CompactProject
     public function getDailyStats(?DateTime $from = null, ?DateTime $to = null): array
     {
         return $this->client->getDailyProjectStats(
-            $this->project->getNamespace()->getSlug(),
+            $this->getSlug(),
             $from ?? $this->getData()->getCreatedAt(),
             $to
         );
@@ -107,7 +116,7 @@ class CompactProject
      */
     public function getStarGazers(): UserList
     {
-        return $this->client->getProjectStarGazers($this->project->getNamespace());
+        return $this->client->getProjectStarGazers($this->getSlug());
     }
 
     /**
@@ -117,7 +126,7 @@ class CompactProject
      */
     public function getMembers(): ProjectMemberList
     {
-        return $this->client->getProjectMembers($this->project->getNamespace());
+        return $this->client->getProjectMembers($this->getSlug());
     }
 
     /**
@@ -137,7 +146,7 @@ class CompactProject
      */
     public function getMainPage(): ProjectPage
     {
-        return $this->client->getProjectMainPage($this->project->getNamespace()->getSlug());
+        return $this->client->getProjectMainPage($this->getSlug());
     }
 
     /**
@@ -148,6 +157,6 @@ class CompactProject
      */
     public function getPage(string $path): ProjectPage
     {
-        return $this->client->getProjectPage($this->project->getNamespace()->getSlug(), $path);
+        return $this->client->getProjectPage($this->getSlug(), $path);
     }
 }

@@ -4,7 +4,6 @@ namespace Aternos\HangarApi\Client\Options\VersionSearch;
 
 use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Project;
-use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
 
 /**
@@ -15,7 +14,7 @@ use Aternos\HangarApi\Model\RequestPagination;
  */
 class VersionSearchOptions
 {
-    protected ProjectNamespace $projectNamespace;
+    protected string $projectSlug;
 
     protected ?Project $project = null;
 
@@ -27,29 +26,29 @@ class VersionSearchOptions
 
     protected ?string $platformVersion = null;
 
-    public function __construct(ProjectNamespace $projectNamespace)
+    public function __construct(string $projectSlug)
     {
         $this->pagination = (new RequestPagination())
             ->setOffset(0)
             ->setLimit(25);
-        $this->projectNamespace = $projectNamespace;
+        $this->projectSlug = $projectSlug;
     }
 
     /**
-     * @return ProjectNamespace
+     * @return string
      */
-    public function getProjectNamespace(): ProjectNamespace
+    public function getProjectSlug(): string
     {
-        return $this->projectNamespace;
+        return $this->projectSlug;
     }
 
     /**
-     * @param ProjectNamespace $projectNamespace
+     * @param string $projectSlug
      * @return VersionSearchOptions
      */
-    public function setProjectNamespace(ProjectNamespace $projectNamespace): VersionSearchOptions
+    public function setProjectSlug(string $projectSlug): VersionSearchOptions
     {
-        $this->projectNamespace = $projectNamespace;
+        $this->projectSlug = $projectSlug;
         return $this;
     }
 
@@ -68,7 +67,7 @@ class VersionSearchOptions
     public function setProject(?Project $project): VersionSearchOptions
     {
         $this->project = $project;
-        $this->setProjectNamespace($project->getData()->getNamespace());
+        $this->setProjectSlug($project->getSlug());
         return $this;
     }
 

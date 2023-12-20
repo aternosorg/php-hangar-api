@@ -107,23 +107,11 @@ class ClientTest extends TestCase
 
     protected function isSameProject($a, $b): bool
     {
-        if (!$a || !$b) {
+        if (!$a?->getData()?->getNamespace()?->getOwner() || !$b?->getData()?->getNamespace()?->getOwner()) {
             return false;
         }
 
-        if (!$a->getData() || !$b->getData()) {
-            return false;
-        }
-
-        if (!$a->getData()->getNamespace() || !$b->getData()->getNamespace()) {
-            return false;
-        }
-
-        if (!$a->getData()->getNamespace()->getOwner() || !$b->getData()->getNamespace()->getOwner()) {
-            return false;
-        }
-
-        if (!$a->getData()->getNamespace()->getSlug() || !$b->getData()->getNamespace()->getSlug()) {
+        if (!$a?->getData()?->getNamespace()?->getSlug() || !$b?->getData()?->getNamespace()?->getSlug()) {
             return false;
         }
 

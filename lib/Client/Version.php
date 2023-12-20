@@ -3,7 +3,6 @@
 namespace Aternos\HangarApi\Client;
 
 use Aternos\HangarApi\ApiException;
-use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
 
@@ -18,18 +17,19 @@ class Version
     public function __construct(
         protected HangarAPIClient                  $client,
         protected \Aternos\HangarApi\Model\Version $version,
-        protected ProjectNamespace                 $projectNamespace,
+        protected string                           $projectSlug,
         protected ?Project                         $project = null,
     )
     {
     }
 
     /**
-     * @return ProjectNamespace
+     * Get the slug of the project this version belongs to
+     * @return string
      */
-    public function getProjectNamespace(): ProjectNamespace
+    public function getProjectSlug(): string
     {
-        return $this->projectNamespace;
+        return $this->projectSlug;
     }
 
     /**
@@ -43,7 +43,7 @@ class Version
             return $this->project;
         }
 
-        $this->project = $this->client->getProject($this->projectNamespace->getSlug());
+        $this->project = $this->client->getProject($this->projectSlug);
         return $this->project;
     }
 

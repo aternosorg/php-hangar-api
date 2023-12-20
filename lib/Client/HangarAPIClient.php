@@ -26,7 +26,6 @@ use Aternos\HangarApi\Configuration;
 use Aternos\HangarApi\Model\DayProjectStats;
 use Aternos\HangarApi\Model\NamedPermission;
 use Aternos\HangarApi\Model\PageEditForm;
-use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
 use Aternos\HangarApi\Model\StringContent;
 use Aternos\HangarApi\Model\VersionStats;
@@ -219,12 +218,12 @@ class HangarAPIClient
 
     /**
      * Get a list of people watching a project
-     * @param ProjectNamespace $namespace
+     * @param string $projectSlug
      * @param RequestPagination|null $pagination
      * @return ProjectWatcherList
      * @throws ApiException
      */
-    public function getProjectWatchers(ProjectNamespace $namespace, ?RequestPagination $pagination = null): ProjectWatcherList
+    public function getProjectWatchers(string $projectSlug, ?RequestPagination $pagination = null): ProjectWatcherList
     {
         $this->authenticate();
 
@@ -232,11 +231,11 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectWatchers($namespace->getSlug(), $pagination);
+        $result = $this->projects->getProjectWatchers($projectSlug, $pagination);
         return new ProjectWatcherList(
             $this,
             $result,
-            $namespace,
+            $projectSlug,
             $pagination,
         );
     }
@@ -271,12 +270,12 @@ class HangarAPIClient
 
     /**
      * Get a list of people starring a project
-     * @param ProjectNamespace $namespace
+     * @param string $projectSlug
      * @param RequestPagination|null $pagination
      * @return ProjectStarGazersList
      * @throws ApiException
      */
-    public function getProjectStarGazers(ProjectNamespace $namespace, ?RequestPagination $pagination = null): ProjectStarGazersList
+    public function getProjectStarGazers(string $projectSlug, ?RequestPagination $pagination = null): ProjectStarGazersList
     {
         $this->authenticate();
 
@@ -284,23 +283,23 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectStarGazers($namespace->getSlug(), $pagination);
+        $result = $this->projects->getProjectStarGazers($projectSlug, $pagination);
         return new ProjectStarGazersList(
             $this,
             $result,
-            $namespace,
+            $projectSlug,
             $pagination,
         );
     }
 
     /**
      * Get a list of members of a project
-     * @param ProjectNamespace $namespace
+     * @param string $projectSlug
      * @param RequestPagination|null $pagination
      * @return ProjectMemberList
      * @throws ApiException
      */
-    public function getProjectMembers(ProjectNamespace $namespace, ?RequestPagination $pagination = null): ProjectMemberList
+    public function getProjectMembers(string $projectSlug, ?RequestPagination $pagination = null): ProjectMemberList
     {
         $this->authenticate();
 
@@ -308,19 +307,19 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectMembers($namespace->getSlug(), $pagination);
-        return new ProjectMemberList($this, $result, $namespace, $pagination);
+        $result = $this->projects->getProjectMembers($projectSlug, $pagination);
+        return new ProjectMemberList($this, $result, $projectSlug, $pagination);
     }
 
     /**
      * Get versions of a project
-     * @param ProjectNamespace|Project $project
+     * @param string|Project $project project slug or object
      * @param VersionSearchOptions $options
      * @return ProjectVersionList
      * @throws ApiException
      */
     public function getProjectVersions(
-        ProjectNamespace|Project $project,
+        string|Project $project,
         VersionSearchOptions     $options,
     ): ProjectVersionList
     {
@@ -329,11 +328,11 @@ class HangarAPIClient
         if ($project instanceof Project) {
             $options->setProject($project);
         } else {
-            $options->setProjectNamespace($project);
+            $options->setProjectSlug($project);
         }
 
         $result = $this->versions->listVersions(
-            $options->getProjectNamespace()->getSlug(),
+            $options->getProjectSlug(),
             $options->getPagination(),
             $options->getChannel(),
             $options->getPlatform()?->value,
@@ -345,21 +344,21 @@ class HangarAPIClient
 
     /**
      * Get a single project version
-     * @param ProjectNamespace|Project $project
+     * @param string|Project $project project slug or object
      * @param string $name
      * @return Version
      * @throws ApiException
      */
-    public function getProjectVersion(ProjectNamespace|Project $project, string $name): Version
+    public function getProjectVersion(string|Project $project, string $name): Version
     {
         $this->authenticate();
 
-        $namespace = $project instanceof Project ? $project->getData()->getNamespace() : $project;
-        $result = $this->versions->showVersion($namespace->getSlug(), $name);
+        $projectSlug = $project instanceof Project ? $project->getSlug() : $project;
+        $result = $this->versions->showVersion($projectSlug, $name);
         return new Version(
             $this,
             $result,
-            $namespace,
+            $projectSlug,
             $project instanceof Project ? $project : null
         );
     }
@@ -379,14 +378,14 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $version->getProjectNamespace()->getSlug())) {
+        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $version->getProjectSlug())) {
             throw new ApiException('You need the is_subject_member permission to view version statistics');
         }
 
         $to ??= new DateTime();
 
         return $this->versions->showVersionStats(
-            $version->getProjectNamespace()->getSlug(),
+            $version->getProjectSlug(),
             $version->getData()->getName(),
             $from->format(DateTimeInterface::RFC3339),
             $to->format(DateTimeInterface::RFC3339),

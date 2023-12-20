@@ -5,7 +5,6 @@ namespace Aternos\HangarApi\Client\List;
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Model\PaginatedResultProjectMember;
-use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
 
 /**
@@ -19,7 +18,7 @@ class ProjectMemberList extends ResultList
     public function __construct(
         protected HangarAPIClient $client,
         PaginatedResultProjectMember $result,
-        protected ProjectNamespace  $namespace,
+        protected string            $projectSlug,
         protected RequestPagination $requestPagination,
     )
     {
@@ -35,6 +34,6 @@ class ProjectMemberList extends ResultList
     {
         $pagination = clone $this->requestPagination;
         $pagination->setOffset($offset);
-        return $this->client->getProjectMembers($this->namespace, $pagination);
+        return $this->client->getProjectMembers($this->projectSlug, $pagination);
     }
 }

@@ -71,7 +71,7 @@ $projects = $hangarClient->getProjects($options);
 The Project wrapper provides methods to fetch additional data about the project.
 ```php
 // get a specific project
-$project = $hangarClient->getProject("Aternos", "mclogs");
+$project = $hangarClient->getProject("mclogs");
 
 // get versions of the project (paginated)
 $versions = $project->getVersions();
@@ -95,17 +95,13 @@ $watchers = $project->getWatchers();
 ## Versions
 ```php
 // get versions of a project by name (paginated)
-$versions = $hangarClient->getProjectVersions("Aternos", "mclogs");
+$versions = $hangarClient->getProjectVersions("mclogs");
 
 // get the versions from a project (paginated)
 $versions = $project->getVersions();
 
 // get a specific version of a project by name
-use \Aternos\HangarApi\Model\ProjectNamespace;
-$namespace = (new ProjectNamespace())
-        ->setOwner("Aternos")
-        ->setProject("mclogs");
-$version = $hangarClient->getProjectVersion($namespace, "2.6.2");
+$version = $hangarClient->getProjectVersion("mclogs", "2.6.2");
 
 // get a specific version of a project
 $version = $project->getVersion("2.6.2");
@@ -135,10 +131,10 @@ $watchedProjects = $user->getWatchedProjects();
 ## Project Pages
 ```php
 // get the main page of a project
-$page = $hangarClient->getProjectMainPage("Aternos", "mclogs");
+$page = $hangarClient->getProjectMainPage("mclogs");
 
 // get other pages
-$page = $hangarClient->getProjectPage("Aternos", "mclogs", "Config");
+$page = $hangarClient->getProjectPage("mclogs", "Config");
 
 // get a page from a project
 $page = $project->getPage("Config");

@@ -35,6 +35,15 @@ class Project
     }
 
     /**
+     * Get the slug of this project (shorthand for getData()->getNamespace()->getSlug())
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->project->getNamespace()->getSlug();
+    }
+
+    /**
      * Get all versions of this project (paginated)
      * @param string|null $channel
      * @param Platform|null $platform
@@ -44,12 +53,12 @@ class Project
      */
     public function getVersions(?string $channel = null, ?Platform $platform = null, ?string $platformVersion = null): ProjectVersionList
     {
-        $options = new VersionSearchOptions($this->getData()->getNamespace());
+        $options = new VersionSearchOptions($this->getSlug());
         $options->setProject($this);
         $options->setChannel($channel);
         $options->setPlatform($platform);
         $options->setPlatformVersion($platformVersion);
-        return $this->client->getProjectVersions($this->project->getNamespace(), $options);
+        return $this->client->getProjectVersions($this, $options);
     }
 
     /**
@@ -70,7 +79,7 @@ class Project
      */
     public function getWatchers(): UserList
     {
-        return $this->client->getProjectWatchers($this->project->getNamespace());
+        return $this->client->getProjectWatchers($this->getSlug());
     }
 
     /**
@@ -84,7 +93,7 @@ class Project
     public function getDailyStats(?DateTime $from = null, ?DateTime $to = null): array
     {
         return $this->client->getDailyProjectStats(
-            $this->project->getNamespace()->getSlug(),
+            $this->getSlug(),
             $from ?? $this->getData()->getCreatedAt(),
             $to
         );
@@ -97,7 +106,7 @@ class Project
      */
     public function getStarGazers(): UserList
     {
-        return $this->client->getProjectStarGazers($this->project->getNamespace());
+        return $this->client->getProjectStarGazers($this->getSlug());
     }
 
     /**
@@ -107,7 +116,7 @@ class Project
      */
     public function getMembers(): ProjectMemberList
     {
-        return $this->client->getProjectMembers($this->project->getNamespace());
+        return $this->client->getProjectMembers($this->getSlug());
     }
 
     /**
@@ -127,7 +136,7 @@ class Project
      */
     public function getMainPage(): ProjectPage
     {
-        return $this->client->getProjectMainPage($this->project->getNamespace()->getSlug());
+        return $this->client->getProjectMainPage($this->getSlug());
     }
 
     /**
@@ -138,6 +147,6 @@ class Project
      */
     public function getPage(string $path): ProjectPage
     {
-        return $this->client->getProjectPage($this->project->getNamespace()->getSlug(), $path);
+        return $this->client->getProjectPage($this->getSlug(), $path);
     }
 }
