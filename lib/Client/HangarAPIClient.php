@@ -189,7 +189,7 @@ class HangarAPIClient
         $this->authenticate();
 
         $result = $this->projects->getProjects($options->getPagination(),
-            $options->isOrderWithRelevance(),
+            $options->isPrioritizeExactMatch(),
             $options->getSortField()?->value,
             $options->getCategory()?->value,
             $options->getPlatform()?->value,

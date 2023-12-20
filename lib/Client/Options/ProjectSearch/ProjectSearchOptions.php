@@ -15,7 +15,7 @@ use Aternos\HangarApi\Model\RequestPagination;
 class ProjectSearchOptions
 {
     protected RequestPagination $pagination;
-    protected bool $order_with_relevance = true;
+    protected bool $prioritizeExactMatch = true;
     protected ?ProjectSortField $sortField = null;
     protected ?ProjectCategory $category = null;
     protected ?Platform $platform = null;
@@ -89,18 +89,18 @@ class ProjectSearchOptions
     /**
      * @return bool
      */
-    public function isOrderWithRelevance(): bool
+    public function isPrioritizeExactMatch(): bool
     {
-        return $this->order_with_relevance;
+        return $this->prioritizeExactMatch;
     }
 
     /**
-     * @param bool $order_with_relevance
+     * @param bool $prioritizeExactMatch
      * @return static
      */
-    public function setOrderWithRelevance(bool $order_with_relevance): static
+    public function setPrioritizeExactMatch(bool $prioritizeExactMatch): static
     {
-        $this->order_with_relevance = $order_with_relevance;
+        $this->prioritizeExactMatch = $prioritizeExactMatch;
         return $this;
     }
 
