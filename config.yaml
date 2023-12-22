@@ -1,5 +1,5 @@
 invokerPackage: Aternos\HangarApi
-artifactVersion: 3.1.0
+artifactVersion: 3.1.1
 generatorName: php
 outputDir: .
 sourceFolder: src

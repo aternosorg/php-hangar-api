@@ -198,6 +198,33 @@ class APIKeysApi
             }
 
             switch($statusCode) {
+                case 201:
+                    if ('string' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('string' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'string', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 case 403:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -226,33 +253,6 @@ class APIKeysApi
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('string' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('string' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, 'string', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 201:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -311,6 +311,14 @@ class APIKeysApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -320,14 +328,6 @@ class APIKeysApi
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'string',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -751,7 +751,7 @@ class APIKeysApi
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aternos\HangarApi\Model\ApiKey|\Aternos\HangarApi\Model\ApiKey[]|\Aternos\HangarApi\Model\ApiKey[]
+     * @return \Aternos\HangarApi\Model\ApiKey[]|\Aternos\HangarApi\Model\ApiKey[]|\Aternos\HangarApi\Model\ApiKey
      */
     public function getKeys(string $contentType = self::contentTypes['getKeys'][0])
     {
@@ -768,7 +768,7 @@ class APIKeysApi
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aternos\HangarApi\Model\ApiKey|\Aternos\HangarApi\Model\ApiKey[]|\Aternos\HangarApi\Model\ApiKey[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aternos\HangarApi\Model\ApiKey[]|\Aternos\HangarApi\Model\ApiKey[]|\Aternos\HangarApi\Model\ApiKey, HTTP status code, HTTP response headers (array of strings)
      */
     public function getKeysWithHttpInfo(string $contentType = self::contentTypes['getKeys'][0])
     {
@@ -810,33 +810,6 @@ class APIKeysApi
             }
 
             switch($statusCode) {
-                case 200:
-                    if ('\Aternos\HangarApi\Model\ApiKey' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Aternos\HangarApi\Model\ApiKey' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Aternos\HangarApi\Model\ApiKey', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 403:
                     if ('\Aternos\HangarApi\Model\ApiKey[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -888,6 +861,33 @@ class APIKeysApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Aternos\HangarApi\Model\ApiKey[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 200:
+                    if ('\Aternos\HangarApi\Model\ApiKey' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aternos\HangarApi\Model\ApiKey' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aternos\HangarApi\Model\ApiKey', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -923,14 +923,6 @@ class APIKeysApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Aternos\HangarApi\Model\ApiKey',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -943,6 +935,14 @@ class APIKeysApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\ApiKey[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aternos\HangarApi\Model\ApiKey',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

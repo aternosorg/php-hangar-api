@@ -5,6 +5,7 @@ namespace Aternos\HangarApi\Client\List;
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Model\PaginatedResultProjectMember;
+use Aternos\HangarApi\Model\ProjectMember;
 use Aternos\HangarApi\Model\RequestPagination;
 
 /**
@@ -12,6 +13,7 @@ use Aternos\HangarApi\Model\RequestPagination;
  *
  * @package Aternos\HangarApi\Client\List
  * @description A paginated list of project members
+ * @extends ResultList<ProjectMember>
  */
 class ProjectMemberList extends ResultList
 {
