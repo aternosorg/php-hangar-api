@@ -552,8 +552,8 @@ class PermissionsApi
      * Checks whether you have at least one of the provided permissions
      *
      * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
-     * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
-     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
+     * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organization&#x60; (optional)
+     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;slug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAny'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -572,8 +572,8 @@ class PermissionsApi
      * Checks whether you have at least one of the provided permissions
      *
      * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
-     * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
-     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
+     * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organization&#x60; (optional)
+     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;slug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAny'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -768,8 +768,8 @@ class PermissionsApi
      * Checks whether you have at least one of the provided permissions
      *
      * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
-     * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
-     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
+     * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organization&#x60; (optional)
+     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;slug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAny'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -791,8 +791,8 @@ class PermissionsApi
      * Checks whether you have at least one of the provided permissions
      *
      * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
-     * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
-     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
+     * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organization&#x60; (optional)
+     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;slug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAny'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -843,8 +843,8 @@ class PermissionsApi
      * Create request for operation 'hasAny'
      *
      * @param  \Aternos\HangarApi\Model\NamedPermission[] $permissions The permissions to check (required)
-     * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organizationName&#x60; (optional)
-     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
+     * @param  string $slug The slug of the project to check permissions in. Must not be used together with &#x60;organization&#x60; (optional)
+     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;slug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['hasAny'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

@@ -7,6 +7,8 @@ use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Client\List\ResultList;
 use Aternos\HangarApi\Client\Options\ProjectCategory;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
+use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortField;
+use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortOrder;
 use Aternos\HangarApi\Model\ProjectNamespace;
 use Aternos\HangarApi\Model\RequestPagination;
 use PHPUnit\Framework\TestCase;
@@ -227,6 +229,50 @@ class ClientTest extends TestCase
         $this->assertFalse($projectList->hasNextPage());
         $projectList = $projectList->getNextPage();
         $this->assertNull($projectList);
+    }
+
+    /**
+     * Test case for getProjects sorting by the shortest duration since the last update
+     * @throws ApiException
+     */
+    public function testGetRecentlyUpdatedProjects()
+    {
+        $options = new ProjectSearchOptions();
+        $options->setLimit(10);
+        $options->setSortField(ProjectSortField::UPDATED);
+        $options->setSortOrder(ProjectSortOrder::DESC);
+        $projectList = $this->apiClient->getProjects($options);
+        $this->assertValidResultList($projectList);
+
+        $lastUpdated = time();
+        foreach ($projectList as $project) {
+            $this->assertValidProject($project);
+            $updated = $project->getData()->getLastUpdated()->getTimestamp();
+            $this->assertLessThanOrEqual($lastUpdated, $updated);
+            $lastUpdated = $updated;
+        }
+    }
+
+    /**
+     * Test case for getProjects sorting by the longest duration since the last update
+     * @throws ApiException
+     */
+    public function testGetNotRecentlyUpdatedProjects()
+    {
+        $options = new ProjectSearchOptions();
+        $options->setLimit(10);
+        $options->setSortField(ProjectSortField::UPDATED);
+        $options->setSortOrder(ProjectSortOrder::ASC);
+        $projectList = $this->apiClient->getProjects($options);
+        $this->assertValidResultList($projectList);
+
+        $lastUpdated = 0;
+        foreach ($projectList as $project) {
+            $this->assertValidProject($project);
+            $updated = $project->getData()->getLastUpdated()->getTimestamp();
+            $this->assertGreaterThanOrEqual($lastUpdated, $updated);
+            $lastUpdated = $updated;
+        }
     }
 
     /**

@@ -189,10 +189,11 @@ class HangarAPIClient
 
         $result = $this->projects->getProjects($options->getPagination(),
             $options->isPrioritizeExactMatch(),
-            $options->getSortField()?->value,
+            $options->getSortParameter(),
             $options->getCategory()?->value,
             $options->getPlatform()?->value,
             $options->getOwner(),
+            null,
             $options->getQuery(),
             $options->getLicense(),
             $options->getVersion(),

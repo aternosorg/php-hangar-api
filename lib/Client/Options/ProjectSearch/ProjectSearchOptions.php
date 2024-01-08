@@ -17,6 +17,7 @@ class ProjectSearchOptions
     protected RequestPagination $pagination;
     protected bool $prioritizeExactMatch = true;
     protected ?ProjectSortField $sortField = null;
+    protected ProjectSortOrder $sortOrder = ProjectSortOrder::ASC;
     protected ?ProjectCategory $category = null;
     protected ?Platform $platform = null;
     protected ?string $owner = null;
@@ -60,7 +61,7 @@ class ProjectSearchOptions
 
     /**
      * @param int $offset
-     * @return static
+     * @return $this
      */
     public function setOffset(int $offset): static
     {
@@ -78,7 +79,7 @@ class ProjectSearchOptions
 
     /**
      * @param int $limit
-     * @return static
+     * @return $this
      */
     public function setLimit(int $limit): static
     {
@@ -96,7 +97,7 @@ class ProjectSearchOptions
 
     /**
      * @param bool $prioritizeExactMatch
-     * @return static
+     * @return $this
      */
     public function setPrioritizeExactMatch(bool $prioritizeExactMatch): static
     {
@@ -114,12 +115,50 @@ class ProjectSearchOptions
 
     /**
      * @param ProjectSortField|null $sort
-     * @return static
+     * @return $this
      */
     public function setSortField(?ProjectSortField $sort): static
     {
         $this->sortField = $sort;
         return $this;
+    }
+
+    /**
+     * @return ProjectSortOrder
+     */
+    public function getSortOrder(): ProjectSortOrder
+    {
+        return $this->sortOrder;
+    }
+
+    /**
+     * @param ProjectSortOrder $sortOrder
+     * @return $this
+     */
+    public function setSortOrder(ProjectSortOrder $sortOrder): static
+    {
+        $this->sortOrder = $sortOrder;
+        return $this;
+    }
+
+    /**
+     * Get the sort parameter for the API request
+     *
+     * Returns the sort field value with a minus sign in front if the sort order is descending.
+     * If no sort field is set, null is returned.
+     * @return string|null
+     */
+    public function getSortParameter(): ?string
+    {
+        if ($this->sortField === null) {
+            return null;
+        }
+
+        if ($this->sortOrder === ProjectSortOrder::DESC) {
+            return '-' . $this->sortField->value;
+        }
+
+        return $this->sortField->value;
     }
 
     /**
@@ -132,7 +171,7 @@ class ProjectSearchOptions
 
     /**
      * @param ProjectCategory|null $category
-     * @return static
+     * @return $this
      */
     public function setCategory(?ProjectCategory $category): static
     {
@@ -150,7 +189,7 @@ class ProjectSearchOptions
 
     /**
      * @param Platform|null $platform
-     * @return static
+     * @return $this
      */
     public function setPlatform(?Platform $platform): static
     {
@@ -168,7 +207,7 @@ class ProjectSearchOptions
 
     /**
      * @param string|null $owner
-     * @return static
+     * @return $this
      */
     public function setOwner(?string $owner): static
     {
@@ -186,7 +225,7 @@ class ProjectSearchOptions
 
     /**
      * @param string|null $query
-     * @return static
+     * @return $this
      */
     public function setQuery(?string $query): static
     {
@@ -204,7 +243,7 @@ class ProjectSearchOptions
 
     /**
      * @param string|null $license
-     * @return static
+     * @return $this
      */
     public function setLicense(?string $license): static
     {
@@ -222,7 +261,7 @@ class ProjectSearchOptions
 
     /**
      * @param string|null $version
-     * @return static
+     * @return $this
      */
     public function setVersion(?string $version): static
     {
@@ -240,7 +279,7 @@ class ProjectSearchOptions
 
     /**
      * @param string|null $tag
-     * @return static
+     * @return $this
      */
     public function setTag(?string $tag): static
     {
