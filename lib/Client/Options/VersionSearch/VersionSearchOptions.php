@@ -26,6 +26,8 @@ class VersionSearchOptions
 
     protected ?string $platformVersion = null;
 
+    protected bool $includeHiddenChannels = true;
+
     public function __construct(string $projectSlug)
     {
         $this->pagination = (new RequestPagination())
@@ -44,9 +46,9 @@ class VersionSearchOptions
 
     /**
      * @param string $projectSlug
-     * @return VersionSearchOptions
+     * @return $this
      */
-    public function setProjectSlug(string $projectSlug): VersionSearchOptions
+    public function setProjectSlug(string $projectSlug): static
     {
         $this->projectSlug = $projectSlug;
         return $this;
@@ -62,9 +64,9 @@ class VersionSearchOptions
 
     /**
      * @param Project|null $project
-     * @return VersionSearchOptions
+     * @return $this
      */
-    public function setProject(?Project $project): VersionSearchOptions
+    public function setProject(?Project $project): static
     {
         $this->project = $project;
         $this->setProjectSlug($project->getSlug());
@@ -81,9 +83,9 @@ class VersionSearchOptions
 
     /**
      * @param RequestPagination $pagination
-     * @return VersionSearchOptions
+     * @return $this
      */
-    public function setPagination(RequestPagination $pagination): VersionSearchOptions
+    public function setPagination(RequestPagination $pagination): static
     {
         $this->pagination = $pagination;
         return $this;
@@ -135,9 +137,9 @@ class VersionSearchOptions
 
     /**
      * @param string|null $channel
-     * @return VersionSearchOptions
+     * @return $this
      */
-    public function setChannel(?string $channel): VersionSearchOptions
+    public function setChannel(?string $channel): static
     {
         $this->channel = $channel;
         return $this;
@@ -153,9 +155,9 @@ class VersionSearchOptions
 
     /**
      * @param Platform|null $platform
-     * @return VersionSearchOptions
+     * @return $this
      */
-    public function setPlatform(?Platform $platform): VersionSearchOptions
+    public function setPlatform(?Platform $platform): static
     {
         $this->platform = $platform;
         return $this;
@@ -171,11 +173,29 @@ class VersionSearchOptions
 
     /**
      * @param string|null $platformVersion
-     * @return VersionSearchOptions
+     * @return $this
      */
-    public function setPlatformVersion(?string $platformVersion): VersionSearchOptions
+    public function setPlatformVersion(?string $platformVersion): static
     {
         $this->platformVersion = $platformVersion;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIncludeHiddenChannels(): bool
+    {
+        return $this->includeHiddenChannels;
+    }
+
+    /**
+     * @param bool $includeHiddenChannels
+     * @return $this
+     */
+    public function setIncludeHiddenChannels(bool $includeHiddenChannels): static
+    {
+        $this->includeHiddenChannels = $includeHiddenChannels;
         return $this;
     }
 }

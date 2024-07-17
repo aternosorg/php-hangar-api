@@ -963,8 +963,8 @@ class PermissionsApi
      *
      * Returns your permissions
      *
-     * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
-     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
+     * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organization&#x60; (optional)
+     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;slug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showPermissions'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -982,8 +982,8 @@ class PermissionsApi
      *
      * Returns your permissions
      *
-     * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
-     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
+     * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organization&#x60; (optional)
+     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;slug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showPermissions'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1177,8 +1177,8 @@ class PermissionsApi
      *
      * Returns your permissions
      *
-     * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
-     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
+     * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organization&#x60; (optional)
+     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;slug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showPermissions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1199,8 +1199,8 @@ class PermissionsApi
      *
      * Returns your permissions
      *
-     * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
-     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
+     * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organization&#x60; (optional)
+     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;slug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showPermissions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1250,8 +1250,8 @@ class PermissionsApi
     /**
      * Create request for operation 'showPermissions'
      *
-     * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organizationName&#x60; (optional)
-     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;projectOwner&#x60; and &#x60;projectSlug&#x60; (optional)
+     * @param  string $slug The slug of the project get the permissions for. Must not be used together with &#x60;organization&#x60; (optional)
+     * @param  string $organization The organization to check permissions in. Must not be used together with &#x60;slug&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showPermissions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

@@ -2061,6 +2061,7 @@ class UsersApi
 
 
 
+
         $resourcePath = '/api/v1/users/{user}/watching';
         $formParams = [];
         $queryParams = [];
@@ -2475,6 +2476,7 @@ class UsersApi
                 'Missing the required parameter $pagination when calling showStarred'
             );
         }
+
 
 
 

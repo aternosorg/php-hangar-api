@@ -193,8 +193,8 @@ class HangarAPIClient
             $options->getCategory()?->value,
             $options->getPlatform()?->value,
             $options->getOwner(),
-            null,
             $options->getQuery(),
+            null,
             $options->getLicense(),
             $options->getVersion(),
             $options->getTag(),
@@ -335,6 +335,7 @@ class HangarAPIClient
         $result = $this->versions->listVersions(
             $options->getProjectSlug(),
             $options->getPagination(),
+            $options->isIncludeHiddenChannels(),
             $options->getChannel(),
             $options->getPlatform()?->value,
             $options->getPlatformVersion(),

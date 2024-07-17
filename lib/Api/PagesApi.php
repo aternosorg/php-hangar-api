@@ -960,7 +960,7 @@ class PagesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', ],
+            ['application/json', 'text/plain', ],
             $contentType,
             $multipart
         );
@@ -1358,7 +1358,7 @@ class PagesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', ],
+            ['application/json', 'text/plain', ],
             $contentType,
             $multipart
         );

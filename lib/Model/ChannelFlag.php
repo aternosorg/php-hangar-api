@@ -50,6 +50,8 @@ class ChannelFlag
 
     public const SENDS_NOTIFICATIONS = 'SENDS_NOTIFICATIONS';
 
+    public const HIDE_BY_DEFAULT = 'HIDE_BY_DEFAULT';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -60,7 +62,8 @@ class ChannelFlag
             self::FROZEN,
             self::UNSTABLE,
             self::PINNED,
-            self::SENDS_NOTIFICATIONS
+            self::SENDS_NOTIFICATIONS,
+            self::HIDE_BY_DEFAULT
         ];
     }
 }

@@ -596,7 +596,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/octet-stream', ],
+            ['application/octet-stream', 'application/json', ],
             $contentType,
             $multipart
         );
@@ -964,7 +964,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/octet-stream', ],
+            ['application/octet-stream', 'application/json', ],
             $contentType,
             $multipart
         );
@@ -1288,7 +1288,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', ],
+            ['application/json', 'text/plain', ],
             $contentType,
             $multipart
         );
@@ -1633,7 +1633,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', ],
+            ['application/json', 'text/plain', ],
             $contentType,
             $multipart
         );
@@ -3085,7 +3085,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', ],
+            ['application/json', 'text/plain', ],
             $contentType,
             $multipart
         );
@@ -3487,7 +3487,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', ],
+            ['application/json', 'text/plain', ],
             $contentType,
             $multipart
         );
@@ -3550,6 +3550,7 @@ class VersionsApi
      *
      * @param  string $slug The slug of the project to return versions for (required)
      * @param  RequestPagination $pagination Pagination information (required)
+     * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
      * @param  string $platform A platform name to filter for (optional)
      * @param  string $platform_version A platform version to filter for (optional)
@@ -3559,9 +3560,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion
      */
-    public function listVersions($slug, $pagination, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersions($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
     {
-        list($response) = $this->listVersionsWithHttpInfo($slug, $pagination, $channel, $platform, $platform_version, $contentType);
+        list($response) = $this->listVersionsWithHttpInfo($slug, $pagination, $include_hidden_channels, $channel, $platform, $platform_version, $contentType);
         return $response;
     }
 
@@ -3572,6 +3573,7 @@ class VersionsApi
      *
      * @param  string $slug The slug of the project to return versions for (required)
      * @param  RequestPagination $pagination Pagination information (required)
+     * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
      * @param  string $platform A platform name to filter for (optional)
      * @param  string $platform_version A platform version to filter for (optional)
@@ -3581,9 +3583,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listVersionsWithHttpInfo($slug, $pagination, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsWithHttpInfo($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
     {
-        $request = $this->listVersionsRequest($slug, $pagination, $channel, $platform, $platform_version, $contentType);
+        $request = $this->listVersionsRequest($slug, $pagination, $include_hidden_channels, $channel, $platform, $platform_version, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3770,6 +3772,7 @@ class VersionsApi
      *
      * @param  string $slug The slug of the project to return versions for (required)
      * @param  RequestPagination $pagination Pagination information (required)
+     * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
      * @param  string $platform A platform name to filter for (optional)
      * @param  string $platform_version A platform version to filter for (optional)
@@ -3778,9 +3781,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listVersionsAsync($slug, $pagination, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsAsync($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
     {
-        return $this->listVersionsAsyncWithHttpInfo($slug, $pagination, $channel, $platform, $platform_version, $contentType)
+        return $this->listVersionsAsyncWithHttpInfo($slug, $pagination, $include_hidden_channels, $channel, $platform, $platform_version, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3795,6 +3798,7 @@ class VersionsApi
      *
      * @param  string $slug The slug of the project to return versions for (required)
      * @param  RequestPagination $pagination Pagination information (required)
+     * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
      * @param  string $platform A platform name to filter for (optional)
      * @param  string $platform_version A platform version to filter for (optional)
@@ -3803,10 +3807,10 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listVersionsAsyncWithHttpInfo($slug, $pagination, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsAsyncWithHttpInfo($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PaginatedResultVersion';
-        $request = $this->listVersionsRequest($slug, $pagination, $channel, $platform, $platform_version, $contentType);
+        $request = $this->listVersionsRequest($slug, $pagination, $include_hidden_channels, $channel, $platform, $platform_version, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3849,6 +3853,7 @@ class VersionsApi
      *
      * @param  string $slug The slug of the project to return versions for (required)
      * @param  RequestPagination $pagination Pagination information (required)
+     * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
      * @param  string $platform A platform name to filter for (optional)
      * @param  string $platform_version A platform version to filter for (optional)
@@ -3857,7 +3862,7 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listVersionsRequest($slug, $pagination, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsRequest($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
     {
 
         // verify the required parameter 'slug' is set
@@ -3878,6 +3883,7 @@ class VersionsApi
 
 
 
+
         $resourcePath = '/api/v1/projects/{slug}/versions';
         $formParams = [];
         $queryParams = [];
@@ -3893,6 +3899,15 @@ class VersionsApi
             'form', // style
             true, // explode
             true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $include_hidden_channels,
+            'includeHiddenChannels', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
