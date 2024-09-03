@@ -216,6 +216,7 @@ class HangarAPIClient
         $result = $this->projects->getProject($slug);
         return new Project($this, $result);
     }
+    // TODO: projectByVersionHash
 
     /**
      * Get a list of people watching a project
