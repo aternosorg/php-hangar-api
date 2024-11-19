@@ -338,8 +338,7 @@ class HangarAPIClient
             $options->getPagination(),
             $options->isIncludeHiddenChannels(),
             $options->getChannel(),
-            $options->getPlatform()?->value,
-            $options->getPlatformVersion(),
+            $options->getPlatform()?->value
         );
 
         return new ProjectVersionList($this, $result, $options);

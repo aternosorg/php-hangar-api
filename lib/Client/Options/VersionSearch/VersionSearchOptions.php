@@ -24,8 +24,6 @@ class VersionSearchOptions
 
     protected ?Platform $platform = null;
 
-    protected ?string $platformVersion = null;
-
     protected bool $includeHiddenChannels = true;
 
     public function __construct(string $projectSlug)
@@ -160,24 +158,6 @@ class VersionSearchOptions
     public function setPlatform(?Platform $platform): static
     {
         $this->platform = $platform;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPlatformVersion(): ?string
-    {
-        return $this->platformVersion;
-    }
-
-    /**
-     * @param string|null $platformVersion
-     * @return $this
-     */
-    public function setPlatformVersion(?string $platformVersion): static
-    {
-        $this->platformVersion = $platformVersion;
         return $this;
     }
 
