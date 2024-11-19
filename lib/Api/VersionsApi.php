@@ -2830,6 +2830,33 @@ class VersionsApi
             }
 
             switch($statusCode) {
+                case 200:
+                    if ('string' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('string' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'string', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 case 403:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2858,33 +2885,6 @@ class VersionsApi
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('string' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('string' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, 'string', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 200:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2943,6 +2943,14 @@ class VersionsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -2952,14 +2960,6 @@ class VersionsApi
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'string',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -3085,7 +3085,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/plain', ],
+            ['text/plain', 'application/json', ],
             $contentType,
             $multipart
         );
@@ -3213,6 +3213,33 @@ class VersionsApi
             }
 
             switch($statusCode) {
+                case 200:
+                    if ('string' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('string' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'string', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 case 403:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3241,33 +3268,6 @@ class VersionsApi
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('string' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('string' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, 'string', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 200:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3326,6 +3326,14 @@ class VersionsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -3335,14 +3343,6 @@ class VersionsApi
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'string',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -3487,7 +3487,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/plain', ],
+            ['text/plain', 'application/json', ],
             $contentType,
             $multipart
         );
@@ -3553,16 +3553,15 @@ class VersionsApi
      * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
      * @param  string $platform A platform name to filter for (optional)
-     * @param  string $platform_version A platform version to filter for (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVersions'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion
      */
-    public function listVersions($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersions($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
     {
-        list($response) = $this->listVersionsWithHttpInfo($slug, $pagination, $include_hidden_channels, $channel, $platform, $platform_version, $contentType);
+        list($response) = $this->listVersionsWithHttpInfo($slug, $pagination, $include_hidden_channels, $channel, $platform, $contentType);
         return $response;
     }
 
@@ -3576,16 +3575,15 @@ class VersionsApi
      * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
      * @param  string $platform A platform name to filter for (optional)
-     * @param  string $platform_version A platform version to filter for (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVersions'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listVersionsWithHttpInfo($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsWithHttpInfo($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
     {
-        $request = $this->listVersionsRequest($slug, $pagination, $include_hidden_channels, $channel, $platform, $platform_version, $contentType);
+        $request = $this->listVersionsRequest($slug, $pagination, $include_hidden_channels, $channel, $platform, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3775,15 +3773,14 @@ class VersionsApi
      * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
      * @param  string $platform A platform name to filter for (optional)
-     * @param  string $platform_version A platform version to filter for (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVersions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listVersionsAsync($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsAsync($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
     {
-        return $this->listVersionsAsyncWithHttpInfo($slug, $pagination, $include_hidden_channels, $channel, $platform, $platform_version, $contentType)
+        return $this->listVersionsAsyncWithHttpInfo($slug, $pagination, $include_hidden_channels, $channel, $platform, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3801,16 +3798,15 @@ class VersionsApi
      * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
      * @param  string $platform A platform name to filter for (optional)
-     * @param  string $platform_version A platform version to filter for (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVersions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listVersionsAsyncWithHttpInfo($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsAsyncWithHttpInfo($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PaginatedResultVersion';
-        $request = $this->listVersionsRequest($slug, $pagination, $include_hidden_channels, $channel, $platform, $platform_version, $contentType);
+        $request = $this->listVersionsRequest($slug, $pagination, $include_hidden_channels, $channel, $platform, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3856,13 +3852,12 @@ class VersionsApi
      * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
      * @param  string $platform A platform name to filter for (optional)
-     * @param  string $platform_version A platform version to filter for (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVersions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listVersionsRequest($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, $platform_version = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsRequest($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
     {
 
         // verify the required parameter 'slug' is set
@@ -3878,7 +3873,6 @@ class VersionsApi
                 'Missing the required parameter $pagination when calling listVersions'
             );
         }
-
 
 
 
@@ -3922,15 +3916,6 @@ class VersionsApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $platform,
             'platform', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $platform_version,
-            'platformVersion', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -4923,7 +4908,7 @@ class VersionsApi
             }
 
             switch($statusCode) {
-                case 201:
+                case 200:
                     if ('\Aternos\HangarApi\Model\UploadedVersion' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5036,7 +5021,7 @@ class VersionsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 201:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\UploadedVersion',

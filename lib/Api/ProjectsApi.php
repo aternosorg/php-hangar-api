@@ -1738,8 +1738,8 @@ class ProjectsApi
      * @param  string $category A category to filter for (optional)
      * @param  string $platform A platform to filter for (optional)
      * @param  string $owner The author of the project (optional)
-     * @param  string $query The query to use when searching (optional)
      * @param  string $q Deprecated: Use &#39;query&#39; instead (optional) (deprecated)
+     * @param  string $query The query to use when searching (optional)
      * @param  string $license A license to filter for (optional)
      * @param  string $version A platform version to filter for (optional)
      * @param  string $tag A tag to filter for (optional)
@@ -1750,9 +1750,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PaginatedResultProject|\Aternos\HangarApi\Model\PaginatedResultProject|\Aternos\HangarApi\Model\PaginatedResultProject
      */
-    public function getProjects($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $query = null, $q = null, $license = null, $version = null, $tag = null, $member = null, string $contentType = self::contentTypes['getProjects'][0])
+    public function getProjects($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $query = null, $license = null, $version = null, $tag = null, $member = null, string $contentType = self::contentTypes['getProjects'][0])
     {
-        list($response) = $this->getProjectsWithHttpInfo($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $query, $q, $license, $version, $tag, $member, $contentType);
+        list($response) = $this->getProjectsWithHttpInfo($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $q, $query, $license, $version, $tag, $member, $contentType);
         return $response;
     }
 
@@ -1767,8 +1767,8 @@ class ProjectsApi
      * @param  string $category A category to filter for (optional)
      * @param  string $platform A platform to filter for (optional)
      * @param  string $owner The author of the project (optional)
-     * @param  string $query The query to use when searching (optional)
      * @param  string $q Deprecated: Use &#39;query&#39; instead (optional) (deprecated)
+     * @param  string $query The query to use when searching (optional)
      * @param  string $license A license to filter for (optional)
      * @param  string $version A platform version to filter for (optional)
      * @param  string $tag A tag to filter for (optional)
@@ -1781,7 +1781,7 @@ class ProjectsApi
      */
     public function getProjectsWithHttpInfo($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $query = null, $license = null, $version = null, $tag = null, $member = null, string $contentType = self::contentTypes['getProjects'][0])
     {
-        $request = $this->getProjectsRequest($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $query, $q, $license, $version, $tag, $member, $contentType);
+        $request = $this->getProjectsRequest($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $q, $query, $license, $version, $tag, $member, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1972,8 +1972,8 @@ class ProjectsApi
      * @param  string $category A category to filter for (optional)
      * @param  string $platform A platform to filter for (optional)
      * @param  string $owner The author of the project (optional)
-     * @param  string $query The query to use when searching (optional)
      * @param  string $q Deprecated: Use &#39;query&#39; instead (optional) (deprecated)
+     * @param  string $query The query to use when searching (optional)
      * @param  string $license A license to filter for (optional)
      * @param  string $version A platform version to filter for (optional)
      * @param  string $tag A tag to filter for (optional)
@@ -1983,9 +1983,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProjectsAsync($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $query = null, $q = null, $license = null, $version = null, $tag = null, $member = null, string $contentType = self::contentTypes['getProjects'][0])
+    public function getProjectsAsync($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $query = null, $license = null, $version = null, $tag = null, $member = null, string $contentType = self::contentTypes['getProjects'][0])
     {
-        return $this->getProjectsAsyncWithHttpInfo($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $query, $q, $license, $version, $tag, $member, $contentType)
+        return $this->getProjectsAsyncWithHttpInfo($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $q, $query, $license, $version, $tag, $member, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2004,8 +2004,8 @@ class ProjectsApi
      * @param  string $category A category to filter for (optional)
      * @param  string $platform A platform to filter for (optional)
      * @param  string $owner The author of the project (optional)
-     * @param  string $query The query to use when searching (optional)
      * @param  string $q Deprecated: Use &#39;query&#39; instead (optional) (deprecated)
+     * @param  string $query The query to use when searching (optional)
      * @param  string $license A license to filter for (optional)
      * @param  string $version A platform version to filter for (optional)
      * @param  string $tag A tag to filter for (optional)
@@ -2018,7 +2018,7 @@ class ProjectsApi
     public function getProjectsAsyncWithHttpInfo($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $query = null, $license = null, $version = null, $tag = null, $member = null, string $contentType = self::contentTypes['getProjects'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PaginatedResultProject';
-        $request = $this->getProjectsRequest($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $query, $q, $license, $version, $tag, $member, $contentType);
+        $request = $this->getProjectsRequest($pagination, $prioritize_exact_match, $sort, $category, $platform, $owner, $q, $query, $license, $version, $tag, $member, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2065,8 +2065,8 @@ class ProjectsApi
      * @param  string $category A category to filter for (optional)
      * @param  string $platform A platform to filter for (optional)
      * @param  string $owner The author of the project (optional)
-     * @param  string $query The query to use when searching (optional)
      * @param  string $q Deprecated: Use &#39;query&#39; instead (optional) (deprecated)
+     * @param  string $query The query to use when searching (optional)
      * @param  string $license A license to filter for (optional)
      * @param  string $version A platform version to filter for (optional)
      * @param  string $tag A tag to filter for (optional)
@@ -2076,7 +2076,7 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProjectsRequest($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $query = null, $q = null, $license = null, $version = null, $tag = null, $member = null, string $contentType = self::contentTypes['getProjects'][0])
+    public function getProjectsRequest($pagination, $prioritize_exact_match = true, $sort = null, $category = null, $platform = null, $owner = null, $q = null, $query = null, $license = null, $version = null, $tag = null, $member = null, string $contentType = self::contentTypes['getProjects'][0])
     {
 
         // verify the required parameter 'pagination' is set
@@ -2161,8 +2161,8 @@ class ProjectsApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $query,
-            'query', // param base name
+            $q,
+            'q', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -2170,8 +2170,8 @@ class ProjectsApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $q,
-            'q', // param base name
+            $query,
+            'query', // param base name
             'string', // openApiType
             'form', // style
             true, // explode

@@ -59,7 +59,7 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'links' => '\Aternos\HangarApi\Model\LinkSection[]',
-        'tags' => 'string[]',
+        'tags' => '\Aternos\HangarApi\Model\Tag[]',
         'license' => '\Aternos\HangarApi\Model\ProjectLicense',
         'keywords' => 'string[]',
         'sponsors' => 'string',
@@ -364,7 +364,7 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets tags
      *
-     * @return string[]
+     * @return \Aternos\HangarApi\Model\Tag[]
      */
     public function getTags()
     {
@@ -374,7 +374,7 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tags
      *
-     * @param string[] $tags tags
+     * @param \Aternos\HangarApi\Model\Tag[] $tags tags
      *
      * @return self
      */

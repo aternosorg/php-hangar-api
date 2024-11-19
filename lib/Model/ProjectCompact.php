@@ -64,7 +64,8 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => '\Aternos\HangarApi\Model\Category',
         'last_updated' => '\DateTime',
         'visibility' => '\Aternos\HangarApi\Model\Visibility',
-        'avatar_url' => 'string'
+        'avatar_url' => 'string',
+        'description' => 'string'
     ];
 
     /**
@@ -82,7 +83,8 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => null,
         'last_updated' => 'date-time',
         'visibility' => null,
-        'avatar_url' => null
+        'avatar_url' => null,
+        'description' => null
     ];
 
     /**
@@ -98,7 +100,8 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => false,
         'last_updated' => false,
         'visibility' => false,
-        'avatar_url' => false
+        'avatar_url' => false,
+        'description' => false
     ];
 
     /**
@@ -194,7 +197,8 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'category',
         'last_updated' => 'lastUpdated',
         'visibility' => 'visibility',
-        'avatar_url' => 'avatarUrl'
+        'avatar_url' => 'avatarUrl',
+        'description' => 'description'
     ];
 
     /**
@@ -210,7 +214,8 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'setCategory',
         'last_updated' => 'setLastUpdated',
         'visibility' => 'setVisibility',
-        'avatar_url' => 'setAvatarUrl'
+        'avatar_url' => 'setAvatarUrl',
+        'description' => 'setDescription'
     ];
 
     /**
@@ -226,7 +231,8 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'getCategory',
         'last_updated' => 'getLastUpdated',
         'visibility' => 'getVisibility',
-        'avatar_url' => 'getAvatarUrl'
+        'avatar_url' => 'getAvatarUrl',
+        'description' => 'getDescription'
     ];
 
     /**
@@ -294,6 +300,7 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('last_updated', $data ?? [], null);
         $this->setIfExists('visibility', $data ?? [], null);
         $this->setIfExists('avatar_url', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
     }
 
     /**
@@ -550,6 +557,33 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable avatar_url cannot be null');
         }
         $this->container['avatar_url'] = $avatar_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description The short description of the project
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
 
         return $this;
     }
