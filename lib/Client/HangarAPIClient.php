@@ -197,7 +197,7 @@ class HangarAPIClient
             null,
             $options->getLicense(),
             $options->getVersion(),
-            $options->getTag(),
+            $options->getTag()?->value,
         );
 
         return new ProjectList($this, $result, $options);

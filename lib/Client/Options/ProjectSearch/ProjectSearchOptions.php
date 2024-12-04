@@ -4,6 +4,7 @@ namespace Aternos\HangarApi\Client\Options\ProjectSearch;
 
 use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\ProjectCategory;
+use Aternos\HangarApi\Client\Options\Tag;
 use Aternos\HangarApi\Model\RequestPagination;
 
 /**
@@ -24,7 +25,7 @@ class ProjectSearchOptions
     protected ?string $query = null;
     protected ?string $license = null;
     protected ?string $version = null;
-    protected ?string $tag = null;
+    protected ?Tag $tag = null;
 
     public function __construct()
     {
@@ -270,18 +271,18 @@ class ProjectSearchOptions
     }
 
     /**
-     * @return string|null
+     * @return Tag|null
      */
-    public function getTag(): ?string
+    public function getTag(): ?Tag
     {
         return $this->tag;
     }
 
     /**
-     * @param string|null $tag
+     * @param Tag|null $tag
      * @return $this
      */
-    public function setTag(?string $tag): static
+    public function setTag(?Tag $tag): static
     {
         $this->tag = $tag;
         return $this;
