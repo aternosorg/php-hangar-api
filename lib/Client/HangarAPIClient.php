@@ -197,7 +197,7 @@ class HangarAPIClient
             null,
             $options->getLicense(),
             $options->getVersion(),
-            $options->getTag(),
+            $options->getTag()?->value,
         );
 
         return new ProjectList($this, $result, $options);
@@ -339,7 +339,6 @@ class HangarAPIClient
             $options->isIncludeHiddenChannels(),
             $options->getChannel(),
             $options->getPlatform()?->value,
-            $options->getPlatformVersion(),
         );
 
         return new ProjectVersionList($this, $result, $options);

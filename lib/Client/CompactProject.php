@@ -58,16 +58,14 @@ class CompactProject
      * Get all versions of this project (paginated)
      * @param string|null $channel
      * @param Platform|null $platform
-     * @param string|null $platformVersion
      * @return ProjectVersionList
      * @throws ApiException
      */
-    public function getVersions(?string $channel = null, ?Platform $platform = null, ?string $platformVersion = null): ProjectVersionList
+    public function getVersions(?string $channel = null, ?Platform $platform = null): ProjectVersionList
     {
         $options = new VersionSearchOptions($this->getSlug());
         $options->setChannel($channel);
         $options->setPlatform($platform);
-        $options->setPlatformVersion($platformVersion);
         return $this->client->getProjectVersions($this->getSlug(), $options);
     }
 
