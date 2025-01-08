@@ -58,6 +58,7 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'created_at' => '\DateTime',
+        'id' => 'int',
         'name' => 'string',
         'namespace' => '\Aternos\HangarApi\Model\ProjectNamespace',
         'stats' => '\Aternos\HangarApi\Model\ProjectStats',
@@ -77,6 +78,7 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'created_at' => 'date-time',
+        'id' => 'int64',
         'name' => null,
         'namespace' => null,
         'stats' => null,
@@ -94,6 +96,7 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'created_at' => false,
+        'id' => false,
         'name' => false,
         'namespace' => false,
         'stats' => false,
@@ -191,6 +194,7 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'created_at' => 'createdAt',
+        'id' => 'id',
         'name' => 'name',
         'namespace' => 'namespace',
         'stats' => 'stats',
@@ -208,6 +212,7 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'created_at' => 'setCreatedAt',
+        'id' => 'setId',
         'name' => 'setName',
         'namespace' => 'setNamespace',
         'stats' => 'setStats',
@@ -225,6 +230,7 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'created_at' => 'getCreatedAt',
+        'id' => 'getId',
         'name' => 'getName',
         'namespace' => 'getNamespace',
         'stats' => 'getStats',
@@ -293,6 +299,7 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('namespace', $data ?? [], null);
         $this->setIfExists('stats', $data ?? [], null);
@@ -368,6 +375,33 @@ class ProjectCompact implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id The internal id of the project
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
 
         return $this;
     }

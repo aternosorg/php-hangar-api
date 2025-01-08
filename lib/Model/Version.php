@@ -58,6 +58,7 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'created_at' => '\DateTime',
+        'id' => 'int',
         'name' => 'string',
         'visibility' => '\Aternos\HangarApi\Model\Visibility',
         'description' => 'string',
@@ -81,6 +82,7 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'created_at' => 'date-time',
+        'id' => 'int64',
         'name' => null,
         'visibility' => null,
         'description' => null,
@@ -102,6 +104,7 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'created_at' => false,
+        'id' => false,
         'name' => false,
         'visibility' => false,
         'description' => false,
@@ -203,6 +206,7 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'created_at' => 'createdAt',
+        'id' => 'id',
         'name' => 'name',
         'visibility' => 'visibility',
         'description' => 'description',
@@ -224,6 +228,7 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'created_at' => 'setCreatedAt',
+        'id' => 'setId',
         'name' => 'setName',
         'visibility' => 'setVisibility',
         'description' => 'setDescription',
@@ -245,6 +250,7 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'created_at' => 'getCreatedAt',
+        'id' => 'getId',
         'name' => 'getName',
         'visibility' => 'getVisibility',
         'description' => 'getDescription',
@@ -317,6 +323,7 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('visibility', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
@@ -396,6 +403,33 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
 
         return $this;
     }

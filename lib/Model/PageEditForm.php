@@ -282,6 +282,12 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['path'] === null) {
+            $invalidProperties[] = "'path' can't be null";
+        }
+        if ($this->container['content'] === null) {
+            $invalidProperties[] = "'content' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -300,7 +306,7 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets path
      *
-     * @return string|null
+     * @return string
      */
     public function getPath()
     {
@@ -310,7 +316,7 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets path
      *
-     * @param string|null $path path
+     * @param string $path path
      *
      * @return self
      */
@@ -327,7 +333,7 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets content
      *
-     * @return string|null
+     * @return string
      */
     public function getContent()
     {
@@ -337,7 +343,7 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets content
      *
-     * @param string|null $content content
+     * @param string $content content
      *
      * @return self
      */

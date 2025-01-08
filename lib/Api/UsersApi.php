@@ -983,7 +983,7 @@ class UsersApi
      *
      * Returns a specific user
      *
-     * @param  string $user The name of the user to return (required)
+     * @param  string $user The name or id of the user to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1001,7 +1001,7 @@ class UsersApi
      *
      * Returns a specific user
      *
-     * @param  string $user The name of the user to return (required)
+     * @param  string $user The name or id of the user to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1196,7 +1196,7 @@ class UsersApi
      *
      * Returns a specific user
      *
-     * @param  string $user The name of the user to return (required)
+     * @param  string $user The name or id of the user to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1217,7 +1217,7 @@ class UsersApi
      *
      * Returns a specific user
      *
-     * @param  string $user The name of the user to return (required)
+     * @param  string $user The name or id of the user to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1267,7 +1267,7 @@ class UsersApi
     /**
      * Create request for operation 'getUser'
      *
-     * @param  string $user The name of the user to return (required)
+     * @param  string $user The name or id of the user to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1365,7 +1365,7 @@ class UsersApi
      *
      * Returns the pinned projects for a specific user
      *
-     * @param  string $user The user to return pinned projects for (required)
+     * @param  string $user The name or id of the user to return pinned projects for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPinnedProjects'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1383,7 +1383,7 @@ class UsersApi
      *
      * Returns the pinned projects for a specific user
      *
-     * @param  string $user The user to return pinned projects for (required)
+     * @param  string $user The name or id of the user to return pinned projects for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPinnedProjects'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1578,7 +1578,7 @@ class UsersApi
      *
      * Returns the pinned projects for a specific user
      *
-     * @param  string $user The user to return pinned projects for (required)
+     * @param  string $user The name or id of the user to return pinned projects for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPinnedProjects'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1599,7 +1599,7 @@ class UsersApi
      *
      * Returns the pinned projects for a specific user
      *
-     * @param  string $user The user to return pinned projects for (required)
+     * @param  string $user The name or id of the user to return pinned projects for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPinnedProjects'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1649,7 +1649,7 @@ class UsersApi
     /**
      * Create request for operation 'getUserPinnedProjects'
      *
-     * @param  string $user The user to return pinned projects for (required)
+     * @param  string $user The name or id of the user to return pinned projects for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPinnedProjects'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1747,7 +1747,7 @@ class UsersApi
      *
      * Returns the watched projects for a specific user
      *
-     * @param  string $user The user to return watched projects for (required)
+     * @param  string $user The name or id of the user to return watched projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserWatching'] to see the possible values for this operation
@@ -1767,7 +1767,7 @@ class UsersApi
      *
      * Returns the watched projects for a specific user
      *
-     * @param  string $user The user to return watched projects for (required)
+     * @param  string $user The name or id of the user to return watched projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserWatching'] to see the possible values for this operation
@@ -1964,7 +1964,7 @@ class UsersApi
      *
      * Returns the watched projects for a specific user
      *
-     * @param  string $user The user to return watched projects for (required)
+     * @param  string $user The name or id of the user to return watched projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserWatching'] to see the possible values for this operation
@@ -1987,7 +1987,7 @@ class UsersApi
      *
      * Returns the watched projects for a specific user
      *
-     * @param  string $user The user to return watched projects for (required)
+     * @param  string $user The name or id of the user to return watched projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserWatching'] to see the possible values for this operation
@@ -2039,7 +2039,7 @@ class UsersApi
     /**
      * Create request for operation 'getUserWatching'
      *
-     * @param  string $user The user to return watched projects for (required)
+     * @param  string $user The name or id of the user to return watched projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserWatching'] to see the possible values for this operation
@@ -2165,7 +2165,7 @@ class UsersApi
      *
      * Returns the starred projects for a specific user
      *
-     * @param  string $user The user to return starred projects for (required)
+     * @param  string $user The name or id of the user to return starred projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showStarred'] to see the possible values for this operation
@@ -2185,7 +2185,7 @@ class UsersApi
      *
      * Returns the starred projects for a specific user
      *
-     * @param  string $user The user to return starred projects for (required)
+     * @param  string $user The name or id of the user to return starred projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showStarred'] to see the possible values for this operation
@@ -2382,7 +2382,7 @@ class UsersApi
      *
      * Returns the starred projects for a specific user
      *
-     * @param  string $user The user to return starred projects for (required)
+     * @param  string $user The name or id of the user to return starred projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showStarred'] to see the possible values for this operation
@@ -2405,7 +2405,7 @@ class UsersApi
      *
      * Returns the starred projects for a specific user
      *
-     * @param  string $user The user to return starred projects for (required)
+     * @param  string $user The name or id of the user to return starred projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showStarred'] to see the possible values for this operation
@@ -2457,7 +2457,7 @@ class UsersApi
     /**
      * Create request for operation 'showStarred'
      *
-     * @param  string $user The user to return starred projects for (required)
+     * @param  string $user The name or id of the user to return starred projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showStarred'] to see the possible values for this operation
