@@ -86,7 +86,7 @@ class CompactProject
      */
     public function getVersion(string $name): Version
     {
-        return $this->client->getProjectVersion($this->getId(), $name);
+        return $this->client->getVersion($this->getId(), $name);
     }
 
     /**

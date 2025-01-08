@@ -101,7 +101,7 @@ $versions = $hangarClient->getProjectVersions("mclogs");
 $versions = $project->getVersions();
 
 // get a specific version of a project by name
-$version = $hangarClient->getProjectVersion("mclogs", "2.6.2");
+$version = $hangarClient->getVersion("mclogs", "2.6.2");
 
 // get a specific version of a project
 $version = $project->getVersion("2.6.2");

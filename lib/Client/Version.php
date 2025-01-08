@@ -65,8 +65,8 @@ class Version
      */
     public function getDailyStats(?DateTime $from = null, ?DateTime $to = null): array
     {
-        return $this->client->getDailyProjectVersionStats(
-            $this,
+        return $this->client->getDailyVersionStatsById(
+            $this->getData()->getId(),
             $from ?? $this->getData()->getCreatedAt(),
             $to
         );

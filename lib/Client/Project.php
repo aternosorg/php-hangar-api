@@ -76,7 +76,7 @@ class Project
      */
     public function getVersion(string $name): Version
     {
-        return $this->client->getProjectVersion($this, $name);
+        return $this->client->getVersion($this, $name);
     }
 
     /**
