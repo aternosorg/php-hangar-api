@@ -63,7 +63,7 @@ class HangarAPIClient
     protected PagesApi $pages;
 
     public function __construct(
-        Configuration    $configuration = null,
+        ?Configuration   $configuration = null,
         ?string          $apiKey = null,
         ?ClientInterface $httpClient = null,
         ?string          $userAgent = null,
