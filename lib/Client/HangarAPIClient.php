@@ -216,7 +216,20 @@ class HangarAPIClient
         $result = $this->projects->getProject($slugOrId);
         return new Project($this, $result);
     }
-    // TODO: projectByVersionHash
+
+    /**
+     * Get a single project by its version hash (SHA-256)
+     * @param string $hash
+     * @return Project
+     * @throws ApiException
+     */
+    public function getProjectByVersionHash(string $hash): Project
+    {
+        $this->authenticate();
+
+        $result = $this->projects->projectByVersionHash($hash);
+        return new Project($this, $result);
+    }
 
     /**
      * Get a list of people watching a project
