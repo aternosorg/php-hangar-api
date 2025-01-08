@@ -205,27 +205,27 @@ class HangarAPIClient
 
     /**
      * Get a single project
-     * @param string $slug
+     * @param string $slugOrId
      * @return Project
      * @throws ApiException
      */
-    public function getProject(string $slug): Project
+    public function getProject(string $slugOrId): Project
     {
         $this->authenticate();
 
-        $result = $this->projects->getProject($slug);
+        $result = $this->projects->getProject($slugOrId);
         return new Project($this, $result);
     }
     // TODO: projectByVersionHash
 
     /**
      * Get a list of people watching a project
-     * @param string $projectSlug
+     * @param string $slugOrId
      * @param RequestPagination|null $pagination
      * @return ProjectWatcherList
      * @throws ApiException
      */
-    public function getProjectWatchers(string $projectSlug, ?RequestPagination $pagination = null): ProjectWatcherList
+    public function getProjectWatchers(string $slugOrId, ?RequestPagination $pagination = null): ProjectWatcherList
     {
         $this->authenticate();
 
@@ -233,11 +233,11 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectWatchers($projectSlug, $pagination);
+        $result = $this->projects->getProjectWatchers($slugOrId, $pagination);
         return new ProjectWatcherList(
             $this,
             $result,
-            $projectSlug,
+            $slugOrId,
             $pagination,
         );
     }
@@ -247,24 +247,24 @@ class HangarAPIClient
      * Days without downloads/views will not be included
      *
      * Requires the is_subject_member permission
-     * @param string $slug
+     * @param string $slugOrId
      * @param DateTime $from
      * @param DateTime|null $to default: now
      * @return array<string, DayProjectStats>
      * @throws ApiException
      */
-    public function getDailyProjectStats(string $slug, DateTime $from, ?DateTime $to = null): array
+    public function getDailyProjectStats(string $slugOrId, DateTime $from, ?DateTime $to = null): array
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $slug)) {
+        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $slugOrId)) {
             throw new ApiException('You need the is_subject_member permission to view project statistics');
         }
 
         $to ??= new DateTime();
 
         return $this->projects->showProjectStats(
-            $slug,
+            $slugOrId,
             $from->format(DateTimeInterface::RFC3339),
             $to->format(DateTimeInterface::RFC3339)
         );
@@ -272,12 +272,12 @@ class HangarAPIClient
 
     /**
      * Get a list of people starring a project
-     * @param string $projectSlug
+     * @param string $slugOrId
      * @param RequestPagination|null $pagination
      * @return ProjectStarGazersList
      * @throws ApiException
      */
-    public function getProjectStarGazers(string $projectSlug, ?RequestPagination $pagination = null): ProjectStarGazersList
+    public function getProjectStarGazers(string $slugOrId, ?RequestPagination $pagination = null): ProjectStarGazersList
     {
         $this->authenticate();
 
@@ -285,23 +285,23 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectStarGazers($projectSlug, $pagination);
+        $result = $this->projects->getProjectStarGazers($slugOrId, $pagination);
         return new ProjectStarGazersList(
             $this,
             $result,
-            $projectSlug,
+            $slugOrId,
             $pagination,
         );
     }
 
     /**
      * Get a list of members of a project
-     * @param string $projectSlug
+     * @param string $slugOrId
      * @param RequestPagination|null $pagination
      * @return ProjectMemberList
      * @throws ApiException
      */
-    public function getProjectMembers(string $projectSlug, ?RequestPagination $pagination = null): ProjectMemberList
+    public function getProjectMembers(string $slugOrId, ?RequestPagination $pagination = null): ProjectMemberList
     {
         $this->authenticate();
 
@@ -309,13 +309,13 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectMembers($projectSlug, $pagination);
-        return new ProjectMemberList($this, $result, $projectSlug, $pagination);
+        $result = $this->projects->getProjectMembers($slugOrId, $pagination);
+        return new ProjectMemberList($this, $result, $slugOrId, $pagination);
     }
 
     /**
      * Get versions of a project
-     * @param string|Project $project project slug or object
+     * @param string|Project $project project slug, id or object
      * @param VersionSearchOptions $options
      * @return ProjectVersionList
      * @throws ApiException
@@ -330,11 +330,11 @@ class HangarAPIClient
         if ($project instanceof Project) {
             $options->setProject($project);
         } else {
-            $options->setProjectSlug($project);
+            $options->setProjectSlugOrId($project);
         }
 
         $result = $this->versions->listVersions(
-            $options->getProjectSlug(),
+            $options->getProjectSlugOrId(),
             $options->getPagination(),
             $options->isIncludeHiddenChannels(),
             $options->getChannel(),
@@ -345,23 +345,70 @@ class HangarAPIClient
     }
 
     /**
-     * Get a single project version
-     * @param string|Project $project project slug or object
-     * @param string $name
-     * @return Version
+     * Get the latest release version of a project
+     * @param string $projectSlugOrId
+     * @return string
      * @throws ApiException
      */
-    public function getProjectVersion(string|Project $project, string $name): Version
+    public function getLatestReleaseVersion(string $projectSlugOrId): string
     {
         $this->authenticate();
 
-        $projectSlug = $project instanceof Project ? $project->getSlug() : $project;
-        $result = $this->versions->showVersion($projectSlug, $name);
+        return $this->versions->latestReleaseVersion($projectSlugOrId);
+    }
+
+    /**
+     * Get the latest version of a project in a specific channel
+     * @param string $projectSlugOrId
+     * @param string $channel
+     * @return string
+     * @throws ApiException
+     */
+    public function getLatestVersion(string $projectSlugOrId, string $channel): string
+    {
+        $this->authenticate();
+
+        return $this->versions->latestVersion($projectSlugOrId, $channel);
+    }
+
+
+    /**
+     * Get a single project version using the project and version name or id
+     * @param string|Project $project project slug, id or object
+     * @param string $nameOrId version name or id
+     * @return Version
+     * @throws ApiException
+     */
+    public function getVersion(string|Project $project, string $nameOrId): Version
+    {
+        $this->authenticate();
+
+        $slugOrId = $project instanceof Project ? $project->getId() : $project;
+        $result = $this->versions->showVersion($slugOrId, $nameOrId);
         return new Version(
             $this,
             $result,
-            $projectSlug,
+            $slugOrId,
             $project instanceof Project ? $project : null
+        );
+    }
+
+    /**
+     * Get a single project version without specifying the project
+     * To use this method you need to specify the version id. If you only have the version name, use {@see getVersion}
+     * @param int $versionId version id
+     * @return Version
+     * @throws ApiException
+     */
+    public function getVersionById(int $versionId): Version
+    {
+        $this->authenticate();
+
+        $result = $this->versions->showVersionById($versionId);
+        return new Version(
+            $this,
+            $result,
+            $versionId,
         );
     }
 
@@ -370,25 +417,48 @@ class HangarAPIClient
      * Days without downloads/views will not be included
      *
      * Requires the is_subject_member permission
-     * @param Version $version
+     * @param string $projectSlugOrId
+     * @param string $versionNameOrId
      * @param DateTime $from
      * @param DateTime|null $to default: now
      * @return array<string, VersionStats>
      * @throws ApiException
      */
-    public function getDailyProjectVersionStats(Version $version, DateTime $from, ?DateTime $to = null): array
+    public function getDailyVersionStats(string $projectSlugOrId, string $versionNameOrId, DateTime $from, ?DateTime $to = null): array
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $version->getProjectSlug())) {
+        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $projectSlugOrId)) {
             throw new ApiException('You need the is_subject_member permission to view version statistics');
         }
 
         $to ??= new DateTime();
 
         return $this->versions->showVersionStats(
-            $version->getProjectSlug(),
-            $version->getData()->getName(),
+            $projectSlugOrId,
+            $versionNameOrId,
+            $from->format(DateTimeInterface::RFC3339),
+            $to->format(DateTimeInterface::RFC3339),
+        );
+    }
+
+    /**
+     * Get a list of daily version stats
+     * Days without downloads/views will not be included
+     *
+     * To use this method you need to specify the version id. If you only have the version name, use {@see getDailyVersionStats}
+     *
+     * Requires the is_subject_member permission
+     * @param int $versionId version id
+     * @return array<string, VersionStats>
+     * @throws ApiException
+     */
+    public function getDailyVersionStatsById(int $versionId, DateTime $from, ?DateTime $to = null): array
+    {
+        $this->authenticate();
+
+        return $this->versions->showVersionStatsById(
+            $versionId,
             $from->format(DateTimeInterface::RFC3339),
             $to->format(DateTimeInterface::RFC3339),
         );
@@ -558,22 +628,22 @@ class HangarAPIClient
      * Get the main page of a project
      *
      * Requires the view_public_info permission
-     * @param string $slug
+     * @param string $projectSlugOrId
      * @return ProjectPage
      * @throws ApiException
      */
-    public function getProjectMainPage(string $slug): ProjectPage
+    public function getProjectMainPage(string $projectSlugOrId): ProjectPage
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO, $slug)) {
+        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO, $projectSlugOrId)) {
             throw new ApiException('You need the view_public_info permission to view project pages');
         }
 
         return new ProjectPage(
             $this,
-            $slug,
-            $this->pages->getMainPage($slug),
+            $projectSlugOrId,
+            $this->pages->getMainPage($projectSlugOrId),
         );
     }
 
@@ -583,23 +653,23 @@ class HangarAPIClient
      * Calling this with an empty path is equivalent to calling getProjectMainPage
      *
      * Requires the view_public_info permission
-     * @param string $slug
+     * @param string $projectSlugOrId
      * @param string $path
      * @return ProjectPage
      * @throws ApiException
      */
-    public function getProjectPage(string $slug, string $path): ProjectPage
+    public function getProjectPage(string $projectSlugOrId, string $path): ProjectPage
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO, $slug)) {
+        if (!$this->hasPermission(NamedPermission::VIEW_PUBLIC_INFO, $projectSlugOrId)) {
             throw new ApiException('You need the view_public_info permission to view project pages');
         }
 
         return new ProjectPage(
             $this,
-            $slug,
-            $this->pages->getPage($slug, $path),
+            $projectSlugOrId,
+            $this->pages->getPage($projectSlugOrId, $path),
         );
     }
 
@@ -607,26 +677,26 @@ class HangarAPIClient
      * Edit the main page of a project
      *
      * Requires the edit_page permission
-     * @param string $slug
+     * @param string $projectSlugOrId
      * @param string $content
      * @return ProjectPage
      * @throws ApiException
      */
-    public function editProjectMainPage(string $slug, string $content): ProjectPage
+    public function editProjectMainPage(string $projectSlugOrId, string $content): ProjectPage
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::EDIT_PAGE, $slug)) {
+        if (!$this->hasPermission(NamedPermission::EDIT_PAGE, $projectSlugOrId)) {
             throw new ApiException('You need the edit_page permission to edit project pages');
         }
 
         $form = new StringContent();
         $form->setContent($content);
-        $this->pages->editMainPage($slug, $form);
+        $this->pages->editMainPage($projectSlugOrId, $form);
 
         return new ProjectPage(
             $this,
-            $slug,
+            $projectSlugOrId,
             $content,
         );
     }
@@ -636,28 +706,28 @@ class HangarAPIClient
      * Starting and trailing slashes are ignored by the Hangar API
      *
      * Requires the edit_page permission
-     * @param string $slug
+     * @param string $projectSlugOrId
      * @param string $path
      * @param string $content
      * @return ProjectPage
      * @throws ApiException
      */
-    public function editProjectPage(string $slug, string $path, string $content): ProjectPage
+    public function editProjectPage(string $projectSlugOrId, string $path, string $content): ProjectPage
     {
         $this->authenticate();
 
-        if (!$this->hasPermission(NamedPermission::EDIT_PAGE, $slug)) {
+        if (!$this->hasPermission(NamedPermission::EDIT_PAGE, $projectSlugOrId)) {
             throw new ApiException('You need the edit_page permission to edit project pages');
         }
 
         $form = new PageEditForm();
         $form->setContent($content);
         $form->setPath($path);
-        $this->pages->editPage($slug, $form);
+        $this->pages->editPage($projectSlugOrId, $form);
 
         return new ProjectPage(
             $this,
-            $slug,
+            $projectSlugOrId,
             $content,
             $path,
         );

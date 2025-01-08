@@ -27,7 +27,7 @@ class ProjectVersionList extends ResultList
             return new Version(
                 $this->client,
                 $version,
-                $options->getProjectSlug(),
+                $options->getProjectSlugOrId(),
                 $options->getProject(),
             );
         }, $result->getResult()));
@@ -38,7 +38,7 @@ class ProjectVersionList extends ResultList
         $options = clone $this->options;
         $options->setOffset($offset);
         return $this->client->getProjectVersions(
-            $this->options->getProject() ?? $this->options->getProjectSlug()->getSlug(),
+            $this->options->getProject() ?? $this->options->getProjectSlugOrId()->getSlug(),
             $options
         );
     }

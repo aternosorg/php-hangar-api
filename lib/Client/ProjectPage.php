@@ -10,9 +10,9 @@ class ProjectPage
 
     public function __construct(
         protected HangarAPIClient $client,
-        protected string $slug,
-        protected string $content,
-        protected string $path = "",
+        protected string          $projectSlugOrId,
+        protected string          $content,
+        protected string          $path = "",
     )
     {
     }
@@ -45,7 +45,17 @@ class ProjectPage
      */
     public function getProject(): Project
     {
-        return $this->project ??= $this->client->getProject($this->slug);
+        return $this->project ??= $this->client->getProject($this->projectSlugOrId);
+    }
+
+    /**
+     * Get the project id or slug
+     * This method will return the project id if the project is set, otherwise the slug or id passed to the constructor
+     * @return string|int
+     */
+    public function getProjectIdOrSlug(): string|int
+    {
+        return $this->project?->getId() ?? $this->projectSlugOrId;
     }
 
     /**
@@ -86,7 +96,7 @@ class ProjectPage
      */
     public function save(): static
     {
-        $this->client->editProjectPage($this->slug, $this->path, $this->content);
+        $this->client->editProjectPage($this->getProjectIdOrSlug(), $this->path, $this->content);
         return $this;
     }
 }

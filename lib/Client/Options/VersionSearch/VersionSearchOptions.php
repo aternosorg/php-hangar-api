@@ -14,7 +14,7 @@ use Aternos\HangarApi\Model\RequestPagination;
  */
 class VersionSearchOptions
 {
-    protected string $projectSlug;
+    protected string $projectSlugOrId;
 
     protected ?Project $project = null;
 
@@ -26,29 +26,29 @@ class VersionSearchOptions
 
     protected bool $includeHiddenChannels = true;
 
-    public function __construct(string $projectSlug)
+    public function __construct(string $projectSlugOrId)
     {
         $this->pagination = (new RequestPagination())
             ->setOffset(0)
             ->setLimit(25);
-        $this->projectSlug = $projectSlug;
+        $this->projectSlugOrId = $projectSlugOrId;
     }
 
     /**
      * @return string
      */
-    public function getProjectSlug(): string
+    public function getProjectSlugOrId(): string
     {
-        return $this->projectSlug;
+        return $this->projectSlugOrId;
     }
 
     /**
-     * @param string $projectSlug
+     * @param string $projectSlugOrId
      * @return $this
      */
-    public function setProjectSlug(string $projectSlug): static
+    public function setProjectSlugOrId(string $projectSlugOrId): static
     {
-        $this->projectSlug = $projectSlug;
+        $this->projectSlugOrId = $projectSlugOrId;
         return $this;
     }
 
@@ -61,13 +61,13 @@ class VersionSearchOptions
     }
 
     /**
-     * @param Project|null $project
+     * @param Project $project
      * @return $this
      */
-    public function setProject(?Project $project): static
+    public function setProject(Project $project): static
     {
         $this->project = $project;
-        $this->setProjectSlug($project->getSlug());
+        $this->setProjectSlugOrId($project->getId());
         return $this;
     }
 

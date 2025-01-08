@@ -17,19 +17,19 @@ class Version
     public function __construct(
         protected HangarAPIClient                  $client,
         protected \Aternos\HangarApi\Model\Version $version,
-        protected string                           $projectSlug,
+        protected string                           $projectSlugOrId,
         protected ?Project                         $project = null,
     )
     {
     }
 
     /**
-     * Get the slug of the project this version belongs to
+     * Get the slug or id of the project this version belongs to
      * @return string
      */
-    public function getProjectSlug(): string
+    public function getProjectSlugOrId(): string
     {
-        return $this->projectSlug;
+        return $this->projectSlugOrId;
     }
 
     /**
@@ -43,7 +43,7 @@ class Version
             return $this->project;
         }
 
-        $this->project = $this->client->getProject($this->projectSlug);
+        $this->project = $this->client->getProject($this->projectSlugOrId);
         return $this->project;
     }
 
