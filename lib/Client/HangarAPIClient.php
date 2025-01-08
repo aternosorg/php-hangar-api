@@ -470,6 +470,12 @@ class HangarAPIClient
     {
         $this->authenticate();
 
+        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $versionId)) {
+            throw new ApiException('You need the is_subject_member permission to view version statistics');
+        }
+
+        $to ??= new DateTime();
+
         return $this->versions->showVersionStatsById(
             $versionId,
             $from->format(DateTimeInterface::RFC3339),
