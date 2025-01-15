@@ -35,7 +35,6 @@ use \Aternos\HangarApi\ObjectSerializer;
  * ProjectStats Class Doc Comment
  *
  * @category Class
- * @description Stats of the project
  * @package  Aternos\HangarApi
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -58,11 +57,11 @@ class ProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'views' => 'int',
         'downloads' => 'int',
-        'recent_views' => 'int',
         'recent_downloads' => 'int',
+        'recent_views' => 'int',
         'stars' => 'int',
+        'views' => 'int',
         'watchers' => 'int'
     ];
 
@@ -74,11 +73,11 @@ class ProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'views' => 'int64',
         'downloads' => 'int64',
-        'recent_views' => 'int64',
         'recent_downloads' => 'int64',
+        'recent_views' => 'int64',
         'stars' => 'int64',
+        'views' => 'int64',
         'watchers' => 'int64'
     ];
 
@@ -88,11 +87,11 @@ class ProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'views' => false,
         'downloads' => false,
-        'recent_views' => false,
         'recent_downloads' => false,
+        'recent_views' => false,
         'stars' => false,
+        'views' => false,
         'watchers' => false
     ];
 
@@ -182,11 +181,11 @@ class ProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'views' => 'views',
         'downloads' => 'downloads',
-        'recent_views' => 'recentViews',
         'recent_downloads' => 'recentDownloads',
+        'recent_views' => 'recentViews',
         'stars' => 'stars',
+        'views' => 'views',
         'watchers' => 'watchers'
     ];
 
@@ -196,11 +195,11 @@ class ProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'views' => 'setViews',
         'downloads' => 'setDownloads',
-        'recent_views' => 'setRecentViews',
         'recent_downloads' => 'setRecentDownloads',
+        'recent_views' => 'setRecentViews',
         'stars' => 'setStars',
+        'views' => 'setViews',
         'watchers' => 'setWatchers'
     ];
 
@@ -210,11 +209,11 @@ class ProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'views' => 'getViews',
         'downloads' => 'getDownloads',
-        'recent_views' => 'getRecentViews',
         'recent_downloads' => 'getRecentDownloads',
+        'recent_views' => 'getRecentViews',
         'stars' => 'getStars',
+        'views' => 'getViews',
         'watchers' => 'getWatchers'
     ];
 
@@ -275,11 +274,11 @@ class ProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('views', $data ?? [], null);
         $this->setIfExists('downloads', $data ?? [], null);
-        $this->setIfExists('recent_views', $data ?? [], null);
         $this->setIfExists('recent_downloads', $data ?? [], null);
+        $this->setIfExists('recent_views', $data ?? [], null);
         $this->setIfExists('stars', $data ?? [], null);
+        $this->setIfExists('views', $data ?? [], null);
         $this->setIfExists('watchers', $data ?? [], null);
     }
 
@@ -326,33 +325,6 @@ class ProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets views
-     *
-     * @return int|null
-     */
-    public function getViews()
-    {
-        return $this->container['views'];
-    }
-
-    /**
-     * Sets views
-     *
-     * @param int|null $views views
-     *
-     * @return self
-     */
-    public function setViews($views)
-    {
-        if (is_null($views)) {
-            throw new \InvalidArgumentException('non-nullable views cannot be null');
-        }
-        $this->container['views'] = $views;
-
-        return $this;
-    }
-
-    /**
      * Gets downloads
      *
      * @return int|null
@@ -375,33 +347,6 @@ class ProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable downloads cannot be null');
         }
         $this->container['downloads'] = $downloads;
-
-        return $this;
-    }
-
-    /**
-     * Gets recent_views
-     *
-     * @return int|null
-     */
-    public function getRecentViews()
-    {
-        return $this->container['recent_views'];
-    }
-
-    /**
-     * Sets recent_views
-     *
-     * @param int|null $recent_views recent_views
-     *
-     * @return self
-     */
-    public function setRecentViews($recent_views)
-    {
-        if (is_null($recent_views)) {
-            throw new \InvalidArgumentException('non-nullable recent_views cannot be null');
-        }
-        $this->container['recent_views'] = $recent_views;
 
         return $this;
     }
@@ -434,6 +379,33 @@ class ProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets recent_views
+     *
+     * @return int|null
+     */
+    public function getRecentViews()
+    {
+        return $this->container['recent_views'];
+    }
+
+    /**
+     * Sets recent_views
+     *
+     * @param int|null $recent_views recent_views
+     *
+     * @return self
+     */
+    public function setRecentViews($recent_views)
+    {
+        if (is_null($recent_views)) {
+            throw new \InvalidArgumentException('non-nullable recent_views cannot be null');
+        }
+        $this->container['recent_views'] = $recent_views;
+
+        return $this;
+    }
+
+    /**
      * Gets stars
      *
      * @return int|null
@@ -456,6 +428,33 @@ class ProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable stars cannot be null');
         }
         $this->container['stars'] = $stars;
+
+        return $this;
+    }
+
+    /**
+     * Gets views
+     *
+     * @return int|null
+     */
+    public function getViews()
+    {
+        return $this->container['views'];
+    }
+
+    /**
+     * Sets views
+     *
+     * @param int|null $views views
+     *
+     * @return self
+     */
+    public function setViews($views)
+    {
+        if (is_null($views)) {
+            throw new \InvalidArgumentException('non-nullable views cannot be null');
+        }
+        $this->container['views'] = $views;
 
         return $this;
     }

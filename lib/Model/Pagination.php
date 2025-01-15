@@ -57,9 +57,9 @@ class Pagination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'count' => 'int',
         'limit' => 'int',
-        'offset' => 'int',
-        'count' => 'int'
+        'offset' => 'int'
     ];
 
     /**
@@ -70,9 +70,9 @@ class Pagination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'count' => 'int64',
         'limit' => 'int64',
-        'offset' => 'int64',
-        'count' => 'int64'
+        'offset' => 'int64'
     ];
 
     /**
@@ -81,9 +81,9 @@ class Pagination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'count' => false,
         'limit' => false,
-        'offset' => false,
-        'count' => false
+        'offset' => false
     ];
 
     /**
@@ -172,9 +172,9 @@ class Pagination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'count' => 'count',
         'limit' => 'limit',
-        'offset' => 'offset',
-        'count' => 'count'
+        'offset' => 'offset'
     ];
 
     /**
@@ -183,9 +183,9 @@ class Pagination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'count' => 'setCount',
         'limit' => 'setLimit',
-        'offset' => 'setOffset',
-        'count' => 'setCount'
+        'offset' => 'setOffset'
     ];
 
     /**
@@ -194,9 +194,9 @@ class Pagination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'count' => 'getCount',
         'limit' => 'getLimit',
-        'offset' => 'getOffset',
-        'count' => 'getCount'
+        'offset' => 'getOffset'
     ];
 
     /**
@@ -256,9 +256,9 @@ class Pagination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('count', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
-        $this->setIfExists('count', $data ?? [], null);
     }
 
     /**
@@ -314,6 +314,33 @@ class Pagination implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets count
+     *
+     * @return int|null
+     */
+    public function getCount()
+    {
+        return $this->container['count'];
+    }
+
+    /**
+     * Sets count
+     *
+     * @param int|null $count count
+     *
+     * @return self
+     */
+    public function setCount($count)
+    {
+        if (is_null($count)) {
+            throw new \InvalidArgumentException('non-nullable count cannot be null');
+        }
+        $this->container['count'] = $count;
+
+        return $this;
+    }
 
     /**
      * Gets limit
@@ -378,33 +405,6 @@ class Pagination implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets count
-     *
-     * @return int|null
-     */
-    public function getCount()
-    {
-        return $this->container['count'];
-    }
-
-    /**
-     * Sets count
-     *
-     * @param int|null $count count
-     *
-     * @return self
-     */
-    public function setCount($count)
-    {
-        if (is_null($count)) {
-            throw new \InvalidArgumentException('non-nullable count cannot be null');
-        }
-        $this->container['count'] = $count;
 
         return $this;
     }

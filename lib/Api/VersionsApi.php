@@ -77,6 +77,9 @@ class VersionsApi
         'downloadVersion1' => [
             'application/json',
         ],
+        'downloadVersionById' => [
+            'application/json',
+        ],
         'getLatestReleaseVersion' => [
             'application/json',
         ],
@@ -104,7 +107,13 @@ class VersionsApi
         'showVersion' => [
             'application/json',
         ],
+        'showVersionById' => [
+            'application/json',
+        ],
         'showVersionStats' => [
+            'application/json',
+        ],
+        'showVersionStatsById' => [
             'application/json',
         ],
         'uploadVersion' => [
@@ -166,8 +175,8 @@ class VersionsApi
      *
      * Downloads a version
      *
-     * @param  string $slug The slug of the project to download the version from (required)
-     * @param  string $name The name of the version to download (required)
+     * @param  string $slug_or_id The slug or id of the project to download the version from (required)
+     * @param  string $name_or_id The name of the version to download (required)
      * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersion'] to see the possible values for this operation
      *
@@ -175,9 +184,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return object|object|object|object|object
      */
-    public function downloadVersion($slug, $name, $platform, string $contentType = self::contentTypes['downloadVersion'][0])
+    public function downloadVersion($slug_or_id, $name_or_id, $platform, string $contentType = self::contentTypes['downloadVersion'][0])
     {
-        list($response) = $this->downloadVersionWithHttpInfo($slug, $name, $platform, $contentType);
+        list($response) = $this->downloadVersionWithHttpInfo($slug_or_id, $name_or_id, $platform, $contentType);
         return $response;
     }
 
@@ -186,8 +195,8 @@ class VersionsApi
      *
      * Downloads a version
      *
-     * @param  string $slug The slug of the project to download the version from (required)
-     * @param  string $name The name of the version to download (required)
+     * @param  string $slug_or_id The slug or id of the project to download the version from (required)
+     * @param  string $name_or_id The name of the version to download (required)
      * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersion'] to see the possible values for this operation
      *
@@ -195,9 +204,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return array of object|object|object|object|object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function downloadVersionWithHttpInfo($slug, $name, $platform, string $contentType = self::contentTypes['downloadVersion'][0])
+    public function downloadVersionWithHttpInfo($slug_or_id, $name_or_id, $platform, string $contentType = self::contentTypes['downloadVersion'][0])
     {
-        $request = $this->downloadVersionRequest($slug, $name, $platform, $contentType);
+        $request = $this->downloadVersionRequest($slug_or_id, $name_or_id, $platform, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -223,7 +232,7 @@ class VersionsApi
 
 
             switch($statusCode) {
-                case 303:
+                case 200:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -250,7 +259,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 200:
+                case 303:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -304,7 +313,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -331,7 +340,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -403,7 +412,7 @@ class VersionsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 303:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -411,7 +420,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 200:
+                case 303:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -427,7 +436,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -435,7 +444,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -453,17 +462,17 @@ class VersionsApi
      *
      * Downloads a version
      *
-     * @param  string $slug The slug of the project to download the version from (required)
-     * @param  string $name The name of the version to download (required)
+     * @param  string $slug_or_id The slug or id of the project to download the version from (required)
+     * @param  string $name_or_id The name of the version to download (required)
      * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function downloadVersionAsync($slug, $name, $platform, string $contentType = self::contentTypes['downloadVersion'][0])
+    public function downloadVersionAsync($slug_or_id, $name_or_id, $platform, string $contentType = self::contentTypes['downloadVersion'][0])
     {
-        return $this->downloadVersionAsyncWithHttpInfo($slug, $name, $platform, $contentType)
+        return $this->downloadVersionAsyncWithHttpInfo($slug_or_id, $name_or_id, $platform, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -476,18 +485,18 @@ class VersionsApi
      *
      * Downloads a version
      *
-     * @param  string $slug The slug of the project to download the version from (required)
-     * @param  string $name The name of the version to download (required)
+     * @param  string $slug_or_id The slug or id of the project to download the version from (required)
+     * @param  string $name_or_id The name of the version to download (required)
      * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function downloadVersionAsyncWithHttpInfo($slug, $name, $platform, string $contentType = self::contentTypes['downloadVersion'][0])
+    public function downloadVersionAsyncWithHttpInfo($slug_or_id, $name_or_id, $platform, string $contentType = self::contentTypes['downloadVersion'][0])
     {
         $returnType = 'object';
-        $request = $this->downloadVersionRequest($slug, $name, $platform, $contentType);
+        $request = $this->downloadVersionRequest($slug_or_id, $name_or_id, $platform, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -528,28 +537,28 @@ class VersionsApi
     /**
      * Create request for operation 'downloadVersion'
      *
-     * @param  string $slug The slug of the project to download the version from (required)
-     * @param  string $name The name of the version to download (required)
+     * @param  string $slug_or_id The slug or id of the project to download the version from (required)
+     * @param  string $name_or_id The name of the version to download (required)
      * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function downloadVersionRequest($slug, $name, $platform, string $contentType = self::contentTypes['downloadVersion'][0])
+    public function downloadVersionRequest($slug_or_id, $name_or_id, $platform, string $contentType = self::contentTypes['downloadVersion'][0])
     {
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling downloadVersion'
+                'Missing the required parameter $slug_or_id when calling downloadVersion'
             );
         }
 
-        // verify the required parameter 'name' is set
-        if ($name === null || (is_array($name) && count($name) === 0)) {
+        // verify the required parameter 'name_or_id' is set
+        if ($name_or_id === null || (is_array($name_or_id) && count($name_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling downloadVersion'
+                'Missing the required parameter $name_or_id when calling downloadVersion'
             );
         }
 
@@ -561,7 +570,7 @@ class VersionsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{slug}/versions/{name}/{platform}/download';
+        $resourcePath = '/api/v1/projects/{slugOrId}/versions/{nameOrId}/{platform}/download';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -571,18 +580,18 @@ class VersionsApi
 
 
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
         // path params
-        if ($name !== null) {
+        if ($name_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'name' . '}',
-                ObjectSerializer::toPathValue($name),
+                '{' . 'nameOrId' . '}',
+                ObjectSerializer::toPathValue($name_or_id),
                 $resourcePath
             );
         }
@@ -597,7 +606,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/octet-stream', 'application/json', ],
+            ['application/json', 'application/octet-stream', ],
             $contentType,
             $multipart
         );
@@ -657,8 +666,8 @@ class VersionsApi
      * Operation downloadVersion1
      *
      * @param  string $author The author of the project to download the version from (required)
-     * @param  string $slug The slug of the project to download the version from (required)
-     * @param  string $name The name of the version to download (required)
+     * @param  string $slug_or_id The slug or id of the project to download the version from (required)
+     * @param  string $name_or_id The name of the version to download (required)
      * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersion1'] to see the possible values for this operation
      *
@@ -667,9 +676,9 @@ class VersionsApi
      * @return object
      * @deprecated
      */
-    public function downloadVersion1($author, $slug, $name, $platform, string $contentType = self::contentTypes['downloadVersion1'][0])
+    public function downloadVersion1($author, $slug_or_id, $name_or_id, $platform, string $contentType = self::contentTypes['downloadVersion1'][0])
     {
-        list($response) = $this->downloadVersion1WithHttpInfo($author, $slug, $name, $platform, $contentType);
+        list($response) = $this->downloadVersion1WithHttpInfo($author, $slug_or_id, $name_or_id, $platform, $contentType);
         return $response;
     }
 
@@ -677,8 +686,8 @@ class VersionsApi
      * Operation downloadVersion1WithHttpInfo
      *
      * @param  string $author The author of the project to download the version from (required)
-     * @param  string $slug The slug of the project to download the version from (required)
-     * @param  string $name The name of the version to download (required)
+     * @param  string $slug_or_id The slug or id of the project to download the version from (required)
+     * @param  string $name_or_id The name of the version to download (required)
      * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersion1'] to see the possible values for this operation
      *
@@ -687,9 +696,9 @@ class VersionsApi
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
-    public function downloadVersion1WithHttpInfo($author, $slug, $name, $platform, string $contentType = self::contentTypes['downloadVersion1'][0])
+    public function downloadVersion1WithHttpInfo($author, $slug_or_id, $name_or_id, $platform, string $contentType = self::contentTypes['downloadVersion1'][0])
     {
-        $request = $this->downloadVersion1Request($author, $slug, $name, $platform, $contentType);
+        $request = $this->downloadVersion1Request($author, $slug_or_id, $name_or_id, $platform, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -804,8 +813,8 @@ class VersionsApi
      * Operation downloadVersion1Async
      *
      * @param  string $author The author of the project to download the version from (required)
-     * @param  string $slug The slug of the project to download the version from (required)
-     * @param  string $name The name of the version to download (required)
+     * @param  string $slug_or_id The slug or id of the project to download the version from (required)
+     * @param  string $name_or_id The name of the version to download (required)
      * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersion1'] to see the possible values for this operation
      *
@@ -813,9 +822,9 @@ class VersionsApi
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function downloadVersion1Async($author, $slug, $name, $platform, string $contentType = self::contentTypes['downloadVersion1'][0])
+    public function downloadVersion1Async($author, $slug_or_id, $name_or_id, $platform, string $contentType = self::contentTypes['downloadVersion1'][0])
     {
-        return $this->downloadVersion1AsyncWithHttpInfo($author, $slug, $name, $platform, $contentType)
+        return $this->downloadVersion1AsyncWithHttpInfo($author, $slug_or_id, $name_or_id, $platform, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -827,8 +836,8 @@ class VersionsApi
      * Operation downloadVersion1AsyncWithHttpInfo
      *
      * @param  string $author The author of the project to download the version from (required)
-     * @param  string $slug The slug of the project to download the version from (required)
-     * @param  string $name The name of the version to download (required)
+     * @param  string $slug_or_id The slug or id of the project to download the version from (required)
+     * @param  string $name_or_id The name of the version to download (required)
      * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersion1'] to see the possible values for this operation
      *
@@ -836,10 +845,10 @@ class VersionsApi
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function downloadVersion1AsyncWithHttpInfo($author, $slug, $name, $platform, string $contentType = self::contentTypes['downloadVersion1'][0])
+    public function downloadVersion1AsyncWithHttpInfo($author, $slug_or_id, $name_or_id, $platform, string $contentType = self::contentTypes['downloadVersion1'][0])
     {
         $returnType = 'object';
-        $request = $this->downloadVersion1Request($author, $slug, $name, $platform, $contentType);
+        $request = $this->downloadVersion1Request($author, $slug_or_id, $name_or_id, $platform, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -881,8 +890,8 @@ class VersionsApi
      * Create request for operation 'downloadVersion1'
      *
      * @param  string $author The author of the project to download the version from (required)
-     * @param  string $slug The slug of the project to download the version from (required)
-     * @param  string $name The name of the version to download (required)
+     * @param  string $slug_or_id The slug or id of the project to download the version from (required)
+     * @param  string $name_or_id The name of the version to download (required)
      * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersion1'] to see the possible values for this operation
      *
@@ -890,7 +899,7 @@ class VersionsApi
      * @return \GuzzleHttp\Psr7\Request
      * @deprecated
      */
-    public function downloadVersion1Request($author, $slug, $name, $platform, string $contentType = self::contentTypes['downloadVersion1'][0])
+    public function downloadVersion1Request($author, $slug_or_id, $name_or_id, $platform, string $contentType = self::contentTypes['downloadVersion1'][0])
     {
 
         // verify the required parameter 'author' is set
@@ -900,17 +909,17 @@ class VersionsApi
             );
         }
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling downloadVersion1'
+                'Missing the required parameter $slug_or_id when calling downloadVersion1'
             );
         }
 
-        // verify the required parameter 'name' is set
-        if ($name === null || (is_array($name) && count($name) === 0)) {
+        // verify the required parameter 'name_or_id' is set
+        if ($name_or_id === null || (is_array($name_or_id) && count($name_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling downloadVersion1'
+                'Missing the required parameter $name_or_id when calling downloadVersion1'
             );
         }
 
@@ -922,7 +931,7 @@ class VersionsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}/versions/{name}/{platform}/download';
+        $resourcePath = '/api/v1/projects/{author}/{slugOrId}/versions/{nameOrId}/{platform}/download';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -940,18 +949,18 @@ class VersionsApi
             );
         }
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
         // path params
-        if ($name !== null) {
+        if ($name_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'name' . '}',
-                ObjectSerializer::toPathValue($name),
+                '{' . 'nameOrId' . '}',
+                ObjectSerializer::toPathValue($name_or_id),
                 $resourcePath
             );
         }
@@ -966,7 +975,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/octet-stream', 'application/json', ],
+            ['application/json', 'application/octet-stream', ],
             $contentType,
             $multipart
         );
@@ -1019,10 +1028,482 @@ class VersionsApi
     }
 
     /**
+     * Operation downloadVersionById
+     *
+     * Downloads a version by its ID
+     *
+     * @param  string $id The id of the version to download (required)
+     * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersionById'] to see the possible values for this operation
+     *
+     * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return object|object|object|object|object
+     */
+    public function downloadVersionById($id, $platform, string $contentType = self::contentTypes['downloadVersionById'][0])
+    {
+        list($response) = $this->downloadVersionByIdWithHttpInfo($id, $platform, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation downloadVersionByIdWithHttpInfo
+     *
+     * Downloads a version by its ID
+     *
+     * @param  string $id The id of the version to download (required)
+     * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersionById'] to see the possible values for this operation
+     *
+     * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of object|object|object|object|object, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function downloadVersionByIdWithHttpInfo($id, $platform, string $contentType = self::contentTypes['downloadVersionById'][0])
+    {
+        $request = $this->downloadVersionByIdRequest($id, $platform, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('object' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('object' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'object', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 303:
+                    if ('object' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('object' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'object', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('object' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('object' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'object', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('object' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('object' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'object', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('object' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('object' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'object', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = 'object';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 303:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation downloadVersionByIdAsync
+     *
+     * Downloads a version by its ID
+     *
+     * @param  string $id The id of the version to download (required)
+     * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersionById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function downloadVersionByIdAsync($id, $platform, string $contentType = self::contentTypes['downloadVersionById'][0])
+    {
+        return $this->downloadVersionByIdAsyncWithHttpInfo($id, $platform, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation downloadVersionByIdAsyncWithHttpInfo
+     *
+     * Downloads a version by its ID
+     *
+     * @param  string $id The id of the version to download (required)
+     * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersionById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function downloadVersionByIdAsyncWithHttpInfo($id, $platform, string $contentType = self::contentTypes['downloadVersionById'][0])
+    {
+        $returnType = 'object';
+        $request = $this->downloadVersionByIdRequest($id, $platform, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'downloadVersionById'
+     *
+     * @param  string $id The id of the version to download (required)
+     * @param  \Aternos\HangarApi\Model\Platform $platform The platform of the version to download (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadVersionById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function downloadVersionByIdRequest($id, $platform, string $contentType = self::contentTypes['downloadVersionById'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling downloadVersionById'
+            );
+        }
+
+        // verify the required parameter 'platform' is set
+        if ($platform === null || (is_array($platform) && count($platform) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $platform when calling downloadVersionById'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/versions/{id}/{platform}/download';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($platform !== null) {
+            $resourcePath = str_replace(
+                '{' . 'platform' . '}',
+                ObjectSerializer::toPathValue($platform),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/octet-stream', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getLatestReleaseVersion
      *
      * @param  string $author The author of the project to return the latest version for (required)
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestReleaseVersion'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1030,9 +1511,9 @@ class VersionsApi
      * @return string
      * @deprecated
      */
-    public function getLatestReleaseVersion($author, $slug, string $contentType = self::contentTypes['getLatestReleaseVersion'][0])
+    public function getLatestReleaseVersion($author, $slug_or_id, string $contentType = self::contentTypes['getLatestReleaseVersion'][0])
     {
-        list($response) = $this->getLatestReleaseVersionWithHttpInfo($author, $slug, $contentType);
+        list($response) = $this->getLatestReleaseVersionWithHttpInfo($author, $slug_or_id, $contentType);
         return $response;
     }
 
@@ -1040,7 +1521,7 @@ class VersionsApi
      * Operation getLatestReleaseVersionWithHttpInfo
      *
      * @param  string $author The author of the project to return the latest version for (required)
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestReleaseVersion'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1048,9 +1529,9 @@ class VersionsApi
      * @return array of string, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
-    public function getLatestReleaseVersionWithHttpInfo($author, $slug, string $contentType = self::contentTypes['getLatestReleaseVersion'][0])
+    public function getLatestReleaseVersionWithHttpInfo($author, $slug_or_id, string $contentType = self::contentTypes['getLatestReleaseVersion'][0])
     {
-        $request = $this->getLatestReleaseVersionRequest($author, $slug, $contentType);
+        $request = $this->getLatestReleaseVersionRequest($author, $slug_or_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1165,16 +1646,16 @@ class VersionsApi
      * Operation getLatestReleaseVersionAsync
      *
      * @param  string $author The author of the project to return the latest version for (required)
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestReleaseVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function getLatestReleaseVersionAsync($author, $slug, string $contentType = self::contentTypes['getLatestReleaseVersion'][0])
+    public function getLatestReleaseVersionAsync($author, $slug_or_id, string $contentType = self::contentTypes['getLatestReleaseVersion'][0])
     {
-        return $this->getLatestReleaseVersionAsyncWithHttpInfo($author, $slug, $contentType)
+        return $this->getLatestReleaseVersionAsyncWithHttpInfo($author, $slug_or_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1186,17 +1667,17 @@ class VersionsApi
      * Operation getLatestReleaseVersionAsyncWithHttpInfo
      *
      * @param  string $author The author of the project to return the latest version for (required)
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestReleaseVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function getLatestReleaseVersionAsyncWithHttpInfo($author, $slug, string $contentType = self::contentTypes['getLatestReleaseVersion'][0])
+    public function getLatestReleaseVersionAsyncWithHttpInfo($author, $slug_or_id, string $contentType = self::contentTypes['getLatestReleaseVersion'][0])
     {
         $returnType = 'string';
-        $request = $this->getLatestReleaseVersionRequest($author, $slug, $contentType);
+        $request = $this->getLatestReleaseVersionRequest($author, $slug_or_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1238,14 +1719,14 @@ class VersionsApi
      * Create request for operation 'getLatestReleaseVersion'
      *
      * @param  string $author The author of the project to return the latest version for (required)
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestReleaseVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      * @deprecated
      */
-    public function getLatestReleaseVersionRequest($author, $slug, string $contentType = self::contentTypes['getLatestReleaseVersion'][0])
+    public function getLatestReleaseVersionRequest($author, $slug_or_id, string $contentType = self::contentTypes['getLatestReleaseVersion'][0])
     {
 
         // verify the required parameter 'author' is set
@@ -1255,15 +1736,15 @@ class VersionsApi
             );
         }
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling getLatestReleaseVersion'
+                'Missing the required parameter $slug_or_id when calling getLatestReleaseVersion'
             );
         }
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}/latestrelease';
+        $resourcePath = '/api/v1/projects/{author}/{slugOrId}/latestrelease';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1281,10 +1762,10 @@ class VersionsApi
             );
         }
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
@@ -1347,7 +1828,7 @@ class VersionsApi
      * Operation getLatestVersion
      *
      * @param  string $author The author of the project to return the latest version for (required)
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $channel The channel to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestVersion'] to see the possible values for this operation
      *
@@ -1356,9 +1837,9 @@ class VersionsApi
      * @return string
      * @deprecated
      */
-    public function getLatestVersion($author, $slug, $channel, string $contentType = self::contentTypes['getLatestVersion'][0])
+    public function getLatestVersion($author, $slug_or_id, $channel, string $contentType = self::contentTypes['getLatestVersion'][0])
     {
-        list($response) = $this->getLatestVersionWithHttpInfo($author, $slug, $channel, $contentType);
+        list($response) = $this->getLatestVersionWithHttpInfo($author, $slug_or_id, $channel, $contentType);
         return $response;
     }
 
@@ -1366,7 +1847,7 @@ class VersionsApi
      * Operation getLatestVersionWithHttpInfo
      *
      * @param  string $author The author of the project to return the latest version for (required)
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $channel The channel to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestVersion'] to see the possible values for this operation
      *
@@ -1375,9 +1856,9 @@ class VersionsApi
      * @return array of string, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
-    public function getLatestVersionWithHttpInfo($author, $slug, $channel, string $contentType = self::contentTypes['getLatestVersion'][0])
+    public function getLatestVersionWithHttpInfo($author, $slug_or_id, $channel, string $contentType = self::contentTypes['getLatestVersion'][0])
     {
-        $request = $this->getLatestVersionRequest($author, $slug, $channel, $contentType);
+        $request = $this->getLatestVersionRequest($author, $slug_or_id, $channel, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1492,7 +1973,7 @@ class VersionsApi
      * Operation getLatestVersionAsync
      *
      * @param  string $author The author of the project to return the latest version for (required)
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $channel The channel to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestVersion'] to see the possible values for this operation
      *
@@ -1500,9 +1981,9 @@ class VersionsApi
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function getLatestVersionAsync($author, $slug, $channel, string $contentType = self::contentTypes['getLatestVersion'][0])
+    public function getLatestVersionAsync($author, $slug_or_id, $channel, string $contentType = self::contentTypes['getLatestVersion'][0])
     {
-        return $this->getLatestVersionAsyncWithHttpInfo($author, $slug, $channel, $contentType)
+        return $this->getLatestVersionAsyncWithHttpInfo($author, $slug_or_id, $channel, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1514,7 +1995,7 @@ class VersionsApi
      * Operation getLatestVersionAsyncWithHttpInfo
      *
      * @param  string $author The author of the project to return the latest version for (required)
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $channel The channel to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestVersion'] to see the possible values for this operation
      *
@@ -1522,10 +2003,10 @@ class VersionsApi
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function getLatestVersionAsyncWithHttpInfo($author, $slug, $channel, string $contentType = self::contentTypes['getLatestVersion'][0])
+    public function getLatestVersionAsyncWithHttpInfo($author, $slug_or_id, $channel, string $contentType = self::contentTypes['getLatestVersion'][0])
     {
         $returnType = 'string';
-        $request = $this->getLatestVersionRequest($author, $slug, $channel, $contentType);
+        $request = $this->getLatestVersionRequest($author, $slug_or_id, $channel, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1567,7 +2048,7 @@ class VersionsApi
      * Create request for operation 'getLatestVersion'
      *
      * @param  string $author The author of the project to return the latest version for (required)
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $channel The channel to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestVersion'] to see the possible values for this operation
      *
@@ -1575,7 +2056,7 @@ class VersionsApi
      * @return \GuzzleHttp\Psr7\Request
      * @deprecated
      */
-    public function getLatestVersionRequest($author, $slug, $channel, string $contentType = self::contentTypes['getLatestVersion'][0])
+    public function getLatestVersionRequest($author, $slug_or_id, $channel, string $contentType = self::contentTypes['getLatestVersion'][0])
     {
 
         // verify the required parameter 'author' is set
@@ -1585,10 +2066,10 @@ class VersionsApi
             );
         }
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling getLatestVersion'
+                'Missing the required parameter $slug_or_id when calling getLatestVersion'
             );
         }
 
@@ -1600,7 +2081,7 @@ class VersionsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}/latest';
+        $resourcePath = '/api/v1/projects/{author}/{slugOrId}/latest';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1627,10 +2108,10 @@ class VersionsApi
             );
         }
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
@@ -1693,8 +2174,8 @@ class VersionsApi
      * Operation getVersion
      *
      * @param  string $author The author of the project to return the version for (required)
-     * @param  string $slug The slug of the project to return the version for (required)
-     * @param  string $name The name of the version to return (required)
+     * @param  string $slug_or_id The slug or id of the project to return the version for (required)
+     * @param  string $name_or_id The name of the version to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersion'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1702,9 +2183,9 @@ class VersionsApi
      * @return \Aternos\HangarApi\Model\Version
      * @deprecated
      */
-    public function getVersion($author, $slug, $name, string $contentType = self::contentTypes['getVersion'][0])
+    public function getVersion($author, $slug_or_id, $name_or_id, string $contentType = self::contentTypes['getVersion'][0])
     {
-        list($response) = $this->getVersionWithHttpInfo($author, $slug, $name, $contentType);
+        list($response) = $this->getVersionWithHttpInfo($author, $slug_or_id, $name_or_id, $contentType);
         return $response;
     }
 
@@ -1712,8 +2193,8 @@ class VersionsApi
      * Operation getVersionWithHttpInfo
      *
      * @param  string $author The author of the project to return the version for (required)
-     * @param  string $slug The slug of the project to return the version for (required)
-     * @param  string $name The name of the version to return (required)
+     * @param  string $slug_or_id The slug or id of the project to return the version for (required)
+     * @param  string $name_or_id The name of the version to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersion'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1721,9 +2202,9 @@ class VersionsApi
      * @return array of \Aternos\HangarApi\Model\Version, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
-    public function getVersionWithHttpInfo($author, $slug, $name, string $contentType = self::contentTypes['getVersion'][0])
+    public function getVersionWithHttpInfo($author, $slug_or_id, $name_or_id, string $contentType = self::contentTypes['getVersion'][0])
     {
-        $request = $this->getVersionRequest($author, $slug, $name, $contentType);
+        $request = $this->getVersionRequest($author, $slug_or_id, $name_or_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1838,17 +2319,17 @@ class VersionsApi
      * Operation getVersionAsync
      *
      * @param  string $author The author of the project to return the version for (required)
-     * @param  string $slug The slug of the project to return the version for (required)
-     * @param  string $name The name of the version to return (required)
+     * @param  string $slug_or_id The slug or id of the project to return the version for (required)
+     * @param  string $name_or_id The name of the version to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function getVersionAsync($author, $slug, $name, string $contentType = self::contentTypes['getVersion'][0])
+    public function getVersionAsync($author, $slug_or_id, $name_or_id, string $contentType = self::contentTypes['getVersion'][0])
     {
-        return $this->getVersionAsyncWithHttpInfo($author, $slug, $name, $contentType)
+        return $this->getVersionAsyncWithHttpInfo($author, $slug_or_id, $name_or_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1860,18 +2341,18 @@ class VersionsApi
      * Operation getVersionAsyncWithHttpInfo
      *
      * @param  string $author The author of the project to return the version for (required)
-     * @param  string $slug The slug of the project to return the version for (required)
-     * @param  string $name The name of the version to return (required)
+     * @param  string $slug_or_id The slug or id of the project to return the version for (required)
+     * @param  string $name_or_id The name of the version to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function getVersionAsyncWithHttpInfo($author, $slug, $name, string $contentType = self::contentTypes['getVersion'][0])
+    public function getVersionAsyncWithHttpInfo($author, $slug_or_id, $name_or_id, string $contentType = self::contentTypes['getVersion'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\Version';
-        $request = $this->getVersionRequest($author, $slug, $name, $contentType);
+        $request = $this->getVersionRequest($author, $slug_or_id, $name_or_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1913,15 +2394,15 @@ class VersionsApi
      * Create request for operation 'getVersion'
      *
      * @param  string $author The author of the project to return the version for (required)
-     * @param  string $slug The slug of the project to return the version for (required)
-     * @param  string $name The name of the version to return (required)
+     * @param  string $slug_or_id The slug or id of the project to return the version for (required)
+     * @param  string $name_or_id The name of the version to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      * @deprecated
      */
-    public function getVersionRequest($author, $slug, $name, string $contentType = self::contentTypes['getVersion'][0])
+    public function getVersionRequest($author, $slug_or_id, $name_or_id, string $contentType = self::contentTypes['getVersion'][0])
     {
 
         // verify the required parameter 'author' is set
@@ -1931,22 +2412,22 @@ class VersionsApi
             );
         }
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling getVersion'
+                'Missing the required parameter $slug_or_id when calling getVersion'
             );
         }
 
-        // verify the required parameter 'name' is set
-        if ($name === null || (is_array($name) && count($name) === 0)) {
+        // verify the required parameter 'name_or_id' is set
+        if ($name_or_id === null || (is_array($name_or_id) && count($name_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getVersion'
+                'Missing the required parameter $name_or_id when calling getVersion'
             );
         }
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}/versions/{name}';
+        $resourcePath = '/api/v1/projects/{author}/{slugOrId}/versions/{nameOrId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1964,18 +2445,18 @@ class VersionsApi
             );
         }
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
         // path params
-        if ($name !== null) {
+        if ($name_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'name' . '}',
-                ObjectSerializer::toPathValue($name),
+                '{' . 'nameOrId' . '}',
+                ObjectSerializer::toPathValue($name_or_id),
                 $resourcePath
             );
         }
@@ -2038,8 +2519,8 @@ class VersionsApi
      * Operation getVersionStats
      *
      * @param  string $author The author of the version to return the stats for (required)
-     * @param  string $slug The slug of the project to return stats for (required)
-     * @param  string $name The version to return the stats for (required)
+     * @param  string $slug_or_id The slug or id of the project to return stats for (required)
+     * @param  string $name_or_id The name or id of the version to return the stats for (required)
      * @param  \DateTime $from_date The first date to include in the result (required)
      * @param  \DateTime $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersionStats'] to see the possible values for this operation
@@ -2049,9 +2530,9 @@ class VersionsApi
      * @return array<string,\Aternos\HangarApi\Model\VersionStats>
      * @deprecated
      */
-    public function getVersionStats($author, $slug, $name, $from_date, $to_date, string $contentType = self::contentTypes['getVersionStats'][0])
+    public function getVersionStats($author, $slug_or_id, $name_or_id, $from_date, $to_date, string $contentType = self::contentTypes['getVersionStats'][0])
     {
-        list($response) = $this->getVersionStatsWithHttpInfo($author, $slug, $name, $from_date, $to_date, $contentType);
+        list($response) = $this->getVersionStatsWithHttpInfo($author, $slug_or_id, $name_or_id, $from_date, $to_date, $contentType);
         return $response;
     }
 
@@ -2059,8 +2540,8 @@ class VersionsApi
      * Operation getVersionStatsWithHttpInfo
      *
      * @param  string $author The author of the version to return the stats for (required)
-     * @param  string $slug The slug of the project to return stats for (required)
-     * @param  string $name The version to return the stats for (required)
+     * @param  string $slug_or_id The slug or id of the project to return stats for (required)
+     * @param  string $name_or_id The name or id of the version to return the stats for (required)
      * @param  \DateTime $from_date The first date to include in the result (required)
      * @param  \DateTime $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersionStats'] to see the possible values for this operation
@@ -2070,9 +2551,9 @@ class VersionsApi
      * @return array of array<string,\Aternos\HangarApi\Model\VersionStats>, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
-    public function getVersionStatsWithHttpInfo($author, $slug, $name, $from_date, $to_date, string $contentType = self::contentTypes['getVersionStats'][0])
+    public function getVersionStatsWithHttpInfo($author, $slug_or_id, $name_or_id, $from_date, $to_date, string $contentType = self::contentTypes['getVersionStats'][0])
     {
-        $request = $this->getVersionStatsRequest($author, $slug, $name, $from_date, $to_date, $contentType);
+        $request = $this->getVersionStatsRequest($author, $slug_or_id, $name_or_id, $from_date, $to_date, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2187,8 +2668,8 @@ class VersionsApi
      * Operation getVersionStatsAsync
      *
      * @param  string $author The author of the version to return the stats for (required)
-     * @param  string $slug The slug of the project to return stats for (required)
-     * @param  string $name The version to return the stats for (required)
+     * @param  string $slug_or_id The slug or id of the project to return stats for (required)
+     * @param  string $name_or_id The name or id of the version to return the stats for (required)
      * @param  \DateTime $from_date The first date to include in the result (required)
      * @param  \DateTime $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersionStats'] to see the possible values for this operation
@@ -2197,9 +2678,9 @@ class VersionsApi
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function getVersionStatsAsync($author, $slug, $name, $from_date, $to_date, string $contentType = self::contentTypes['getVersionStats'][0])
+    public function getVersionStatsAsync($author, $slug_or_id, $name_or_id, $from_date, $to_date, string $contentType = self::contentTypes['getVersionStats'][0])
     {
-        return $this->getVersionStatsAsyncWithHttpInfo($author, $slug, $name, $from_date, $to_date, $contentType)
+        return $this->getVersionStatsAsyncWithHttpInfo($author, $slug_or_id, $name_or_id, $from_date, $to_date, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2211,8 +2692,8 @@ class VersionsApi
      * Operation getVersionStatsAsyncWithHttpInfo
      *
      * @param  string $author The author of the version to return the stats for (required)
-     * @param  string $slug The slug of the project to return stats for (required)
-     * @param  string $name The version to return the stats for (required)
+     * @param  string $slug_or_id The slug or id of the project to return stats for (required)
+     * @param  string $name_or_id The name or id of the version to return the stats for (required)
      * @param  \DateTime $from_date The first date to include in the result (required)
      * @param  \DateTime $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersionStats'] to see the possible values for this operation
@@ -2221,10 +2702,10 @@ class VersionsApi
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function getVersionStatsAsyncWithHttpInfo($author, $slug, $name, $from_date, $to_date, string $contentType = self::contentTypes['getVersionStats'][0])
+    public function getVersionStatsAsyncWithHttpInfo($author, $slug_or_id, $name_or_id, $from_date, $to_date, string $contentType = self::contentTypes['getVersionStats'][0])
     {
         $returnType = 'array<string,\Aternos\HangarApi\Model\VersionStats>';
-        $request = $this->getVersionStatsRequest($author, $slug, $name, $from_date, $to_date, $contentType);
+        $request = $this->getVersionStatsRequest($author, $slug_or_id, $name_or_id, $from_date, $to_date, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2266,8 +2747,8 @@ class VersionsApi
      * Create request for operation 'getVersionStats'
      *
      * @param  string $author The author of the version to return the stats for (required)
-     * @param  string $slug The slug of the project to return stats for (required)
-     * @param  string $name The version to return the stats for (required)
+     * @param  string $slug_or_id The slug or id of the project to return stats for (required)
+     * @param  string $name_or_id The name or id of the version to return the stats for (required)
      * @param  \DateTime $from_date The first date to include in the result (required)
      * @param  \DateTime $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersionStats'] to see the possible values for this operation
@@ -2276,7 +2757,7 @@ class VersionsApi
      * @return \GuzzleHttp\Psr7\Request
      * @deprecated
      */
-    public function getVersionStatsRequest($author, $slug, $name, $from_date, $to_date, string $contentType = self::contentTypes['getVersionStats'][0])
+    public function getVersionStatsRequest($author, $slug_or_id, $name_or_id, $from_date, $to_date, string $contentType = self::contentTypes['getVersionStats'][0])
     {
 
         // verify the required parameter 'author' is set
@@ -2286,17 +2767,17 @@ class VersionsApi
             );
         }
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling getVersionStats'
+                'Missing the required parameter $slug_or_id when calling getVersionStats'
             );
         }
 
-        // verify the required parameter 'name' is set
-        if ($name === null || (is_array($name) && count($name) === 0)) {
+        // verify the required parameter 'name_or_id' is set
+        if ($name_or_id === null || (is_array($name_or_id) && count($name_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getVersionStats'
+                'Missing the required parameter $name_or_id when calling getVersionStats'
             );
         }
 
@@ -2315,7 +2796,7 @@ class VersionsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}/versions/{name}/stats';
+        $resourcePath = '/api/v1/projects/{author}/{slugOrId}/versions/{nameOrId}/stats';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2351,18 +2832,18 @@ class VersionsApi
             );
         }
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
         // path params
-        if ($name !== null) {
+        if ($name_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'name' . '}',
-                ObjectSerializer::toPathValue($name),
+                '{' . 'nameOrId' . '}',
+                ObjectSerializer::toPathValue($name_or_id),
                 $resourcePath
             );
         }
@@ -2425,7 +2906,7 @@ class VersionsApi
      * Operation getVersions
      *
      * @param  string $author The author of the project to return versions for (required)
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersions'] to see the possible values for this operation
      *
@@ -2434,9 +2915,9 @@ class VersionsApi
      * @return \Aternos\HangarApi\Model\PaginatedResultVersion
      * @deprecated
      */
-    public function getVersions($author, $slug, $pagination, string $contentType = self::contentTypes['getVersions'][0])
+    public function getVersions($author, $slug_or_id, $pagination, string $contentType = self::contentTypes['getVersions'][0])
     {
-        list($response) = $this->getVersionsWithHttpInfo($author, $slug, $pagination, $contentType);
+        list($response) = $this->getVersionsWithHttpInfo($author, $slug_or_id, $pagination, $contentType);
         return $response;
     }
 
@@ -2444,7 +2925,7 @@ class VersionsApi
      * Operation getVersionsWithHttpInfo
      *
      * @param  string $author The author of the project to return versions for (required)
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersions'] to see the possible values for this operation
      *
@@ -2453,9 +2934,9 @@ class VersionsApi
      * @return array of \Aternos\HangarApi\Model\PaginatedResultVersion, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
-    public function getVersionsWithHttpInfo($author, $slug, $pagination, string $contentType = self::contentTypes['getVersions'][0])
+    public function getVersionsWithHttpInfo($author, $slug_or_id, $pagination, string $contentType = self::contentTypes['getVersions'][0])
     {
-        $request = $this->getVersionsRequest($author, $slug, $pagination, $contentType);
+        $request = $this->getVersionsRequest($author, $slug_or_id, $pagination, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2570,7 +3051,7 @@ class VersionsApi
      * Operation getVersionsAsync
      *
      * @param  string $author The author of the project to return versions for (required)
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersions'] to see the possible values for this operation
      *
@@ -2578,9 +3059,9 @@ class VersionsApi
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function getVersionsAsync($author, $slug, $pagination, string $contentType = self::contentTypes['getVersions'][0])
+    public function getVersionsAsync($author, $slug_or_id, $pagination, string $contentType = self::contentTypes['getVersions'][0])
     {
-        return $this->getVersionsAsyncWithHttpInfo($author, $slug, $pagination, $contentType)
+        return $this->getVersionsAsyncWithHttpInfo($author, $slug_or_id, $pagination, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2592,7 +3073,7 @@ class VersionsApi
      * Operation getVersionsAsyncWithHttpInfo
      *
      * @param  string $author The author of the project to return versions for (required)
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersions'] to see the possible values for this operation
      *
@@ -2600,10 +3081,10 @@ class VersionsApi
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function getVersionsAsyncWithHttpInfo($author, $slug, $pagination, string $contentType = self::contentTypes['getVersions'][0])
+    public function getVersionsAsyncWithHttpInfo($author, $slug_or_id, $pagination, string $contentType = self::contentTypes['getVersions'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PaginatedResultVersion';
-        $request = $this->getVersionsRequest($author, $slug, $pagination, $contentType);
+        $request = $this->getVersionsRequest($author, $slug_or_id, $pagination, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2645,7 +3126,7 @@ class VersionsApi
      * Create request for operation 'getVersions'
      *
      * @param  string $author The author of the project to return versions for (required)
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVersions'] to see the possible values for this operation
      *
@@ -2653,7 +3134,7 @@ class VersionsApi
      * @return \GuzzleHttp\Psr7\Request
      * @deprecated
      */
-    public function getVersionsRequest($author, $slug, $pagination, string $contentType = self::contentTypes['getVersions'][0])
+    public function getVersionsRequest($author, $slug_or_id, $pagination, string $contentType = self::contentTypes['getVersions'][0])
     {
 
         // verify the required parameter 'author' is set
@@ -2663,10 +3144,10 @@ class VersionsApi
             );
         }
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling getVersions'
+                'Missing the required parameter $slug_or_id when calling getVersions'
             );
         }
 
@@ -2678,7 +3159,7 @@ class VersionsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}/versions';
+        $resourcePath = '/api/v1/projects/{author}/{slugOrId}/versions';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2705,10 +3186,10 @@ class VersionsApi
             );
         }
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
@@ -2772,16 +3253,16 @@ class VersionsApi
      *
      * Returns the latest release version of a project
      *
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestReleaseVersion'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return string|string|string
      */
-    public function latestReleaseVersion($slug, string $contentType = self::contentTypes['latestReleaseVersion'][0])
+    public function latestReleaseVersion($slug_or_id, string $contentType = self::contentTypes['latestReleaseVersion'][0])
     {
-        list($response) = $this->latestReleaseVersionWithHttpInfo($slug, $contentType);
+        list($response) = $this->latestReleaseVersionWithHttpInfo($slug_or_id, $contentType);
         return $response;
     }
 
@@ -2790,16 +3271,16 @@ class VersionsApi
      *
      * Returns the latest release version of a project
      *
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestReleaseVersion'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of string|string|string, HTTP status code, HTTP response headers (array of strings)
      */
-    public function latestReleaseVersionWithHttpInfo($slug, string $contentType = self::contentTypes['latestReleaseVersion'][0])
+    public function latestReleaseVersionWithHttpInfo($slug_or_id, string $contentType = self::contentTypes['latestReleaseVersion'][0])
     {
-        $request = $this->latestReleaseVersionRequest($slug, $contentType);
+        $request = $this->latestReleaseVersionRequest($slug_or_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2852,7 +3333,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2879,7 +3360,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2959,7 +3440,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -2967,7 +3448,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -2985,15 +3466,15 @@ class VersionsApi
      *
      * Returns the latest release version of a project
      *
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestReleaseVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestReleaseVersionAsync($slug, string $contentType = self::contentTypes['latestReleaseVersion'][0])
+    public function latestReleaseVersionAsync($slug_or_id, string $contentType = self::contentTypes['latestReleaseVersion'][0])
     {
-        return $this->latestReleaseVersionAsyncWithHttpInfo($slug, $contentType)
+        return $this->latestReleaseVersionAsyncWithHttpInfo($slug_or_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3006,16 +3487,16 @@ class VersionsApi
      *
      * Returns the latest release version of a project
      *
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestReleaseVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestReleaseVersionAsyncWithHttpInfo($slug, string $contentType = self::contentTypes['latestReleaseVersion'][0])
+    public function latestReleaseVersionAsyncWithHttpInfo($slug_or_id, string $contentType = self::contentTypes['latestReleaseVersion'][0])
     {
         $returnType = 'string';
-        $request = $this->latestReleaseVersionRequest($slug, $contentType);
+        $request = $this->latestReleaseVersionRequest($slug_or_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3056,24 +3537,24 @@ class VersionsApi
     /**
      * Create request for operation 'latestReleaseVersion'
      *
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestReleaseVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function latestReleaseVersionRequest($slug, string $contentType = self::contentTypes['latestReleaseVersion'][0])
+    public function latestReleaseVersionRequest($slug_or_id, string $contentType = self::contentTypes['latestReleaseVersion'][0])
     {
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling latestReleaseVersion'
+                'Missing the required parameter $slug_or_id when calling latestReleaseVersion'
             );
         }
 
 
-        $resourcePath = '/api/v1/projects/{slug}/latestrelease';
+        $resourcePath = '/api/v1/projects/{slugOrId}/latestrelease';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3083,10 +3564,10 @@ class VersionsApi
 
 
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
@@ -3154,7 +3635,7 @@ class VersionsApi
      *
      * Returns the latest version of a project for a specific channel
      *
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $channel The channel to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestVersion'] to see the possible values for this operation
      *
@@ -3162,9 +3643,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return string|string|string
      */
-    public function latestVersion($slug, $channel, string $contentType = self::contentTypes['latestVersion'][0])
+    public function latestVersion($slug_or_id, $channel, string $contentType = self::contentTypes['latestVersion'][0])
     {
-        list($response) = $this->latestVersionWithHttpInfo($slug, $channel, $contentType);
+        list($response) = $this->latestVersionWithHttpInfo($slug_or_id, $channel, $contentType);
         return $response;
     }
 
@@ -3173,7 +3654,7 @@ class VersionsApi
      *
      * Returns the latest version of a project for a specific channel
      *
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $channel The channel to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestVersion'] to see the possible values for this operation
      *
@@ -3181,9 +3662,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return array of string|string|string, HTTP status code, HTTP response headers (array of strings)
      */
-    public function latestVersionWithHttpInfo($slug, $channel, string $contentType = self::contentTypes['latestVersion'][0])
+    public function latestVersionWithHttpInfo($slug_or_id, $channel, string $contentType = self::contentTypes['latestVersion'][0])
     {
-        $request = $this->latestVersionRequest($slug, $channel, $contentType);
+        $request = $this->latestVersionRequest($slug_or_id, $channel, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3236,7 +3717,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3263,7 +3744,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3343,7 +3824,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -3351,7 +3832,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -3369,16 +3850,16 @@ class VersionsApi
      *
      * Returns the latest version of a project for a specific channel
      *
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $channel The channel to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestVersionAsync($slug, $channel, string $contentType = self::contentTypes['latestVersion'][0])
+    public function latestVersionAsync($slug_or_id, $channel, string $contentType = self::contentTypes['latestVersion'][0])
     {
-        return $this->latestVersionAsyncWithHttpInfo($slug, $channel, $contentType)
+        return $this->latestVersionAsyncWithHttpInfo($slug_or_id, $channel, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3391,17 +3872,17 @@ class VersionsApi
      *
      * Returns the latest version of a project for a specific channel
      *
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $channel The channel to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestVersionAsyncWithHttpInfo($slug, $channel, string $contentType = self::contentTypes['latestVersion'][0])
+    public function latestVersionAsyncWithHttpInfo($slug_or_id, $channel, string $contentType = self::contentTypes['latestVersion'][0])
     {
         $returnType = 'string';
-        $request = $this->latestVersionRequest($slug, $channel, $contentType);
+        $request = $this->latestVersionRequest($slug_or_id, $channel, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3442,20 +3923,20 @@ class VersionsApi
     /**
      * Create request for operation 'latestVersion'
      *
-     * @param  string $slug The slug of the project to return the latest version for (required)
+     * @param  string $slug_or_id The slug or id of the project to return the latest version for (required)
      * @param  string $channel The channel to return the latest version for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function latestVersionRequest($slug, $channel, string $contentType = self::contentTypes['latestVersion'][0])
+    public function latestVersionRequest($slug_or_id, $channel, string $contentType = self::contentTypes['latestVersion'][0])
     {
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling latestVersion'
+                'Missing the required parameter $slug_or_id when calling latestVersion'
             );
         }
 
@@ -3467,7 +3948,7 @@ class VersionsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{slug}/latest';
+        $resourcePath = '/api/v1/projects/{slugOrId}/latest';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3486,10 +3967,10 @@ class VersionsApi
 
 
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
@@ -3557,7 +4038,7 @@ class VersionsApi
      *
      * Returns all versions of a project
      *
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
@@ -3568,9 +4049,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion
      */
-    public function listVersions($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersions($slug_or_id, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
     {
-        list($response) = $this->listVersionsWithHttpInfo($slug, $pagination, $include_hidden_channels, $channel, $platform, $contentType);
+        list($response) = $this->listVersionsWithHttpInfo($slug_or_id, $pagination, $include_hidden_channels, $channel, $platform, $contentType);
         return $response;
     }
 
@@ -3579,7 +4060,7 @@ class VersionsApi
      *
      * Returns all versions of a project
      *
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
@@ -3590,9 +4071,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion|\Aternos\HangarApi\Model\PaginatedResultVersion, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listVersionsWithHttpInfo($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsWithHttpInfo($slug_or_id, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
     {
-        $request = $this->listVersionsRequest($slug, $pagination, $include_hidden_channels, $channel, $platform, $contentType);
+        $request = $this->listVersionsRequest($slug_or_id, $pagination, $include_hidden_channels, $channel, $platform, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3645,7 +4126,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\PaginatedResultVersion' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3672,7 +4153,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\PaginatedResultVersion' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3752,7 +4233,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultVersion',
@@ -3760,7 +4241,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultVersion',
@@ -3778,7 +4259,7 @@ class VersionsApi
      *
      * Returns all versions of a project
      *
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
@@ -3788,9 +4269,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listVersionsAsync($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsAsync($slug_or_id, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
     {
-        return $this->listVersionsAsyncWithHttpInfo($slug, $pagination, $include_hidden_channels, $channel, $platform, $contentType)
+        return $this->listVersionsAsyncWithHttpInfo($slug_or_id, $pagination, $include_hidden_channels, $channel, $platform, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3803,7 +4284,7 @@ class VersionsApi
      *
      * Returns all versions of a project
      *
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
@@ -3813,10 +4294,10 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listVersionsAsyncWithHttpInfo($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsAsyncWithHttpInfo($slug_or_id, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\PaginatedResultVersion';
-        $request = $this->listVersionsRequest($slug, $pagination, $include_hidden_channels, $channel, $platform, $contentType);
+        $request = $this->listVersionsRequest($slug_or_id, $pagination, $include_hidden_channels, $channel, $platform, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3857,7 +4338,7 @@ class VersionsApi
     /**
      * Create request for operation 'listVersions'
      *
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  bool $include_hidden_channels Whether to include hidden-by-default channels in the result, defaults to try (optional, default to true)
      * @param  string $channel A name of a version channel to filter for (optional)
@@ -3867,13 +4348,13 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listVersionsRequest($slug, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
+    public function listVersionsRequest($slug_or_id, $pagination, $include_hidden_channels = true, $channel = null, $platform = null, string $contentType = self::contentTypes['listVersions'][0])
     {
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling listVersions'
+                'Missing the required parameter $slug_or_id when calling listVersions'
             );
         }
 
@@ -3888,7 +4369,7 @@ class VersionsApi
 
 
 
-        $resourcePath = '/api/v1/projects/{slug}/versions';
+        $resourcePath = '/api/v1/projects/{slugOrId}/versions';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3934,10 +4415,10 @@ class VersionsApi
 
 
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
@@ -4005,17 +4486,17 @@ class VersionsApi
      *
      * Returns a specific version of a project
      *
-     * @param  string $slug The slug of the project to return the version for (required)
-     * @param  string $name The name of the version to return (required)
+     * @param  string $slug_or_id The slug or id of the project to return the version for (required)
+     * @param  string $name_or_id The name or id of the version to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersion'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\Version|\Aternos\HangarApi\Model\Version|\Aternos\HangarApi\Model\Version
      */
-    public function showVersion($slug, $name, string $contentType = self::contentTypes['showVersion'][0])
+    public function showVersion($slug_or_id, $name_or_id, string $contentType = self::contentTypes['showVersion'][0])
     {
-        list($response) = $this->showVersionWithHttpInfo($slug, $name, $contentType);
+        list($response) = $this->showVersionWithHttpInfo($slug_or_id, $name_or_id, $contentType);
         return $response;
     }
 
@@ -4024,17 +4505,17 @@ class VersionsApi
      *
      * Returns a specific version of a project
      *
-     * @param  string $slug The slug of the project to return the version for (required)
-     * @param  string $name The name of the version to return (required)
+     * @param  string $slug_or_id The slug or id of the project to return the version for (required)
+     * @param  string $name_or_id The name or id of the version to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersion'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\Version|\Aternos\HangarApi\Model\Version|\Aternos\HangarApi\Model\Version, HTTP status code, HTTP response headers (array of strings)
      */
-    public function showVersionWithHttpInfo($slug, $name, string $contentType = self::contentTypes['showVersion'][0])
+    public function showVersionWithHttpInfo($slug_or_id, $name_or_id, string $contentType = self::contentTypes['showVersion'][0])
     {
-        $request = $this->showVersionRequest($slug, $name, $contentType);
+        $request = $this->showVersionRequest($slug_or_id, $name_or_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4087,7 +4568,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\Version' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4114,7 +4595,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\Version' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4194,7 +4675,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\Version',
@@ -4202,7 +4683,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\Version',
@@ -4220,16 +4701,16 @@ class VersionsApi
      *
      * Returns a specific version of a project
      *
-     * @param  string $slug The slug of the project to return the version for (required)
-     * @param  string $name The name of the version to return (required)
+     * @param  string $slug_or_id The slug or id of the project to return the version for (required)
+     * @param  string $name_or_id The name or id of the version to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function showVersionAsync($slug, $name, string $contentType = self::contentTypes['showVersion'][0])
+    public function showVersionAsync($slug_or_id, $name_or_id, string $contentType = self::contentTypes['showVersion'][0])
     {
-        return $this->showVersionAsyncWithHttpInfo($slug, $name, $contentType)
+        return $this->showVersionAsyncWithHttpInfo($slug_or_id, $name_or_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4242,17 +4723,17 @@ class VersionsApi
      *
      * Returns a specific version of a project
      *
-     * @param  string $slug The slug of the project to return the version for (required)
-     * @param  string $name The name of the version to return (required)
+     * @param  string $slug_or_id The slug or id of the project to return the version for (required)
+     * @param  string $name_or_id The name or id of the version to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function showVersionAsyncWithHttpInfo($slug, $name, string $contentType = self::contentTypes['showVersion'][0])
+    public function showVersionAsyncWithHttpInfo($slug_or_id, $name_or_id, string $contentType = self::contentTypes['showVersion'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\Version';
-        $request = $this->showVersionRequest($slug, $name, $contentType);
+        $request = $this->showVersionRequest($slug_or_id, $name_or_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4293,32 +4774,32 @@ class VersionsApi
     /**
      * Create request for operation 'showVersion'
      *
-     * @param  string $slug The slug of the project to return the version for (required)
-     * @param  string $name The name of the version to return (required)
+     * @param  string $slug_or_id The slug or id of the project to return the version for (required)
+     * @param  string $name_or_id The name or id of the version to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function showVersionRequest($slug, $name, string $contentType = self::contentTypes['showVersion'][0])
+    public function showVersionRequest($slug_or_id, $name_or_id, string $contentType = self::contentTypes['showVersion'][0])
     {
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling showVersion'
+                'Missing the required parameter $slug_or_id when calling showVersion'
             );
         }
 
-        // verify the required parameter 'name' is set
-        if ($name === null || (is_array($name) && count($name) === 0)) {
+        // verify the required parameter 'name_or_id' is set
+        if ($name_or_id === null || (is_array($name_or_id) && count($name_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling showVersion'
+                'Missing the required parameter $name_or_id when calling showVersion'
             );
         }
 
 
-        $resourcePath = '/api/v1/projects/{slug}/versions/{name}';
+        $resourcePath = '/api/v1/projects/{slugOrId}/versions/{nameOrId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -4328,18 +4809,400 @@ class VersionsApi
 
 
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
         // path params
-        if ($name !== null) {
+        if ($name_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'name' . '}',
-                ObjectSerializer::toPathValue($name),
+                '{' . 'nameOrId' . '}',
+                ObjectSerializer::toPathValue($name_or_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation showVersionById
+     *
+     * Returns a specific version by its ID
+     *
+     * @param  string $id The id of the version to return (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionById'] to see the possible values for this operation
+     *
+     * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aternos\HangarApi\Model\Version|\Aternos\HangarApi\Model\Version|\Aternos\HangarApi\Model\Version
+     */
+    public function showVersionById($id, string $contentType = self::contentTypes['showVersionById'][0])
+    {
+        list($response) = $this->showVersionByIdWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation showVersionByIdWithHttpInfo
+     *
+     * Returns a specific version by its ID
+     *
+     * @param  string $id The id of the version to return (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionById'] to see the possible values for this operation
+     *
+     * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aternos\HangarApi\Model\Version|\Aternos\HangarApi\Model\Version|\Aternos\HangarApi\Model\Version, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function showVersionByIdWithHttpInfo($id, string $contentType = self::contentTypes['showVersionById'][0])
+    {
+        $request = $this->showVersionByIdRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aternos\HangarApi\Model\Version' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aternos\HangarApi\Model\Version' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aternos\HangarApi\Model\Version', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Aternos\HangarApi\Model\Version' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aternos\HangarApi\Model\Version' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aternos\HangarApi\Model\Version', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Aternos\HangarApi\Model\Version' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aternos\HangarApi\Model\Version' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aternos\HangarApi\Model\Version', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\Aternos\HangarApi\Model\Version';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aternos\HangarApi\Model\Version',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aternos\HangarApi\Model\Version',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aternos\HangarApi\Model\Version',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation showVersionByIdAsync
+     *
+     * Returns a specific version by its ID
+     *
+     * @param  string $id The id of the version to return (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function showVersionByIdAsync($id, string $contentType = self::contentTypes['showVersionById'][0])
+    {
+        return $this->showVersionByIdAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation showVersionByIdAsyncWithHttpInfo
+     *
+     * Returns a specific version by its ID
+     *
+     * @param  string $id The id of the version to return (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function showVersionByIdAsyncWithHttpInfo($id, string $contentType = self::contentTypes['showVersionById'][0])
+    {
+        $returnType = '\Aternos\HangarApi\Model\Version';
+        $request = $this->showVersionByIdRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'showVersionById'
+     *
+     * @param  string $id The id of the version to return (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function showVersionByIdRequest($id, string $contentType = self::contentTypes['showVersionById'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling showVersionById'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/versions/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
@@ -4407,8 +5270,8 @@ class VersionsApi
      *
      * Returns the stats for a version
      *
-     * @param  string $slug The slug of the project to return stats for (required)
-     * @param  string $name The version to return the stats for (required)
+     * @param  string $slug_or_id The slug or id of the project to return stats for (required)
+     * @param  string $name_or_id The version to return the stats for (required)
      * @param  \DateTime $from_date The first date to include in the result (required)
      * @param  \DateTime $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStats'] to see the possible values for this operation
@@ -4417,9 +5280,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return array<string,\Aternos\HangarApi\Model\VersionStats>|array<string,\Aternos\HangarApi\Model\VersionStats>|array<string,\Aternos\HangarApi\Model\VersionStats>
      */
-    public function showVersionStats($slug, $name, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStats'][0])
+    public function showVersionStats($slug_or_id, $name_or_id, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStats'][0])
     {
-        list($response) = $this->showVersionStatsWithHttpInfo($slug, $name, $from_date, $to_date, $contentType);
+        list($response) = $this->showVersionStatsWithHttpInfo($slug_or_id, $name_or_id, $from_date, $to_date, $contentType);
         return $response;
     }
 
@@ -4428,8 +5291,8 @@ class VersionsApi
      *
      * Returns the stats for a version
      *
-     * @param  string $slug The slug of the project to return stats for (required)
-     * @param  string $name The version to return the stats for (required)
+     * @param  string $slug_or_id The slug or id of the project to return stats for (required)
+     * @param  string $name_or_id The version to return the stats for (required)
      * @param  \DateTime $from_date The first date to include in the result (required)
      * @param  \DateTime $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStats'] to see the possible values for this operation
@@ -4438,9 +5301,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return array of array<string,\Aternos\HangarApi\Model\VersionStats>|array<string,\Aternos\HangarApi\Model\VersionStats>|array<string,\Aternos\HangarApi\Model\VersionStats>, HTTP status code, HTTP response headers (array of strings)
      */
-    public function showVersionStatsWithHttpInfo($slug, $name, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStats'][0])
+    public function showVersionStatsWithHttpInfo($slug_or_id, $name_or_id, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStats'][0])
     {
-        $request = $this->showVersionStatsRequest($slug, $name, $from_date, $to_date, $contentType);
+        $request = $this->showVersionStatsRequest($slug_or_id, $name_or_id, $from_date, $to_date, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4493,7 +5356,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('array<string,\Aternos\HangarApi\Model\VersionStats>' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4520,7 +5383,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('array<string,\Aternos\HangarApi\Model\VersionStats>' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4600,7 +5463,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'array<string,\Aternos\HangarApi\Model\VersionStats>',
@@ -4608,7 +5471,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'array<string,\Aternos\HangarApi\Model\VersionStats>',
@@ -4626,8 +5489,8 @@ class VersionsApi
      *
      * Returns the stats for a version
      *
-     * @param  string $slug The slug of the project to return stats for (required)
-     * @param  string $name The version to return the stats for (required)
+     * @param  string $slug_or_id The slug or id of the project to return stats for (required)
+     * @param  string $name_or_id The version to return the stats for (required)
      * @param  \DateTime $from_date The first date to include in the result (required)
      * @param  \DateTime $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStats'] to see the possible values for this operation
@@ -4635,9 +5498,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function showVersionStatsAsync($slug, $name, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStats'][0])
+    public function showVersionStatsAsync($slug_or_id, $name_or_id, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStats'][0])
     {
-        return $this->showVersionStatsAsyncWithHttpInfo($slug, $name, $from_date, $to_date, $contentType)
+        return $this->showVersionStatsAsyncWithHttpInfo($slug_or_id, $name_or_id, $from_date, $to_date, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4650,8 +5513,8 @@ class VersionsApi
      *
      * Returns the stats for a version
      *
-     * @param  string $slug The slug of the project to return stats for (required)
-     * @param  string $name The version to return the stats for (required)
+     * @param  string $slug_or_id The slug or id of the project to return stats for (required)
+     * @param  string $name_or_id The version to return the stats for (required)
      * @param  \DateTime $from_date The first date to include in the result (required)
      * @param  \DateTime $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStats'] to see the possible values for this operation
@@ -4659,10 +5522,10 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function showVersionStatsAsyncWithHttpInfo($slug, $name, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStats'][0])
+    public function showVersionStatsAsyncWithHttpInfo($slug_or_id, $name_or_id, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStats'][0])
     {
         $returnType = 'array<string,\Aternos\HangarApi\Model\VersionStats>';
-        $request = $this->showVersionStatsRequest($slug, $name, $from_date, $to_date, $contentType);
+        $request = $this->showVersionStatsRequest($slug_or_id, $name_or_id, $from_date, $to_date, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4703,8 +5566,8 @@ class VersionsApi
     /**
      * Create request for operation 'showVersionStats'
      *
-     * @param  string $slug The slug of the project to return stats for (required)
-     * @param  string $name The version to return the stats for (required)
+     * @param  string $slug_or_id The slug or id of the project to return stats for (required)
+     * @param  string $name_or_id The version to return the stats for (required)
      * @param  \DateTime $from_date The first date to include in the result (required)
      * @param  \DateTime $to_date The last date to include in the result (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStats'] to see the possible values for this operation
@@ -4712,20 +5575,20 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function showVersionStatsRequest($slug, $name, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStats'][0])
+    public function showVersionStatsRequest($slug_or_id, $name_or_id, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStats'][0])
     {
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling showVersionStats'
+                'Missing the required parameter $slug_or_id when calling showVersionStats'
             );
         }
 
-        // verify the required parameter 'name' is set
-        if ($name === null || (is_array($name) && count($name) === 0)) {
+        // verify the required parameter 'name_or_id' is set
+        if ($name_or_id === null || (is_array($name_or_id) && count($name_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling showVersionStats'
+                'Missing the required parameter $name_or_id when calling showVersionStats'
             );
         }
 
@@ -4744,7 +5607,7 @@ class VersionsApi
         }
 
 
-        $resourcePath = '/api/v1/projects/{slug}/versions/{name}/stats';
+        $resourcePath = '/api/v1/projects/{slugOrId}/versions/{nameOrId}/stats';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -4772,18 +5635,442 @@ class VersionsApi
 
 
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
         // path params
-        if ($name !== null) {
+        if ($name_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'name' . '}',
-                ObjectSerializer::toPathValue($name),
+                '{' . 'nameOrId' . '}',
+                ObjectSerializer::toPathValue($name_or_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation showVersionStatsById
+     *
+     * Returns the stats for a version by its ID
+     *
+     * @param  string $id The id of version to return the stats for (required)
+     * @param  \DateTime $from_date The first date to include in the result (required)
+     * @param  \DateTime $to_date The last date to include in the result (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStatsById'] to see the possible values for this operation
+     *
+     * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array<string,\Aternos\HangarApi\Model\VersionStats>|array<string,\Aternos\HangarApi\Model\VersionStats>|array<string,\Aternos\HangarApi\Model\VersionStats>
+     */
+    public function showVersionStatsById($id, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStatsById'][0])
+    {
+        list($response) = $this->showVersionStatsByIdWithHttpInfo($id, $from_date, $to_date, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation showVersionStatsByIdWithHttpInfo
+     *
+     * Returns the stats for a version by its ID
+     *
+     * @param  string $id The id of version to return the stats for (required)
+     * @param  \DateTime $from_date The first date to include in the result (required)
+     * @param  \DateTime $to_date The last date to include in the result (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStatsById'] to see the possible values for this operation
+     *
+     * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of array<string,\Aternos\HangarApi\Model\VersionStats>|array<string,\Aternos\HangarApi\Model\VersionStats>|array<string,\Aternos\HangarApi\Model\VersionStats>, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function showVersionStatsByIdWithHttpInfo($id, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStatsById'][0])
+    {
+        $request = $this->showVersionStatsByIdRequest($id, $from_date, $to_date, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('array<string,\Aternos\HangarApi\Model\VersionStats>' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('array<string,\Aternos\HangarApi\Model\VersionStats>' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'array<string,\Aternos\HangarApi\Model\VersionStats>', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('array<string,\Aternos\HangarApi\Model\VersionStats>' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('array<string,\Aternos\HangarApi\Model\VersionStats>' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'array<string,\Aternos\HangarApi\Model\VersionStats>', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('array<string,\Aternos\HangarApi\Model\VersionStats>' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('array<string,\Aternos\HangarApi\Model\VersionStats>' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'array<string,\Aternos\HangarApi\Model\VersionStats>', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = 'array<string,\Aternos\HangarApi\Model\VersionStats>';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'array<string,\Aternos\HangarApi\Model\VersionStats>',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'array<string,\Aternos\HangarApi\Model\VersionStats>',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'array<string,\Aternos\HangarApi\Model\VersionStats>',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation showVersionStatsByIdAsync
+     *
+     * Returns the stats for a version by its ID
+     *
+     * @param  string $id The id of version to return the stats for (required)
+     * @param  \DateTime $from_date The first date to include in the result (required)
+     * @param  \DateTime $to_date The last date to include in the result (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStatsById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function showVersionStatsByIdAsync($id, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStatsById'][0])
+    {
+        return $this->showVersionStatsByIdAsyncWithHttpInfo($id, $from_date, $to_date, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation showVersionStatsByIdAsyncWithHttpInfo
+     *
+     * Returns the stats for a version by its ID
+     *
+     * @param  string $id The id of version to return the stats for (required)
+     * @param  \DateTime $from_date The first date to include in the result (required)
+     * @param  \DateTime $to_date The last date to include in the result (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStatsById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function showVersionStatsByIdAsyncWithHttpInfo($id, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStatsById'][0])
+    {
+        $returnType = 'array<string,\Aternos\HangarApi\Model\VersionStats>';
+        $request = $this->showVersionStatsByIdRequest($id, $from_date, $to_date, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'showVersionStatsById'
+     *
+     * @param  string $id The id of version to return the stats for (required)
+     * @param  \DateTime $from_date The first date to include in the result (required)
+     * @param  \DateTime $to_date The last date to include in the result (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showVersionStatsById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function showVersionStatsByIdRequest($id, $from_date, $to_date, string $contentType = self::contentTypes['showVersionStatsById'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling showVersionStatsById'
+            );
+        }
+
+        // verify the required parameter 'from_date' is set
+        if ($from_date === null || (is_array($from_date) && count($from_date) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $from_date when calling showVersionStatsById'
+            );
+        }
+
+        // verify the required parameter 'to_date' is set
+        if ($to_date === null || (is_array($to_date) && count($to_date) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $to_date when calling showVersionStatsById'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/versions/{id}/stats';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $from_date,
+            'fromDate', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $to_date,
+            'toDate', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
@@ -4851,7 +6138,7 @@ class VersionsApi
      *
      * Creates a new version and returns parts of its metadata
      *
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\VersionUpload $version_upload version_upload (required)
      * @param  \SplFileObject[] $files The version files in order of selected platforms, if any (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadVersion'] to see the possible values for this operation
@@ -4860,9 +6147,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \Aternos\HangarApi\Model\UploadedVersion|\Aternos\HangarApi\Model\UploadedVersion|\Aternos\HangarApi\Model\UploadedVersion
      */
-    public function uploadVersion($slug, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion'][0])
+    public function uploadVersion($slug_or_id, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion'][0])
     {
-        list($response) = $this->uploadVersionWithHttpInfo($slug, $version_upload, $files, $contentType);
+        list($response) = $this->uploadVersionWithHttpInfo($slug_or_id, $version_upload, $files, $contentType);
         return $response;
     }
 
@@ -4871,7 +6158,7 @@ class VersionsApi
      *
      * Creates a new version and returns parts of its metadata
      *
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\VersionUpload $version_upload (required)
      * @param  \SplFileObject[] $files The version files in order of selected platforms, if any (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadVersion'] to see the possible values for this operation
@@ -4880,9 +6167,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return array of \Aternos\HangarApi\Model\UploadedVersion|\Aternos\HangarApi\Model\UploadedVersion|\Aternos\HangarApi\Model\UploadedVersion, HTTP status code, HTTP response headers (array of strings)
      */
-    public function uploadVersionWithHttpInfo($slug, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion'][0])
+    public function uploadVersionWithHttpInfo($slug_or_id, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion'][0])
     {
-        $request = $this->uploadVersionRequest($slug, $version_upload, $files, $contentType);
+        $request = $this->uploadVersionRequest($slug_or_id, $version_upload, $files, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4935,7 +6222,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\UploadedVersion' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4962,7 +6249,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\UploadedVersion' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5042,7 +6329,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\UploadedVersion',
@@ -5050,7 +6337,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\UploadedVersion',
@@ -5068,7 +6355,7 @@ class VersionsApi
      *
      * Creates a new version and returns parts of its metadata
      *
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\VersionUpload $version_upload (required)
      * @param  \SplFileObject[] $files The version files in order of selected platforms, if any (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadVersion'] to see the possible values for this operation
@@ -5076,9 +6363,9 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadVersionAsync($slug, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion'][0])
+    public function uploadVersionAsync($slug_or_id, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion'][0])
     {
-        return $this->uploadVersionAsyncWithHttpInfo($slug, $version_upload, $files, $contentType)
+        return $this->uploadVersionAsyncWithHttpInfo($slug_or_id, $version_upload, $files, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5091,7 +6378,7 @@ class VersionsApi
      *
      * Creates a new version and returns parts of its metadata
      *
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\VersionUpload $version_upload (required)
      * @param  \SplFileObject[] $files The version files in order of selected platforms, if any (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadVersion'] to see the possible values for this operation
@@ -5099,10 +6386,10 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadVersionAsyncWithHttpInfo($slug, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion'][0])
+    public function uploadVersionAsyncWithHttpInfo($slug_or_id, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\UploadedVersion';
-        $request = $this->uploadVersionRequest($slug, $version_upload, $files, $contentType);
+        $request = $this->uploadVersionRequest($slug_or_id, $version_upload, $files, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5143,7 +6430,7 @@ class VersionsApi
     /**
      * Create request for operation 'uploadVersion'
      *
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\VersionUpload $version_upload (required)
      * @param  \SplFileObject[] $files The version files in order of selected platforms, if any (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadVersion'] to see the possible values for this operation
@@ -5151,13 +6438,13 @@ class VersionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function uploadVersionRequest($slug, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion'][0])
+    public function uploadVersionRequest($slug_or_id, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion'][0])
     {
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling uploadVersion'
+                'Missing the required parameter $slug_or_id when calling uploadVersion'
             );
         }
 
@@ -5170,7 +6457,7 @@ class VersionsApi
 
 
 
-        $resourcePath = '/api/v1/projects/{slug}/upload';
+        $resourcePath = '/api/v1/projects/{slugOrId}/upload';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -5180,10 +6467,10 @@ class VersionsApi
 
 
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }
@@ -5266,7 +6553,7 @@ class VersionsApi
      * Operation uploadVersion1
      *
      * @param  string $author The author of the project to return versions for (required)
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\VersionUpload $version_upload version_upload (required)
      * @param  \SplFileObject[] $files The version files in order of selected platforms, if any (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadVersion1'] to see the possible values for this operation
@@ -5276,9 +6563,9 @@ class VersionsApi
      * @return \Aternos\HangarApi\Model\UploadedVersion
      * @deprecated
      */
-    public function uploadVersion1($author, $slug, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion1'][0])
+    public function uploadVersion1($author, $slug_or_id, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion1'][0])
     {
-        list($response) = $this->uploadVersion1WithHttpInfo($author, $slug, $version_upload, $files, $contentType);
+        list($response) = $this->uploadVersion1WithHttpInfo($author, $slug_or_id, $version_upload, $files, $contentType);
         return $response;
     }
 
@@ -5286,7 +6573,7 @@ class VersionsApi
      * Operation uploadVersion1WithHttpInfo
      *
      * @param  string $author The author of the project to return versions for (required)
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\VersionUpload $version_upload (required)
      * @param  \SplFileObject[] $files The version files in order of selected platforms, if any (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadVersion1'] to see the possible values for this operation
@@ -5296,9 +6583,9 @@ class VersionsApi
      * @return array of \Aternos\HangarApi\Model\UploadedVersion, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
-    public function uploadVersion1WithHttpInfo($author, $slug, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion1'][0])
+    public function uploadVersion1WithHttpInfo($author, $slug_or_id, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion1'][0])
     {
-        $request = $this->uploadVersion1Request($author, $slug, $version_upload, $files, $contentType);
+        $request = $this->uploadVersion1Request($author, $slug_or_id, $version_upload, $files, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5413,7 +6700,7 @@ class VersionsApi
      * Operation uploadVersion1Async
      *
      * @param  string $author The author of the project to return versions for (required)
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\VersionUpload $version_upload (required)
      * @param  \SplFileObject[] $files The version files in order of selected platforms, if any (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadVersion1'] to see the possible values for this operation
@@ -5422,9 +6709,9 @@ class VersionsApi
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function uploadVersion1Async($author, $slug, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion1'][0])
+    public function uploadVersion1Async($author, $slug_or_id, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion1'][0])
     {
-        return $this->uploadVersion1AsyncWithHttpInfo($author, $slug, $version_upload, $files, $contentType)
+        return $this->uploadVersion1AsyncWithHttpInfo($author, $slug_or_id, $version_upload, $files, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5436,7 +6723,7 @@ class VersionsApi
      * Operation uploadVersion1AsyncWithHttpInfo
      *
      * @param  string $author The author of the project to return versions for (required)
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\VersionUpload $version_upload (required)
      * @param  \SplFileObject[] $files The version files in order of selected platforms, if any (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadVersion1'] to see the possible values for this operation
@@ -5445,10 +6732,10 @@ class VersionsApi
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function uploadVersion1AsyncWithHttpInfo($author, $slug, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion1'][0])
+    public function uploadVersion1AsyncWithHttpInfo($author, $slug_or_id, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion1'][0])
     {
         $returnType = '\Aternos\HangarApi\Model\UploadedVersion';
-        $request = $this->uploadVersion1Request($author, $slug, $version_upload, $files, $contentType);
+        $request = $this->uploadVersion1Request($author, $slug_or_id, $version_upload, $files, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5490,7 +6777,7 @@ class VersionsApi
      * Create request for operation 'uploadVersion1'
      *
      * @param  string $author The author of the project to return versions for (required)
-     * @param  string $slug The slug of the project to return versions for (required)
+     * @param  string $slug_or_id The slug or id of the project to return versions for (required)
      * @param  \Aternos\HangarApi\Model\VersionUpload $version_upload (required)
      * @param  \SplFileObject[] $files The version files in order of selected platforms, if any (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadVersion1'] to see the possible values for this operation
@@ -5499,7 +6786,7 @@ class VersionsApi
      * @return \GuzzleHttp\Psr7\Request
      * @deprecated
      */
-    public function uploadVersion1Request($author, $slug, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion1'][0])
+    public function uploadVersion1Request($author, $slug_or_id, $version_upload, $files = null, string $contentType = self::contentTypes['uploadVersion1'][0])
     {
 
         // verify the required parameter 'author' is set
@@ -5509,10 +6796,10 @@ class VersionsApi
             );
         }
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'slug_or_id' is set
+        if ($slug_or_id === null || (is_array($slug_or_id) && count($slug_or_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling uploadVersion1'
+                'Missing the required parameter $slug_or_id when calling uploadVersion1'
             );
         }
 
@@ -5525,7 +6812,7 @@ class VersionsApi
 
 
 
-        $resourcePath = '/api/v1/projects/{author}/{slug}/upload';
+        $resourcePath = '/api/v1/projects/{author}/{slugOrId}/upload';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -5543,10 +6830,10 @@ class VersionsApi
             );
         }
         // path params
-        if ($slug !== null) {
+        if ($slug_or_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'slug' . '}',
-                ObjectSerializer::toPathValue($slug),
+                '{' . 'slugOrId' . '}',
+                ObjectSerializer::toPathValue($slug_or_id),
                 $resourcePath
             );
         }

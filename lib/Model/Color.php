@@ -42,37 +42,37 @@ class Color
     /**
      * Possible values of this enum
      */
-    public const B400_FF = '#B400FF';
+    public const D946EF = '#d946ef';
 
-    public const C87_DFF = '#C87DFF';
+    public const A855F7 = '#a855f7';
 
-    public const E100_E1 = '#E100E1';
+    public const _8B5CF6 = '#8b5cf6';
 
-    public const _0000_FF = '#0000FF';
+    public const _6366F1 = '#6366f1';
 
-    public const B9_F2_FF = '#B9F2FF';
+    public const _3B82F6 = '#3b82f6';
 
-    public const E7_FEFF = '#E7FEFF';
+    public const _0EA5E9 = '#0ea5e9';
 
-    public const _0096_FF = '#0096FF';
+    public const _06B6D4 = '#06b6d4';
 
-    public const _00_E1_E1 = '#00E1E1';
+    public const _14B8A6 = '#14b8a6';
 
-    public const _00_DC00 = '#00DC00';
+    public const _34D399 = '#34d399';
 
-    public const _009600 = '#009600';
+    public const _22C55E = '#22c55e';
 
-    public const _7_FFF00 = '#7FFF00';
+    public const _84CC16 = '#84cc16';
 
-    public const FFC800 = '#FFC800';
+    public const EAB308 = '#eab308';
 
-    public const CFB53_B = '#CFB53B';
+    public const F59E0B = '#f59e0b';
 
-    public const FF8200 = '#FF8200';
+    public const F97316 = '#f97316';
 
-    public const DC0000 = '#DC0000';
+    public const EF4444 = '#ef4444';
 
-    public const C0_C0_C0 = '#C0C0C0';
+    public const _78716C = '#78716c';
 
     public const A9_A9_A9 = '#A9A9A9';
 
@@ -85,22 +85,22 @@ class Color
     public static function getAllowableEnumValues()
     {
         return [
-            self::B400_FF,
-            self::C87_DFF,
-            self::E100_E1,
-            self::_0000_FF,
-            self::B9_F2_FF,
-            self::E7_FEFF,
-            self::_0096_FF,
-            self::_00_E1_E1,
-            self::_00_DC00,
-            self::_009600,
-            self::_7_FFF00,
-            self::FFC800,
-            self::CFB53_B,
-            self::FF8200,
-            self::DC0000,
-            self::C0_C0_C0,
+            self::D946EF,
+            self::A855F7,
+            self::_8B5CF6,
+            self::_6366F1,
+            self::_3B82F6,
+            self::_0EA5E9,
+            self::_06B6D4,
+            self::_14B8A6,
+            self::_34D399,
+            self::_22C55E,
+            self::_84CC16,
+            self::EAB308,
+            self::F59E0B,
+            self::F97316,
+            self::EF4444,
+            self::_78716C,
             self::A9_A9_A9,
             self::TRANSPARENT
         ];

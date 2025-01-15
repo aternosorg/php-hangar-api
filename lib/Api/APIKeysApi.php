@@ -186,7 +186,7 @@ class APIKeysApi
 
 
             switch($statusCode) {
-                case 403:
+                case 201:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -240,7 +240,7 @@ class APIKeysApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 201:
+                case 403:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -312,7 +312,7 @@ class APIKeysApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 403:
+                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -328,7 +328,7 @@ class APIKeysApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 201:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -814,7 +814,7 @@ class APIKeysApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\ApiKey[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -841,7 +841,7 @@ class APIKeysApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\ApiKey[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -921,7 +921,7 @@ class APIKeysApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\ApiKey[]',
@@ -929,7 +929,7 @@ class APIKeysApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\ApiKey[]',

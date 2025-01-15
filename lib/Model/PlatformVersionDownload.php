@@ -57,9 +57,9 @@ class PlatformVersionDownload implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'file_info' => '\Aternos\HangarApi\Model\FileInfo',
+        'download_url' => 'string',
         'external_url' => 'string',
-        'download_url' => 'string'
+        'file_info' => '\Aternos\HangarApi\Model\FileInfo'
     ];
 
     /**
@@ -70,9 +70,9 @@ class PlatformVersionDownload implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'file_info' => null,
+        'download_url' => null,
         'external_url' => null,
-        'download_url' => null
+        'file_info' => null
     ];
 
     /**
@@ -81,9 +81,9 @@ class PlatformVersionDownload implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'file_info' => false,
+        'download_url' => false,
         'external_url' => false,
-        'download_url' => false
+        'file_info' => false
     ];
 
     /**
@@ -172,9 +172,9 @@ class PlatformVersionDownload implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'file_info' => 'fileInfo',
+        'download_url' => 'downloadUrl',
         'external_url' => 'externalUrl',
-        'download_url' => 'downloadUrl'
+        'file_info' => 'fileInfo'
     ];
 
     /**
@@ -183,9 +183,9 @@ class PlatformVersionDownload implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'file_info' => 'setFileInfo',
+        'download_url' => 'setDownloadUrl',
         'external_url' => 'setExternalUrl',
-        'download_url' => 'setDownloadUrl'
+        'file_info' => 'setFileInfo'
     ];
 
     /**
@@ -194,9 +194,9 @@ class PlatformVersionDownload implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'file_info' => 'getFileInfo',
+        'download_url' => 'getDownloadUrl',
         'external_url' => 'getExternalUrl',
-        'download_url' => 'getDownloadUrl'
+        'file_info' => 'getFileInfo'
     ];
 
     /**
@@ -256,9 +256,9 @@ class PlatformVersionDownload implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('file_info', $data ?? [], null);
-        $this->setIfExists('external_url', $data ?? [], null);
         $this->setIfExists('download_url', $data ?? [], null);
+        $this->setIfExists('external_url', $data ?? [], null);
+        $this->setIfExists('file_info', $data ?? [], null);
     }
 
     /**
@@ -304,28 +304,28 @@ class PlatformVersionDownload implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
-     * Gets file_info
+     * Gets download_url
      *
-     * @return \Aternos\HangarApi\Model\FileInfo|null
+     * @return string|null
      */
-    public function getFileInfo()
+    public function getDownloadUrl()
     {
-        return $this->container['file_info'];
+        return $this->container['download_url'];
     }
 
     /**
-     * Sets file_info
+     * Sets download_url
      *
-     * @param \Aternos\HangarApi\Model\FileInfo|null $file_info file_info
+     * @param string|null $download_url Hangar download url if not an external download
      *
      * @return self
      */
-    public function setFileInfo($file_info)
+    public function setDownloadUrl($download_url)
     {
-        if (is_null($file_info)) {
-            throw new \InvalidArgumentException('non-nullable file_info cannot be null');
+        if (is_null($download_url)) {
+            throw new \InvalidArgumentException('non-nullable download_url cannot be null');
         }
-        $this->container['file_info'] = $file_info;
+        $this->container['download_url'] = $download_url;
 
         return $this;
     }
@@ -358,28 +358,28 @@ class PlatformVersionDownload implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets download_url
+     * Gets file_info
      *
-     * @return string|null
+     * @return \Aternos\HangarApi\Model\FileInfo|null
      */
-    public function getDownloadUrl()
+    public function getFileInfo()
     {
-        return $this->container['download_url'];
+        return $this->container['file_info'];
     }
 
     /**
-     * Sets download_url
+     * Sets file_info
      *
-     * @param string|null $download_url Hangar download url if not an external download
+     * @param \Aternos\HangarApi\Model\FileInfo|null $file_info file_info
      *
      * @return self
      */
-    public function setDownloadUrl($download_url)
+    public function setFileInfo($file_info)
     {
-        if (is_null($download_url)) {
-            throw new \InvalidArgumentException('non-nullable download_url cannot be null');
+        if (is_null($file_info)) {
+            throw new \InvalidArgumentException('non-nullable file_info cannot be null');
         }
-        $this->container['download_url'] = $download_url;
+        $this->container['file_info'] = $file_info;
 
         return $this;
     }

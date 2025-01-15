@@ -57,8 +57,8 @@ class VersionStats implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'total_downloads' => 'int',
-        'platform_downloads' => 'array<string,int>'
+        'platform_downloads' => 'array<string,int>',
+        'total_downloads' => 'int'
     ];
 
     /**
@@ -69,8 +69,8 @@ class VersionStats implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'total_downloads' => 'int64',
-        'platform_downloads' => 'int64'
+        'platform_downloads' => 'int64',
+        'total_downloads' => 'int64'
     ];
 
     /**
@@ -79,8 +79,8 @@ class VersionStats implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'total_downloads' => false,
-        'platform_downloads' => false
+        'platform_downloads' => false,
+        'total_downloads' => false
     ];
 
     /**
@@ -169,8 +169,8 @@ class VersionStats implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'total_downloads' => 'totalDownloads',
-        'platform_downloads' => 'platformDownloads'
+        'platform_downloads' => 'platformDownloads',
+        'total_downloads' => 'totalDownloads'
     ];
 
     /**
@@ -179,8 +179,8 @@ class VersionStats implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'total_downloads' => 'setTotalDownloads',
-        'platform_downloads' => 'setPlatformDownloads'
+        'platform_downloads' => 'setPlatformDownloads',
+        'total_downloads' => 'setTotalDownloads'
     ];
 
     /**
@@ -189,8 +189,8 @@ class VersionStats implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'total_downloads' => 'getTotalDownloads',
-        'platform_downloads' => 'getPlatformDownloads'
+        'platform_downloads' => 'getPlatformDownloads',
+        'total_downloads' => 'getTotalDownloads'
     ];
 
     /**
@@ -250,8 +250,8 @@ class VersionStats implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('total_downloads', $data ?? [], null);
         $this->setIfExists('platform_downloads', $data ?? [], null);
+        $this->setIfExists('total_downloads', $data ?? [], null);
     }
 
     /**
@@ -297,33 +297,6 @@ class VersionStats implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets total_downloads
-     *
-     * @return int|null
-     */
-    public function getTotalDownloads()
-    {
-        return $this->container['total_downloads'];
-    }
-
-    /**
-     * Sets total_downloads
-     *
-     * @param int|null $total_downloads total_downloads
-     *
-     * @return self
-     */
-    public function setTotalDownloads($total_downloads)
-    {
-        if (is_null($total_downloads)) {
-            throw new \InvalidArgumentException('non-nullable total_downloads cannot be null');
-        }
-        $this->container['total_downloads'] = $total_downloads;
-
-        return $this;
-    }
-
-    /**
      * Gets platform_downloads
      *
      * @return array<string,int>|null
@@ -346,6 +319,33 @@ class VersionStats implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable platform_downloads cannot be null');
         }
         $this->container['platform_downloads'] = $platform_downloads;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_downloads
+     *
+     * @return int|null
+     */
+    public function getTotalDownloads()
+    {
+        return $this->container['total_downloads'];
+    }
+
+    /**
+     * Sets total_downloads
+     *
+     * @param int|null $total_downloads total_downloads
+     *
+     * @return self
+     */
+    public function setTotalDownloads($total_downloads)
+    {
+        if (is_null($total_downloads)) {
+            throw new \InvalidArgumentException('non-nullable total_downloads cannot be null');
+        }
+        $this->container['total_downloads'] = $total_downloads;
 
         return $this;
     }

@@ -57,11 +57,11 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'created_at' => '\DateTime',
-        'name' => 'string',
-        'description' => 'string',
         'color' => '\Aternos\HangarApi\Model\Color',
-        'flags' => '\Aternos\HangarApi\Model\ChannelFlag[]'
+        'created_at' => '\DateTime',
+        'description' => 'string',
+        'flags' => '\Aternos\HangarApi\Model\ChannelFlag[]',
+        'name' => 'string'
     ];
 
     /**
@@ -72,11 +72,11 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'created_at' => 'date-time',
-        'name' => null,
-        'description' => null,
         'color' => null,
-        'flags' => null
+        'created_at' => 'date-time',
+        'description' => null,
+        'flags' => null,
+        'name' => null
     ];
 
     /**
@@ -85,11 +85,11 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'created_at' => false,
-        'name' => false,
-        'description' => false,
         'color' => false,
-        'flags' => false
+        'created_at' => false,
+        'description' => false,
+        'flags' => false,
+        'name' => false
     ];
 
     /**
@@ -178,11 +178,11 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'created_at' => 'createdAt',
-        'name' => 'name',
-        'description' => 'description',
         'color' => 'color',
-        'flags' => 'flags'
+        'created_at' => 'createdAt',
+        'description' => 'description',
+        'flags' => 'flags',
+        'name' => 'name'
     ];
 
     /**
@@ -191,11 +191,11 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'created_at' => 'setCreatedAt',
-        'name' => 'setName',
-        'description' => 'setDescription',
         'color' => 'setColor',
-        'flags' => 'setFlags'
+        'created_at' => 'setCreatedAt',
+        'description' => 'setDescription',
+        'flags' => 'setFlags',
+        'name' => 'setName'
     ];
 
     /**
@@ -204,11 +204,11 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'created_at' => 'getCreatedAt',
-        'name' => 'getName',
-        'description' => 'getDescription',
         'color' => 'getColor',
-        'flags' => 'getFlags'
+        'created_at' => 'getCreatedAt',
+        'description' => 'getDescription',
+        'flags' => 'getFlags',
+        'name' => 'getName'
     ];
 
     /**
@@ -268,11 +268,11 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('color', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('flags', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -318,6 +318,33 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets color
+     *
+     * @return \Aternos\HangarApi\Model\Color|null
+     */
+    public function getColor()
+    {
+        return $this->container['color'];
+    }
+
+    /**
+     * Sets color
+     *
+     * @param \Aternos\HangarApi\Model\Color|null $color color
+     *
+     * @return self
+     */
+    public function setColor($color)
+    {
+        if (is_null($color)) {
+            throw new \InvalidArgumentException('non-nullable color cannot be null');
+        }
+        $this->container['color'] = $color;
+
+        return $this;
+    }
+
+    /**
      * Gets created_at
      *
      * @return \DateTime|null
@@ -340,33 +367,6 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name name
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
 
         return $this;
     }
@@ -399,33 +399,6 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets color
-     *
-     * @return \Aternos\HangarApi\Model\Color|null
-     */
-    public function getColor()
-    {
-        return $this->container['color'];
-    }
-
-    /**
-     * Sets color
-     *
-     * @param \Aternos\HangarApi\Model\Color|null $color color
-     *
-     * @return self
-     */
-    public function setColor($color)
-    {
-        if (is_null($color)) {
-            throw new \InvalidArgumentException('non-nullable color cannot be null');
-        }
-        $this->container['color'] = $color;
-
-        return $this;
-    }
-
-    /**
      * Gets flags
      *
      * @return \Aternos\HangarApi\Model\ChannelFlag[]|null
@@ -450,6 +423,33 @@ class ProjectChannel implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
         $this->container['flags'] = $flags;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        $this->container['name'] = $name;
 
         return $this;
     }

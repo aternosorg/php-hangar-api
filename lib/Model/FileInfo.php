@@ -58,8 +58,8 @@ class FileInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'name' => 'string',
-        'size_bytes' => 'int',
-        'sha256_hash' => 'string'
+        'sha256_hash' => 'string',
+        'size_bytes' => 'int'
     ];
 
     /**
@@ -71,8 +71,8 @@ class FileInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'name' => null,
-        'size_bytes' => 'int64',
-        'sha256_hash' => null
+        'sha256_hash' => null,
+        'size_bytes' => 'int64'
     ];
 
     /**
@@ -82,8 +82,8 @@ class FileInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'name' => false,
-        'size_bytes' => false,
-        'sha256_hash' => false
+        'sha256_hash' => false,
+        'size_bytes' => false
     ];
 
     /**
@@ -173,8 +173,8 @@ class FileInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'name' => 'name',
-        'size_bytes' => 'sizeBytes',
-        'sha256_hash' => 'sha256Hash'
+        'sha256_hash' => 'sha256Hash',
+        'size_bytes' => 'sizeBytes'
     ];
 
     /**
@@ -184,8 +184,8 @@ class FileInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'name' => 'setName',
-        'size_bytes' => 'setSizeBytes',
-        'sha256_hash' => 'setSha256Hash'
+        'sha256_hash' => 'setSha256Hash',
+        'size_bytes' => 'setSizeBytes'
     ];
 
     /**
@@ -195,8 +195,8 @@ class FileInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'name' => 'getName',
-        'size_bytes' => 'getSizeBytes',
-        'sha256_hash' => 'getSha256Hash'
+        'sha256_hash' => 'getSha256Hash',
+        'size_bytes' => 'getSizeBytes'
     ];
 
     /**
@@ -257,8 +257,8 @@ class FileInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('size_bytes', $data ?? [], null);
         $this->setIfExists('sha256_hash', $data ?? [], null);
+        $this->setIfExists('size_bytes', $data ?? [], null);
     }
 
     /**
@@ -331,33 +331,6 @@ class FileInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets size_bytes
-     *
-     * @return int|null
-     */
-    public function getSizeBytes()
-    {
-        return $this->container['size_bytes'];
-    }
-
-    /**
-     * Sets size_bytes
-     *
-     * @param int|null $size_bytes size_bytes
-     *
-     * @return self
-     */
-    public function setSizeBytes($size_bytes)
-    {
-        if (is_null($size_bytes)) {
-            throw new \InvalidArgumentException('non-nullable size_bytes cannot be null');
-        }
-        $this->container['size_bytes'] = $size_bytes;
-
-        return $this;
-    }
-
-    /**
      * Gets sha256_hash
      *
      * @return string|null
@@ -380,6 +353,33 @@ class FileInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable sha256_hash cannot be null');
         }
         $this->container['sha256_hash'] = $sha256_hash;
+
+        return $this;
+    }
+
+    /**
+     * Gets size_bytes
+     *
+     * @return int|null
+     */
+    public function getSizeBytes()
+    {
+        return $this->container['size_bytes'];
+    }
+
+    /**
+     * Sets size_bytes
+     *
+     * @param int|null $size_bytes size_bytes
+     *
+     * @return self
+     */
+    public function setSizeBytes($size_bytes)
+    {
+        if (is_null($size_bytes)) {
+            throw new \InvalidArgumentException('non-nullable size_bytes cannot be null');
+        }
+        $this->container['size_bytes'] = $size_bytes;
 
         return $this;
     }

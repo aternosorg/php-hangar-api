@@ -57,17 +57,18 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'avatar_url' => 'string',
+        'category' => '\Aternos\HangarApi\Model\Category',
         'created_at' => '\DateTime',
+        'description' => 'string',
+        'id' => 'int',
+        'last_updated' => '\DateTime',
         'name' => 'string',
         'namespace' => '\Aternos\HangarApi\Model\ProjectNamespace',
+        'settings' => '\Aternos\HangarApi\Model\ProjectSettings',
         'stats' => '\Aternos\HangarApi\Model\ProjectStats',
-        'category' => '\Aternos\HangarApi\Model\Category',
-        'last_updated' => '\DateTime',
-        'visibility' => '\Aternos\HangarApi\Model\Visibility',
-        'avatar_url' => 'string',
-        'description' => 'string',
         'user_actions' => '\Aternos\HangarApi\Model\UserActions',
-        'settings' => '\Aternos\HangarApi\Model\ProjectSettings'
+        'visibility' => '\Aternos\HangarApi\Model\Visibility'
     ];
 
     /**
@@ -78,17 +79,18 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'avatar_url' => null,
+        'category' => null,
         'created_at' => 'date-time',
+        'description' => null,
+        'id' => 'int64',
+        'last_updated' => 'date-time',
         'name' => null,
         'namespace' => null,
+        'settings' => null,
         'stats' => null,
-        'category' => null,
-        'last_updated' => 'date-time',
-        'visibility' => null,
-        'avatar_url' => null,
-        'description' => null,
         'user_actions' => null,
-        'settings' => null
+        'visibility' => null
     ];
 
     /**
@@ -97,17 +99,18 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'avatar_url' => false,
+        'category' => false,
         'created_at' => false,
+        'description' => false,
+        'id' => false,
+        'last_updated' => false,
         'name' => false,
         'namespace' => false,
+        'settings' => false,
         'stats' => false,
-        'category' => false,
-        'last_updated' => false,
-        'visibility' => false,
-        'avatar_url' => false,
-        'description' => false,
         'user_actions' => false,
-        'settings' => false
+        'visibility' => false
     ];
 
     /**
@@ -196,17 +199,18 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'avatar_url' => 'avatarUrl',
+        'category' => 'category',
         'created_at' => 'createdAt',
+        'description' => 'description',
+        'id' => 'id',
+        'last_updated' => 'lastUpdated',
         'name' => 'name',
         'namespace' => 'namespace',
+        'settings' => 'settings',
         'stats' => 'stats',
-        'category' => 'category',
-        'last_updated' => 'lastUpdated',
-        'visibility' => 'visibility',
-        'avatar_url' => 'avatarUrl',
-        'description' => 'description',
         'user_actions' => 'userActions',
-        'settings' => 'settings'
+        'visibility' => 'visibility'
     ];
 
     /**
@@ -215,17 +219,18 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'avatar_url' => 'setAvatarUrl',
+        'category' => 'setCategory',
         'created_at' => 'setCreatedAt',
+        'description' => 'setDescription',
+        'id' => 'setId',
+        'last_updated' => 'setLastUpdated',
         'name' => 'setName',
         'namespace' => 'setNamespace',
+        'settings' => 'setSettings',
         'stats' => 'setStats',
-        'category' => 'setCategory',
-        'last_updated' => 'setLastUpdated',
-        'visibility' => 'setVisibility',
-        'avatar_url' => 'setAvatarUrl',
-        'description' => 'setDescription',
         'user_actions' => 'setUserActions',
-        'settings' => 'setSettings'
+        'visibility' => 'setVisibility'
     ];
 
     /**
@@ -234,17 +239,18 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'avatar_url' => 'getAvatarUrl',
+        'category' => 'getCategory',
         'created_at' => 'getCreatedAt',
+        'description' => 'getDescription',
+        'id' => 'getId',
+        'last_updated' => 'getLastUpdated',
         'name' => 'getName',
         'namespace' => 'getNamespace',
+        'settings' => 'getSettings',
         'stats' => 'getStats',
-        'category' => 'getCategory',
-        'last_updated' => 'getLastUpdated',
-        'visibility' => 'getVisibility',
-        'avatar_url' => 'getAvatarUrl',
-        'description' => 'getDescription',
         'user_actions' => 'getUserActions',
-        'settings' => 'getSettings'
+        'visibility' => 'getVisibility'
     ];
 
     /**
@@ -304,17 +310,18 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('avatar_url', $data ?? [], null);
+        $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('last_updated', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('namespace', $data ?? [], null);
-        $this->setIfExists('stats', $data ?? [], null);
-        $this->setIfExists('category', $data ?? [], null);
-        $this->setIfExists('last_updated', $data ?? [], null);
-        $this->setIfExists('visibility', $data ?? [], null);
-        $this->setIfExists('avatar_url', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('user_actions', $data ?? [], null);
         $this->setIfExists('settings', $data ?? [], null);
+        $this->setIfExists('stats', $data ?? [], null);
+        $this->setIfExists('user_actions', $data ?? [], null);
+        $this->setIfExists('visibility', $data ?? [], null);
     }
 
     /**
@@ -360,6 +367,60 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets avatar_url
+     *
+     * @return string|null
+     */
+    public function getAvatarUrl()
+    {
+        return $this->container['avatar_url'];
+    }
+
+    /**
+     * Sets avatar_url
+     *
+     * @param string|null $avatar_url The url to the project's icon
+     *
+     * @return self
+     */
+    public function setAvatarUrl($avatar_url)
+    {
+        if (is_null($avatar_url)) {
+            throw new \InvalidArgumentException('non-nullable avatar_url cannot be null');
+        }
+        $this->container['avatar_url'] = $avatar_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets category
+     *
+     * @return \Aternos\HangarApi\Model\Category|null
+     */
+    public function getCategory()
+    {
+        return $this->container['category'];
+    }
+
+    /**
+     * Sets category
+     *
+     * @param \Aternos\HangarApi\Model\Category|null $category The category of the project
+     *
+     * @return self
+     */
+    public function setCategory($category)
+    {
+        if (is_null($category)) {
+            throw new \InvalidArgumentException('non-nullable category cannot be null');
+        }
+        $this->container['category'] = $category;
+
+        return $this;
+    }
+
+    /**
      * Gets created_at
      *
      * @return \DateTime|null
@@ -382,6 +443,87 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description The short description of the project
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id The internal id of the project
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_updated
+     *
+     * @return \DateTime|null
+     */
+    public function getLastUpdated()
+    {
+        return $this->container['last_updated'];
+    }
+
+    /**
+     * Sets last_updated
+     *
+     * @param \DateTime|null $last_updated The last time the project was updated
+     *
+     * @return self
+     */
+    public function setLastUpdated($last_updated)
+    {
+        if (is_null($last_updated)) {
+            throw new \InvalidArgumentException('non-nullable last_updated cannot be null');
+        }
+        $this->container['last_updated'] = $last_updated;
 
         return $this;
     }
@@ -426,7 +568,7 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets namespace
      *
-     * @param \Aternos\HangarApi\Model\ProjectNamespace|null $namespace namespace
+     * @param \Aternos\HangarApi\Model\ProjectNamespace|null $namespace The namespace of the project
      *
      * @return self
      */
@@ -436,195 +578,6 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable namespace cannot be null');
         }
         $this->container['namespace'] = $namespace;
-
-        return $this;
-    }
-
-    /**
-     * Gets stats
-     *
-     * @return \Aternos\HangarApi\Model\ProjectStats|null
-     */
-    public function getStats()
-    {
-        return $this->container['stats'];
-    }
-
-    /**
-     * Sets stats
-     *
-     * @param \Aternos\HangarApi\Model\ProjectStats|null $stats stats
-     *
-     * @return self
-     */
-    public function setStats($stats)
-    {
-        if (is_null($stats)) {
-            throw new \InvalidArgumentException('non-nullable stats cannot be null');
-        }
-        $this->container['stats'] = $stats;
-
-        return $this;
-    }
-
-    /**
-     * Gets category
-     *
-     * @return \Aternos\HangarApi\Model\Category|null
-     */
-    public function getCategory()
-    {
-        return $this->container['category'];
-    }
-
-    /**
-     * Sets category
-     *
-     * @param \Aternos\HangarApi\Model\Category|null $category category
-     *
-     * @return self
-     */
-    public function setCategory($category)
-    {
-        if (is_null($category)) {
-            throw new \InvalidArgumentException('non-nullable category cannot be null');
-        }
-        $this->container['category'] = $category;
-
-        return $this;
-    }
-
-    /**
-     * Gets last_updated
-     *
-     * @return \DateTime|null
-     */
-    public function getLastUpdated()
-    {
-        return $this->container['last_updated'];
-    }
-
-    /**
-     * Sets last_updated
-     *
-     * @param \DateTime|null $last_updated The last time the project was updated
-     *
-     * @return self
-     */
-    public function setLastUpdated($last_updated)
-    {
-        if (is_null($last_updated)) {
-            throw new \InvalidArgumentException('non-nullable last_updated cannot be null');
-        }
-        $this->container['last_updated'] = $last_updated;
-
-        return $this;
-    }
-
-    /**
-     * Gets visibility
-     *
-     * @return \Aternos\HangarApi\Model\Visibility|null
-     */
-    public function getVisibility()
-    {
-        return $this->container['visibility'];
-    }
-
-    /**
-     * Sets visibility
-     *
-     * @param \Aternos\HangarApi\Model\Visibility|null $visibility visibility
-     *
-     * @return self
-     */
-    public function setVisibility($visibility)
-    {
-        if (is_null($visibility)) {
-            throw new \InvalidArgumentException('non-nullable visibility cannot be null');
-        }
-        $this->container['visibility'] = $visibility;
-
-        return $this;
-    }
-
-    /**
-     * Gets avatar_url
-     *
-     * @return string|null
-     */
-    public function getAvatarUrl()
-    {
-        return $this->container['avatar_url'];
-    }
-
-    /**
-     * Sets avatar_url
-     *
-     * @param string|null $avatar_url The url to the project's icon
-     *
-     * @return self
-     */
-    public function setAvatarUrl($avatar_url)
-    {
-        if (is_null($avatar_url)) {
-            throw new \InvalidArgumentException('non-nullable avatar_url cannot be null');
-        }
-        $this->container['avatar_url'] = $avatar_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description The short description of the project
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_actions
-     *
-     * @return \Aternos\HangarApi\Model\UserActions|null
-     */
-    public function getUserActions()
-    {
-        return $this->container['user_actions'];
-    }
-
-    /**
-     * Sets user_actions
-     *
-     * @param \Aternos\HangarApi\Model\UserActions|null $user_actions user_actions
-     *
-     * @return self
-     */
-    public function setUserActions($user_actions)
-    {
-        if (is_null($user_actions)) {
-            throw new \InvalidArgumentException('non-nullable user_actions cannot be null');
-        }
-        $this->container['user_actions'] = $user_actions;
 
         return $this;
     }
@@ -642,7 +595,7 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets settings
      *
-     * @param \Aternos\HangarApi\Model\ProjectSettings|null $settings settings
+     * @param \Aternos\HangarApi\Model\ProjectSettings|null $settings The settings of the project
      *
      * @return self
      */
@@ -652,6 +605,87 @@ class Project implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable settings cannot be null');
         }
         $this->container['settings'] = $settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets stats
+     *
+     * @return \Aternos\HangarApi\Model\ProjectStats|null
+     */
+    public function getStats()
+    {
+        return $this->container['stats'];
+    }
+
+    /**
+     * Sets stats
+     *
+     * @param \Aternos\HangarApi\Model\ProjectStats|null $stats Stats of the project
+     *
+     * @return self
+     */
+    public function setStats($stats)
+    {
+        if (is_null($stats)) {
+            throw new \InvalidArgumentException('non-nullable stats cannot be null');
+        }
+        $this->container['stats'] = $stats;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_actions
+     *
+     * @return \Aternos\HangarApi\Model\UserActions|null
+     */
+    public function getUserActions()
+    {
+        return $this->container['user_actions'];
+    }
+
+    /**
+     * Sets user_actions
+     *
+     * @param \Aternos\HangarApi\Model\UserActions|null $user_actions Information about your interactions with the project
+     *
+     * @return self
+     */
+    public function setUserActions($user_actions)
+    {
+        if (is_null($user_actions)) {
+            throw new \InvalidArgumentException('non-nullable user_actions cannot be null');
+        }
+        $this->container['user_actions'] = $user_actions;
+
+        return $this;
+    }
+
+    /**
+     * Gets visibility
+     *
+     * @return \Aternos\HangarApi\Model\Visibility|null
+     */
+    public function getVisibility()
+    {
+        return $this->container['visibility'];
+    }
+
+    /**
+     * Sets visibility
+     *
+     * @param \Aternos\HangarApi\Model\Visibility|null $visibility The visibility of the project
+     *
+     * @return self
+     */
+    public function setVisibility($visibility)
+    {
+        if (is_null($visibility)) {
+            throw new \InvalidArgumentException('non-nullable visibility cannot be null');
+        }
+        $this->container['visibility'] = $visibility;
 
         return $this;
     }

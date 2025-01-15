@@ -58,8 +58,8 @@ class MultipartFileOrUrl implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'platforms' => '\Aternos\HangarApi\Model\Platform[]',
-        'external_url' => 'string'
+        'external_url' => 'string',
+        'platforms' => '\Aternos\HangarApi\Model\Platform[]'
     ];
 
     /**
@@ -70,8 +70,8 @@ class MultipartFileOrUrl implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'platforms' => null,
-        'external_url' => null
+        'external_url' => null,
+        'platforms' => null
     ];
 
     /**
@@ -80,8 +80,8 @@ class MultipartFileOrUrl implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'platforms' => false,
-        'external_url' => false
+        'external_url' => false,
+        'platforms' => false
     ];
 
     /**
@@ -170,8 +170,8 @@ class MultipartFileOrUrl implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'platforms' => 'platforms',
-        'external_url' => 'externalUrl'
+        'external_url' => 'externalUrl',
+        'platforms' => 'platforms'
     ];
 
     /**
@@ -180,8 +180,8 @@ class MultipartFileOrUrl implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'platforms' => 'setPlatforms',
-        'external_url' => 'setExternalUrl'
+        'external_url' => 'setExternalUrl',
+        'platforms' => 'setPlatforms'
     ];
 
     /**
@@ -190,8 +190,8 @@ class MultipartFileOrUrl implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'platforms' => 'getPlatforms',
-        'external_url' => 'getExternalUrl'
+        'external_url' => 'getExternalUrl',
+        'platforms' => 'getPlatforms'
     ];
 
     /**
@@ -251,8 +251,8 @@ class MultipartFileOrUrl implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('platforms', $data ?? [], null);
         $this->setIfExists('external_url', $data ?? [], null);
+        $this->setIfExists('platforms', $data ?? [], null);
     }
 
     /**
@@ -298,33 +298,6 @@ class MultipartFileOrUrl implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets platforms
-     *
-     * @return \Aternos\HangarApi\Model\Platform[]|null
-     */
-    public function getPlatforms()
-    {
-        return $this->container['platforms'];
-    }
-
-    /**
-     * Sets platforms
-     *
-     * @param \Aternos\HangarApi\Model\Platform[]|null $platforms List of platforms this jar runs on
-     *
-     * @return self
-     */
-    public function setPlatforms($platforms)
-    {
-        if (is_null($platforms)) {
-            throw new \InvalidArgumentException('non-nullable platforms cannot be null');
-        }
-        $this->container['platforms'] = $platforms;
-
-        return $this;
-    }
-
-    /**
      * Gets external_url
      *
      * @return string|null
@@ -347,6 +320,33 @@ class MultipartFileOrUrl implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable external_url cannot be null');
         }
         $this->container['external_url'] = $external_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets platforms
+     *
+     * @return \Aternos\HangarApi\Model\Platform[]|null
+     */
+    public function getPlatforms()
+    {
+        return $this->container['platforms'];
+    }
+
+    /**
+     * Sets platforms
+     *
+     * @param \Aternos\HangarApi\Model\Platform[]|null $platforms List of platforms this jar runs on
+     *
+     * @return self
+     */
+    public function setPlatforms($platforms)
+    {
+        if (is_null($platforms)) {
+            throw new \InvalidArgumentException('non-nullable platforms cannot be null');
+        }
+        $this->container['platforms'] = $platforms;
 
         return $this;
     }

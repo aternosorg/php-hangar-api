@@ -39,7 +39,7 @@ class User
      */
     public function getWatchedProjects(): WatchedProjectList
     {
-        return $this->client->getProjectsWatchedByUser($this->user->getName());
+        return $this->client->getProjectsWatchedByUser($this->user->getId());
     }
 
     /**
@@ -49,7 +49,7 @@ class User
      */
     public function getStarredProjects(): StarredProjectList
     {
-        return $this->client->getProjectsStarredByUser($this->user->getName());
+        return $this->client->getProjectsStarredByUser($this->user->getId());
     }
 
     /**
@@ -59,7 +59,7 @@ class User
      */
     public function getPinnedProjects(): array
     {
-        return $this->client->getProjectsPinnedByUser($this->user->getName());
+        return $this->client->getProjectsPinnedByUser($this->user->getId());
     }
 
     /**
@@ -70,7 +70,7 @@ class User
     public function getProjects(): ProjectList
     {
         $options = new ProjectSearchOptions();
-        $options->setOwner($this->user->getName());
+        $options->setOwner($this->user->getId());
         return $this->client->getProjects($options);
     }
 }

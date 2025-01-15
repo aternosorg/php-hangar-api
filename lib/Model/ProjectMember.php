@@ -57,8 +57,8 @@ class ProjectMember implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'user' => 'string',
-        'roles' => '\Aternos\HangarApi\Model\CompactRole[]'
+        'roles' => '\Aternos\HangarApi\Model\CompactRole[]',
+        'user' => 'string'
     ];
 
     /**
@@ -69,8 +69,8 @@ class ProjectMember implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'user' => null,
-        'roles' => null
+        'roles' => null,
+        'user' => null
     ];
 
     /**
@@ -79,8 +79,8 @@ class ProjectMember implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'user' => false,
-        'roles' => false
+        'roles' => false,
+        'user' => false
     ];
 
     /**
@@ -169,8 +169,8 @@ class ProjectMember implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'user' => 'user',
-        'roles' => 'roles'
+        'roles' => 'roles',
+        'user' => 'user'
     ];
 
     /**
@@ -179,8 +179,8 @@ class ProjectMember implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'user' => 'setUser',
-        'roles' => 'setRoles'
+        'roles' => 'setRoles',
+        'user' => 'setUser'
     ];
 
     /**
@@ -189,8 +189,8 @@ class ProjectMember implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'user' => 'getUser',
-        'roles' => 'getRoles'
+        'roles' => 'getRoles',
+        'user' => 'getUser'
     ];
 
     /**
@@ -250,8 +250,8 @@ class ProjectMember implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('user', $data ?? [], null);
         $this->setIfExists('roles', $data ?? [], null);
+        $this->setIfExists('user', $data ?? [], null);
     }
 
     /**
@@ -297,33 +297,6 @@ class ProjectMember implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets user
-     *
-     * @return string|null
-     */
-    public function getUser()
-    {
-        return $this->container['user'];
-    }
-
-    /**
-     * Sets user
-     *
-     * @param string|null $user user
-     *
-     * @return self
-     */
-    public function setUser($user)
-    {
-        if (is_null($user)) {
-            throw new \InvalidArgumentException('non-nullable user cannot be null');
-        }
-        $this->container['user'] = $user;
-
-        return $this;
-    }
-
-    /**
      * Gets roles
      *
      * @return \Aternos\HangarApi\Model\CompactRole[]|null
@@ -346,6 +319,33 @@ class ProjectMember implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable roles cannot be null');
         }
         $this->container['roles'] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Gets user
+     *
+     * @return string|null
+     */
+    public function getUser()
+    {
+        return $this->container['user'];
+    }
+
+    /**
+     * Sets user
+     *
+     * @param string|null $user user
+     *
+     * @return self
+     */
+    public function setUser($user)
+    {
+        if (is_null($user)) {
+            throw new \InvalidArgumentException('non-nullable user cannot be null');
+        }
+        $this->container['user'] = $user;
 
         return $this;
     }

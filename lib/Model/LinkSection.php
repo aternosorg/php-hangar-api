@@ -58,9 +58,9 @@ class LinkSection implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'int',
-        'type' => 'string',
+        'links' => '\Aternos\HangarApi\Model\Link[]',
         'title' => 'string',
-        'links' => '\Aternos\HangarApi\Model\Link[]'
+        'type' => 'string'
     ];
 
     /**
@@ -72,9 +72,9 @@ class LinkSection implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => 'int64',
-        'type' => null,
+        'links' => null,
         'title' => null,
-        'links' => null
+        'type' => null
     ];
 
     /**
@@ -84,9 +84,9 @@ class LinkSection implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => false,
-        'type' => false,
+        'links' => false,
         'title' => false,
-        'links' => false
+        'type' => false
     ];
 
     /**
@@ -176,9 +176,9 @@ class LinkSection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'type' => 'type',
+        'links' => 'links',
         'title' => 'title',
-        'links' => 'links'
+        'type' => 'type'
     ];
 
     /**
@@ -188,9 +188,9 @@ class LinkSection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
-        'type' => 'setType',
+        'links' => 'setLinks',
         'title' => 'setTitle',
-        'links' => 'setLinks'
+        'type' => 'setType'
     ];
 
     /**
@@ -200,9 +200,9 @@ class LinkSection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
-        'type' => 'getType',
+        'links' => 'getLinks',
         'title' => 'getTitle',
-        'links' => 'getLinks'
+        'type' => 'getType'
     ];
 
     /**
@@ -263,9 +263,9 @@ class LinkSection implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('links', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -295,11 +295,11 @@ class LinkSection implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
         if ($this->container['links'] === null) {
             $invalidProperties[] = "'links' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
         return $invalidProperties;
     }
@@ -344,28 +344,28 @@ class LinkSection implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets type
+     * Gets links
      *
-     * @return string
+     * @return \Aternos\HangarApi\Model\Link[]
      */
-    public function getType()
+    public function getLinks()
     {
-        return $this->container['type'];
+        return $this->container['links'];
     }
 
     /**
-     * Sets type
+     * Sets links
      *
-     * @param string $type Type of the link. Either SIDEBAR or TOP
+     * @param \Aternos\HangarApi\Model\Link[] $links links
      *
      * @return self
      */
-    public function setType($type)
+    public function setLinks($links)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        if (is_null($links)) {
+            throw new \InvalidArgumentException('non-nullable links cannot be null');
         }
-        $this->container['type'] = $type;
+        $this->container['links'] = $links;
 
         return $this;
     }
@@ -398,28 +398,28 @@ class LinkSection implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets links
+     * Gets type
      *
-     * @return \Aternos\HangarApi\Model\Link[]
+     * @return string
      */
-    public function getLinks()
+    public function getType()
     {
-        return $this->container['links'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets links
+     * Sets type
      *
-     * @param \Aternos\HangarApi\Model\Link[] $links links
+     * @param string $type Type of the link. Either SIDEBAR or TOP
      *
      * @return self
      */
-    public function setLinks($links)
+    public function setType($type)
     {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['links'] = $links;
+        $this->container['type'] = $type;
 
         return $this;
     }

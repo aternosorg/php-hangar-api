@@ -57,9 +57,9 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => '\Aternos\HangarApi\Model\PermissionType',
         'permission_bin_string' => 'string',
-        'permissions' => '\Aternos\HangarApi\Model\NamedPermission[]'
+        'permissions' => '\Aternos\HangarApi\Model\NamedPermission[]',
+        'type' => '\Aternos\HangarApi\Model\PermissionType'
     ];
 
     /**
@@ -70,9 +70,9 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
         'permission_bin_string' => null,
-        'permissions' => null
+        'permissions' => null,
+        'type' => null
     ];
 
     /**
@@ -81,9 +81,9 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'type' => false,
         'permission_bin_string' => false,
-        'permissions' => false
+        'permissions' => false,
+        'type' => false
     ];
 
     /**
@@ -172,9 +172,9 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
         'permission_bin_string' => 'permissionBinString',
-        'permissions' => 'permissions'
+        'permissions' => 'permissions',
+        'type' => 'type'
     ];
 
     /**
@@ -183,9 +183,9 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
         'permission_bin_string' => 'setPermissionBinString',
-        'permissions' => 'setPermissions'
+        'permissions' => 'setPermissions',
+        'type' => 'setType'
     ];
 
     /**
@@ -194,9 +194,9 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
         'permission_bin_string' => 'getPermissionBinString',
-        'permissions' => 'getPermissions'
+        'permissions' => 'getPermissions',
+        'type' => 'getType'
     ];
 
     /**
@@ -256,9 +256,9 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('permission_bin_string', $data ?? [], null);
         $this->setIfExists('permissions', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -302,33 +302,6 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets type
-     *
-     * @return \Aternos\HangarApi\Model\PermissionType|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param \Aternos\HangarApi\Model\PermissionType|null $type type
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * Gets permission_bin_string
@@ -380,6 +353,33 @@ class UserPermissions implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
         }
         $this->container['permissions'] = $permissions;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return \Aternos\HangarApi\Model\PermissionType|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param \Aternos\HangarApi\Model\PermissionType|null $type type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

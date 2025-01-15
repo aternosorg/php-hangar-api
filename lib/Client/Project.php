@@ -44,6 +44,15 @@ class Project
     }
 
     /**
+     * Get the id of this project (shorthand for getData()->getId())
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->project->getId();
+    }
+
+    /**
      * Get all versions of this project (paginated)
      * @param string|null $channel
      * @param Platform|null $platform
@@ -52,7 +61,7 @@ class Project
      */
     public function getVersions(?string $channel = null, ?Platform $platform = null): ProjectVersionList
     {
-        $options = new VersionSearchOptions($this->getSlug());
+        $options = new VersionSearchOptions($this->getId());
         $options->setProject($this);
         $options->setChannel($channel);
         $options->setPlatform($platform);
@@ -67,7 +76,7 @@ class Project
      */
     public function getVersion(string $name): Version
     {
-        return $this->client->getProjectVersion($this, $name);
+        return $this->client->getVersion($this, $name);
     }
 
     /**
@@ -77,7 +86,7 @@ class Project
      */
     public function getWatchers(): UserList
     {
-        return $this->client->getProjectWatchers($this->getSlug());
+        return $this->client->getProjectWatchers($this->getId());
     }
 
     /**
@@ -91,7 +100,7 @@ class Project
     public function getDailyStats(?DateTime $from = null, ?DateTime $to = null): array
     {
         return $this->client->getDailyProjectStats(
-            $this->getSlug(),
+            $this->getId(),
             $from ?? $this->getData()->getCreatedAt(),
             $to
         );
@@ -104,7 +113,7 @@ class Project
      */
     public function getStarGazers(): UserList
     {
-        return $this->client->getProjectStarGazers($this->getSlug());
+        return $this->client->getProjectStarGazers($this->getId());
     }
 
     /**
@@ -114,7 +123,7 @@ class Project
      */
     public function getMembers(): ProjectMemberList
     {
-        return $this->client->getProjectMembers($this->getSlug());
+        return $this->client->getProjectMembers($this->getId());
     }
 
     /**
@@ -134,7 +143,7 @@ class Project
      */
     public function getMainPage(): ProjectPage
     {
-        return $this->client->getProjectMainPage($this->getSlug());
+        return $this->client->getProjectMainPage($this->getId());
     }
 
     /**
@@ -145,6 +154,6 @@ class Project
      */
     public function getPage(string $path): ProjectPage
     {
-        return $this->client->getProjectPage($this->getSlug(), $path);
+        return $this->client->getProjectPage($this->getId(), $path);
     }
 }

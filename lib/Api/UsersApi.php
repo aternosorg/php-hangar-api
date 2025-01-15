@@ -229,7 +229,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\PaginatedResultUser' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -256,7 +256,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\PaginatedResultUser' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -336,7 +336,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultUser',
@@ -344,7 +344,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultUser',
@@ -648,7 +648,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\PaginatedResultUser' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -675,7 +675,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\PaginatedResultUser' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -755,7 +755,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultUser',
@@ -763,7 +763,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultUser',
@@ -983,7 +983,7 @@ class UsersApi
      *
      * Returns a specific user
      *
-     * @param  string $user The name of the user to return (required)
+     * @param  string $user The name or id of the user to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1001,7 +1001,7 @@ class UsersApi
      *
      * Returns a specific user
      *
-     * @param  string $user The name of the user to return (required)
+     * @param  string $user The name or id of the user to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1063,7 +1063,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\User' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1090,7 +1090,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\User' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1170,7 +1170,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\User',
@@ -1178,7 +1178,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\User',
@@ -1196,7 +1196,7 @@ class UsersApi
      *
      * Returns a specific user
      *
-     * @param  string $user The name of the user to return (required)
+     * @param  string $user The name or id of the user to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1217,7 +1217,7 @@ class UsersApi
      *
      * Returns a specific user
      *
-     * @param  string $user The name of the user to return (required)
+     * @param  string $user The name or id of the user to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1267,7 +1267,7 @@ class UsersApi
     /**
      * Create request for operation 'getUser'
      *
-     * @param  string $user The name of the user to return (required)
+     * @param  string $user The name or id of the user to return (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1365,7 +1365,7 @@ class UsersApi
      *
      * Returns the pinned projects for a specific user
      *
-     * @param  string $user The user to return pinned projects for (required)
+     * @param  string $user The name or id of the user to return pinned projects for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPinnedProjects'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1383,7 +1383,7 @@ class UsersApi
      *
      * Returns the pinned projects for a specific user
      *
-     * @param  string $user The user to return pinned projects for (required)
+     * @param  string $user The name or id of the user to return pinned projects for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPinnedProjects'] to see the possible values for this operation
      *
      * @throws \Aternos\HangarApi\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1445,7 +1445,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\ProjectCompact[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1472,7 +1472,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\ProjectCompact[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1552,7 +1552,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\ProjectCompact[]',
@@ -1560,7 +1560,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\ProjectCompact[]',
@@ -1578,7 +1578,7 @@ class UsersApi
      *
      * Returns the pinned projects for a specific user
      *
-     * @param  string $user The user to return pinned projects for (required)
+     * @param  string $user The name or id of the user to return pinned projects for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPinnedProjects'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1599,7 +1599,7 @@ class UsersApi
      *
      * Returns the pinned projects for a specific user
      *
-     * @param  string $user The user to return pinned projects for (required)
+     * @param  string $user The name or id of the user to return pinned projects for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPinnedProjects'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1649,7 +1649,7 @@ class UsersApi
     /**
      * Create request for operation 'getUserPinnedProjects'
      *
-     * @param  string $user The user to return pinned projects for (required)
+     * @param  string $user The name or id of the user to return pinned projects for (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPinnedProjects'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1747,7 +1747,7 @@ class UsersApi
      *
      * Returns the watched projects for a specific user
      *
-     * @param  string $user The user to return watched projects for (required)
+     * @param  string $user The name or id of the user to return watched projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserWatching'] to see the possible values for this operation
@@ -1767,7 +1767,7 @@ class UsersApi
      *
      * Returns the watched projects for a specific user
      *
-     * @param  string $user The user to return watched projects for (required)
+     * @param  string $user The name or id of the user to return watched projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserWatching'] to see the possible values for this operation
@@ -1831,7 +1831,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\PaginatedResultProjectCompact' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1858,7 +1858,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\PaginatedResultProjectCompact' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1938,7 +1938,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultProjectCompact',
@@ -1946,7 +1946,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultProjectCompact',
@@ -1964,7 +1964,7 @@ class UsersApi
      *
      * Returns the watched projects for a specific user
      *
-     * @param  string $user The user to return watched projects for (required)
+     * @param  string $user The name or id of the user to return watched projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserWatching'] to see the possible values for this operation
@@ -1987,7 +1987,7 @@ class UsersApi
      *
      * Returns the watched projects for a specific user
      *
-     * @param  string $user The user to return watched projects for (required)
+     * @param  string $user The name or id of the user to return watched projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserWatching'] to see the possible values for this operation
@@ -2039,7 +2039,7 @@ class UsersApi
     /**
      * Create request for operation 'getUserWatching'
      *
-     * @param  string $user The user to return watched projects for (required)
+     * @param  string $user The name or id of the user to return watched projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserWatching'] to see the possible values for this operation
@@ -2165,7 +2165,7 @@ class UsersApi
      *
      * Returns the starred projects for a specific user
      *
-     * @param  string $user The user to return starred projects for (required)
+     * @param  string $user The name or id of the user to return starred projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showStarred'] to see the possible values for this operation
@@ -2185,7 +2185,7 @@ class UsersApi
      *
      * Returns the starred projects for a specific user
      *
-     * @param  string $user The user to return starred projects for (required)
+     * @param  string $user The name or id of the user to return starred projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showStarred'] to see the possible values for this operation
@@ -2249,7 +2249,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\PaginatedResultProjectCompact' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2276,7 +2276,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\PaginatedResultProjectCompact' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2356,7 +2356,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultProjectCompact',
@@ -2364,7 +2364,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultProjectCompact',
@@ -2382,7 +2382,7 @@ class UsersApi
      *
      * Returns the starred projects for a specific user
      *
-     * @param  string $user The user to return starred projects for (required)
+     * @param  string $user The name or id of the user to return starred projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showStarred'] to see the possible values for this operation
@@ -2405,7 +2405,7 @@ class UsersApi
      *
      * Returns the starred projects for a specific user
      *
-     * @param  string $user The user to return starred projects for (required)
+     * @param  string $user The name or id of the user to return starred projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showStarred'] to see the possible values for this operation
@@ -2457,7 +2457,7 @@ class UsersApi
     /**
      * Create request for operation 'showStarred'
      *
-     * @param  string $user The user to return starred projects for (required)
+     * @param  string $user The name or id of the user to return starred projects for (required)
      * @param  \Aternos\HangarApi\Model\RequestPagination $pagination Pagination information (required)
      * @param  string $sort Used to sort the result (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['showStarred'] to see the possible values for this operation
@@ -2667,7 +2667,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\PaginatedResultUser' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2694,7 +2694,7 @@ class UsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\PaginatedResultUser' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2774,7 +2774,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultUser',
@@ -2782,7 +2782,7 @@ class UsersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultUser',

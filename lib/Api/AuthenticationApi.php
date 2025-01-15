@@ -207,7 +207,7 @@ class AuthenticationApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 400:
                     if ('\Aternos\HangarApi\Model\ApiSession' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -234,7 +234,7 @@ class AuthenticationApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 400:
+                case 401:
                     if ('\Aternos\HangarApi\Model\ApiSession' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -314,7 +314,7 @@ class AuthenticationApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\ApiSession',
@@ -322,7 +322,7 @@ class AuthenticationApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 400:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\ApiSession',

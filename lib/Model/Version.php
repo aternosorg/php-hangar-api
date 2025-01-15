@@ -57,19 +57,20 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'created_at' => '\DateTime',
-        'name' => 'string',
-        'visibility' => '\Aternos\HangarApi\Model\Visibility',
-        'description' => 'string',
-        'stats' => '\Aternos\HangarApi\Model\VersionStats',
         'author' => 'string',
-        'review_state' => '\Aternos\HangarApi\Model\ReviewState',
         'channel' => '\Aternos\HangarApi\Model\ProjectChannel',
-        'pinned_status' => '\Aternos\HangarApi\Model\PinnedStatus',
+        'created_at' => '\DateTime',
+        'description' => 'string',
         'downloads' => 'array<string,\Aternos\HangarApi\Model\PlatformVersionDownload>',
-        'plugin_dependencies' => 'array<string,\Aternos\HangarApi\Model\PluginDependency[]>',
+        'id' => 'int',
+        'name' => 'string',
+        'pinned_status' => '\Aternos\HangarApi\Model\PinnedStatus',
         'platform_dependencies' => 'array<string,string[]>',
-        'platform_dependencies_formatted' => 'array<string,string[]>'
+        'platform_dependencies_formatted' => 'array<string,string[]>',
+        'plugin_dependencies' => 'array<string,\Aternos\HangarApi\Model\PluginDependency[]>',
+        'review_state' => '\Aternos\HangarApi\Model\ReviewState',
+        'stats' => '\Aternos\HangarApi\Model\VersionStats',
+        'visibility' => '\Aternos\HangarApi\Model\Visibility'
     ];
 
     /**
@@ -80,19 +81,20 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'created_at' => 'date-time',
-        'name' => null,
-        'visibility' => null,
-        'description' => null,
-        'stats' => null,
         'author' => null,
-        'review_state' => null,
         'channel' => null,
-        'pinned_status' => null,
+        'created_at' => 'date-time',
+        'description' => null,
         'downloads' => null,
-        'plugin_dependencies' => null,
+        'id' => 'int64',
+        'name' => null,
+        'pinned_status' => null,
         'platform_dependencies' => null,
-        'platform_dependencies_formatted' => null
+        'platform_dependencies_formatted' => null,
+        'plugin_dependencies' => null,
+        'review_state' => null,
+        'stats' => null,
+        'visibility' => null
     ];
 
     /**
@@ -101,19 +103,20 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'created_at' => false,
-        'name' => false,
-        'visibility' => false,
-        'description' => false,
-        'stats' => false,
         'author' => false,
-        'review_state' => false,
         'channel' => false,
-        'pinned_status' => false,
+        'created_at' => false,
+        'description' => false,
         'downloads' => false,
-        'plugin_dependencies' => false,
+        'id' => false,
+        'name' => false,
+        'pinned_status' => false,
         'platform_dependencies' => false,
-        'platform_dependencies_formatted' => false
+        'platform_dependencies_formatted' => false,
+        'plugin_dependencies' => false,
+        'review_state' => false,
+        'stats' => false,
+        'visibility' => false
     ];
 
     /**
@@ -202,19 +205,20 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'created_at' => 'createdAt',
-        'name' => 'name',
-        'visibility' => 'visibility',
-        'description' => 'description',
-        'stats' => 'stats',
         'author' => 'author',
-        'review_state' => 'reviewState',
         'channel' => 'channel',
-        'pinned_status' => 'pinnedStatus',
+        'created_at' => 'createdAt',
+        'description' => 'description',
         'downloads' => 'downloads',
-        'plugin_dependencies' => 'pluginDependencies',
+        'id' => 'id',
+        'name' => 'name',
+        'pinned_status' => 'pinnedStatus',
         'platform_dependencies' => 'platformDependencies',
-        'platform_dependencies_formatted' => 'platformDependenciesFormatted'
+        'platform_dependencies_formatted' => 'platformDependenciesFormatted',
+        'plugin_dependencies' => 'pluginDependencies',
+        'review_state' => 'reviewState',
+        'stats' => 'stats',
+        'visibility' => 'visibility'
     ];
 
     /**
@@ -223,19 +227,20 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'created_at' => 'setCreatedAt',
-        'name' => 'setName',
-        'visibility' => 'setVisibility',
-        'description' => 'setDescription',
-        'stats' => 'setStats',
         'author' => 'setAuthor',
-        'review_state' => 'setReviewState',
         'channel' => 'setChannel',
-        'pinned_status' => 'setPinnedStatus',
+        'created_at' => 'setCreatedAt',
+        'description' => 'setDescription',
         'downloads' => 'setDownloads',
-        'plugin_dependencies' => 'setPluginDependencies',
+        'id' => 'setId',
+        'name' => 'setName',
+        'pinned_status' => 'setPinnedStatus',
         'platform_dependencies' => 'setPlatformDependencies',
-        'platform_dependencies_formatted' => 'setPlatformDependenciesFormatted'
+        'platform_dependencies_formatted' => 'setPlatformDependenciesFormatted',
+        'plugin_dependencies' => 'setPluginDependencies',
+        'review_state' => 'setReviewState',
+        'stats' => 'setStats',
+        'visibility' => 'setVisibility'
     ];
 
     /**
@@ -244,19 +249,20 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'created_at' => 'getCreatedAt',
-        'name' => 'getName',
-        'visibility' => 'getVisibility',
-        'description' => 'getDescription',
-        'stats' => 'getStats',
         'author' => 'getAuthor',
-        'review_state' => 'getReviewState',
         'channel' => 'getChannel',
-        'pinned_status' => 'getPinnedStatus',
+        'created_at' => 'getCreatedAt',
+        'description' => 'getDescription',
         'downloads' => 'getDownloads',
-        'plugin_dependencies' => 'getPluginDependencies',
+        'id' => 'getId',
+        'name' => 'getName',
+        'pinned_status' => 'getPinnedStatus',
         'platform_dependencies' => 'getPlatformDependencies',
-        'platform_dependencies_formatted' => 'getPlatformDependenciesFormatted'
+        'platform_dependencies_formatted' => 'getPlatformDependenciesFormatted',
+        'plugin_dependencies' => 'getPluginDependencies',
+        'review_state' => 'getReviewState',
+        'stats' => 'getStats',
+        'visibility' => 'getVisibility'
     ];
 
     /**
@@ -316,19 +322,20 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('visibility', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('stats', $data ?? [], null);
         $this->setIfExists('author', $data ?? [], null);
-        $this->setIfExists('review_state', $data ?? [], null);
         $this->setIfExists('channel', $data ?? [], null);
-        $this->setIfExists('pinned_status', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('downloads', $data ?? [], null);
-        $this->setIfExists('plugin_dependencies', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('pinned_status', $data ?? [], null);
         $this->setIfExists('platform_dependencies', $data ?? [], null);
         $this->setIfExists('platform_dependencies_formatted', $data ?? [], null);
+        $this->setIfExists('plugin_dependencies', $data ?? [], null);
+        $this->setIfExists('review_state', $data ?? [], null);
+        $this->setIfExists('stats', $data ?? [], null);
+        $this->setIfExists('visibility', $data ?? [], null);
     }
 
     /**
@@ -374,141 +381,6 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at created_at
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name name
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets visibility
-     *
-     * @return \Aternos\HangarApi\Model\Visibility|null
-     */
-    public function getVisibility()
-    {
-        return $this->container['visibility'];
-    }
-
-    /**
-     * Sets visibility
-     *
-     * @param \Aternos\HangarApi\Model\Visibility|null $visibility visibility
-     *
-     * @return self
-     */
-    public function setVisibility($visibility)
-    {
-        if (is_null($visibility)) {
-            throw new \InvalidArgumentException('non-nullable visibility cannot be null');
-        }
-        $this->container['visibility'] = $visibility;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description description
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets stats
-     *
-     * @return \Aternos\HangarApi\Model\VersionStats|null
-     */
-    public function getStats()
-    {
-        return $this->container['stats'];
-    }
-
-    /**
-     * Sets stats
-     *
-     * @param \Aternos\HangarApi\Model\VersionStats|null $stats stats
-     *
-     * @return self
-     */
-    public function setStats($stats)
-    {
-        if (is_null($stats)) {
-            throw new \InvalidArgumentException('non-nullable stats cannot be null');
-        }
-        $this->container['stats'] = $stats;
-
-        return $this;
-    }
-
-    /**
      * Gets author
      *
      * @return string|null
@@ -531,33 +403,6 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable author cannot be null');
         }
         $this->container['author'] = $author;
-
-        return $this;
-    }
-
-    /**
-     * Gets review_state
-     *
-     * @return \Aternos\HangarApi\Model\ReviewState|null
-     */
-    public function getReviewState()
-    {
-        return $this->container['review_state'];
-    }
-
-    /**
-     * Sets review_state
-     *
-     * @param \Aternos\HangarApi\Model\ReviewState|null $review_state review_state
-     *
-     * @return self
-     */
-    public function setReviewState($review_state)
-    {
-        if (is_null($review_state)) {
-            throw new \InvalidArgumentException('non-nullable review_state cannot be null');
-        }
-        $this->container['review_state'] = $review_state;
 
         return $this;
     }
@@ -590,28 +435,55 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets pinned_status
+     * Gets created_at
      *
-     * @return \Aternos\HangarApi\Model\PinnedStatus|null
+     * @return \DateTime|null
      */
-    public function getPinnedStatus()
+    public function getCreatedAt()
     {
-        return $this->container['pinned_status'];
+        return $this->container['created_at'];
     }
 
     /**
-     * Sets pinned_status
+     * Sets created_at
      *
-     * @param \Aternos\HangarApi\Model\PinnedStatus|null $pinned_status pinned_status
+     * @param \DateTime|null $created_at created_at
      *
      * @return self
      */
-    public function setPinnedStatus($pinned_status)
+    public function setCreatedAt($created_at)
     {
-        if (is_null($pinned_status)) {
-            throw new \InvalidArgumentException('non-nullable pinned_status cannot be null');
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
-        $this->container['pinned_status'] = $pinned_status;
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
 
         return $this;
     }
@@ -644,28 +516,82 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets plugin_dependencies
+     * Gets id
      *
-     * @return array<string,\Aternos\HangarApi\Model\PluginDependency[]>|null
+     * @return int|null
      */
-    public function getPluginDependencies()
+    public function getId()
     {
-        return $this->container['plugin_dependencies'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets plugin_dependencies
+     * Sets id
      *
-     * @param array<string,\Aternos\HangarApi\Model\PluginDependency[]>|null $plugin_dependencies plugin_dependencies
+     * @param int|null $id id
      *
      * @return self
      */
-    public function setPluginDependencies($plugin_dependencies)
+    public function setId($id)
     {
-        if (is_null($plugin_dependencies)) {
-            throw new \InvalidArgumentException('non-nullable plugin_dependencies cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $this->container['plugin_dependencies'] = $plugin_dependencies;
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets pinned_status
+     *
+     * @return \Aternos\HangarApi\Model\PinnedStatus|null
+     */
+    public function getPinnedStatus()
+    {
+        return $this->container['pinned_status'];
+    }
+
+    /**
+     * Sets pinned_status
+     *
+     * @param \Aternos\HangarApi\Model\PinnedStatus|null $pinned_status pinned_status
+     *
+     * @return self
+     */
+    public function setPinnedStatus($pinned_status)
+    {
+        if (is_null($pinned_status)) {
+            throw new \InvalidArgumentException('non-nullable pinned_status cannot be null');
+        }
+        $this->container['pinned_status'] = $pinned_status;
 
         return $this;
     }
@@ -720,6 +646,114 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable platform_dependencies_formatted cannot be null');
         }
         $this->container['platform_dependencies_formatted'] = $platform_dependencies_formatted;
+
+        return $this;
+    }
+
+    /**
+     * Gets plugin_dependencies
+     *
+     * @return array<string,\Aternos\HangarApi\Model\PluginDependency[]>|null
+     */
+    public function getPluginDependencies()
+    {
+        return $this->container['plugin_dependencies'];
+    }
+
+    /**
+     * Sets plugin_dependencies
+     *
+     * @param array<string,\Aternos\HangarApi\Model\PluginDependency[]>|null $plugin_dependencies plugin_dependencies
+     *
+     * @return self
+     */
+    public function setPluginDependencies($plugin_dependencies)
+    {
+        if (is_null($plugin_dependencies)) {
+            throw new \InvalidArgumentException('non-nullable plugin_dependencies cannot be null');
+        }
+        $this->container['plugin_dependencies'] = $plugin_dependencies;
+
+        return $this;
+    }
+
+    /**
+     * Gets review_state
+     *
+     * @return \Aternos\HangarApi\Model\ReviewState|null
+     */
+    public function getReviewState()
+    {
+        return $this->container['review_state'];
+    }
+
+    /**
+     * Sets review_state
+     *
+     * @param \Aternos\HangarApi\Model\ReviewState|null $review_state review_state
+     *
+     * @return self
+     */
+    public function setReviewState($review_state)
+    {
+        if (is_null($review_state)) {
+            throw new \InvalidArgumentException('non-nullable review_state cannot be null');
+        }
+        $this->container['review_state'] = $review_state;
+
+        return $this;
+    }
+
+    /**
+     * Gets stats
+     *
+     * @return \Aternos\HangarApi\Model\VersionStats|null
+     */
+    public function getStats()
+    {
+        return $this->container['stats'];
+    }
+
+    /**
+     * Sets stats
+     *
+     * @param \Aternos\HangarApi\Model\VersionStats|null $stats stats
+     *
+     * @return self
+     */
+    public function setStats($stats)
+    {
+        if (is_null($stats)) {
+            throw new \InvalidArgumentException('non-nullable stats cannot be null');
+        }
+        $this->container['stats'] = $stats;
+
+        return $this;
+    }
+
+    /**
+     * Gets visibility
+     *
+     * @return \Aternos\HangarApi\Model\Visibility|null
+     */
+    public function getVisibility()
+    {
+        return $this->container['visibility'];
+    }
+
+    /**
+     * Sets visibility
+     *
+     * @param \Aternos\HangarApi\Model\Visibility|null $visibility visibility
+     *
+     * @return self
+     */
+    public function setVisibility($visibility)
+    {
+        if (is_null($visibility)) {
+            throw new \InvalidArgumentException('non-nullable visibility cannot be null');
+        }
+        $this->container['visibility'] = $visibility;
 
         return $this;
     }

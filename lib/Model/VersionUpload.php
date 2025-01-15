@@ -58,12 +58,12 @@ class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'version' => 'string',
-        'plugin_dependencies' => 'array<string,\Aternos\HangarApi\Model\PluginDependency[]>',
-        'platform_dependencies' => 'array<string,string[]>',
+        'channel' => 'string',
         'description' => 'string',
         'files' => '\Aternos\HangarApi\Model\MultipartFileOrUrl[]',
-        'channel' => 'string'
+        'platform_dependencies' => 'array<string,string[]>',
+        'plugin_dependencies' => 'array<string,\Aternos\HangarApi\Model\PluginDependency[]>',
+        'version' => 'string'
     ];
 
     /**
@@ -74,12 +74,12 @@ class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'version' => null,
-        'plugin_dependencies' => null,
-        'platform_dependencies' => null,
+        'channel' => null,
         'description' => null,
         'files' => null,
-        'channel' => null
+        'platform_dependencies' => null,
+        'plugin_dependencies' => null,
+        'version' => null
     ];
 
     /**
@@ -88,12 +88,12 @@ class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'version' => false,
-        'plugin_dependencies' => false,
-        'platform_dependencies' => false,
+        'channel' => false,
         'description' => false,
         'files' => false,
-        'channel' => false
+        'platform_dependencies' => false,
+        'plugin_dependencies' => false,
+        'version' => false
     ];
 
     /**
@@ -182,12 +182,12 @@ class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'version' => 'version',
-        'plugin_dependencies' => 'pluginDependencies',
-        'platform_dependencies' => 'platformDependencies',
+        'channel' => 'channel',
         'description' => 'description',
         'files' => 'files',
-        'channel' => 'channel'
+        'platform_dependencies' => 'platformDependencies',
+        'plugin_dependencies' => 'pluginDependencies',
+        'version' => 'version'
     ];
 
     /**
@@ -196,12 +196,12 @@ class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'version' => 'setVersion',
-        'plugin_dependencies' => 'setPluginDependencies',
-        'platform_dependencies' => 'setPlatformDependencies',
+        'channel' => 'setChannel',
         'description' => 'setDescription',
         'files' => 'setFiles',
-        'channel' => 'setChannel'
+        'platform_dependencies' => 'setPlatformDependencies',
+        'plugin_dependencies' => 'setPluginDependencies',
+        'version' => 'setVersion'
     ];
 
     /**
@@ -210,12 +210,12 @@ class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'version' => 'getVersion',
-        'plugin_dependencies' => 'getPluginDependencies',
-        'platform_dependencies' => 'getPlatformDependencies',
+        'channel' => 'getChannel',
         'description' => 'getDescription',
         'files' => 'getFiles',
-        'channel' => 'getChannel'
+        'platform_dependencies' => 'getPlatformDependencies',
+        'plugin_dependencies' => 'getPluginDependencies',
+        'version' => 'getVersion'
     ];
 
     /**
@@ -275,12 +275,12 @@ class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('version', $data ?? [], null);
-        $this->setIfExists('plugin_dependencies', $data ?? [], null);
-        $this->setIfExists('platform_dependencies', $data ?? [], null);
+        $this->setIfExists('channel', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('files', $data ?? [], null);
-        $this->setIfExists('channel', $data ?? [], null);
+        $this->setIfExists('platform_dependencies', $data ?? [], null);
+        $this->setIfExists('plugin_dependencies', $data ?? [], null);
+        $this->setIfExists('version', $data ?? [], null);
     }
 
     /**
@@ -310,8 +310,8 @@ class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['version'] === null) {
-            $invalidProperties[] = "'version' can't be null";
+        if ($this->container['channel'] === null) {
+            $invalidProperties[] = "'channel' can't be null";
         }
         if (!is_null($this->container['files']) && (count($this->container['files']) > 3)) {
             $invalidProperties[] = "invalid value for 'files', number of items must be less than or equal to 3.";
@@ -321,8 +321,8 @@ class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'files', number of items must be greater than or equal to 1.";
         }
 
-        if ($this->container['channel'] === null) {
-            $invalidProperties[] = "'channel' can't be null";
+        if ($this->container['version'] === null) {
+            $invalidProperties[] = "'version' can't be null";
         }
         return $invalidProperties;
     }
@@ -340,82 +340,28 @@ class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets version
+     * Gets channel
      *
      * @return string
      */
-    public function getVersion()
+    public function getChannel()
     {
-        return $this->container['version'];
+        return $this->container['channel'];
     }
 
     /**
-     * Sets version
+     * Sets channel
      *
-     * @param string $version Version string of the version to be published
+     * @param string $channel Channel of the version to be published under
      *
      * @return self
      */
-    public function setVersion($version)
+    public function setChannel($channel)
     {
-        if (is_null($version)) {
-            throw new \InvalidArgumentException('non-nullable version cannot be null');
+        if (is_null($channel)) {
+            throw new \InvalidArgumentException('non-nullable channel cannot be null');
         }
-        $this->container['version'] = $version;
-
-        return $this;
-    }
-
-    /**
-     * Gets plugin_dependencies
-     *
-     * @return array<string,\Aternos\HangarApi\Model\PluginDependency[]>|null
-     */
-    public function getPluginDependencies()
-    {
-        return $this->container['plugin_dependencies'];
-    }
-
-    /**
-     * Sets plugin_dependencies
-     *
-     * @param array<string,\Aternos\HangarApi\Model\PluginDependency[]>|null $plugin_dependencies Map of each platform's plugin dependencies
-     *
-     * @return self
-     */
-    public function setPluginDependencies($plugin_dependencies)
-    {
-        if (is_null($plugin_dependencies)) {
-            throw new \InvalidArgumentException('non-nullable plugin_dependencies cannot be null');
-        }
-        $this->container['plugin_dependencies'] = $plugin_dependencies;
-
-        return $this;
-    }
-
-    /**
-     * Gets platform_dependencies
-     *
-     * @return array<string,string[]>|null
-     */
-    public function getPlatformDependencies()
-    {
-        return $this->container['platform_dependencies'];
-    }
-
-    /**
-     * Sets platform_dependencies
-     *
-     * @param array<string,string[]>|null $platform_dependencies Map of platforms and their versions this version runs on
-     *
-     * @return self
-     */
-    public function setPlatformDependencies($platform_dependencies)
-    {
-        if (is_null($platform_dependencies)) {
-            throw new \InvalidArgumentException('non-nullable platform_dependencies cannot be null');
-        }
-        $this->container['platform_dependencies'] = $platform_dependencies;
+        $this->container['channel'] = $channel;
 
         return $this;
     }
@@ -482,28 +428,82 @@ class VersionUpload implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets channel
+     * Gets platform_dependencies
      *
-     * @return string
+     * @return array<string,string[]>|null
      */
-    public function getChannel()
+    public function getPlatformDependencies()
     {
-        return $this->container['channel'];
+        return $this->container['platform_dependencies'];
     }
 
     /**
-     * Sets channel
+     * Sets platform_dependencies
      *
-     * @param string $channel Channel of the version to be published under
+     * @param array<string,string[]>|null $platform_dependencies Map of platforms and their versions this version runs on
      *
      * @return self
      */
-    public function setChannel($channel)
+    public function setPlatformDependencies($platform_dependencies)
     {
-        if (is_null($channel)) {
-            throw new \InvalidArgumentException('non-nullable channel cannot be null');
+        if (is_null($platform_dependencies)) {
+            throw new \InvalidArgumentException('non-nullable platform_dependencies cannot be null');
         }
-        $this->container['channel'] = $channel;
+        $this->container['platform_dependencies'] = $platform_dependencies;
+
+        return $this;
+    }
+
+    /**
+     * Gets plugin_dependencies
+     *
+     * @return array<string,\Aternos\HangarApi\Model\PluginDependency[]>|null
+     */
+    public function getPluginDependencies()
+    {
+        return $this->container['plugin_dependencies'];
+    }
+
+    /**
+     * Sets plugin_dependencies
+     *
+     * @param array<string,\Aternos\HangarApi\Model\PluginDependency[]>|null $plugin_dependencies Map of each platform's plugin dependencies
+     *
+     * @return self
+     */
+    public function setPluginDependencies($plugin_dependencies)
+    {
+        if (is_null($plugin_dependencies)) {
+            throw new \InvalidArgumentException('non-nullable plugin_dependencies cannot be null');
+        }
+        $this->container['plugin_dependencies'] = $plugin_dependencies;
+
+        return $this;
+    }
+
+    /**
+     * Gets version
+     *
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->container['version'];
+    }
+
+    /**
+     * Sets version
+     *
+     * @param string $version Version string of the version to be published
+     *
+     * @return self
+     */
+    public function setVersion($version)
+    {
+        if (is_null($version)) {
+            throw new \InvalidArgumentException('non-nullable version cannot be null');
+        }
+        $this->container['version'] = $version;
 
         return $this;
     }
