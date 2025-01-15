@@ -162,7 +162,7 @@ class HangarAPIClient
                 $permissions[0] === NamedPermission::VIEW_PUBLIC_INFO;
         }
 
-        return $this->permissions->hasAll($permissions, $project)->getResult();
+        return $this->permissions->hasAll($permissions, project: $project)->getResult();
     }
 
     /**
@@ -469,10 +469,6 @@ class HangarAPIClient
     public function getDailyVersionStatsById(int $versionId, DateTime $from, ?DateTime $to = null): array
     {
         $this->authenticate();
-
-        if (!$this->hasPermission(NamedPermission::IS_SUBJECT_MEMBER, $versionId)) {
-            throw new ApiException('You need the is_subject_member permission to view version statistics');
-        }
 
         $to ??= new DateTime();
 
