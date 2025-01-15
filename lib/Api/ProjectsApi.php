@@ -225,7 +225,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\Project' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -252,7 +252,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\Project' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -332,7 +332,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\Project',
@@ -340,7 +340,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\Project',
@@ -609,7 +609,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\PaginatedResultProjectMember' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -636,7 +636,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\PaginatedResultProjectMember' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -716,7 +716,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultProjectMember',
@@ -724,7 +724,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultProjectMember',
@@ -1012,7 +1012,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\PaginatedResultUser' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1039,7 +1039,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\PaginatedResultUser' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1119,7 +1119,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultUser',
@@ -1127,7 +1127,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultUser',
@@ -1415,7 +1415,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\PaginatedResultUser' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1442,7 +1442,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\PaginatedResultUser' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1522,7 +1522,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultUser',
@@ -1530,7 +1530,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultUser',
@@ -1838,7 +1838,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\PaginatedResultProject' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1865,7 +1865,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\PaginatedResultProject' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1945,7 +1945,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultProject',
@@ -1953,7 +1953,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultProject',
@@ -2364,7 +2364,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\Project' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2391,7 +2391,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\Project' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2471,7 +2471,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\Project',
@@ -2479,7 +2479,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\Project',
@@ -2750,7 +2750,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('array<string,\Aternos\HangarApi\Model\DayProjectStats>' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2777,7 +2777,7 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('array<string,\Aternos\HangarApi\Model\DayProjectStats>' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2857,7 +2857,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'array<string,\Aternos\HangarApi\Model\DayProjectStats>',
@@ -2865,7 +2865,7 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'array<string,\Aternos\HangarApi\Model\DayProjectStats>',

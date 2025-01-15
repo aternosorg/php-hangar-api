@@ -58,10 +58,10 @@ class ApiKey implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'created_at' => '\DateTime',
+        'last_used' => '\DateTime',
         'name' => 'string',
-        'token_identifier' => 'string',
         'permissions' => '\Aternos\HangarApi\Model\NamedPermission[]',
-        'last_used' => '\DateTime'
+        'token_identifier' => 'string'
     ];
 
     /**
@@ -73,10 +73,10 @@ class ApiKey implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'created_at' => 'date-time',
+        'last_used' => 'date-time',
         'name' => null,
-        'token_identifier' => null,
         'permissions' => null,
-        'last_used' => 'date-time'
+        'token_identifier' => null
     ];
 
     /**
@@ -86,10 +86,10 @@ class ApiKey implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'created_at' => false,
+        'last_used' => false,
         'name' => false,
-        'token_identifier' => false,
         'permissions' => false,
-        'last_used' => false
+        'token_identifier' => false
     ];
 
     /**
@@ -179,10 +179,10 @@ class ApiKey implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'created_at' => 'createdAt',
+        'last_used' => 'lastUsed',
         'name' => 'name',
-        'token_identifier' => 'tokenIdentifier',
         'permissions' => 'permissions',
-        'last_used' => 'lastUsed'
+        'token_identifier' => 'tokenIdentifier'
     ];
 
     /**
@@ -192,10 +192,10 @@ class ApiKey implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'created_at' => 'setCreatedAt',
+        'last_used' => 'setLastUsed',
         'name' => 'setName',
-        'token_identifier' => 'setTokenIdentifier',
         'permissions' => 'setPermissions',
-        'last_used' => 'setLastUsed'
+        'token_identifier' => 'setTokenIdentifier'
     ];
 
     /**
@@ -205,10 +205,10 @@ class ApiKey implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'created_at' => 'getCreatedAt',
+        'last_used' => 'getLastUsed',
         'name' => 'getName',
-        'token_identifier' => 'getTokenIdentifier',
         'permissions' => 'getPermissions',
-        'last_used' => 'getLastUsed'
+        'token_identifier' => 'getTokenIdentifier'
     ];
 
     /**
@@ -269,10 +269,10 @@ class ApiKey implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('token_identifier', $data ?? [], null);
-        $this->setIfExists('permissions', $data ?? [], null);
         $this->setIfExists('last_used', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('permissions', $data ?? [], null);
+        $this->setIfExists('token_identifier', $data ?? [], null);
     }
 
     /**
@@ -345,6 +345,33 @@ class ApiKey implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets last_used
+     *
+     * @return \DateTime|null
+     */
+    public function getLastUsed()
+    {
+        return $this->container['last_used'];
+    }
+
+    /**
+     * Sets last_used
+     *
+     * @param \DateTime|null $last_used last_used
+     *
+     * @return self
+     */
+    public function setLastUsed($last_used)
+    {
+        if (is_null($last_used)) {
+            throw new \InvalidArgumentException('non-nullable last_used cannot be null');
+        }
+        $this->container['last_used'] = $last_used;
+
+        return $this;
+    }
+
+    /**
      * Gets name
      *
      * @return string|null
@@ -367,33 +394,6 @@ class ApiKey implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets token_identifier
-     *
-     * @return string|null
-     */
-    public function getTokenIdentifier()
-    {
-        return $this->container['token_identifier'];
-    }
-
-    /**
-     * Sets token_identifier
-     *
-     * @param string|null $token_identifier token_identifier
-     *
-     * @return self
-     */
-    public function setTokenIdentifier($token_identifier)
-    {
-        if (is_null($token_identifier)) {
-            throw new \InvalidArgumentException('non-nullable token_identifier cannot be null');
-        }
-        $this->container['token_identifier'] = $token_identifier;
 
         return $this;
     }
@@ -426,28 +426,28 @@ class ApiKey implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets last_used
+     * Gets token_identifier
      *
-     * @return \DateTime|null
+     * @return string|null
      */
-    public function getLastUsed()
+    public function getTokenIdentifier()
     {
-        return $this->container['last_used'];
+        return $this->container['token_identifier'];
     }
 
     /**
-     * Sets last_used
+     * Sets token_identifier
      *
-     * @param \DateTime|null $last_used last_used
+     * @param string|null $token_identifier token_identifier
      *
      * @return self
      */
-    public function setLastUsed($last_used)
+    public function setTokenIdentifier($token_identifier)
     {
-        if (is_null($last_used)) {
-            throw new \InvalidArgumentException('non-nullable last_used cannot be null');
+        if (is_null($token_identifier)) {
+            throw new \InvalidArgumentException('non-nullable token_identifier cannot be null');
         }
-        $this->container['last_used'] = $last_used;
+        $this->container['token_identifier'] = $token_identifier;
 
         return $this;
     }

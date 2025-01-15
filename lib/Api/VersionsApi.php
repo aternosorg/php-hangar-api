@@ -232,7 +232,7 @@ class VersionsApi
 
 
             switch($statusCode) {
-                case 303:
+                case 200:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -259,7 +259,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 200:
+                case 303:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -313,7 +313,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -340,7 +340,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -412,7 +412,7 @@ class VersionsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 303:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -420,7 +420,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 200:
+                case 303:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -436,7 +436,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -444,7 +444,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -606,7 +606,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/octet-stream', 'application/json', ],
+            ['application/json', 'application/octet-stream', ],
             $contentType,
             $multipart
         );
@@ -975,7 +975,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/octet-stream', 'application/json', ],
+            ['application/json', 'application/octet-stream', ],
             $contentType,
             $multipart
         );
@@ -1087,7 +1087,7 @@ class VersionsApi
 
 
             switch($statusCode) {
-                case 303:
+                case 200:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1114,7 +1114,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 200:
+                case 303:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1168,7 +1168,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1195,7 +1195,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('object' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1267,7 +1267,7 @@ class VersionsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 303:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -1275,7 +1275,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 200:
+                case 303:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -1291,7 +1291,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -1299,7 +1299,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'object',
@@ -1443,7 +1443,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/octet-stream', 'application/json', ],
+            ['application/json', 'application/octet-stream', ],
             $contentType,
             $multipart
         );
@@ -1772,7 +1772,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', ],
+            ['application/json', 'text/plain', ],
             $contentType,
             $multipart
         );
@@ -2118,7 +2118,7 @@ class VersionsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', ],
+            ['application/json', 'text/plain', ],
             $contentType,
             $multipart
         );
@@ -3306,7 +3306,7 @@ class VersionsApi
 
 
             switch($statusCode) {
-                case 403:
+                case 200:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3360,7 +3360,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 200:
+                case 403:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3432,7 +3432,7 @@ class VersionsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 403:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -3448,7 +3448,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 200:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -3690,7 +3690,7 @@ class VersionsApi
 
 
             switch($statusCode) {
-                case 403:
+                case 200:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3744,7 +3744,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 200:
+                case 403:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3816,7 +3816,7 @@ class VersionsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 403:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -3832,7 +3832,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 200:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -4126,7 +4126,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\PaginatedResultVersion' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4153,7 +4153,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\PaginatedResultVersion' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4233,7 +4233,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultVersion',
@@ -4241,7 +4241,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\PaginatedResultVersion',
@@ -4568,7 +4568,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\Version' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4595,7 +4595,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\Version' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4675,7 +4675,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\Version',
@@ -4683,7 +4683,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\Version',
@@ -4968,7 +4968,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\Version' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4995,7 +4995,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\Version' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5075,7 +5075,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\Version',
@@ -5083,7 +5083,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\Version',
@@ -5356,7 +5356,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('array<string,\Aternos\HangarApi\Model\VersionStats>' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5383,7 +5383,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('array<string,\Aternos\HangarApi\Model\VersionStats>' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5463,7 +5463,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'array<string,\Aternos\HangarApi\Model\VersionStats>',
@@ -5471,7 +5471,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'array<string,\Aternos\HangarApi\Model\VersionStats>',
@@ -5798,7 +5798,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('array<string,\Aternos\HangarApi\Model\VersionStats>' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5825,7 +5825,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('array<string,\Aternos\HangarApi\Model\VersionStats>' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5905,7 +5905,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'array<string,\Aternos\HangarApi\Model\VersionStats>',
@@ -5913,7 +5913,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'array<string,\Aternos\HangarApi\Model\VersionStats>',
@@ -6222,7 +6222,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 403:
+                case 401:
                     if ('\Aternos\HangarApi\Model\UploadedVersion' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6249,7 +6249,7 @@ class VersionsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
+                case 403:
                     if ('\Aternos\HangarApi\Model\UploadedVersion' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6329,7 +6329,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 403:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\UploadedVersion',
@@ -6337,7 +6337,7 @@ class VersionsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aternos\HangarApi\Model\UploadedVersion',

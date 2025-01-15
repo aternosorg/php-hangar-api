@@ -35,7 +35,6 @@ use \Aternos\HangarApi\ObjectSerializer;
  * UserActions Class Doc Comment
  *
  * @category Class
- * @description Information about your interactions with the project
  * @package  Aternos\HangarApi
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -58,9 +57,9 @@ class UserActions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'flagged' => 'bool',
         'starred' => 'bool',
-        'watching' => 'bool',
-        'flagged' => 'bool'
+        'watching' => 'bool'
     ];
 
     /**
@@ -71,9 +70,9 @@ class UserActions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'flagged' => null,
         'starred' => null,
-        'watching' => null,
-        'flagged' => null
+        'watching' => null
     ];
 
     /**
@@ -82,9 +81,9 @@ class UserActions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'flagged' => false,
         'starred' => false,
-        'watching' => false,
-        'flagged' => false
+        'watching' => false
     ];
 
     /**
@@ -173,9 +172,9 @@ class UserActions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'flagged' => 'flagged',
         'starred' => 'starred',
-        'watching' => 'watching',
-        'flagged' => 'flagged'
+        'watching' => 'watching'
     ];
 
     /**
@@ -184,9 +183,9 @@ class UserActions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'flagged' => 'setFlagged',
         'starred' => 'setStarred',
-        'watching' => 'setWatching',
-        'flagged' => 'setFlagged'
+        'watching' => 'setWatching'
     ];
 
     /**
@@ -195,9 +194,9 @@ class UserActions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'flagged' => 'getFlagged',
         'starred' => 'getStarred',
-        'watching' => 'getWatching',
-        'flagged' => 'getFlagged'
+        'watching' => 'getWatching'
     ];
 
     /**
@@ -257,9 +256,9 @@ class UserActions implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('flagged', $data ?? [], null);
         $this->setIfExists('starred', $data ?? [], null);
         $this->setIfExists('watching', $data ?? [], null);
-        $this->setIfExists('flagged', $data ?? [], null);
     }
 
     /**
@@ -303,6 +302,33 @@ class UserActions implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets flagged
+     *
+     * @return bool|null
+     */
+    public function getFlagged()
+    {
+        return $this->container['flagged'];
+    }
+
+    /**
+     * Sets flagged
+     *
+     * @param bool|null $flagged flagged
+     *
+     * @return self
+     */
+    public function setFlagged($flagged)
+    {
+        if (is_null($flagged)) {
+            throw new \InvalidArgumentException('non-nullable flagged cannot be null');
+        }
+        $this->container['flagged'] = $flagged;
+
+        return $this;
+    }
 
     /**
      * Gets starred
@@ -354,33 +380,6 @@ class UserActions implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable watching cannot be null');
         }
         $this->container['watching'] = $watching;
-
-        return $this;
-    }
-
-    /**
-     * Gets flagged
-     *
-     * @return bool|null
-     */
-    public function getFlagged()
-    {
-        return $this->container['flagged'];
-    }
-
-    /**
-     * Sets flagged
-     *
-     * @param bool|null $flagged flagged
-     *
-     * @return self
-     */
-    public function setFlagged($flagged)
-    {
-        if (is_null($flagged)) {
-            throw new \InvalidArgumentException('non-nullable flagged cannot be null');
-        }
-        $this->container['flagged'] = $flagged;
 
         return $this;
     }

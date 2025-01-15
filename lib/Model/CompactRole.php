@@ -57,10 +57,10 @@ class CompactRole implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'title' => 'string',
+        'category' => 'string',
         'color' => '\Aternos\HangarApi\Model\Color',
         'rank' => 'int',
-        'category' => 'string'
+        'title' => 'string'
     ];
 
     /**
@@ -71,10 +71,10 @@ class CompactRole implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'title' => null,
+        'category' => null,
         'color' => null,
         'rank' => 'int32',
-        'category' => null
+        'title' => null
     ];
 
     /**
@@ -83,10 +83,10 @@ class CompactRole implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'title' => false,
+        'category' => false,
         'color' => false,
         'rank' => false,
-        'category' => false
+        'title' => false
     ];
 
     /**
@@ -175,10 +175,10 @@ class CompactRole implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'title' => 'title',
+        'category' => 'category',
         'color' => 'color',
         'rank' => 'rank',
-        'category' => 'category'
+        'title' => 'title'
     ];
 
     /**
@@ -187,10 +187,10 @@ class CompactRole implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'title' => 'setTitle',
+        'category' => 'setCategory',
         'color' => 'setColor',
         'rank' => 'setRank',
-        'category' => 'setCategory'
+        'title' => 'setTitle'
     ];
 
     /**
@@ -199,10 +199,10 @@ class CompactRole implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'title' => 'getTitle',
+        'category' => 'getCategory',
         'color' => 'getColor',
         'rank' => 'getRank',
-        'category' => 'getCategory'
+        'title' => 'getTitle'
     ];
 
     /**
@@ -262,10 +262,10 @@ class CompactRole implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('color', $data ?? [], null);
         $this->setIfExists('rank', $data ?? [], null);
-        $this->setIfExists('category', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
     }
 
     /**
@@ -311,28 +311,28 @@ class CompactRole implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets title
+     * Gets category
      *
      * @return string|null
      */
-    public function getTitle()
+    public function getCategory()
     {
-        return $this->container['title'];
+        return $this->container['category'];
     }
 
     /**
-     * Sets title
+     * Sets category
      *
-     * @param string|null $title title
+     * @param string|null $category category
      *
      * @return self
      */
-    public function setTitle($title)
+    public function setCategory($category)
     {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
+        if (is_null($category)) {
+            throw new \InvalidArgumentException('non-nullable category cannot be null');
         }
-        $this->container['title'] = $title;
+        $this->container['category'] = $category;
 
         return $this;
     }
@@ -392,28 +392,28 @@ class CompactRole implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets category
+     * Gets title
      *
      * @return string|null
      */
-    public function getCategory()
+    public function getTitle()
     {
-        return $this->container['category'];
+        return $this->container['title'];
     }
 
     /**
-     * Sets category
+     * Sets title
      *
-     * @param string|null $category category
+     * @param string|null $title title
      *
      * @return self
      */
-    public function setCategory($category)
+    public function setTitle($title)
     {
-        if (is_null($category)) {
-            throw new \InvalidArgumentException('non-nullable category cannot be null');
+        if (is_null($title)) {
+            throw new \InvalidArgumentException('non-nullable title cannot be null');
         }
-        $this->container['category'] = $category;
+        $this->container['title'] = $title;
 
         return $this;
     }

@@ -57,17 +57,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'avatar_url' => 'string',
         'created_at' => '\DateTime',
         'id' => 'int',
-        'name' => 'string',
-        'tagline' => 'string',
-        'roles' => 'int[]',
-        'project_count' => 'int',
+        'is_organization' => 'bool',
         'locked' => 'bool',
+        'name' => 'string',
         'name_history' => '\Aternos\HangarApi\Model\UserNameChange[]',
-        'avatar_url' => 'string',
+        'project_count' => 'int',
+        'roles' => 'int[]',
         'socials' => 'object',
-        'is_organization' => 'bool'
+        'tagline' => 'string'
     ];
 
     /**
@@ -78,17 +78,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'avatar_url' => null,
         'created_at' => 'date-time',
         'id' => 'int64',
-        'name' => null,
-        'tagline' => null,
-        'roles' => 'int64',
-        'project_count' => 'int64',
+        'is_organization' => null,
         'locked' => null,
+        'name' => null,
         'name_history' => null,
-        'avatar_url' => null,
+        'project_count' => 'int64',
+        'roles' => 'int64',
         'socials' => null,
-        'is_organization' => null
+        'tagline' => null
     ];
 
     /**
@@ -97,17 +97,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'avatar_url' => false,
         'created_at' => false,
         'id' => false,
-        'name' => false,
-        'tagline' => false,
-        'roles' => false,
-        'project_count' => false,
+        'is_organization' => false,
         'locked' => false,
+        'name' => false,
         'name_history' => false,
-        'avatar_url' => false,
+        'project_count' => false,
+        'roles' => false,
         'socials' => false,
-        'is_organization' => false
+        'tagline' => false
     ];
 
     /**
@@ -196,17 +196,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'avatar_url' => 'avatarUrl',
         'created_at' => 'createdAt',
         'id' => 'id',
-        'name' => 'name',
-        'tagline' => 'tagline',
-        'roles' => 'roles',
-        'project_count' => 'projectCount',
+        'is_organization' => 'isOrganization',
         'locked' => 'locked',
+        'name' => 'name',
         'name_history' => 'nameHistory',
-        'avatar_url' => 'avatarUrl',
+        'project_count' => 'projectCount',
+        'roles' => 'roles',
         'socials' => 'socials',
-        'is_organization' => 'isOrganization'
+        'tagline' => 'tagline'
     ];
 
     /**
@@ -215,17 +215,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'avatar_url' => 'setAvatarUrl',
         'created_at' => 'setCreatedAt',
         'id' => 'setId',
-        'name' => 'setName',
-        'tagline' => 'setTagline',
-        'roles' => 'setRoles',
-        'project_count' => 'setProjectCount',
+        'is_organization' => 'setIsOrganization',
         'locked' => 'setLocked',
+        'name' => 'setName',
         'name_history' => 'setNameHistory',
-        'avatar_url' => 'setAvatarUrl',
+        'project_count' => 'setProjectCount',
+        'roles' => 'setRoles',
         'socials' => 'setSocials',
-        'is_organization' => 'setIsOrganization'
+        'tagline' => 'setTagline'
     ];
 
     /**
@@ -234,17 +234,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'avatar_url' => 'getAvatarUrl',
         'created_at' => 'getCreatedAt',
         'id' => 'getId',
-        'name' => 'getName',
-        'tagline' => 'getTagline',
-        'roles' => 'getRoles',
-        'project_count' => 'getProjectCount',
+        'is_organization' => 'getIsOrganization',
         'locked' => 'getLocked',
+        'name' => 'getName',
         'name_history' => 'getNameHistory',
-        'avatar_url' => 'getAvatarUrl',
+        'project_count' => 'getProjectCount',
+        'roles' => 'getRoles',
         'socials' => 'getSocials',
-        'is_organization' => 'getIsOrganization'
+        'tagline' => 'getTagline'
     ];
 
     /**
@@ -304,17 +304,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('avatar_url', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('tagline', $data ?? [], null);
-        $this->setIfExists('roles', $data ?? [], null);
-        $this->setIfExists('project_count', $data ?? [], null);
-        $this->setIfExists('locked', $data ?? [], null);
-        $this->setIfExists('name_history', $data ?? [], null);
-        $this->setIfExists('avatar_url', $data ?? [], null);
-        $this->setIfExists('socials', $data ?? [], null);
         $this->setIfExists('is_organization', $data ?? [], null);
+        $this->setIfExists('locked', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('name_history', $data ?? [], null);
+        $this->setIfExists('project_count', $data ?? [], null);
+        $this->setIfExists('roles', $data ?? [], null);
+        $this->setIfExists('socials', $data ?? [], null);
+        $this->setIfExists('tagline', $data ?? [], null);
     }
 
     /**
@@ -358,6 +358,33 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets avatar_url
+     *
+     * @return string|null
+     */
+    public function getAvatarUrl()
+    {
+        return $this->container['avatar_url'];
+    }
+
+    /**
+     * Sets avatar_url
+     *
+     * @param string|null $avatar_url avatar_url
+     *
+     * @return self
+     */
+    public function setAvatarUrl($avatar_url)
+    {
+        if (is_null($avatar_url)) {
+            throw new \InvalidArgumentException('non-nullable avatar_url cannot be null');
+        }
+        $this->container['avatar_url'] = $avatar_url;
+
+        return $this;
+    }
 
     /**
      * Gets created_at
@@ -414,109 +441,28 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets name
+     * Gets is_organization
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getName()
+    public function getIsOrganization()
     {
-        return $this->container['name'];
+        return $this->container['is_organization'];
     }
 
     /**
-     * Sets name
+     * Sets is_organization
      *
-     * @param string|null $name name
+     * @param bool|null $is_organization is_organization
      *
      * @return self
      */
-    public function setName($name)
+    public function setIsOrganization($is_organization)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($is_organization)) {
+            throw new \InvalidArgumentException('non-nullable is_organization cannot be null');
         }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets tagline
-     *
-     * @return string|null
-     */
-    public function getTagline()
-    {
-        return $this->container['tagline'];
-    }
-
-    /**
-     * Sets tagline
-     *
-     * @param string|null $tagline tagline
-     *
-     * @return self
-     */
-    public function setTagline($tagline)
-    {
-        if (is_null($tagline)) {
-            throw new \InvalidArgumentException('non-nullable tagline cannot be null');
-        }
-        $this->container['tagline'] = $tagline;
-
-        return $this;
-    }
-
-    /**
-     * Gets roles
-     *
-     * @return int[]|null
-     */
-    public function getRoles()
-    {
-        return $this->container['roles'];
-    }
-
-    /**
-     * Sets roles
-     *
-     * @param int[]|null $roles roles
-     *
-     * @return self
-     */
-    public function setRoles($roles)
-    {
-        if (is_null($roles)) {
-            throw new \InvalidArgumentException('non-nullable roles cannot be null');
-        }
-        $this->container['roles'] = $roles;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_count
-     *
-     * @return int|null
-     */
-    public function getProjectCount()
-    {
-        return $this->container['project_count'];
-    }
-
-    /**
-     * Sets project_count
-     *
-     * @param int|null $project_count project_count
-     *
-     * @return self
-     */
-    public function setProjectCount($project_count)
-    {
-        if (is_null($project_count)) {
-            throw new \InvalidArgumentException('non-nullable project_count cannot be null');
-        }
-        $this->container['project_count'] = $project_count;
+        $this->container['is_organization'] = $is_organization;
 
         return $this;
     }
@@ -549,6 +495,33 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
      * Gets name_history
      *
      * @return \Aternos\HangarApi\Model\UserNameChange[]|null
@@ -576,28 +549,55 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets avatar_url
+     * Gets project_count
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getAvatarUrl()
+    public function getProjectCount()
     {
-        return $this->container['avatar_url'];
+        return $this->container['project_count'];
     }
 
     /**
-     * Sets avatar_url
+     * Sets project_count
      *
-     * @param string|null $avatar_url avatar_url
+     * @param int|null $project_count project_count
      *
      * @return self
      */
-    public function setAvatarUrl($avatar_url)
+    public function setProjectCount($project_count)
     {
-        if (is_null($avatar_url)) {
-            throw new \InvalidArgumentException('non-nullable avatar_url cannot be null');
+        if (is_null($project_count)) {
+            throw new \InvalidArgumentException('non-nullable project_count cannot be null');
         }
-        $this->container['avatar_url'] = $avatar_url;
+        $this->container['project_count'] = $project_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets roles
+     *
+     * @return int[]|null
+     */
+    public function getRoles()
+    {
+        return $this->container['roles'];
+    }
+
+    /**
+     * Sets roles
+     *
+     * @param int[]|null $roles roles
+     *
+     * @return self
+     */
+    public function setRoles($roles)
+    {
+        if (is_null($roles)) {
+            throw new \InvalidArgumentException('non-nullable roles cannot be null');
+        }
+        $this->container['roles'] = $roles;
 
         return $this;
     }
@@ -630,28 +630,28 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets is_organization
+     * Gets tagline
      *
-     * @return bool|null
+     * @return string|null
      */
-    public function getIsOrganization()
+    public function getTagline()
     {
-        return $this->container['is_organization'];
+        return $this->container['tagline'];
     }
 
     /**
-     * Sets is_organization
+     * Sets tagline
      *
-     * @param bool|null $is_organization is_organization
+     * @param string|null $tagline tagline
      *
      * @return self
      */
-    public function setIsOrganization($is_organization)
+    public function setTagline($tagline)
     {
-        if (is_null($is_organization)) {
-            throw new \InvalidArgumentException('non-nullable is_organization cannot be null');
+        if (is_null($tagline)) {
+            throw new \InvalidArgumentException('non-nullable tagline cannot be null');
         }
-        $this->container['is_organization'] = $is_organization;
+        $this->container['tagline'] = $tagline;
 
         return $this;
     }

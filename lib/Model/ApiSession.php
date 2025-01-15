@@ -57,8 +57,8 @@ class ApiSession implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'token' => 'string',
-        'expires_in' => 'int'
+        'expires_in' => 'int',
+        'token' => 'string'
     ];
 
     /**
@@ -69,8 +69,8 @@ class ApiSession implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'token' => null,
-        'expires_in' => 'int64'
+        'expires_in' => 'int64',
+        'token' => null
     ];
 
     /**
@@ -79,8 +79,8 @@ class ApiSession implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'token' => false,
-        'expires_in' => false
+        'expires_in' => false,
+        'token' => false
     ];
 
     /**
@@ -169,8 +169,8 @@ class ApiSession implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'token' => 'token',
-        'expires_in' => 'expiresIn'
+        'expires_in' => 'expiresIn',
+        'token' => 'token'
     ];
 
     /**
@@ -179,8 +179,8 @@ class ApiSession implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'token' => 'setToken',
-        'expires_in' => 'setExpiresIn'
+        'expires_in' => 'setExpiresIn',
+        'token' => 'setToken'
     ];
 
     /**
@@ -189,8 +189,8 @@ class ApiSession implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'token' => 'getToken',
-        'expires_in' => 'getExpiresIn'
+        'expires_in' => 'getExpiresIn',
+        'token' => 'getToken'
     ];
 
     /**
@@ -250,8 +250,8 @@ class ApiSession implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('token', $data ?? [], null);
         $this->setIfExists('expires_in', $data ?? [], null);
+        $this->setIfExists('token', $data ?? [], null);
     }
 
     /**
@@ -297,33 +297,6 @@ class ApiSession implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets token
-     *
-     * @return string|null
-     */
-    public function getToken()
-    {
-        return $this->container['token'];
-    }
-
-    /**
-     * Sets token
-     *
-     * @param string|null $token JWT used for authentication
-     *
-     * @return self
-     */
-    public function setToken($token)
-    {
-        if (is_null($token)) {
-            throw new \InvalidArgumentException('non-nullable token cannot be null');
-        }
-        $this->container['token'] = $token;
-
-        return $this;
-    }
-
-    /**
      * Gets expires_in
      *
      * @return int|null
@@ -346,6 +319,33 @@ class ApiSession implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable expires_in cannot be null');
         }
         $this->container['expires_in'] = $expires_in;
+
+        return $this;
+    }
+
+    /**
+     * Gets token
+     *
+     * @return string|null
+     */
+    public function getToken()
+    {
+        return $this->container['token'];
+    }
+
+    /**
+     * Sets token
+     *
+     * @param string|null $token JWT used for authentication
+     *
+     * @return self
+     */
+    public function setToken($token)
+    {
+        if (is_null($token)) {
+            throw new \InvalidArgumentException('non-nullable token cannot be null');
+        }
+        $this->container['token'] = $token;
 
         return $this;
     }

@@ -57,8 +57,8 @@ class PermissionCheck implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => '\Aternos\HangarApi\Model\PermissionType',
-        'result' => 'bool'
+        'result' => 'bool',
+        'type' => '\Aternos\HangarApi\Model\PermissionType'
     ];
 
     /**
@@ -69,8 +69,8 @@ class PermissionCheck implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'result' => null
+        'result' => null,
+        'type' => null
     ];
 
     /**
@@ -79,8 +79,8 @@ class PermissionCheck implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'type' => false,
-        'result' => false
+        'result' => false,
+        'type' => false
     ];
 
     /**
@@ -169,8 +169,8 @@ class PermissionCheck implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'result' => 'result'
+        'result' => 'result',
+        'type' => 'type'
     ];
 
     /**
@@ -179,8 +179,8 @@ class PermissionCheck implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'result' => 'setResult'
+        'result' => 'setResult',
+        'type' => 'setType'
     ];
 
     /**
@@ -189,8 +189,8 @@ class PermissionCheck implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'result' => 'getResult'
+        'result' => 'getResult',
+        'type' => 'getType'
     ];
 
     /**
@@ -250,8 +250,8 @@ class PermissionCheck implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -297,33 +297,6 @@ class PermissionCheck implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets type
-     *
-     * @return \Aternos\HangarApi\Model\PermissionType|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param \Aternos\HangarApi\Model\PermissionType|null $type type
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
      * Gets result
      *
      * @return bool|null
@@ -346,6 +319,33 @@ class PermissionCheck implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable result cannot be null');
         }
         $this->container['result'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return \Aternos\HangarApi\Model\PermissionType|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param \Aternos\HangarApi\Model\PermissionType|null $type type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

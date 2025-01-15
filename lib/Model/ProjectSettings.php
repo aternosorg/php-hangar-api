@@ -35,7 +35,6 @@ use \Aternos\HangarApi\ObjectSerializer;
  * ProjectSettings Class Doc Comment
  *
  * @category Class
- * @description The settings of the project
  * @package  Aternos\HangarApi
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -58,12 +57,12 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'links' => '\Aternos\HangarApi\Model\LinkSection[]',
-        'tags' => '\Aternos\HangarApi\Model\Tag[]',
-        'license' => '\Aternos\HangarApi\Model\ProjectLicense',
+        'donation' => '\Aternos\HangarApi\Model\ProjectDonationSettings',
         'keywords' => 'string[]',
+        'license' => '\Aternos\HangarApi\Model\ProjectLicense',
+        'links' => '\Aternos\HangarApi\Model\LinkSection[]',
         'sponsors' => 'string',
-        'donation' => '\Aternos\HangarApi\Model\ProjectDonationSettings'
+        'tags' => '\Aternos\HangarApi\Model\Tag[]'
     ];
 
     /**
@@ -74,12 +73,12 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'links' => null,
-        'tags' => null,
-        'license' => null,
+        'donation' => null,
         'keywords' => null,
+        'license' => null,
+        'links' => null,
         'sponsors' => null,
-        'donation' => null
+        'tags' => null
     ];
 
     /**
@@ -88,12 +87,12 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'links' => false,
-        'tags' => false,
-        'license' => false,
+        'donation' => false,
         'keywords' => false,
+        'license' => false,
+        'links' => false,
         'sponsors' => false,
-        'donation' => false
+        'tags' => false
     ];
 
     /**
@@ -182,12 +181,12 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'links' => 'links',
-        'tags' => 'tags',
-        'license' => 'license',
+        'donation' => 'donation',
         'keywords' => 'keywords',
+        'license' => 'license',
+        'links' => 'links',
         'sponsors' => 'sponsors',
-        'donation' => 'donation'
+        'tags' => 'tags'
     ];
 
     /**
@@ -196,12 +195,12 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'links' => 'setLinks',
-        'tags' => 'setTags',
-        'license' => 'setLicense',
+        'donation' => 'setDonation',
         'keywords' => 'setKeywords',
+        'license' => 'setLicense',
+        'links' => 'setLinks',
         'sponsors' => 'setSponsors',
-        'donation' => 'setDonation'
+        'tags' => 'setTags'
     ];
 
     /**
@@ -210,12 +209,12 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'links' => 'getLinks',
-        'tags' => 'getTags',
-        'license' => 'getLicense',
+        'donation' => 'getDonation',
         'keywords' => 'getKeywords',
+        'license' => 'getLicense',
+        'links' => 'getLinks',
         'sponsors' => 'getSponsors',
-        'donation' => 'getDonation'
+        'tags' => 'getTags'
     ];
 
     /**
@@ -275,12 +274,12 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('links', $data ?? [], null);
-        $this->setIfExists('tags', $data ?? [], null);
-        $this->setIfExists('license', $data ?? [], null);
-        $this->setIfExists('keywords', $data ?? [], null);
-        $this->setIfExists('sponsors', $data ?? [], null);
         $this->setIfExists('donation', $data ?? [], null);
+        $this->setIfExists('keywords', $data ?? [], null);
+        $this->setIfExists('license', $data ?? [], null);
+        $this->setIfExists('links', $data ?? [], null);
+        $this->setIfExists('sponsors', $data ?? [], null);
+        $this->setIfExists('tags', $data ?? [], null);
     }
 
     /**
@@ -310,14 +309,14 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['keywords'] === null) {
+            $invalidProperties[] = "'keywords' can't be null";
+        }
         if ($this->container['links'] === null) {
             $invalidProperties[] = "'links' can't be null";
         }
         if ($this->container['tags'] === null) {
             $invalidProperties[] = "'tags' can't be null";
-        }
-        if ($this->container['keywords'] === null) {
-            $invalidProperties[] = "'keywords' can't be null";
         }
         return $invalidProperties;
     }
@@ -335,82 +334,30 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets links
+     * Gets donation
      *
-     * @return \Aternos\HangarApi\Model\LinkSection[]
+     * @return \Aternos\HangarApi\Model\ProjectDonationSettings|null
+     * @deprecated
      */
-    public function getLinks()
+    public function getDonation()
     {
-        return $this->container['links'];
+        return $this->container['donation'];
     }
 
     /**
-     * Sets links
+     * Sets donation
      *
-     * @param \Aternos\HangarApi\Model\LinkSection[] $links links
+     * @param \Aternos\HangarApi\Model\ProjectDonationSettings|null $donation donation
      *
      * @return self
+     * @deprecated
      */
-    public function setLinks($links)
+    public function setDonation($donation)
     {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
+        if (is_null($donation)) {
+            throw new \InvalidArgumentException('non-nullable donation cannot be null');
         }
-        $this->container['links'] = $links;
-
-        return $this;
-    }
-
-    /**
-     * Gets tags
-     *
-     * @return \Aternos\HangarApi\Model\Tag[]
-     */
-    public function getTags()
-    {
-        return $this->container['tags'];
-    }
-
-    /**
-     * Sets tags
-     *
-     * @param \Aternos\HangarApi\Model\Tag[] $tags tags
-     *
-     * @return self
-     */
-    public function setTags($tags)
-    {
-        if (is_null($tags)) {
-            throw new \InvalidArgumentException('non-nullable tags cannot be null');
-        }
-        $this->container['tags'] = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Gets license
-     *
-     * @return \Aternos\HangarApi\Model\ProjectLicense|null
-     */
-    public function getLicense()
-    {
-        return $this->container['license'];
-    }
-
-    /**
-     * Sets license
-     *
-     * @param \Aternos\HangarApi\Model\ProjectLicense|null $license license
-     *
-     * @return self
-     */
-    public function setLicense($license)
-    {
-        if (is_null($license)) {
-            throw new \InvalidArgumentException('non-nullable license cannot be null');
-        }
-        $this->container['license'] = $license;
+        $this->container['donation'] = $donation;
 
         return $this;
     }
@@ -443,6 +390,60 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets license
+     *
+     * @return \Aternos\HangarApi\Model\ProjectLicense|null
+     */
+    public function getLicense()
+    {
+        return $this->container['license'];
+    }
+
+    /**
+     * Sets license
+     *
+     * @param \Aternos\HangarApi\Model\ProjectLicense|null $license license
+     *
+     * @return self
+     */
+    public function setLicense($license)
+    {
+        if (is_null($license)) {
+            throw new \InvalidArgumentException('non-nullable license cannot be null');
+        }
+        $this->container['license'] = $license;
+
+        return $this;
+    }
+
+    /**
+     * Gets links
+     *
+     * @return \Aternos\HangarApi\Model\LinkSection[]
+     */
+    public function getLinks()
+    {
+        return $this->container['links'];
+    }
+
+    /**
+     * Sets links
+     *
+     * @param \Aternos\HangarApi\Model\LinkSection[] $links links
+     *
+     * @return self
+     */
+    public function setLinks($links)
+    {
+        if (is_null($links)) {
+            throw new \InvalidArgumentException('non-nullable links cannot be null');
+        }
+        $this->container['links'] = $links;
+
+        return $this;
+    }
+
+    /**
      * Gets sponsors
      *
      * @return string|null
@@ -470,28 +471,28 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets donation
+     * Gets tags
      *
-     * @return \Aternos\HangarApi\Model\ProjectDonationSettings|null
+     * @return \Aternos\HangarApi\Model\Tag[]
      */
-    public function getDonation()
+    public function getTags()
     {
-        return $this->container['donation'];
+        return $this->container['tags'];
     }
 
     /**
-     * Sets donation
+     * Sets tags
      *
-     * @param \Aternos\HangarApi\Model\ProjectDonationSettings|null $donation donation
+     * @param \Aternos\HangarApi\Model\Tag[] $tags tags
      *
      * @return self
      */
-    public function setDonation($donation)
+    public function setTags($tags)
     {
-        if (is_null($donation)) {
-            throw new \InvalidArgumentException('non-nullable donation cannot be null');
+        if (is_null($tags)) {
+            throw new \InvalidArgumentException('non-nullable tags cannot be null');
         }
-        $this->container['donation'] = $donation;
+        $this->container['tags'] = $tags;
 
         return $this;
     }

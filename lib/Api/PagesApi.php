@@ -669,7 +669,7 @@ class PagesApi
 
 
             switch($statusCode) {
-                case 403:
+                case 200:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -723,7 +723,7 @@ class PagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 200:
+                case 403:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -795,7 +795,7 @@ class PagesApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 403:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -811,7 +811,7 @@ class PagesApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 200:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -1049,7 +1049,7 @@ class PagesApi
 
 
             switch($statusCode) {
-                case 403:
+                case 200:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1103,7 +1103,7 @@ class PagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 200:
+                case 403:
                     if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1175,7 +1175,7 @@ class PagesApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 403:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
@@ -1191,7 +1191,7 @@ class PagesApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 200:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',

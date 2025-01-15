@@ -57,8 +57,8 @@ class DayProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'views' => 'int',
-        'downloads' => 'int'
+        'downloads' => 'int',
+        'views' => 'int'
     ];
 
     /**
@@ -69,8 +69,8 @@ class DayProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'views' => 'int64',
-        'downloads' => 'int64'
+        'downloads' => 'int64',
+        'views' => 'int64'
     ];
 
     /**
@@ -79,8 +79,8 @@ class DayProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'views' => false,
-        'downloads' => false
+        'downloads' => false,
+        'views' => false
     ];
 
     /**
@@ -169,8 +169,8 @@ class DayProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'views' => 'views',
-        'downloads' => 'downloads'
+        'downloads' => 'downloads',
+        'views' => 'views'
     ];
 
     /**
@@ -179,8 +179,8 @@ class DayProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'views' => 'setViews',
-        'downloads' => 'setDownloads'
+        'downloads' => 'setDownloads',
+        'views' => 'setViews'
     ];
 
     /**
@@ -189,8 +189,8 @@ class DayProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'views' => 'getViews',
-        'downloads' => 'getDownloads'
+        'downloads' => 'getDownloads',
+        'views' => 'getViews'
     ];
 
     /**
@@ -250,8 +250,8 @@ class DayProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('views', $data ?? [], null);
         $this->setIfExists('downloads', $data ?? [], null);
+        $this->setIfExists('views', $data ?? [], null);
     }
 
     /**
@@ -297,33 +297,6 @@ class DayProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets views
-     *
-     * @return int|null
-     */
-    public function getViews()
-    {
-        return $this->container['views'];
-    }
-
-    /**
-     * Sets views
-     *
-     * @param int|null $views views
-     *
-     * @return self
-     */
-    public function setViews($views)
-    {
-        if (is_null($views)) {
-            throw new \InvalidArgumentException('non-nullable views cannot be null');
-        }
-        $this->container['views'] = $views;
-
-        return $this;
-    }
-
-    /**
      * Gets downloads
      *
      * @return int|null
@@ -346,6 +319,33 @@ class DayProjectStats implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable downloads cannot be null');
         }
         $this->container['downloads'] = $downloads;
+
+        return $this;
+    }
+
+    /**
+     * Gets views
+     *
+     * @return int|null
+     */
+    public function getViews()
+    {
+        return $this->container['views'];
+    }
+
+    /**
+     * Sets views
+     *
+     * @param int|null $views views
+     *
+     * @return self
+     */
+    public function setViews($views)
+    {
+        if (is_null($views)) {
+            throw new \InvalidArgumentException('non-nullable views cannot be null');
+        }
+        $this->container['views'] = $views;
 
         return $this;
     }

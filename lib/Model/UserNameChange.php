@@ -57,9 +57,9 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'old_name' => 'string',
+        'date' => '\DateTime',
         'new_name' => 'string',
-        'date' => '\DateTime'
+        'old_name' => 'string'
     ];
 
     /**
@@ -70,9 +70,9 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'old_name' => null,
+        'date' => 'date-time',
         'new_name' => null,
-        'date' => 'date-time'
+        'old_name' => null
     ];
 
     /**
@@ -81,9 +81,9 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'old_name' => false,
+        'date' => false,
         'new_name' => false,
-        'date' => false
+        'old_name' => false
     ];
 
     /**
@@ -172,9 +172,9 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'old_name' => 'oldName',
+        'date' => 'date',
         'new_name' => 'newName',
-        'date' => 'date'
+        'old_name' => 'oldName'
     ];
 
     /**
@@ -183,9 +183,9 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'old_name' => 'setOldName',
+        'date' => 'setDate',
         'new_name' => 'setNewName',
-        'date' => 'setDate'
+        'old_name' => 'setOldName'
     ];
 
     /**
@@ -194,9 +194,9 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'old_name' => 'getOldName',
+        'date' => 'getDate',
         'new_name' => 'getNewName',
-        'date' => 'getDate'
+        'old_name' => 'getOldName'
     ];
 
     /**
@@ -256,9 +256,9 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('old_name', $data ?? [], null);
-        $this->setIfExists('new_name', $data ?? [], null);
         $this->setIfExists('date', $data ?? [], null);
+        $this->setIfExists('new_name', $data ?? [], null);
+        $this->setIfExists('old_name', $data ?? [], null);
     }
 
     /**
@@ -304,28 +304,28 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets old_name
+     * Gets date
      *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getOldName()
+    public function getDate()
     {
-        return $this->container['old_name'];
+        return $this->container['date'];
     }
 
     /**
-     * Sets old_name
+     * Sets date
      *
-     * @param string|null $old_name old_name
+     * @param \DateTime|null $date date
      *
      * @return self
      */
-    public function setOldName($old_name)
+    public function setDate($date)
     {
-        if (is_null($old_name)) {
-            throw new \InvalidArgumentException('non-nullable old_name cannot be null');
+        if (is_null($date)) {
+            throw new \InvalidArgumentException('non-nullable date cannot be null');
         }
-        $this->container['old_name'] = $old_name;
+        $this->container['date'] = $date;
 
         return $this;
     }
@@ -358,28 +358,28 @@ class UserNameChange implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets date
+     * Gets old_name
      *
-     * @return \DateTime|null
+     * @return string|null
      */
-    public function getDate()
+    public function getOldName()
     {
-        return $this->container['date'];
+        return $this->container['old_name'];
     }
 
     /**
-     * Sets date
+     * Sets old_name
      *
-     * @param \DateTime|null $date date
+     * @param string|null $old_name old_name
      *
      * @return self
      */
-    public function setDate($date)
+    public function setOldName($old_name)
     {
-        if (is_null($date)) {
-            throw new \InvalidArgumentException('non-nullable date cannot be null');
+        if (is_null($old_name)) {
+            throw new \InvalidArgumentException('non-nullable old_name cannot be null');
         }
-        $this->container['date'] = $date;
+        $this->container['old_name'] = $old_name;
 
         return $this;
     }

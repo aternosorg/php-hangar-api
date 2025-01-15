@@ -58,8 +58,8 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'path' => 'string',
-        'content' => 'string'
+        'content' => 'string',
+        'path' => 'string'
     ];
 
     /**
@@ -70,8 +70,8 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'path' => null,
-        'content' => null
+        'content' => null,
+        'path' => null
     ];
 
     /**
@@ -80,8 +80,8 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'path' => false,
-        'content' => false
+        'content' => false,
+        'path' => false
     ];
 
     /**
@@ -170,8 +170,8 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'path' => 'path',
-        'content' => 'content'
+        'content' => 'content',
+        'path' => 'path'
     ];
 
     /**
@@ -180,8 +180,8 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'path' => 'setPath',
-        'content' => 'setContent'
+        'content' => 'setContent',
+        'path' => 'setPath'
     ];
 
     /**
@@ -190,8 +190,8 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'path' => 'getPath',
-        'content' => 'getContent'
+        'content' => 'getContent',
+        'path' => 'getPath'
     ];
 
     /**
@@ -251,8 +251,8 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('path', $data ?? [], null);
         $this->setIfExists('content', $data ?? [], null);
+        $this->setIfExists('path', $data ?? [], null);
     }
 
     /**
@@ -282,11 +282,11 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['path'] === null) {
-            $invalidProperties[] = "'path' can't be null";
-        }
         if ($this->container['content'] === null) {
             $invalidProperties[] = "'content' can't be null";
+        }
+        if ($this->container['path'] === null) {
+            $invalidProperties[] = "'path' can't be null";
         }
         return $invalidProperties;
     }
@@ -302,33 +302,6 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets path
-     *
-     * @return string
-     */
-    public function getPath()
-    {
-        return $this->container['path'];
-    }
-
-    /**
-     * Sets path
-     *
-     * @param string $path path
-     *
-     * @return self
-     */
-    public function setPath($path)
-    {
-        if (is_null($path)) {
-            throw new \InvalidArgumentException('non-nullable path cannot be null');
-        }
-        $this->container['path'] = $path;
-
-        return $this;
-    }
 
     /**
      * Gets content
@@ -353,6 +326,33 @@ class PageEditForm implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable content cannot be null');
         }
         $this->container['content'] = $content;
+
+        return $this;
+    }
+
+    /**
+     * Gets path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->container['path'];
+    }
+
+    /**
+     * Sets path
+     *
+     * @param string $path path
+     *
+     * @return self
+     */
+    public function setPath($path)
+    {
+        if (is_null($path)) {
+            throw new \InvalidArgumentException('non-nullable path cannot be null');
+        }
+        $this->container['path'] = $path;
 
         return $this;
     }

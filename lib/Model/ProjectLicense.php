@@ -58,8 +58,8 @@ class ProjectLicense implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'name' => 'string',
-        'url' => 'string',
-        'type' => 'string'
+        'type' => 'string',
+        'url' => 'string'
     ];
 
     /**
@@ -71,8 +71,8 @@ class ProjectLicense implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'name' => null,
-        'url' => null,
-        'type' => null
+        'type' => null,
+        'url' => null
     ];
 
     /**
@@ -82,8 +82,8 @@ class ProjectLicense implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'name' => false,
-        'url' => false,
-        'type' => false
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -173,8 +173,8 @@ class ProjectLicense implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'name' => 'name',
-        'url' => 'url',
-        'type' => 'type'
+        'type' => 'type',
+        'url' => 'url'
     ];
 
     /**
@@ -184,8 +184,8 @@ class ProjectLicense implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'name' => 'setName',
-        'url' => 'setUrl',
-        'type' => 'setType'
+        'type' => 'setType',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -195,8 +195,8 @@ class ProjectLicense implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'name' => 'getName',
-        'url' => 'getUrl',
-        'type' => 'getType'
+        'type' => 'getType',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -257,8 +257,8 @@ class ProjectLicense implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -331,33 +331,6 @@ class ProjectLicense implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url url
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
      * Gets type
      *
      * @return string|null
@@ -380,6 +353,33 @@ class ProjectLicense implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url url
+     *
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        }
+        $this->container['url'] = $url;
 
         return $this;
     }

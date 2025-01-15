@@ -35,7 +35,6 @@ use \Aternos\HangarApi\ObjectSerializer;
  * PluginDependency Class Doc Comment
  *
  * @category Class
- * @description Map of each platform&#39;s plugin dependencies
  * @package  Aternos\HangarApi
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -58,10 +57,10 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'required' => 'bool',
         'external_url' => 'string',
-        'platform' => '\Aternos\HangarApi\Model\Platform'
+        'name' => 'string',
+        'platform' => '\Aternos\HangarApi\Model\Platform',
+        'required' => 'bool'
     ];
 
     /**
@@ -72,10 +71,10 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'required' => null,
         'external_url' => null,
-        'platform' => null
+        'name' => null,
+        'platform' => null,
+        'required' => null
     ];
 
     /**
@@ -84,10 +83,10 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => false,
-        'required' => false,
         'external_url' => false,
-        'platform' => false
+        'name' => false,
+        'platform' => false,
+        'required' => false
     ];
 
     /**
@@ -176,10 +175,10 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'required' => 'required',
         'external_url' => 'externalUrl',
-        'platform' => 'platform'
+        'name' => 'name',
+        'platform' => 'platform',
+        'required' => 'required'
     ];
 
     /**
@@ -188,10 +187,10 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'required' => 'setRequired',
         'external_url' => 'setExternalUrl',
-        'platform' => 'setPlatform'
+        'name' => 'setName',
+        'platform' => 'setPlatform',
+        'required' => 'setRequired'
     ];
 
     /**
@@ -200,10 +199,10 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'required' => 'getRequired',
         'external_url' => 'getExternalUrl',
-        'platform' => 'getPlatform'
+        'name' => 'getName',
+        'platform' => 'getPlatform',
+        'required' => 'getRequired'
     ];
 
     /**
@@ -263,10 +262,10 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('required', $data ?? [], null);
         $this->setIfExists('external_url', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('platform', $data ?? [], null);
+        $this->setIfExists('required', $data ?? [], null);
     }
 
     /**
@@ -312,60 +311,6 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the plugin dependency. For non-external dependencies, this should be the Hangar project name
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets required
-     *
-     * @return bool|null
-     */
-    public function getRequired()
-    {
-        return $this->container['required'];
-    }
-
-    /**
-     * Sets required
-     *
-     * @param bool|null $required Whether the dependency is required for the plugin to function
-     *
-     * @return self
-     */
-    public function setRequired($required)
-    {
-        if (is_null($required)) {
-            throw new \InvalidArgumentException('non-nullable required cannot be null');
-        }
-        $this->container['required'] = $required;
-
-        return $this;
-    }
-
-    /**
      * Gets external_url
      *
      * @return string|null
@@ -393,6 +338,33 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name Name of the plugin dependency. For non-external dependencies, this should be the Hangar project name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
      * Gets platform
      *
      * @return \Aternos\HangarApi\Model\Platform|null
@@ -405,7 +377,7 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets platform
      *
-     * @param \Aternos\HangarApi\Model\Platform|null $platform platform
+     * @param \Aternos\HangarApi\Model\Platform|null $platform Platform the dependency runs on
      *
      * @return self
      */
@@ -415,6 +387,33 @@ class PluginDependency implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable platform cannot be null');
         }
         $this->container['platform'] = $platform;
+
+        return $this;
+    }
+
+    /**
+     * Gets required
+     *
+     * @return bool|null
+     */
+    public function getRequired()
+    {
+        return $this->container['required'];
+    }
+
+    /**
+     * Sets required
+     *
+     * @param bool|null $required Whether the dependency is required for the plugin to function
+     *
+     * @return self
+     */
+    public function setRequired($required)
+    {
+        if (is_null($required)) {
+            throw new \InvalidArgumentException('non-nullable required cannot be null');
+        }
+        $this->container['required'] = $required;
 
         return $this;
     }
