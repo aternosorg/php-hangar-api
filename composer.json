@@ -26,8 +26,7 @@
         "guzzlehttp/psr7": "^1.7 || ^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^12.4",
-        "friendsofphp/php-cs-fixer": "^3.5"
+        "phpunit/phpunit": "^12.4"
     },
     "autoload": {
         "psr-4": { "Aternos\\HangarApi\\" : "lib/" }
