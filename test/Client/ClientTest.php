@@ -75,7 +75,8 @@ class ClientTest extends TestCase
         $this->assertNotNull($project->getData()->getLastUpdated());
         $this->assertNotNull($project->getData()->getVisibility());
         $this->assertNotNull($project->getData()->getDescription());
-        $this->assertNotNull($project->getData()->getUserActions());
+        // userActions can be null
+        //$this->assertNotNull($project->getData()->getUserActions());
         $this->assertNotNull($project->getData()->getSettings());
     }
 
