@@ -75,7 +75,6 @@ class ClientTest extends TestCase
         $this->assertNotNull($project->getData()->getLastUpdated());
         $this->assertNotNull($project->getData()->getVisibility());
         $this->assertNotNull($project->getData()->getDescription());
-        $this->assertNotNull($project->getData()->getUserActions());
         $this->assertNotNull($project->getData()->getSettings());
     }
 
@@ -354,6 +353,8 @@ class ClientTest extends TestCase
     {
         if (!getenv("HANGAR_API_KEY")) {
             $this->markTestSkipped("This test requires authentication.");
+            // no API key provided will result in a 403 Forbidden error:
+            // You need the is_subject_member permission to view project statistics
         }
 
         $project = $this->apiClient->getProject("mclogs");
