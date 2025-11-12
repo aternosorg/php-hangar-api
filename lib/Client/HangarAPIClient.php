@@ -329,16 +329,24 @@ class HangarAPIClient
     /**
      * Get versions of a project
      * @param string|Project $project project slug, id or object
-     * @param VersionSearchOptions $options
+     * @param VersionSearchOptions|null $options
      * @return ProjectVersionList
      * @throws ApiException
      */
     public function getProjectVersions(
-        string|Project $project,
-        VersionSearchOptions     $options,
+        string|Project        $project,
+        ?VersionSearchOptions $options = null,
     ): ProjectVersionList
     {
         $this->authenticate();
+
+        if ($options === null) {
+            if ($project instanceof Project) {
+                $options = new VersionSearchOptions($project->getId());
+            } else {
+                $options = new VersionSearchOptions($project);
+            }
+        }
 
         if ($project instanceof Project) {
             $options->setProject($project);
@@ -614,7 +622,8 @@ class HangarAPIClient
     }
 
     /**
-     * Search the API for project authors matching the search query
+     * Search the API for project authors matching the search query.
+     * An author is a user who has at least one project on Hangar.
      * @param string $query Search query. Default: "" (all)
      * @param RequestPagination|null $pagination
      * @param string|null $sort Optional name of the field to sort the results by

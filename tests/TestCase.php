@@ -33,11 +33,11 @@ class TestCase extends PHPUnitTestCase
         $this->assertIsBool($user->getIsOrganization());
         $this->assertIsBool($user->getLocked());
         $this->assertNotNull($user->getName());
-        $this->assertIsArray($user->getNameHistory());
+        // $user->getNameHistory() can be null or array
         $this->assertIsNumeric($user->getProjectCount());
         $this->assertIsArray($user->getRoles());
         $this->assertNotNull($user->getSocials());
-        $this->assertNotNull($user->getTagline());
+        // $user->getTagline() can be null
     }
 
     protected function assertValidProjectSettings(ProjectSettings $projectSettings): void
@@ -46,7 +46,7 @@ class TestCase extends PHPUnitTestCase
         $this->assertIsArray($projectSettings->getKeywords());
         $this->assertNotNull($projectSettings->getLicense());
         $this->assertIsArray($projectSettings->getLinks());
-        $this->assertNotNull($projectSettings->getSponsors());
+        // $projectSettings->getSponsors() can be null
         $this->assertIsArray($projectSettings->getTags());
     }
 
@@ -68,14 +68,14 @@ class TestCase extends PHPUnitTestCase
         $this->assertNotNull($project->getDescription());
         $this->assertIsNumeric($project->getId());
         $this->assertNotNull($project->getLastUpdated());
-        $this->assertNotNull($project->getMainPageContent());
-        $this->assertIsArray($project->getMemberNames());
+        // $project->getMainPageContent() can be null
+        // $project->getMemberNames() can be null or array
         $this->assertNotNull($project->getName());
         $this->assertNotNull($project->getNamespace());
         $this->assertValidProjectSettings($project->getSettings());
         $this->assertValidProjectStats($project->getStats());
         $this->assertIsArray($project->getSupportedPlatforms());
-        $this->assertNotNull($project->getUserActions());
+        // $project->getUserActions() is null if not authenticated
         $this->assertNotNull($project->getVisibility());
     }
 
@@ -104,7 +104,7 @@ class TestCase extends PHPUnitTestCase
         $this->assertNotNull($version->getDescription());
         $this->assertIsArray($version->getDownloads());
         $this->assertIsNumeric($version->getId());
-        $this->assertIsArray($version->getMemberNames());
+        // $version->getMemberNames() can be null or array
         $this->assertNotNull($version->getName());
         $this->assertNotNull($version->getPinnedStatus());
         $this->assertIsArray($version->getPlatformDependencies());

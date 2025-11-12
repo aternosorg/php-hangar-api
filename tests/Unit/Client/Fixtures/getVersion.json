@@ -1,0 +1,117 @@
+{
+    "createdAt": "2024-06-16T16:07:30.577198Z",
+    "id": 7215,
+    "projectId": 31,
+    "name": "5.0.0",
+    "visibility": "public",
+    "description": "1.21 client support! Thank you to EnZa, RK, and also Pantera for help with the update!\n\n### Java 17 requirement\n- See https://docs.papermc.io/misc/java-install on how to update your Java version\n- Even Minecraft 1.8 is *mostly* able to run on Java 17, although for a better experience you should use a fork that fixes smaller issues\n- Some older versions require the `Paper.IgnoreJavaVersion` system property to be set (`-DPaper.IgnoreJavaVersion=true` as a startup flag), but run perfectly fine using Java 17\n- If all else fails, use the [Java 8 compatibility builds we provide](https://ci.viaversion.com/job/ViaVersion-Java8/) at risk of not receiving support for issues it could cause - you should not make yourself depend on these *too* much, they will generally only be updated on releases\n\n### Other important changes\nThe main ViaVersion jar no longer supports Bungee and Sponge, they have been moved to separate plugins. Sponge has seen almost no usage and the current Bungee platform is pretty broken due to missing injection points, + Bungee has generally been unusable for weeks after every recent Minecraft update.\n- Bungee/Waterfall support has been moved to: https://hangar.papermc.io/ViaVersion/ViaBungee (currently still not working)\n  - ViaVersion (and other Via plugins if wanted) need to be put into `plugins/ViaVersion/` for ViaBungee to load them\n- Sponge support has been moved to: https://modrinth.com/plugin/viasponge\n  - ViaVersion (and other Via plugins if wanted) need to be put into `config/viaversion/` for ViaSponge to load them\n- ProtocolSupport compatibility has been moved to an [addon](https://github.com/ViaVersionAddons/ProtocolSupportCompat), since PS has been dead for a while and VR+VB are generally more usable across versions now\n\nThe config option `checkforupdates` has been changed to `check-for-updates`; you will need to toggle the new value manually if you had toggled the old one.\n\n### API changes\n- `Type` instances are now held in `Types` to prevent classloading issues\n- Packet sending/receiving related methods are no longer spammed with `throws Exception`\n- Packet type names, among others, have changed to reflect vanilla names\n  - For automated mass-replacement of such renames and package changes (mostly for platforms implementing ViaVersion), see https://gist.github.com/kennytv/5bc5bd6efb4c0a07e8a2020f2f2131b7\n- Removed a number of deprecated methods\n\n### Fixes and other changes\n- Added `handle-invalid-item-count` config option to gracefully handle items with invalid stack sizes in 1.20.3->1.20.5 (by EnZaXD)\n- Added `viaversion player <*/playername>` subcommand to view protocol info of a specific player (by EnZaXD)\n- Ignore invalid chunk entities in 1.20.3->1.20.5\n- Fixed issues with thrown projectiles for 1.20.5 clients on 1.19 servers and older\n- Fixed various issues due to missing tags (by RK_01)\n- Fixed various block entity tags in 1.20.3->1.20.5 (by EnZaXD)\n- Fixed conversion of firework tags without explosions in 1.20.3->120.5 (by EnZaXD)\n- Fixed positionless lodestone tracker conversion (by EnZaXD and Pantera07)\n- Fixed painting items with specific variant tags in 1.20.3->1.20.5\n- Fixed villager trade handling when they contain empty items in 1.20.3->1.20.5\n- Fixed various issues in show_item conversion in 1.20.3->1.20.5 (by EnZaXD)\n- Fixed items with custom names not being italic sometimes in 1.12.2->1.13 (by EnZaXD)\n- Changed logs/warnings to include the relevant version (by EnZaXD)\n- Fixed book signing in 1.8->1.9  (by EnZaXD)\n- Fixed block place sounds playing twice in 1.8->1.9 (by EnZaXD)\n- Small fixes to edge cases in data parsing in various versions (by EnZaXD)\n- Backup negative item amounts in 1.10->1.11 for creative mode clients (by EnZaXD)\n- Changed `viaversion displayleaks` subcommand to be able to set detection level (by EnZaXD)\n- Optimized internal data storage even more; despite holding significantly more data than 4.10 and including a large chunk of code for 1.21 support, the jar size has not increased!\n\n... and more\n\nIf you want to get larger version updates early, consider supporting me via https://viaversion.com/donate. See the [previous update notes](https://github.com/ViaVersion/ViaVersion/releases/tag/4.9.3) for more info.",
+    "stats": {
+        "totalDownloads": 3590,
+        "platformDownloads": {
+            "PAPER": 3201,
+            "VELOCITY": 389
+        }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+        "createdAt": "2022-12-31T20:04:25.916259Z",
+        "name": "Release",
+        "description": null,
+        "color": "#14b8a6",
+        "flags": [
+            "SENDS_NOTIFICATIONS",
+            "FROZEN",
+            "PINNED"
+        ]
+    },
+    "pinnedStatus": "CHANNEL",
+    "downloads": {
+        "PAPER": {
+            "fileInfo": {
+                "name": "ViaVersion-5.0.0.jar",
+                "sizeBytes": 4383652,
+                "sha256Hash": "3d91f14955f258f510232151cf4c8fa2e49db624747899f72775070357436988"
+            },
+            "externalUrl": null,
+            "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.0.0/PAPER/ViaVersion-5.0.0.jar"
+        },
+        "VELOCITY": {
+            "fileInfo": {
+                "name": "ViaVersion-5.0.0.jar",
+                "sizeBytes": 4383652,
+                "sha256Hash": "3d91f14955f258f510232151cf4c8fa2e49db624747899f72775070357436988"
+            },
+            "externalUrl": null,
+            "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.0.0/PAPER/ViaVersion-5.0.0.jar"
+        }
+    },
+    "pluginDependencies": {},
+    "platformDependencies": {
+        "PAPER": [
+            "1.10",
+            "1.10.1",
+            "1.10.2",
+            "1.11",
+            "1.11.1",
+            "1.11.2",
+            "1.12",
+            "1.12.1",
+            "1.12.2",
+            "1.13",
+            "1.13.1",
+            "1.13.2",
+            "1.14",
+            "1.14.1",
+            "1.14.2",
+            "1.14.3",
+            "1.14.4",
+            "1.15",
+            "1.15.1",
+            "1.15.2",
+            "1.16",
+            "1.16.1",
+            "1.16.2",
+            "1.16.3",
+            "1.16.4",
+            "1.16.5",
+            "1.17",
+            "1.17.1",
+            "1.18",
+            "1.18.1",
+            "1.18.2",
+            "1.19",
+            "1.19.1",
+            "1.19.2",
+            "1.19.3",
+            "1.19.4",
+            "1.20",
+            "1.20.1",
+            "1.20.2",
+            "1.20.3",
+            "1.20.4",
+            "1.20.5",
+            "1.20.6",
+            "1.21",
+            "1.8",
+            "1.9",
+            "1.9.1",
+            "1.9.2",
+            "1.9.3",
+            "1.9.4"
+        ],
+        "VELOCITY": [
+            "3.3"
+        ]
+    },
+    "platformDependenciesFormatted": {
+        "PAPER": [
+            "1.8",
+            "1.9-1.21"
+        ],
+        "VELOCITY": [
+            "3.3"
+        ]
+    },
+    "memberNames": null
+}

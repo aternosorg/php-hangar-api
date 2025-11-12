@@ -1,0 +1,2015 @@
+{
+    "pagination": {
+        "count": 2467,
+        "limit": 25,
+        "offset": 0
+    },
+    "result": [
+        {
+            "createdAt": "2024-04-21T22:07:16.475599Z",
+            "id": 1950,
+            "name": "fancyglow",
+            "namespace": {
+                "owner": "hhitt",
+                "slug": "fancyglow"
+            },
+            "stats": {
+                "views": 4013,
+                "downloads": 93,
+                "recentViews": 291,
+                "recentDownloads": 1,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "gameplay",
+            "description": "The ultimate cosmetic plugin solution!",
+            "lastUpdated": "2024-06-30T19:29:53.843453Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "GPL"
+                },
+                "keywords": [
+                    "glow",
+                    "cosmetic",
+                    "eula"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21"
+                ]
+            },
+            "mainPageContent": "# Fancy Glow\n\n\n\n## What Fancy Glow offer to you?\n\n### Lightweight and efficient\nDesigned to minimize server resource usage for optimal performance.\n\n### Active development\nContinuously updated with new features, bug fixes, and optimizations to enhance the player experience..\n\n### Dedicated support\n Responsive support team available to address any questions or issues that may arise.\n\n### User-friendly interface\nIntuitive menus and commands make it easy for players to navigate and customize their glow settings.\n\n\n\n## Links \n\n### Need support, want to suggest anything or be part of the community: \n### [[Discord]](https://discord.gg/W7R3mPXzQ7)\n\n### Plugin documentation:\n### [[Wiki]](https://hhitt-1.gitbook.io/fancy-glow-documentation/)\n\n\n## Planned updates:\n- Multicolor mode (rainbow)\n- Disabled worlds [ADDED]\n- More \"specials\" modes ¿?\n\n## Dependencies:\n- Any permission plugin\n- [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)\n\n\n# Showcase: \n\n![](https://builtbybit.com/attachments/fancyglowgif-gif.735403/?variant=display)\n\n\n\n![](https://cdn.modrinth.com/data/2iTY9Hk2/images/e57f85d240ea4ab59c10c8cc8dd6a364f26678b4.png)",
+            "memberNames": [
+                "hhitt"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/1950.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-22T20:45:22.106974Z",
+            "id": 423,
+            "name": "ErraticExplosions",
+            "namespace": {
+                "owner": "srnyx",
+                "slug": "ErraticExplosions"
+            },
+            "stats": {
+                "views": 2307,
+                "downloads": 75,
+                "recentViews": 175,
+                "recentDownloads": 2,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "gameplay",
+            "description": "Gives explosions random properties (power, delay, etc...)",
+            "lastUpdated": "2025-06-21T20:04:28.281781Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Wiki",
+                                "url": "https://srnyx.com/git/erratic-explosions/wiki"
+                            },
+                            {
+                                "id": 1,
+                                "name": "Issues",
+                                "url": "https://srnyx.com/git/erratic-explosions/issues"
+                            },
+                            {
+                                "id": 2,
+                                "name": "Support",
+                                "url": "https://srnyx.com/discord"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "MIT",
+                    "url": null,
+                    "type": "MIT"
+                },
+                "keywords": [
+                    "creeper",
+                    "tnt",
+                    "srnyx",
+                    "explosion",
+                    "random"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.10",
+                    "1.10.1",
+                    "1.10.2",
+                    "1.11",
+                    "1.11.1",
+                    "1.11.2",
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1",
+                    "1.21.10",
+                    "1.21.2",
+                    "1.21.3",
+                    "1.21.4",
+                    "1.21.5",
+                    "1.21.6",
+                    "1.21.7",
+                    "1.21.8",
+                    "1.21.9",
+                    "1.8",
+                    "1.8.8",
+                    "1.9",
+                    "1.9.1",
+                    "1.9.2",
+                    "1.9.3",
+                    "1.9.4"
+                ]
+            },
+            "mainPageContent": "# **Erratic Explosions**\nThis plugin will give TNT, Creepers, and [other types of explosives](https://github.com/srnyx/erratic-explosions/wiki/all-affected-explosives) a random power and fuse.\nYou can specify which explosives will be affected and the minimum/maximum fuse/power all in the [config.yml](https://github.com/srnyx/erratic-explosions/blob/master/src/main/resources/config.yml).\n\n**Bugs / Suggestions:** Please [open an issue](https://github.com/srnyx/erratic-explosions/issues/new/choose) to report a bug or suggest an idea\n\n**Support:** Please [join the Discord](https://srnyx.xyz/discord) to get support\n\n\n## **Download**\n\n**Stable:** You can download the latest **stable** version here\n\n**Snapshot:** You can download the latest **snapshot** version at [github.com/srnyx/erratic-explosions/actions/workflows/build.yml](https://github.com/srnyx/erratic-explosions/actions/workflows/build.yml)\n\n\n# **Wiki**\nFor all information about the plugin (commands, permissions, etc...) please see the wiki at [github.com/srnyx/erratic-explosions/wiki](https://github.com/srnyx/erratic-explosions/wiki)",
+            "memberNames": [
+                "srnyx"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/423.webp?v=1"
+        },
+        {
+            "createdAt": "2023-03-30T15:51:46.523171Z",
+            "id": 240,
+            "name": "TreasureMapsPlus",
+            "namespace": {
+                "owner": "Machine_Maker",
+                "slug": "TreasureMapsPlus"
+            },
+            "stats": {
+                "views": 11202,
+                "downloads": 785,
+                "recentViews": 479,
+                "recentDownloads": 13,
+                "stars": 1,
+                "watchers": 6
+            },
+            "category": "gameplay",
+            "description": "A solution to massive lags spikes caused by treasure maps",
+            "lastUpdated": "2025-06-19T02:01:58.124938Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 2,
+                                "name": "Discord",
+                                "url": "https://discord.gg/FnhZRWQnHm"
+                            },
+                            {
+                                "id": 0,
+                                "name": "Source",
+                                "url": "https://github.com/MC-Machinations/TreasureMapsPlus"
+                            },
+                            {
+                                "id": 1,
+                                "name": "Issues",
+                                "url": "https://github.com/MC-Machinations/TreasureMapsPlus/issues"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "GPL",
+                    "url": "https://github.com/MC-Machinations/TreasureMapsPlus/blob/master/LICENSE",
+                    "type": "GPL"
+                },
+                "keywords": [
+                    "lag",
+                    "treasure-map",
+                    "freeze",
+                    "loot"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.4",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.4",
+                    "1.21.6"
+                ]
+            },
+            "mainPageContent": "# TreasureMapsPlus  \n\nThis plugin provides a solution to the lag spikes that are caused by treasure maps searching for a location to put on a map. This plugin just makes those maps provide the loot table when you right click with the map in your hand. \n\nSupports the buried treasure maps from shipwrecks and ocean ruins as well as the two maps from the Cartographer villager.\n\n\n### Config\n```yaml\n# Don't change this\nversion: 1\n# bStats metrics\nmetrics: true\n\nreplace:\n  # Replace buried treasure maps in vanilla chest loot tables\n  chests: true\n  villagers:\n    # Replace monument map offers from villagers\n    monument: true\n    # Replace mansion map offers from villagers\n    mansion: false\n\n```",
+            "memberNames": [
+                "machine_maker"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/5440efbd-4276-42be-ae78-956c276541b8.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-22T20:38:00.884877Z",
+            "id": 402,
+            "name": "Topaz",
+            "namespace": {
+                "owner": "Zomka",
+                "slug": "Topaz"
+            },
+            "stats": {
+                "views": 4610,
+                "downloads": 245,
+                "recentViews": 434,
+                "recentDownloads": 7,
+                "stars": 5,
+                "watchers": 3
+            },
+            "category": "protection",
+            "description": "A simple FOSS Anti-VPN plugin for Velocity",
+            "lastUpdated": "2024-03-10T20:20:36.727712Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Source",
+                                "url": "https://github.com/MrZomka/Topaz"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": "https://github.com/MrZomka/Topaz/blob/main/LICENSE",
+                    "type": "GPL"
+                },
+                "keywords": [
+                    "topaz",
+                    "antivpn",
+                    "anti-vpn",
+                    "vpn"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "VELOCITY": [
+                    "3.1",
+                    "3.2",
+                    "3.3"
+                ]
+            },
+            "mainPageContent": "# Topaz - A simple FOSS Anti-VPN plugin for Velocity\n### Inspired by [egg82's/Laarryy's Anti-VPN plugin](https://github.com/Laarryy/Anti-VPN).\n\n## Installation guide:\nYou need:\n* Velocity 3.2.0+\n* Java 17+\n* Email address\n* A custom plan from ProxyCheck.io **(required only if you will be making more than 100/1000 requests a day)**\n\n1. Download the plugin from the [releases tab](https://github.com/MrZomka/Topaz/releases).\n1. Install the plugin on your Velocity proxy.\n1. Start the proxy.\n1. In the config file and enter your API key. (This step is not required but is really recommended!)\n1. Restart the proxy.\n\nAnd you're good to go! :)\n\n## FAQ:\nQ: Can I change the clear cache interval?\nA: Yeah! Just keep in mind that the interval there is in seconds, not minutes or hours. ;)\n\nQ: My players are getting kicked with an error message! What do I do?\nA: Check your logs! It is possible that you just ran out of queries for today!\n\nQ: What are the permissions that Topaz checks for?\nA: `topaz.bypass` for bypassing the IP proxy check.\n\nQ: What permission plugin do you recommend?\nA: [LuckPerms never failed me. :)](https://luckperms.net)\n\n## Support is offered on my [Discord server](https://discord.gg/y3VdCeJaC2).",
+            "memberNames": [
+                "zomka"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/402.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-22T20:27:55.131456Z",
+            "id": 372,
+            "name": "Parties",
+            "namespace": {
+                "owner": "AlessioDP",
+                "slug": "Parties"
+            },
+            "stats": {
+                "views": 15327,
+                "downloads": 1456,
+                "recentViews": 587,
+                "recentDownloads": 25,
+                "stars": 15,
+                "watchers": 9
+            },
+            "category": "gameplay",
+            "description": "Parties is an advanced parties manager for your Bukkit/Spigot, BungeeCord and Velocity",
+            "lastUpdated": "2023-10-18T22:05:00.24648Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 1,
+                                "name": "Documentation",
+                                "url": "https://alessiodp.com/docs/parties"
+                            },
+                            {
+                                "id": 2,
+                                "name": "Source Code",
+                                "url": "https://github.com/AlessioDP/Parties"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "AGPL",
+                    "url": "https://github.com/AlessioDP/Parties/blob/master/LICENSE",
+                    "type": "AGPL"
+                },
+                "keywords": [
+                    "party",
+                    "parties",
+                    "clan",
+                    "guild",
+                    "teams"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.10",
+                    "1.10.1",
+                    "1.10.2",
+                    "1.11",
+                    "1.11.1",
+                    "1.11.2",
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.8",
+                    "1.9",
+                    "1.9.1",
+                    "1.9.2",
+                    "1.9.3",
+                    "1.9.4"
+                ],
+                "WATERFALL": [
+                    "1.11",
+                    "1.12",
+                    "1.13",
+                    "1.14",
+                    "1.15",
+                    "1.16",
+                    "1.17",
+                    "1.18",
+                    "1.19",
+                    "1.20"
+                ],
+                "VELOCITY": [
+                    "3.0",
+                    "3.1",
+                    "3.2"
+                ]
+            },
+            "mainPageContent": "<center>\n  \n![https://alessiodp.com/images/parties.png](https://alessiodp.com/images/parties.png)\n  \n*A groups manager plugin for your minecraft server.*\n  \n*Parties is an advanced plugin for Minecraft servers that allows the creation of parties (groups/clans/guilds) on your server. Everything is configurable and modular, if you don't want a feature, just disable it (it won't have a bad impact on the server).*\n**[*Read more about Parties here!*](https://alessiodp.com/parties/)**\n  \n## **For offline players, [LastLoginAPI](http://bit.ly/lastloginapi-spigot) is required!**\n## **Java 11+ is required**\n  \n[![Discord](https://i.imgur.com/d5NPCpi.png)](https://discord.alessiodp.com)\n  \n[![Donate](https://i.imgur.com/muxfshK.png)](https://donate.alessiodp.com/)\n  \n![Images](https://i.imgur.com/nPOpG37.png)\n\n</center>\n\n## Helpful Links\n\n#### [**Documentation of Parties**](https://alessiodp.com/docs/parties)\n#### [**Commands reference**](https://alessiodp.com/docs/parties/commands)\n#### [**Full permissions list**](https://alessiodp.com/docs/parties/permissions)\n#### [**Full changelogs**](https://alessiodp.com/docs/parties/changelogs)\n#### [**How to report a bug**](https://alessiodp.com/docs/parties/howtoreportabug)\n#### [**FAQ**](https://alessiodp.com/docs/parties/faq)\n\nFeel free to translate Parties for your language! [**Parties translations**](https://alessiodp.com/docs/parties/languagepacks).  \nYou can find the **[source code here](https://github.com/alessiodp/parties)** and [**API for developers here**](https://alessiodp.com/docs/parties/hookintoparties).\n## General Features\n\n* 100% configurable\n* **Censor system for a lot of features** (regex based)\n* Commands are configurable\n* **Placeholders system**\n  * Make custom placeholders for external use\n  * Scoreboard (via PAPI) supported\n* Sync data between Spigot and BungeeCord\n  * Data sharing configurable\n* Automatic update old configurations\n* Support for HEX colors of MC 1.16+ (&#ff0000)\n* Support for offline players (**[LastLoginAPI](http://bit.ly/lastloginapi-spigot) required**)\n\n## Party Features\n\n* **Chat** dedicated to the party\n* **EXP system**\n  * Give a level to each party and let them level up\n  * Levels are completely customizable and optional\n  * Obtain exp by killing normal mobs or via API\n* **Fixed** parties\n  * Permanent parties that don't require a leader\n  * Useful for reigns, clans or factions of a server\n* A customizable **list of every party**\n  * Choose the sort system\n  * You can filter or hide some parties\n* Fully customizable **ranks** (roles)\n  * You decide every rank of the party\n  * Every rank have their own party permissions\n  * Every rank have their own rank placeholder\n  * Set a limit number of members\n* **Tag** system\n  * Set an unique tag for the party\n* Party **color**, choose or achieve their own color\n* Party **description**\n* Party **MOTD**\n* Member **nicknames**\n* **Invite**, **ask** or **join** a party with commands\n* **Teleport** command to tp party members to you\n* Protect your party with a **password** or just **join** others with a command\n* **Open/close** command to allow other users to join\n* Party **delete/rename** for admins/users\n* Ignore/disable notification commands\n* Server join/leave member message\n* **Auto** perform leader executed commands\n* **Friendly fire** protection\n  * You can set it globally or toggleable with a command\n* **Home** and **sethome** system\n* **Kills counter** for each party\n* **Follow party feature**, whenever a player change world/server, the party will follow him\n\n## External Features\n\n* JSON messages supported\n* Asynchronous to avoid server lag\n* API for developers\n  * Handle custom events via Bukkit or Bungee\n  * Handle parties/players data via API\n* Statistics system (bStats)\n* Database supported: YAML, H2, MariaDB, MySQL, PostgreSQL and SQLite\n* Redis support via RedisBungee plugin\n* Plugins supported:\n  * **AdvancedBan & BanManager**: Auto kick banned users or prevent chat if muted\n  * **BedWars1058**: Join into the minigame with the party\n  * **BungeeChat**: Prevent chat if the player is muted\n  * **DungeonsXL**: Use Parties system instead of their one\n  * **Dynmap**: Create a mark for each party home\n  * **EssentialsX**: Save back location for teleport commands\n  * **EssentialsChat**: Use Parties placeholders on EssentialsChat\n  * **GriefDefender & GriefPrevention**: Give claim permissions to the entire party\n  * **LastLoginAPI**: Support for offline players\n  * **Marcely's Bedwars**: Join into the minigame with the party\n  * **MMOCore**: Use Parties system instead of their one\n  * **OpenAudioMc**: Support Parties chat filter\n  * **PlaceholderAPI**: Use PAPI placeholders inside Parties and viceversa\n  * **Plugily Projects**: Minigame plugins support Parties\n  * **PremiumVanish**: Support for BungeeCord vanish\n  * **Quality Armory**: Support friendly fire protection with weapons\n  * **Quests**: Share quest progress with your party\n  * **RedisBungee**: Redis support\n  * **Screaming BedWars**: Automatically follow leader on minigame join\n  * **ShowItem**: Show items in party chat\n  * **Skript**: Dedicated skripts\n  * **TNTRun_Reloaded**: Use Parties system instead of their one\n  * **Unite**: Support Parties as abstract party API\n  * **Vault:** Give a price to each command\n\n\n## Commands & Permissions\n\nParties is based on 2 main commands, *party* and *p*. **You can change them from config.yml**.\n**You decide what Parties will become**, *if you are looking for a clan plugin, just change from party to clan.*  \n[**Full list of commands here**](https://alessiodp.com/docs/parties/commands).\n\nBefore start to use Parties you should setup permissions, you can find the **[full permissions list here](https://alessiodp.com/docs/parties/permissions).\n#### [**Are you looking for /guild or /clan?**](https://alessiodp.com/docs/parties/faq#change-commands)\n\n\n## Ask for Help\n\n**Are you looking for help?** You can find me on my own Discord server or directly send me a private message on Spigot!\n#### [**Frequently Asked Questions**](https://alessiodp.com/docs/parties/faq/)\n#### [**Join my Discord**](https://discord.gg/683dvwr)\n\n\n## Docs/Manual\n\n**Parties offers a great documentation to help you to configure Parties**. There you can find everything that you are looking for.  \nThese are some examples:  \n#### [**How can I install Parties on Spigot/BungeeCord/Velocity?**](https://alessiodp.com/docs/parties/howtoinstall)\n\n#### [**Download some translations**](https://alessiodp.com/docs/parties/languagepacks)\n\n#### [**API for developers**](https://alessiodp.com/docs/parties/hookintoparties)",
+            "memberNames": [
+                "alessiodp"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/372.webp?v=1"
+        },
+        {
+            "createdAt": "2023-07-06T17:15:48.539505Z",
+            "id": 1020,
+            "name": "NoConfirm",
+            "namespace": {
+                "owner": "Tamion",
+                "slug": "NoConfirm"
+            },
+            "stats": {
+                "views": 1514,
+                "downloads": 12,
+                "recentViews": 181,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "admin_tools",
+            "description": "Removes confirmation on /rl or /reload",
+            "lastUpdated": "2023-07-06T17:22:44.888254Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.20.1"
+                ]
+            },
+            "mainPageContent": "## **NoConfirm**\nSimple Plugin That allows you to reload the server without having to write confirm after /rl",
+            "memberNames": [
+                "tamion"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/1020.webp?v=2"
+        },
+        {
+            "createdAt": "2023-04-22T20:29:48.740175Z",
+            "id": 377,
+            "name": "OreAnnouncer",
+            "namespace": {
+                "owner": "AlessioDP",
+                "slug": "OreAnnouncer"
+            },
+            "stats": {
+                "views": 14162,
+                "downloads": 1311,
+                "recentViews": 793,
+                "recentDownloads": 40,
+                "stars": 24,
+                "watchers": 14
+            },
+            "category": "protection",
+            "description": "A simple plugin for minecraft servers to collect data about ore diggers",
+            "lastUpdated": "2023-08-04T23:27:35.31153Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Documentation",
+                                "url": "https://alessiodp.com/docs/oreannouncer"
+                            },
+                            {
+                                "id": 1,
+                                "name": "Source Code",
+                                "url": "https://github.com/AlessioDP/OreAnnouncer"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "AGPL",
+                    "url": "https://github.com/AlessioDP/OreAnnouncer/blob/master/LICENSE",
+                    "type": "AGPL"
+                },
+                "keywords": [
+                    "ore",
+                    "block",
+                    "alert",
+                    "announcer",
+                    "xray"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.10",
+                    "1.10.1",
+                    "1.10.2",
+                    "1.11",
+                    "1.11.1",
+                    "1.11.2",
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.8",
+                    "1.9",
+                    "1.9.1",
+                    "1.9.2",
+                    "1.9.3",
+                    "1.9.4"
+                ],
+                "WATERFALL": [
+                    "1.11",
+                    "1.12",
+                    "1.13",
+                    "1.14",
+                    "1.15",
+                    "1.16",
+                    "1.17",
+                    "1.18",
+                    "1.19",
+                    "1.20"
+                ],
+                "VELOCITY": [
+                    "3.0",
+                    "3.1"
+                ]
+            },
+            "mainPageContent": "<center>\n  \n  ![https://alessiodp.com/images/oreannouncer.png](https://alessiodp.com/images/oreannouncer.png)\n  \n*A simple plugin for minecraft servers to collect data about ore diggers*\n  \n*This plugin collects data about mined blocks (can be set with any block).  \nYou can send an alert to users/admins or just store every block they destroy to easily track x-ray players.*\n  \n**[*Read more about OreAnnouncer here!*](https://alessiodp.com/docs/oreannouncer/)**\n\n## For offline players, [LastLoginAPI](http://bit.ly/lastloginapi-spigot) is required!\n\n[![https://i.imgur.com/d5NPCpi.png](https://i.imgur.com/d5NPCpi.png)](https://discord.alessiodp.com/)\n[![https://i.imgur.com/muxfshK.png](https://i.imgur.com/muxfshK.png)](https://donate.alessiodp.com/) \n [](https://discord.alessiodp.com/) \n![https://alessiodp.com/images/oreannouncer/image1.gif](https://alessiodp.com/images/oreannouncer/image1.gif)\n![https://alessiodp.com/images/oreannouncer/image2.jpg](https://alessiodp.com/images/oreannouncer/image2.jpg)\n![https://alessiodp.com/images/oreannouncer/image3.jpg](https://alessiodp.com/images/oreannouncer/image3.jpg)\n</center>\n\n![https://i.imgur.com/Pg2SiXM.png](https://i.imgur.com/Pg2SiXM.png)\n#### [**Documentation of OreAnnouncer**](https://alessiodp.com/docs/oreannouncer/)\n#### [**How to add/edit a block**](https://alessiodp.com/docs/oreannouncer/editblock)\n#### [**Commands reference**](https://alessiodp.com/docs/oreannouncer/commands/)\n#### [**Full permissions list**](https://alessiodp.com/docs/oreannouncer/permissions/)\n#### [**Full changelogs**](https://alessiodp.com/docs/oreannouncer/changelogs/)\n#### [**How to report a bug**](https://alessiodp.com/docs/oreannouncer/howtoreportabug/)\n#### [**FAQ**](https://alessiodp.com/docs/oreannouncer/faq/)\n\nFeel free to translate OreAnnouncer for your language! [**OreAnnouncer translations**](https://alessiodp.com/docs/oreannouncer/languagepacks/).\n\nYou can find the **[source code here](https://github.com/alessiodp/oreannouncer)** and [**API for developers here**](https://alessiodp.com/docs/oreannouncer/hookintooreannouncer/).\n\n\n![https://i.imgur.com/DrDKGU3.png](https://i.imgur.com/DrDKGU3.png)\n\n* Send an alert whenever a player digs a block\n  * Choose to send it to users/admins/console\n  * Custom sound for each block\n  * Custom message for each block\n* Alerts based on how many blocks has been found in X time\n* Show top players\n* Show block logs\n  * Filter by player\n  * Filter by block\n* Auto execute commands\n  * On block destroy/found\n  * Player and console commands are supported\n* TNT mining\n* Toggle alerts for yourself\n* Player whitelist system\n* Make a JSON alert to perform commands on click\n* Show or obfuscate coordinates of the mined block\n* You can choose any block you want\n* Light control system\n* Height level control system\n* Placeholders system\n  * PlaceholdersAPI support\n  * EssentialsChat support\n* Log system\n* Support for DiscordSRV\n  * Choose between text and embed messages\n  * Messages completely customizable\n* Support for custom blocks\n  * Plugins ItemMods and MMOItems supported\n* Support for HEX colors of MC 1.16+ (&#ff0000)\n* Supports offline players (**[LastLoginAPI](https://www.spigotmc.org/resources/lastloginapi-api-to-handle-player-names-and-login-timestamps.66348/) required**)\n\n\n![https://i.imgur.com/6YA45yk.png](https://i.imgur.com/6YA45yk.png)\n\n* JSON messages supported\n* Asynchronous to avoid server lag\n* Statistics system (bStats)\n* API for developers\n* Databases supported: H2, MariaDB, MySQL, PostgreSQL and SQLite\n* Plugins supported\n  * **DiscordSRV**: Send alerts on Discord\n  * **EssentialsChat**: Use OA placeholders on EssentialsChat\n  * **ItemMods & MMOItems**: Custom blocks\n  * **LastLoginAPI**: Support for offline players\n  * **PlaceholderAPI**: Use PAPI placeholders inside OA and viceversa\n\n![https://i.imgur.com/ETzMcZR.png](https://i.imgur.com/ETzMcZR.png)\n\nOreAnnouncer uses /oa command. **You can change it from config.yml**.\n[**Full list of commands here**](https://alessiodp.com/docs/oreannouncer/commands/).\n\nBefore start to use OreAnnouncer you should setup permissions, you can find the **[full permissions list here](https://alessiodp.com/docs/oreannouncer/permissions/).**\n\n\n![https://i.imgur.com/p56fzLW.png](https://i.imgur.com/p56fzLW.png)\n\n**Are you looking for help?** You can find me on my own Discord server or directly send me a private message on Spigot!\n\n#### [**Frequently Asked Questions**](https://alessiodp.com/docs/oreannouncer/faq/)\n#### [**Join my Discord**](https://discord.gg/683dvwr)\n\n\n![https://i.imgur.com/DTJ5lDD.png](https://i.imgur.com/DTJ5lDD.png)\n\n**OreAnnouncer offers a great documentation to help you to configure it**. There you can find everything that you are looking for.\n\nThese are some examples:\n#### [**How can I install OreAnnouncer on Spigot/Bukkit/BungeeCord?**](https://alessiodp.com/docs/oreannouncer/howtoinstall/)\n#### [**Download some translations**](https://alessiodp.com/docs/oreannouncer/languagepacks/)\n#### [**API for developers**](https://alessiodp.com/docs/oreannouncer/hookintooreannouncer/)\n\n![https://i.imgur.com/58jsMfn.png](https://i.imgur.com/58jsMfn.png)\n#### **[GUI extension (edit blocks via GUI menus)](http://bit.ly/oreannouncergui-spigot)**\n[![https://alessiodp.com/images/oreannouncergui/image1.jpg](https://alessiodp.com/images/oreannouncergui/image1.jpg)](http://bit.ly/oreannouncergui-spigot)",
+            "memberNames": [
+                "alessiodp"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/377.webp?v=1"
+        },
+        {
+            "createdAt": "2023-07-12T14:10:48.414843Z",
+            "id": 1037,
+            "name": "TSetSpawn",
+            "namespace": {
+                "owner": "Mine_Alex",
+                "slug": "TSetSpawn"
+            },
+            "stats": {
+                "views": 7509,
+                "downloads": 351,
+                "recentViews": 609,
+                "recentDownloads": 11,
+                "stars": 0,
+                "watchers": 1
+            },
+            "category": "admin_tools",
+            "description": "SetSpawn plugin, Spawn on join and more! No permissions needed",
+            "lastUpdated": "2023-12-06T13:04:57.326706Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [
+                    "SUPPORTS_FOLIA"
+                ],
+                "license": {
+                    "name": "GPL",
+                    "url": "https://github.com/TectHost/TSetSpawn/blob/main/LICENSE",
+                    "type": "GPL"
+                },
+                "keywords": [
+                    "Spawn",
+                    "SetSpawn",
+                    "TSetSpawn",
+                    "Tecthost"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.10",
+                    "1.10.1",
+                    "1.10.2",
+                    "1.11",
+                    "1.11.1",
+                    "1.11.2",
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.8",
+                    "1.9",
+                    "1.9.1",
+                    "1.9.2",
+                    "1.9.3",
+                    "1.9.4"
+                ]
+            },
+            "mainPageContent": "# TSetSpawn\nThe most advanced SetSpawn plugin\n\n# Features\n- SetSpawn\n- Spawn\n- Spawn on enter\n- Welcome messages\n- Join/Quit messages\n- Cooldown\n- Wait-time\n- Particles\n- Sound on spawn\n- Void Teleport (configurable worlds)\n- Cancel teleport on move\n- Death to spawn\n- Keep inventory\n- PlaceholderAPI Expansion\n- Title on spawn\n- First join spawn\n- Send a specific player to spawn\n- Sends all players to spawn\n- Delete spawn & ftspawn with command\n- Fireworks on spawn\n- Different time in cancel-on-move according to a permission\n\n# Commands\n- /setspawn\n- /spawn\n- /tsetspawn reload\n- /tsetspawn\n- /tsetspawn version\n- /tss\n- /tss version\n- /tss reload\n- /ftsetspawn\n- spawn (player)\n- spawn all\n- removespawn (spawn/ftspawn)\n\n# Permissions\n- tsetspawn.reload\n- tsetspawn.version\n- tsetspawn.setspawn\n- tsetspawn.ftsetspawn\n- tsetspawn.admin (/spawn (player) and /spawn all)\n- tsetspawn.remove\n- tsetspawn.(group on cancel-on-move)\n\n# Placeholders\n- %tsetspawn_spawn%\n- %tsetspawn_ftspawn%\n- %tsetspawn_spawn_formatted%\n- %tsetspawn_ftspawn_formatted%\n\n# Dependencies\n- PlaceholderAPI",
+            "memberNames": [
+                "mine_alex"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/1037.webp?v=1"
+        },
+        {
+            "createdAt": "2024-05-15T16:33:06.82929Z",
+            "id": 2039,
+            "name": "RapidReport",
+            "namespace": {
+                "owner": "FirephoenixX02",
+                "slug": "RapidReport"
+            },
+            "stats": {
+                "views": 1668,
+                "downloads": 81,
+                "recentViews": 118,
+                "recentDownloads": 2,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "admin_tools",
+            "description": "A report plugin made for the Velocity proxy which supports GUIs",
+            "lastUpdated": "2024-05-19T17:06:56.005903Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "sidebar",
+                        "title": "Github Repository",
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Click me",
+                                "url": "https://github.com/FirephoenixX02/RapidReport"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "Unspecified",
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "Velocity",
+                    "Report",
+                    "Admin",
+                    "GUI"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "VELOCITY": [
+                    "3.1",
+                    "3.2",
+                    "3.3"
+                ]
+            },
+            "mainPageContent": "# Notice: This is still an Alpha and unstable\n# RapidReport\nRapidReport is a versatile reporting plugin designed to streamline reporting tasks, offering features such as GUIs and report history, requiring installation solely on the Proxy server.\nAs far as I'm aware, it's the only plugin offering these capabilities.\nOther plugins typically require installation on all backend servers, which, in my opinion, renders the existence of a Velocity Plugin redundant.\n\n# Dependencies\nRapidReport requires [Protocolize](https://github.com/Exceptionflug/protocolize) aswell as the [legacy data module](https://ci.exceptionflug.de/job/Protocolize-Legacy-Data/) from Protocolize.\n# Permissions\n- ``rapidreport.gui`` for opening the moderator gui\n- ``rapidreport.closereports`` to close reports\n- ``rapidreport.reports`` to list all reports\n- ``rapidreport.report`` to report someone",
+            "memberNames": [
+                "firephoenixx02"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/2039.webp?v=1"
+        },
+        {
+            "createdAt": "2024-06-06T17:51:49.561109Z",
+            "id": 2089,
+            "name": "joblistings",
+            "namespace": {
+                "owner": "refractored",
+                "slug": "joblistings"
+            },
+            "stats": {
+                "views": 3875,
+                "downloads": 348,
+                "recentViews": 273,
+                "recentDownloads": 15,
+                "stars": 6,
+                "watchers": 1
+            },
+            "category": "economy",
+            "description": "Create tasks for other players to do for money",
+            "lastUpdated": "2024-08-25T21:44:25.421204Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Source Code",
+                                "url": "https://github.com/refractored/JobListings"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "Unspecified",
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "shop",
+                    "store",
+                    "sell",
+                    "orders",
+                    "jobs"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1"
+                ]
+            },
+            "mainPageContent": "![](https://i.imgur.com/OFgggUE.png)\n\n# SUPPORT:\n\nhttps://discord.gg/HUyJ4XPK\n# Info:  \nJoblistings is a plugin where a player creates an order for items, and other players are able to complete the order.\n\n![](https://i.imgur.com/aNQ1vT5.png)\n\nWhen a player runs the `/joblistings orders ` command this gui pops up, where players can accept other's orders.\n\n![](https://i.imgur.com/xvM5YCI.png)\n\nOrders dont last forever and must be claimed before they expire, if they arent, the player who made the order can get their money back for it.\n\nPlayers have a set time (set in config) to complete an order, if they dont complete it in time, they lose out on the money, and the order creator can get their money back.\n\nIf an order updates while the player is offline, whenever the player logs back on, they will be notified on join. This is refered as the \"mailing system\" in the conifg.\n# Commands: \n\n![](https://i.imgur.com/j9wWuYC.png)\n# Requirements: \n\n- Vault\n- Economy plugin\n- MySQL Databse\n# Intergration: \n\nWhen installed with essentials, you can enable in the config:\n- Option to disallow players from accepting orders from players that ignored them\n- Use Essentials' mailing system instead of mine.\n\n# Permissions: \n\n* joblistings.help - Help command `/joblistings`\n* joblistings.view.orders - View all pending orders `/joblistings orders`\n* joblistings.view.owned - View orders you created `/joblistings owned`\n* joblistings.view.claimed - View orders you claimed `/joblistings claimed`\n* joblistings.completeorders - Automatically complete orders `/joblistings complete`\n* joblistings.create.material - Create an order with the specified material `/joblistings create material`\n* joblistings.create.hand - Create an order with the item held in hand `/joblistings create hand`\n\n# FYI: \nThis plugin is fairly new, and not much customization has been added yet! \nPlease report any issues on [GitHub](https://github.com/refractored/JobListings/issues).\nNo backwards compatibility or support through reviews will be given.",
+            "memberNames": [
+                "refractored"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/2089.webp?v=1"
+        },
+        {
+            "createdAt": "2024-06-16T19:38:46.240655Z",
+            "id": 2120,
+            "name": "SunVote",
+            "namespace": {
+                "owner": "Fayns",
+                "slug": "SunVote"
+            },
+            "stats": {
+                "views": 892,
+                "downloads": 17,
+                "recentViews": 103,
+                "recentDownloads": 1,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "SunVote: Simple and customizable voting plugin for your Minecraft server!",
+            "lastUpdated": "2024-06-16T19:43:36.287204Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5"
+                ]
+            },
+            "mainPageContent": "SunVote is a powerful Minecraft plugin that allows administrators and players to easily create and participate in server-wide votes. With full configuration through the config.yml file, support for colored messages, and flexible functionality, SunVote will become an indispensable tool on your server!\n\n**Key Features:**\n\n* Create votes by administrators.\n* Players can vote using the /vote command.\n* View vote results with the /votesource command.\n* Fully configurable through the config.yml file.\n* Support for colored messages using the & symbol.\n* Easy configuration reload with the /votereload command.\n\n**Commands and Permissions:**\n\n* /vote <name> <vote> - allows players to participate in active votes.\n* /votesource <name> - displays the results of the specified vote.\n* /votesource broadcast <name> - announces the results of the vote to all players on the server.\n* /votereload - reloads the plugin's configuration file.\n* /vote create <name> - creates a new vote (for administrators).\n* /vote remove <name> - removes the specified vote (for administrators).\n\n**Permissions:**\n\n* sunvote.vote - allows players to vote.\n* sunvote.admin - allows administrators to create, remove, view vote results, and use the /votereload command.\n\n**Configuration:**\nThe config.yml file allows you to customize all plugin messages. Example configuration:\n\n```yaml\n## config.yml\nmessages:\n  vote_created: \"Vote created successfully!\"\n  vote_removed: \"Vote removed successfully!\"\n  vote_casted: \"Vote casted successfully!\"\n  vote_invalid_number: \"Please enter a valid number for the vote.\"\n  vote_usage: \"Usage: /vote <vote_name> <vote>\"\n  vote_only_players: \"Only players can vote!\"\n  admin_usage: \"Usage: /<command> <create/remove/results/broadcast/reload> <vote_name>\"\n  unknown_action: \"Unknown action: \"\n  results_header: \"Results for the vote \"\n  reload_success: \"Configuration reloaded successfully!\"\n\n\"\n```",
+            "memberNames": [
+                "fayns"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/2120.webp?v=1"
+        },
+        {
+            "createdAt": "2024-06-16T19:38:46.414225Z",
+            "id": 2122,
+            "name": "SunRtp",
+            "namespace": {
+                "owner": "Fayns",
+                "slug": "SunRtp"
+            },
+            "stats": {
+                "views": 2046,
+                "downloads": 133,
+                "recentViews": 174,
+                "recentDownloads": 6,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "gameplay",
+            "description": "SunRtp - A plugin that will make random teleportation on your server",
+            "lastUpdated": "2024-06-16T19:45:26.025025Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [
+                    "ADDON"
+                ],
+                "license": {
+                    "name": "Unspecified",
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5"
+                ]
+            },
+            "mainPageContent": "SunRtp is a lightweight and configurable random teleportation plugin for your Minecraft server. With this plugin, players can teleport to a random location in a specified world, providing a new and exciting way to explore the environment. The plugin ensures that players are teleported safely, adjusting their height to the ground level. Additionally, it includes a cooldown feature to prevent excessive use and maintain server performance.\n\n##### **Features**\n\n* **Random Teleportation**: Teleport players to random locations within defined coordinates in a specific world.\n* **Configurable Settings**: Customize the world, coordinate boundaries, teleport messages, and cooldown duration through config.yml.\n* **Cooldown Management**: Set a cooldown period between teleportation commands to prevent server overload.\n* **Permissions**: Control who can use the teleportation and reload commands with permissions.\n\n##### **Commands**\n\n* /rtp: Teleport to a random location in the configured world.\n* /rtp reload: Reload the plugin's configuration (requires permission).\n\n##### **Permissions**\n\n* sunrtp.teleport: Allows use of the /rtp command.\n* sunrtp.reload: Allows use of the /rtp reload command.",
+            "memberNames": [
+                "fayns"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/7217557b-3f74-434f-bbbf-4c1ceebb77b9.webp?v=1"
+        },
+        {
+            "createdAt": "2024-07-02T13:43:02.444988Z",
+            "id": 2194,
+            "name": "AOMultiverse-MySQL-GENS",
+            "namespace": {
+                "owner": "AlphaOmega-IT",
+                "slug": "AOMultiverse-MySQL-GENS"
+            },
+            "stats": {
+                "views": 1090,
+                "downloads": 11,
+                "recentViews": 165,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "world_management",
+            "description": "Introducing The Multiverse to your Server!",
+            "lastUpdated": "2024-07-02T13:46:14.09775Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21"
+                ]
+            },
+            "mainPageContent": "**Introducing the MultiVerse Plugin: Explore Infinite Worlds**\n\nWelcome to the **MultiVerse plugin,** your gateway to endless exploration and adventure! With our custom generator, you can create two distinct types of worlds: Void and Default. These worlds are fully configurable and supported by a robust database system, ensuring seamless integration and management.\n\n**Commands:**\n\n\n* **/mv edit <world>:** Edit existing worlds with ease, tweaking settings to your liking.\n* **/mv teleport <world>:** Instantly transport yourself to any world within your multiverse.\n* **/mv delete <world>:** Safely remove worlds from your multiverse, including their world folders.\n* **/mv create <world> <type>:** Generate new worlds on demand, specifying either Void or Default type.\n* **/mv force_world <world> <type>:** Add an existing world to your database and convert it, so you can also set the global spawn and spawnpoint there.\n* **/mv load <world> <type>:** load an unloaded world from your server folder!\n\n**Features:**\n\n\n* **Database Support:** Our plugin seamlessly interacts with your database, ensuring efficient storage and retrieval of world data.\n* **Configurable Configs:** Tailor every aspect of your multiverse experience with fully customizable configurations.\n* **Multilanguage Support:** Explore worlds in your preferred language with comprehensive multilingual support.\n\n**World Types:**\n\n\n* **Void:** Experience the endless expanse of nothingness, where your imagination is the only limit.\n* **Default:** Dive into a world filled with diverse biomes, landscapes, and challenges, ready for exploration.\n\n**Spawn Points:**\n\n\n* Define a global spawn point for all worlds or set individual spawn points for each world, offering flexibility and control over player entry points.\n\nEmbark on your journey through the multiverse today and unleash your creativity like never before!\n\n\n\n### **MultiVerse Plugin Installation Guide**\n\nFollow these simple steps to install and configure the MultiVerse plugin for your Minecraft server:\n\n1. **Start the Server Within the Plugin**\n    - Ensure you have the MultiVerse plugin JAR file in your server's plugins folder.\n    - Start or restart your Minecraft server to load the plugin.\n\n2. **Configure the Database**\n    - Locate the *database-config.yml* file within the MultiVerse plugin folder.\n    - Open the *database-config.yml* file with a text editor of your choice.\n    - Update the database configuration with your own data, including the database host, port, username, and password.\n    - Save the changes to the *database-config.yml* file.\n\n3. **Restart the Server**\n    - Restart your Minecraft server to apply the changes made to the database configuration.\n    - Once the server has restarted, the MultiVerse plugin should run without any issues.\n\nCongratulations! You have successfully installed and configured the MultiVerse plugin on your Minecraft server. Enjoy exploring infinite worlds and unleashing your creativity!",
+            "memberNames": [
+                "alphaomega-it"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/2194.webp?v=1"
+        },
+        {
+            "createdAt": "2025-07-23T16:16:13.74438Z",
+            "id": 4568,
+            "name": "StellarProtect",
+            "namespace": {
+                "owner": "InsiderAnh",
+                "slug": "StellarProtect"
+            },
+            "stats": {
+                "views": 1018,
+                "downloads": 53,
+                "recentViews": 513,
+                "recentDownloads": 17,
+                "stars": 1,
+                "watchers": 0
+            },
+            "category": "admin_tools",
+            "description": "Advanced Action Logger for Minecraft Servers",
+            "lastUpdated": "2025-11-09T21:04:14.423515Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [
+                    "SUPPORTS_FOLIA"
+                ],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "LGPL"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1",
+                    "1.21.10",
+                    "1.21.2",
+                    "1.21.3",
+                    "1.21.4",
+                    "1.21.5",
+                    "1.21.6",
+                    "1.21.7",
+                    "1.21.8",
+                    "1.21.9",
+                    "1.8",
+                    "1.8.8",
+                    "1.9",
+                    "1.9.1",
+                    "1.9.2",
+                    "1.9.3",
+                    "1.9.4"
+                ]
+            },
+            "mainPageContent": "<p align=\"center\">\n  <img src=\"https://i.imgur.com/JUOfxcd.png\" />\n</p>\n\n<p align=\"center\">\n  <strong><span style=\"font-size: 1.3em;\">Advanced Action Logger for Minecraft Servers</span></strong><br />\n  <span style=\"font-size: 1.2em;\">The ultimate solution for tracking, inspecting, and rolling back player activity with performance in mind.</span>\n</p>\n\n| <a href=\"https://modrinth.com/plugin/xplayerkits\" target=\"_blank\"><img src=\"https://i.imgur.com/73PSalz.jpeg\" alt=\"XPlayerKits\" /></a> | <a href=\"https://modrinth.com/plugin/xplayerkits\" target=\"_blank\"><img src=\"https://i.imgur.com/lwannlh.jpeg\" alt=\"XLeaderboards\" /></a> | <a href=\"https://modrinth.com/plugin/stellarprotect\" target=\"_blank\"><img src=\"https://i.imgur.com/tCvyf0Y.jpeg\" alt=\"StellarProtect\" /></a> |\n| --- | --- | --- |\n\n<p align=\"center\">\n  <img src=\"https://i.imgur.com/LNEDaWj.png\" />\n</p>\n\n- **Full player action tracking** – from block changes to chat, PvP, containers and more.  \n- **True multi-threaded engine** – keeps your main server thread untouched, even under pressure.  \n- **Tested on networks with over 200 players online.**  \n- **Version support from 1.8 to 1.21.10.**  \n- **Folia-compatible** for next-gen server performance.  \n- Active support via [Discord](https://discord.com/invite/4R9teKVcbM)\n- You can translate all items into the language of your choice, from Spanish to Chinese and beyond.  \n- Thanks to **Item Indexing** and **Block Indexing**, storage usage is reduced by up to 60% compared to other competitors.\n- **ItemsAdder** and **Nexo** support.\n\n### **Optimized for Performance**\n\n- Rewrites database queries to handle thousands of logs per second.  \n- Choose between **SQLite, MySQL, or MongoDB**.  \n- Rollback without chunk reloads or server lag.\n\n### **Plug & Play Setup**\n\n- No config needed to get started.  \n- Multi-world support built-in.  \n- Simple and ready-to-use API for developers.\n\n### **Preview, Restore and Rollback Control**\n\n- Target by player, action type, block type, radius, or world.  \n- Preview changes before applying.  \n- Exclude players or block types from any operation.\n- When you run the restoration for the first time, it will be considered a preview. You need to use **/spt restore confirm** to apply it permanently.\n\n### **Intelligent Inspection Tools**\n\n- Visual tool for checking block/entity interaction history.  \n- Click to see who placed, broke, interacted, or modified.  \n- Container inspection support: chests, barrels, hoppers, furnaces, etc.  \n- **Special Inspect Lines for Custom Blocks:** Designed to provide human-readable insights for blocks with custom data.  \n  - Shows all 4 lines of sign text directly when inspecting.\n\n### **Suspicious Activity Detection System**\n\n- Helps staff detect suspicious player behavior automatically.  \n- Detects when a player uses `/tpaccept` and dies shortly after.  \n- Useful for identifying patterns such as TPA Kill.\n\n<details>\n  <summary>Example</summary>\n  <img src=\"https://i.imgur.com/epCicDx.png\" />\n</details>\n\n### **Tested Performance with 200 players on mc.hycraft.us**\n\n<img src=\"https://i.imgur.com/DpLwNtg.png\" />\n\n<details>\n  <summary>More images</summary>\n  \n**Timeout 10m**\n\n<img src=\"https://i.imgur.com/edHMNux.png\" />\n\n**Timeout 30m**\n\n<img src=\"https://i.imgur.com/rIVzUkU.png\" />\n\n</details>\n\n<p align=\"center\">\n  <img src=\"https://i.imgur.com/HoTAVvB.png\" />\n</p>\n\n### **World & Environment**\n\n- Player block break.  \n- Player block place.  \n- Lava and water bucket usage by players.  \n- Explosions (TNT, creepers, ghasts).  \n- Piston and entity-based block movement.  \n- Trampled crops.  \n- Leaves decay.  \n- Tree grows.\n- Chorus flower, vines, sculks, amethyst, and bamboo spread.\n- Fire burn and ignite blocks.\n- Portal creation blocks.  \n- Sign edits and place with detailed lines.\n\n### **Player Interaction**\n\n- Accessing containers and moving items\n- Crafting items\n- Extracting items from furnaces\n- Enchanting items\n- Dropping items\n- Picking up items\n- Logging in and out\n- Tracking player deaths\n- Killing entities\n- Logging chat and commands\n- Shooting projectiles\n- Hitting entities with projectiles\n- Mounting and dismounting entities\n- Breaking item frames\n- Flowing liquids\n- Log consume items\n- Teleports and cause\n- Smithing table use\n- Gamemode change\n- Totem ressurrect\n- XP change\n- Money variation\n- Login and logout with session times.\n- Placing a book on a lectern.\n- Placing items on a campfire.\n- Placing a book in a chiseled bookshelf.\n- Placing a disc in a jukebox.\n- Filling a cauldron with water.\n- ArmorStand manipulate.\n\n## **Entities Data**\n\n- **Villagers**  \n  - Restored with their **level, profession, experience, and custom trades**.\n\n- **Pets**  \n  - Dogs, cats, parrots, and other tamed creatures now retain their **name, owner, and state**.\n  \n- **Hostile & passive mobs**  \n  - Restored with their **equipment, attributes, and AI data**.\n\n### **Extras**\n\n- Automatic log cleanup and expiration.\n- **Shop GUI** buy and sell actions.\n- **XPlayerKits** claim or give kits, with player give kit.\n- **Nexo** custom blocks, furniture place or break and custom ítem names.\n- **ItemsAdder** custom blocks, furniture place or break and custom ítem names.\n\n<details>\n<summary>Preview logs</summary>\n\n![Preview 1](https://i.imgur.com/MVrnjak.png)  \n![Preview 2](https://i.imgur.com/Wawd8ej.png)  \n![Preview 3](https://i.imgur.com/G2s6Hnu.png)  \n![Preview 4](https://i.imgur.com/4DinG8a.png)  \n![Preview 5](https://i.imgur.com/gqxlt25.png)   \n![Preview 6](https://i.imgur.com/4xkKySo.png)   \n![Preview 7](https://i.imgur.com/Mmh7gNI.png)   \n![Preview 8](https://i.imgur.com/5FSkLYj.png)   \n![Preview 9](https://i.imgur.com/RgP9uKd.png)\n\n</details>\n\n<p align=\"center\">\n  <img src=\"https://i.imgur.com/lUcyV4n.png\" />\n</p>\n\n### **Intelligent Item Indexing**\n\nAvoids redundant data by referencing item definitions instead of saving them repeatedly. This:\n\n- Reduces database size drastically.  \n- Speeds up queries and I/O.  \n- Improves backup performance.\n\n### Block Indexing\nUses **getAsString()** from BlockData to assign each unique block state an ID.  \nInstead of saving the full data every time, only the ID is referenced.  \n\n- Reduces database size  \n- Faster queries and I/O  \n- Smaller backups  \n  \n### **Ultra-Optimized Save Queries**\n\nCustom storage layer built for high-volume servers:\n\n- Batch writing to reduce disk access.  \n- Transactional safety to avoid locking issues.  \n- Low-latency writes even under stress.\n\n### **Special Inspect Lines for Custom Blocks**\n\nDesigned to provide **human-readable insights** for blocks with custom data.\n\n- Shows **all 4 lines of sign text** directly when inspecting.\n\n### **Suspicious activity detection system**\n\nA feature has been added to help staff detect suspicious behavior, such as \"TPA Kill\". The system will automatically detect when a player uses **/tpaccept** and then dies shortly after, allowing for better automated moderation.\n\n<details>\n  <summary>Example</summary>\n  <img src=\"https://i.imgur.com/epCicDx.png\" />\n</details>\n\n<p align=\"center\">\n  <img src=\"https://i.imgur.com/RiTSdM8.png\" />\n</p>\n\n**/spt lookup**\n\n- The core of your investigation system.  \n- Filter by time (minutes, hours, days).  \n- Filter by action type (placed, broken, container access, etc.).  \n- Paginated results with clean navigation.\n\n**Example:**  \n`/spt lookup a:action_break time:24h page:2 user:InsiderAnh`  \nShows page 2 of block placements from the past 24 hours.\n\n<details>\n  <summary>Image</summary>\n  <img src=\"https://i.imgur.com/gqxlt25.png\" />  \n</details>\n\n<p align=\"center\">\n  <img src=\"https://i.imgur.com/6TtG0gY.png\" />\n</p>\n\n**/spt inspect**\n\n- Click on any block to instantly see who placed, broke, or modified it.  \n- No need to check logs manually, results appear in chat immediately.  \n- Perfect for tracking grief or edits in a specific location.  \n- Includes **chest inspect** support to see item transfers in containers.  \n- Each interaction is timestamped and tied to the responsible player.\n- Ability to Right-click (place) a block in a location to see what block was removed there.\n- Ability to Right-click (place) a block inside water or lava block to see who placed the original block.\n\n<details>\n  <summary>Image</summary>\n  <img src=\"https://i.imgur.com/NGXsL1J.png\" />\n</details>\n\n<p align=\"center\">\n  <img src=\"https://i.imgur.com/LFE18qd.png\" />\n</p>\n\n| <a href=\"https://discord.gg/4R9teKVcbM\" target=\"_blank\"><img src=\"https://i.imgur.com/5mATCrI.jpeg\" alt=\"Discord\" /></a> | <a href=\"https://www.patreon.com/c/insideranh\" target=\"_blank\"><img src=\"https://i.imgur.com/G31oZIG.jpeg\" alt=\"Patreon\" /></a> | <a href=\"https://www.insideranh.dev/docs/stellarprotect.md\" target=\"_blank\"><img src=\"https://i.imgur.com/zdRGBIY.jpeg\" alt=\"Wiki\" /></a> |\n| --- | --- | --- |\n\n<p align=\"center\">\n  <img src=\"https://i.imgur.com/zCLUhT8.png\" /><br><br>\n  StellarProtect is an active and growing project.  \n  We appreciate your suggestions, bug reports, and reviews.  \n  Join the <a href=\"https://discord.com/invite/4R9teKVcbM\">Discord</a> to contribute and help shape the future of this plugin!<br><br>\n  **Thank you for supporting StellarProtect!**\n</p>\n\n**Many servers already trust StellarProtect, and we are truly grateful for that trust.**  \n\n![StellarProtect stats](https://bstats.org/signatures/bukkit/StellarProtect.svg)",
+            "memberNames": [
+                "insideranh"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/4568.webp?v=1"
+        },
+        {
+            "createdAt": "2024-05-06T08:49:51.088489Z",
+            "id": 2017,
+            "name": "LiveKit",
+            "namespace": {
+                "owner": "xStachelbaer",
+                "slug": "LiveKit"
+            },
+            "stats": {
+                "views": 63465,
+                "downloads": 10683,
+                "recentViews": 2611,
+                "recentDownloads": 254,
+                "stars": 44,
+                "watchers": 24
+            },
+            "category": "admin_tools",
+            "description": "Real Time Live Map and Admin Tools",
+            "lastUpdated": "2025-07-26T16:58:41.647531Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": "Links",
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Source Code",
+                                "url": "https://github.com/philip260897/LiveKit"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "Unspecified",
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1",
+                    "1.21.2",
+                    "1.21.3",
+                    "1.21.4",
+                    "1.21.5",
+                    "1.21.6",
+                    "1.21.7",
+                    "1.21.8"
+                ]
+            },
+            "mainPageContent": "![https://lindnerdev.at/assets/banner_3.png](https://lindnerdev.at/assets/banner_3.png)\n\n[![https://lindnerdev.at/assets/ios-badge.png](https://lindnerdev.at/assets/ios-badge.png)](https://apps.apple.com/us/app/livekit/id1550358825) [![https://lindnerdev.at/assets/android-badge.png](https://lindnerdev.at/assets/android-badge.png)](https://play.google.com/store/apps/details?id=at.lindnerdev.livekit)  \n\n### **What is LiveKit?**\nLiveKit is more than just a live map that shows what your players are up to. Administrate your server right out of your pocket, manage your world weather, player bans, whitelisting, open inventories, teleport players and much more! Get started with LiveKit with ease and discover all the features we have to offer. This plugin is in active development with new features coming your way regularly!\n\n### Getting started\n#### Server setup\n- Download the latest version of the LiveKit plugin -> Move it to your plugins folder\n- Reload or restart your server\n- Take note of the console output from LiveKit. It will tell you the **IP** and **Port** you will need to connect through the app!\n\n#### App setup\n- Download LiveKit App from on of the stores mentioned at the top of this page\n- In the App tap on **+ Connect** and enter the **IP** and **Port** from the step above\n- Follow the instructions in the App, either connect anonymously, or identify which player you are by using the **/livekit claim** command in-game and entering the code in the app\n\n**NOTE:** Port forwarding LiveKit port (default 4123) is !recommended!. Port forwarding allows the App to directly connect to your server. If you don’t setup port forwarding, the connection will be proxied through our proxy service, which will impact connection speed and stability\n\nIf you are having issues getting started, join our [Discord](https://discord.gg/PUbBDsR5mJ) and ask for help!\n\n\n### Setting up your world for rendering\nThe map is limited by a predefined boundary, so you control how big your rendered map will be. By default the bounds are rectangular and 1024x1024 blocks (or 64x64 chunks, 2x2 regions)\n\n#### Set your bounds\n/livekit <world> bounds <radius> [-r|-c]\nFor example, **/livekit main_world bounds 4096 -c** would set your rendered map border to a circular (-c) shape, with a radius of 4096 blocks\n\n#### Start a full render\n/livekit <world> render full\nThis will start a full render of the world, inside of your bounds defined with the command above. Don’t overdo your bounds, doing a full render takes a while.\n\n\n### Permissions\nIf you are using a [Vault](https://www.spigotmc.org/resources/vault.34315/) supported Permissions Plugin (for example LuckPerms) set **useVault** option to **true** in the LiveKit config.yml. Make sure to have Vault in your plugins folder.\n\n#### Permissions for players\n<details>\n<summary>Expand for a list of permissions for players</summary>\n  \n**livekit.commands.basic**- permission for player commands needed to interact with LiveKit\n\n**livekit.module.map** - permission to see the live map\n\n**livekit.map.info** - permission to view block info for a specific block\n\n**livekit.module.players** - permission to view players on the map (by default you can only see yourself)\n\n**livekit.players.other** - permission to see other players than yourself on the map\n\n**livekit.module.weathertime** - permission to see current weather and time of the world\n\n**livekit.module.chat** - permission to see the chat in the app\n\n**livekit.chat.write** - permission to chat from the app (only for identified players)\n\n**livekit.chat.write_offline** - permission to chat from the app while not online on the server\n\n**livekit.module.poi** - permission to see markers on the map\n\n**livekit.poi.personalpins** - permission to set personal pins on the map \n\n**livekit.module.messaging** - permission for private messaging through the app\n</details>\n\n#### Permissions for admins\n<details>\n<summary>Expand for a list of permissions for admins</summary>\n  \n**livekit.commands.admin** - permission for admin commands\n\n**livekit.module.admin** - permission for admin actions (ban, whitelist, kick, strike, …)\n\n**livekit.module.console** - permission to access server console through the app\n\n**livekit.console.execute** - permission to execute console commands\n\n**livekit.module.tps** - permission to view the server performance page (CPU, RAM, Ticks)\n\n**livekit.module.inventory** - permission to view and edit player inventories\n</details>\n\n### Commands\n<details>\n<summary>Expand for a list of commands</summary>\n**/livekit** - check if LiveKit is installed and working correctly. Displays basic info for users to connect to LiveKit (port, password needed, anonymous allowed, claim access) and also links to App or Play store\n\n**/livekit claim** - generates a pin which is used to identify yourself in the app\n*[livekit.commands.basic]*\n\n**/livekit headrefresh** - refreshes a players head skin\n*[livekit.commands.basic]*\n\n**/livekit pins** - lists players personal set pins and dsiplays their IDs (used for deleting)\n*[livekit.poi.personalpins]*\n\n**/livekit setpin <name>** - sets a pin at the current location of the player with the provided name\n*[livekit.poi.personalpin]*\n\n**/livekit removepin <ID>** - removes the specified pin\n*[livekit.poi.personalpin]*\n\n**/livekit info** - displays how many active sessions and active clients (Apps) are connected\n*[livekit.commands.basic]*\n\n**/livekit map** - displays information about the current livemap world and rendering status\n*[livekit.commands.admin]*\n\n**/livekit map cpu <percent>** - specifies how much time (in %) a chunk may use up for rendering. If you are doing a full rendering of the world, this can improve the rendering speed BUT, it will also cause server lag!\n*[livekit.commands.admin]*\n\n**/livekit <world>** - Displays live map info of specified world\n*[livekit.commands.admin]*\n\n**/livekit <world> render full [-m|-f]** - Starts a full render of specified world. -f forces already rendered tiles to render again, -m only renders missing tiles. Default is -f if none specified.\n*example: /livekit world render full -m*\n*[livekit.commands.admin]*\n  \n**/livekit <world> render stop** - Stops current rendering job\n*[livekit.commands.admin]*\n\n**/livekit <world> bounds** - Check the current bounds of the world\n*[livekit.commands.admin]*\n\n**/livekit <world> bounds <radius> [-r|-c]** - Sets bounds of specified world to the radius. Radius given in blocks! -c sets a circular radius. -r a rectangular radius. Default is -r\n*example: /livekit world bounds 4096 -c*\n*[livekit.commands.admin]*\n\n**/livekit <world> bounds <left> <right> <top> <bottom>** - Sets bounds to given bounding box left (-x), top (-z), right (+x), bottom (+z). In blocks!\n*[livekit.commands.admin]*\n\n**/livekit headrefresh <player>** - refreshes a players head skin (5 minute cooldown)\n*[livekit.commands.admin]*\n</details>\n\n\n### Storage\nSupported storage types are **SQLITE**, **POSTGRESQL** and **MYSQL**. For default storage, **SQLITE** is used and not setup is required\n\n\n#### Migration between storage types\n \n<details>\n<summary>Expand for migration guide</summary>\n  \n```\n#Add the following migrate entry to your Config\n#This is the currently active storage you want to convert\nmigrate:\n  type: SQLITE\n  sql:\n    host: ‘NULL’\n    user: ‘NULL’\n    database: ‘NULL’\n    password: ‘NULL’\n\n#Change the storage type to your new preferred type\nstorage:\n  type: MYSQL\n  sql:\n    host: ‘localhost’\n    user: ‘root’\n    database: ‘LiveKit’\n    password: ‘asdf23h12h’\n```\n\n\nThe next time you reload or start your server, LiveKit will convert the storage from migrate -> storage. After successful conversion, the migrate entry is removed. Backup your data before migrating! Storage migration will only happen, if the target storage is empty!\n</details>\n\n### Support\nJoin our LiveKit community on [Discord](https://discord.gg/PUbBDsR5mJ), where you can ask for help, recommend features or just chat with us!\n\n\n### Plugin integrations\n\n#### [EssentialsX](https://www.spigotmc.org/resources/essentialsx.9089/) (Recommended)\nWe’ve added integrations for EssentialsX displaying world spawns (per group), player homes and server warps on the map. Private messaging via /pm /msg will deliver private messages in the app, private app messages will be delivered in-game via Essentials private messaging\n\n##### Permissions\n<details>\n<summary>Expand for a list of permissions</summary>\n  \n **livekit.essentials.info** - displays EssentialsX player info on the player info panel\n\n**livekit.essentials.homes** - displays player homes on map\n\n**livekit.essentials.warps** - displays warps on the map\n\n**livekit.essentials.spawn** - displays spawns on the map\n\n**livekit.essentials.admin** - displays admin info (god mode, jailed, muted…) on player info panel\n</details>\n\n\n#### [DiscrodSRV](https://www.spigotmc.org/resources/discordsrv.18494/)\nDisplays chat messages from selected channels in the app\n\n##### Config\n<details>\n  <summary> Expand for config </summary>\n  \n```\nplugins:\n  DiscordSRV:\n    enabled: true\n    channelIDs:\n    - ‘859524672889552926’\n```\nMake sure to quote the channel ID ‘859…926’\n</details>\n\n### Data Privacy\nWith LiveKit v1.4.6 and moving forward, the LiveKit plugin communicates with our backend, communicating different metrics so we can provide a better service. LiveKit also offers proxied connections which are provided through our backend. At the moment the following data is collected and stored:\n- Minecraft Server IP, Minecraft Port, LiveKit Port\n- LiveKit connection attempts\n\nYou can ask us to delete data corresponding to your server at any time on our [Discord](https://discord.gg/PUbBDsR5mJ). Data will never be shared and only exists to create a better experience for you!",
+            "memberNames": [
+                "xstachelbaer"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/2017.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-10T18:50:23.527601Z",
+            "id": 249,
+            "name": "Ships",
+            "namespace": {
+                "owner": "mosemister",
+                "slug": "Ships"
+            },
+            "stats": {
+                "views": 4630,
+                "downloads": 145,
+                "recentViews": 397,
+                "recentDownloads": 10,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "gameplay",
+            "description": "Allows you to move structures in a single click",
+            "lastUpdated": "2024-06-13T17:23:28.804286Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 1,
+                                "name": "Issues",
+                                "url": "https://github.com/Minecraft-Ships/ShipsForCore/issues"
+                            },
+                            {
+                                "id": 0,
+                                "name": "Github",
+                                "url": "https://github.com/Minecraft-Ships/ShipsForCore"
+                            },
+                            {
+                                "id": 2,
+                                "name": "Bukkit/Spigot",
+                                "url": "https://dev.bukkit.org/projects/ships/files"
+                            },
+                            {
+                                "id": 3,
+                                "name": "Sponge",
+                                "url": "https://ore.spongepowered.org/MoseMister/Ships"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "AllRightsReserv",
+                    "url": null,
+                    "type": "Other"
+                },
+                "keywords": [
+                    "Pirate",
+                    "Ship",
+                    "Airship"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6"
+                ]
+            },
+            "mainPageContent": "## Ships\n\n![](https://proxy.spigotmc.org/297ae65c24b3e77b11114cbbf87ba8a8b0c4aa47?url=https%3A%2F%2Fmedia.forgecdn.net%2Fattachments%2Fthumbnails%2F138%2F72%2F310%2F172%2Funnamed.jpg)\n\n**Supported plugins (Ships 5-5.0.1.14)**\n\nThese have been moved to [here](http://dev.bukkit.org/bukkit-plugins/shipsbridge/)\n\nSupported Plugins (Ships 6)\n\n[Ships Grief Prevention Addon](https://dev.bukkit.org/projects/ships-grief-prevention-addon)\n[Ships Vault Addon](https://dev.bukkit.org/projects/ships-vault-addon)\n[ShipsSkript (Control ships with SkriptLang)](https://forums.skunity.com/resources/shipsskript.1151/)\n\n**Most up to date info**\nShips still uses [https://dev.bukkit.org/projects/ships](https://dev.bukkit.org/projects/ships) to provide information on upcoming updates, alphas and betas. I also personally reply much quicker on there compared to here too.\n\n**What is Ships?**\n\nShips is associated as one of 'MoveCrafts' rivals, however we can guarantee you that Ships is moving away from this idea, by adding features that you would probably not see in MoveCraft but are useful for the servers this plugin is designed for.\n\nShips is a plugin that allows you to create medium sized vessels in water, ontop of water and in air. Ships is simple to use because it only uses signs to control the vessels. No annoying commands to learn, or 'wands' needed, it's just plain simple signs.\n\nAs time moves forward this plugin improves. This is MoseMister's first plugin and he is still learning from the endless world of craftbukkit. This being said, some features of this plugin maybe 'glitchy' so you have been warned. Qx2 does not work on this plugin any more so all the updates and taking care of the top priority 'users' lies on MoseMister alone, so all help is appreciated.\n\n**Isn't this the really buggy plugin?**\n\nShips has been known for its bugs however Ships 5 and above cleared out almost all of the bugs from Ships 4 and lower.\n\n**User created content**\n\nAll the youtube videos, the Ships community (thats you) have made I could not thank enough for.\n\nThis image has been created by Luke Dooly\n![http://i.imgur.com/nhHfvWL.jpg](http://i.imgur.com/nhHfvWL.jpg)\n\n**Are you a developer?**\n\nThe image at the top labeled 'source code' leads to the github Ships 5+ page.  But if you want to just start developing for Ships you can go to the Ships 5+ api page located [here](http://dev.bukkit.org/bukkit-plugins/ships/pages/api/ships-5/).  This will tell you some things that you can do with the api.\n\nThe api is always developing,  fixing bugs and issues and adding new parts to the API to make your programming life as simple as possible.  If you wish to add something to the api. Don't be scared, just send a request on GitHub (preferred) or here (not preferred) and it will be taken care of.",
+            "memberNames": [
+                "mosemister"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/249.webp?v=1"
+        },
+        {
+            "createdAt": "2023-11-18T15:16:12.90415Z",
+            "id": 1459,
+            "name": "Gimer-grapple-hook",
+            "namespace": {
+                "owner": "Gimer-Studios",
+                "slug": "Gimer-grapple-hook"
+            },
+            "stats": {
+                "views": 1375,
+                "downloads": 42,
+                "recentViews": 124,
+                "recentDownloads": 1,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "gameplay",
+            "description": "This grapple hook plugin allows player to have a grapple hook on their server.",
+            "lastUpdated": "2023-11-18T15:18:18.053172Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2"
+                ]
+            },
+            "mainPageContent": "This is a quick to setup grapple plugin all you do is download the plugin put it in your plugin folder and type the command /grapplinghook while you are op and use it. The grapple hook works without op however the command to get one (/grapplinghook) requires op. This plugin is in a full release now. we will be adding more to it as development progresses. P.S\nwhen you are using this plugin ALLOW FLYING OR ELSE YOU WILL BE KICKED FROM SERVER. P.S Please give feedback on the plugin.\nDonate: [mincraftgimer2 / Streamlabs](https://streamlabs.com/mincraftgimer2/tip)",
+            "memberNames": [
+                "gimer-studios"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/1459.webp?v=1"
+        },
+        {
+            "createdAt": "2023-03-25T18:20:08.52414Z",
+            "id": 174,
+            "name": "EventCancelDebug",
+            "namespace": {
+                "owner": "Emily",
+                "slug": "EventCancelDebug"
+            },
+            "stats": {
+                "views": 2182,
+                "downloads": 19,
+                "recentViews": 133,
+                "recentDownloads": 0,
+                "stars": 1,
+                "watchers": 1
+            },
+            "category": "admin_tools",
+            "description": "ECD is a Paper plugin that lets you debug what plugins are cancelling or un-cancelling certain events",
+            "lastUpdated": "2023-03-25T18:46:36.954426Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Issues",
+                                "url": "https://github.com/emilyy-dev/EventCancelDebug/issues"
+                            },
+                            {
+                                "id": 1,
+                                "name": "Source",
+                                "url": "https://github.com/emilyy-dev/EventCancelDebug"
+                            },
+                            {
+                                "id": 2,
+                                "name": "Support",
+                                "url": "https://discord.gg/Zk9HRuz4ZZ"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "GPL",
+                    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+                    "type": "GPL"
+                },
+                "keywords": [
+                    "debug",
+                    "events",
+                    "cancel"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.19.4"
+                ]
+            },
+            "mainPageContent": "## EventCancelDebug  \n\nEver wondered what plugin is cancelling (or worse, un-cancelling!) a certain action or event? Look further no longer, this plugin will tell you exactly that.\n\nPlug and play, simply drop the plugin in the plugins folder of your Paper server, start it once to create the [default configuration](https://github.com/emilyy-dev/EventCancelDebug/blob/main/src/main/resources/config.yml), and list the events you're trying to figure out what plugin is messing with it. On startup, ECD will attempt to ~~hijack~~ inject into the listed events, and it will print a warning on the server console every time a plugin cancels or un-cancels one of those events.",
+            "memberNames": [
+                "emily"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/525f4db6-906b-4fa1-bff3-7318b55cdec2.webp?v=2"
+        },
+        {
+            "createdAt": "2024-08-02T13:36:55.789177Z",
+            "id": 2352,
+            "name": "AutoMessageSystem",
+            "namespace": {
+                "owner": "Xyness",
+                "slug": "AutoMessageSystem"
+            },
+            "stats": {
+                "views": 1949,
+                "downloads": 128,
+                "recentViews": 266,
+                "recentDownloads": 8,
+                "stars": 2,
+                "watchers": 1
+            },
+            "category": "admin_tools",
+            "description": "Full auto-message system! Chat, BossBar, Title and ActionBar! PlaceholderAPI support!",
+            "lastUpdated": "2025-02-05T23:55:04.09845Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1",
+                    "1.21.2",
+                    "1.21.3",
+                    "1.21.4"
+                ]
+            },
+            "mainPageContent": "**AutoMessageSystem** is a plugin allowing you to set up auto-messages with BossBar, Title, ActionBar or chat! PlaceholderAPI is supported!\n\n* ➟ **Discord for issues/help :** https://discord.gg/6sRTGprM95\n* ➟ **Documentation :** [https://xyness.gitbook.io/automessagesystem/](https://xyness.gitbook.io/automessagesystem/)\n* ➟ **Source code :** [https://github.com/Xyness/AutoMessageSystem](https://github.com/Xyness/AutoMessageSystem)\n\n* ⚙️ **Fully configurable**\n* ⚡ Folia supported (Optimized and lightweight)\n* ✅ PlaceholderAPI support**",
+            "memberNames": [
+                "xyness"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/2352.webp?v=1"
+        },
+        {
+            "createdAt": "2023-11-28T15:13:22.989857Z",
+            "id": 1525,
+            "name": "CraftattackForFolia",
+            "namespace": {
+                "owner": "MHubertus",
+                "slug": "CraftattackForFolia"
+            },
+            "stats": {
+                "views": 1344,
+                "downloads": 21,
+                "recentViews": 181,
+                "recentDownloads": 2,
+                "stars": 1,
+                "watchers": 1
+            },
+            "category": "gameplay",
+            "description": "A simple plugin that adds functionality as in CraftAttack - the German YouTube project - to Folia.",
+            "lastUpdated": "2023-11-28T16:33:48.078786Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [
+                    "SUPPORTS_FOLIA"
+                ],
+                "license": {
+                    "name": "Unspecified",
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "CraftAttack"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.20.1"
+                ]
+            },
+            "mainPageContent": "# CraftAttackForFolia  \nCraftAttackForFolia is a simple plugin that adds functionality as in the German YouTube project CraftAttack into Folia. It was made by MHubertus in just a few hours, so it might contain some errors.\n### Abilities\n- Pressureplate that teleports back to spawn [✓]\n- Spawn region protection [✓]\n- /status command [✓]\n- Spawn elytra [X] -> **TODO**\n- MySQL Database integration [X] -> **TODO**\n- Head drop after player dies [X]\n- Voicechat [X]\n### Approach\nThis plugin takes a different approach on how to calculate the spawn region. Instead of calculating the spawn area as a cuboid, it is being calculated as a sphere. To avoid confusion with the placement of the pressure plate, there is a setup command.\n### Setup\nTo setup the spawn area, you can simply use '*/setup*' and you will be guided. \n### Commands\n- `/status <statusName>`\n- `/setup <guide/spawn/plate>` -> *only OP's*\n### Config\n```\nname: \"CraftAttackX\"\nstatus_permission: \"ca.status\"\n```",
+            "memberNames": [
+                "mhubertus"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/1525.webp?v=2"
+        },
+        {
+            "createdAt": "2023-04-22T20:49:17.352252Z",
+            "id": 435,
+            "name": "AutoPickup",
+            "namespace": {
+                "owner": "MrButtersDev",
+                "slug": "AutoPickup"
+            },
+            "stats": {
+                "views": 5703,
+                "downloads": 421,
+                "recentViews": 577,
+                "recentDownloads": 15,
+                "stars": 2,
+                "watchers": 1
+            },
+            "category": "gameplay",
+            "description": "Automatically pickup blocks that you mine! If a block drops XP you get that too!",
+            "lastUpdated": "2023-04-22T20:52:45.220771Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4"
+                ]
+            },
+            "mainPageContent": "![](https://i.imgur.com/1GwM5If.png)\n###### **Be sure to check the config for any changes when updating for the plugin to work properly!\n![](https://i.imgur.com/vMzYRDu.png)\n\n* /auto - autopickup.pickup.mined (Enables auto pickup)\n* /auto reload - autopickup.admin (Reloads config)\n* /autodrops - autopickup.pickup.entities (Mob drops)\n* /autosmelt - autopickup.pickup.mined.autosmelt (Auto Smelt)\n\n\n* autopickup.pickup.mined.autoenabled (Automatically enables when a player joins the server)\n* autopickup.pickup.entities.autoenabled (Automatically enables when a player joins the server)\n* autopickup.pickup.mined.autosmelt.autoenabled (Automatically enables when a player joins the server)\n\n###### <center>**I recommend using [LuckPerms](https://www.spigotmc.org/resources/luckperms-an-advanced-permissions-plugin.28140/) as a permission plugin!\n![https://i.imgur.com/98ROgdW.png](https://i.imgur.com/98ROgdW.png)</center>\n\n* Automatically pickup blocks & exp\n* Supports mob drops & entity exp\n* Auto smelt for blocks\n* Stays enabled on relog/server restart\n* Custom Messages (Hex Support)\n\n* Hex Example: &#00AAFF\n\n* Disable permissions\n\n* [PAPI Placeholders](https://www.spigotmc.org/resources/autopickup-1-17-support.70157/update?update=408142)\n* [bStats](https://bstats.org/plugin/bukkit/autopickup/5914)\n* [Dev Builds](https://github.com/mrbuttersdev/autopickup/releases)\n* [Support Discord](https://discord.gg/nchh4fp)\n\n<details>\n<summary>config</summary>\n\n\n```yaml\n\nConfigVersion: 1.2\n\n#Message Prefix\nmsgPrefix: \"&8[&5Auto&d&oPickup&8]\"\n\n#Toggle Message - /auto\nmsgAutoPickupEnable: \"&7You have&a enabled &7auto pickup.\"\nmsgAutoPickupDisable: \"&7You have&c disabled &7auto pickup.\"\n\n#Toggle Message - /autosmelt\nmsgAutoSmeltEnable: \"&7You have&a enabled &7auto smelt.\"\nmsgAutoSmeltDisable: \"&7You have&c disabled &7auto smelt.\"\n\n#Toggle Message - /drops\nmsgAutoMobDropsEnable: \"&7You have&a enabled &7auto drops.\"\nmsgAutoMobDropsDisable: \"&7You have&c disabled &7auto drops.\"\n\n#Aditional toggling messages\nmsgAutoEnable: \"&7Auto pickup has been automatically&a enabled&7.\"\ndoAutoEnableMSG: true\nmsgEnabledJoinMSG: \"&7Auto pickup has been automatically&a enabled&7.\"\ndoEnabledOnJoinMSG: true\n\n#reload Config Message\nmsgReload: \"&cReloaded Config\"\n\n#Fully Inventory Message\nmsgFullInv: \"&7Your inventory is full!\"\ndoFullInvMSG: true\n\n#This is most useful for prison servers! -- This setting is not normally recommended\n#This feature voids any extra blocks broken when /auto is enabled and the inventory is full!\nvoidOnFullInv: false\n\n#Plase does not have permission\nmsgNoperms: \"&cYou don't have permission to use this command\"\n\n#Require Permissions | Do players require permission to run commands?\nrequirePerms:\n  autopickup: true\n  auto-reload: true\n\n```\n\n\n</details>\n\n<details>\n<summary>blacklist.yml</summary>\n\n\n```yaml\n\n# Discord: https://discord.gg/ncHH4FP                                                                       #\n# Material Names: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html                         #\n# Entity Names: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html                  #\n\n\n#Set to \"true\" if you would like to enable the blacklist\ndoBlacklisted: false\ndoBlacklistedEntities: true\n\n#By listing blocks below you are adding them to the blacklist therefore causing them to drop to the ground.\nBlacklisted:\n  - DIRT\n  - SAND\n\nBlacklistedEntities:\n  - PLAYER\n\nBlacklistedWorlds:\n  - example\n```\n\n\n</details>\n\n<center><details>\n<summary>default config</summary>\n\n\n</details>\n</center>\n<details>\n<summary>youtube video</summary>\n\n@[YouTube](https://youtu.be/TQwiwObWxAo)\n</details>\n\n\n\n![https://bstats.org/signatures/bukkit/AutoPickup.svg](https://bstats.org/signatures/bukkit/AutoPickup.svg)\n\n⚠️Before posting a review regarding an issue, please attempt the following to allow us to correct any mistakes or issues: Join our support Discord, create an issue on GitHub, or request support via direct message on Spigot.",
+            "memberNames": [
+                "mrbuttersdev",
+                "gemdevelopment"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/435.webp?v=1"
+        },
+        {
+            "createdAt": "2023-05-09T20:19:02.974954Z",
+            "id": 785,
+            "name": "ezAuctions",
+            "namespace": {
+                "owner": "Elian",
+                "slug": "ezAuctions"
+            },
+            "stats": {
+                "views": 1234,
+                "downloads": 45,
+                "recentViews": 86,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "economy",
+            "description": "A simple, text-based auction system",
+            "lastUpdated": "2023-05-09T20:22:51.565926Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "auction",
+                    "economy"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.11",
+                    "1.11.1",
+                    "1.11.2",
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4"
+                ]
+            },
+            "mainPageContent": "![ezAuctions](https://i.imgur.com/gS3jvQv.png)\n\nThis is a text-based auction plugin that is available for servers running the Spigot software. This plugin allows for item tooltips which means you can hover over the item in chat and it will display enchantments, lore, etc.\n\n![http://i.imgur.com/ozRAHHf.png](https://i.imgur.com/ozRAHHf.png)\n\n* Customizable messages! If you can see the message, you can change it!\n* Configurable! Minimums, maximums, defaults, and more!\n* Item tooltips!\n* Scoreboard! An auto-updating display of the current auction!\n* Item name translation! Works for different languages and resource pack names!\n* Anti-snipe! Stop players from winning last second!\n* Sealed auctions! Hide bids from chat!\n* Auction queue and delays!\n* Shows required XP for repair!\n\n![http://i.imgur.com/ImfB2kO.png](https://i.imgur.com/ImfB2kO.png)\n\n* /auction\n* /bid\n\n![http://i.imgur.com/A8cccm0.png](https://i.imgur.com/A8cccm0.png)\n\n* Server must be running Spigot or Paper\n* Java 11\n\n* Vault plugin installed\n\n\n![http://i.imgur.com/PeJLUbQ.png](https://i.imgur.com/PeJLUbQ.png)\n\n**[A more in-depth command list](https://github.com/elian1203/ezauctions/wiki/commands)\n\n[Permissions](https://github.com/elian1203/ezauctions/wiki/permissions)**\n\n**[Config File](https://github.com/elian1203/ezauctions/blob/master/src/main/resources/config.yml)**\n\n**[Messages File](https://github.com/elian1203/ezauctions/blob/master/src/main/resources/messages.properties)**\n\nSuggestions? Issues? Contact me through Discord.  \n[![http://i.imgur.com/Q2N376y.png](https://i.imgur.com/Q2N376y.png)](https://discord.gg/2tau2u2) \n\nYou can view the source code here.  \n[![https://i.imgur.com/6NFeFjd.png](https://i.imgur.com/6NFeFjd.png)](https://github.com/elian1203/ezauctions) \n\n\n![http://i.imgur.com/nRB0CCq.png](https://i.imgur.com/nRB0CCq.png)\n\n![http://i.imgur.com/mKMYJCT.gif](https://i.imgur.com/mKMYJCT.gif)  \n![http://i.imgur.com/mZPeBjc.png](https://i.imgur.com/mZPeBjc.png) \n![http://i.imgur.com/aeL2ztm.png](https://i.imgur.com/aeL2ztm.png) \n\n**Credits to Blueyescat for all the images and over-all, a lot of help.**",
+            "memberNames": [
+                "elian"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/785.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-22T21:01:39.558871Z",
+            "id": 450,
+            "name": "GriefPreventionEnterTitles",
+            "namespace": {
+                "owner": "Badbird5907",
+                "slug": "GriefPreventionEnterTitles"
+            },
+            "stats": {
+                "views": 1633,
+                "downloads": 57,
+                "recentViews": 59,
+                "recentDownloads": 1,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "misc",
+            "description": "Show titles when a player enters/leaves a griefprevention claim",
+            "lastUpdated": "2023-04-22T21:13:03.189172Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "GitHub",
+                                "url": "https://github.com/Badbird5907/GriefPreventionTitles"
+                            },
+                            {
+                                "id": 1,
+                                "name": "Support",
+                                "url": "https://discord.badbird.dev/"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [
+                    "ADDON"
+                ],
+                "license": {
+                    "name": "Unspecified",
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4"
+                ]
+            },
+            "mainPageContent": "# <center>GriefPreventionTitles\n### Show titles to players entering/leaving a claim.\n\n### Config: [https://github.com/Badbird5907/GriefPreventionTitles/blob/master/src/main/resources/config.yml](https://github.com/Badbird5907/GriefPreventionTitles/blob/master/src/main/resources/config.yml)\n\nShowcase Video:\n@[YouTube](https://youtu.be/b9PzGNykwKE)\n\nSupport: [https://discord.badbird.dev](https://discord.badbird.dev)</center>",
+            "memberNames": [
+                "badbird5907"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/c21a1e07-9bb1-4746-8730-a09663bccd47.webp?v=1"
+        },
+        {
+            "createdAt": "2023-05-10T21:39:07.241681Z",
+            "id": 791,
+            "name": "SimpleCloud",
+            "namespace": {
+                "owner": "SimpleCloud",
+                "slug": "SimpleCloud"
+            },
+            "stats": {
+                "views": 4434,
+                "downloads": 114,
+                "recentViews": 210,
+                "recentDownloads": 2,
+                "stars": 2,
+                "watchers": 1
+            },
+            "category": "admin_tools",
+            "description": "A simple alternative to other minecraft cloud systems",
+            "lastUpdated": "2023-05-10T21:44:35.456694Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "MIT"
+                },
+                "keywords": [
+                    "cloud",
+                    "cloudsystem"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4"
+                ],
+                "WATERFALL": [
+                    "1.12",
+                    "1.13",
+                    "1.14",
+                    "1.15",
+                    "1.16",
+                    "1.17",
+                    "1.18",
+                    "1.19"
+                ],
+                "VELOCITY": [
+                    "1.1",
+                    "3.0",
+                    "3.1",
+                    "3.2"
+                ]
+            },
+            "mainPageContent": "![https://i.imgur.com/eTQJ1IX.png](https://i.imgur.com/eTQJ1IX.png) \n\n***Features***\n\n* Multi-Root\n* Module-System\n* Multi-Proxy\n* Template-System\n* Language-System\n\n* Powerful API\n* Support for Spigot, BungeeCord and Velocity\n* MongoDB and SQL support\n\n***Requirements***\n\n* Java 8 or higher\n* A MongoDB or SQL database\n* 2GB Memory\n* 2 virtual cores\n\n***Setup***\n\n* Download the cloud\n* Unzip the folder and execute the start file\n* Follow the setup instructions\n* Connect a wrapper to your manager. It is recommended to use the InternalWrapperModule for this. You can find it below.\n* Create your first group by typing ***create*** into the console\n* For more information type ***help***\n* Have fun :)\n\n***Setup Videos***\n<details>\n<summary>german setup</summary>\n\n\n@[YouTube](https://youtu.be/TiRE2mb6YPs)\n@[YouTube](https://youtu.be/ooV7ro9wkoA)\n\n</details>\n\n\n***Dashboard***\n\nSimpleCloud provides a Dashboard accessible for every user. The domain for the dashboard is: [http://dashboard-nossl.thesimplecloud.eu](http://dashboard-nossl.thesimplecloud.eu/). Now you have to enter the IP-Address of your server follwed by the port of the REST module. The default port of the REST-Module ist 8585. So an ip would be 55.55.55.55:8585. The username and passwort can be found in \"modules/rest/users.json\".\n\n***Modules***\n\nSimpleCloud provides some modules by default.\n\n<details>\n<summary>internal-wrapper module</summary>\nThe Internal-Wrapper Module starts a wrapper every time the manager of the cloud gets started. This wrapper does only run when the manager is running. It connects automatically with no need to set it up. The wrapper will be automatically named \"InternalWrapper\" and it will have 2GB of memory. To edit the memory of the wrapper you can use the command:\n```\nedit wrapper InternalWrapper maxMemory <amount in MB>\n```\n</details>\n<details>\n<summary>sign module</summary>\nThe Sign Module is used to show available services for players in the lobby via a sign. The players can click on that sign and will be sent to the server. The layout of the signs is fully customizable.\n![https://i.imgur.com/w534aZG.gif](https://i.imgur.com/w534aZG.gif)\n</details>\n<details>\n<summary>permission module</summary>\nWith the Permission Module, you can easily manage your permissions. You can define groups and add permissions to them. You can also add permissions to single users.\n![https://imgur.com/5LXMwCk.jpg](https://imgur.com/5LXMwCk.jpg)\n</details>\n<details>\n<summary>proxy module</summary>\nThe Proxy Module is used to manage your proxies. It controls the MOTD, Tablist, maintenance and the online count. The online count of proxies of one group will be summed up and displayed in the player info.\n![https://imgur.com/2djSS9l.jpg](https://imgur.com/2djSS9l.jpg)\n![https://imgur.com/dkuxYM7.png](https://imgur.com/dkuxYM7.png)\n![https://i.imgur.com/eCSXSJo.png](https://i.imgur.com/eCSXSJo.png)\nPermissions:\nMaintenance join: cloud.maintenance.join\nFull join: cloud.full.join\n</details>\n<details>\n<summary>hub module</summary>\nThe Hub Module provides a hub command for players to switch to a lobby server.\n</details>\n<details>\n<summary>notify module</summary>\nThe notify module sends notifications to players that have the required permission when a server gets started or stopped.\n\nPermission: cloud.module.notify.messages\n![https://imgur.com/7lcjXbN.jpg](https://imgur.com/7lcjXbN.jpg)\n</details>\n\n<details>\n<summary>rest module</summary>\nThe REST Module provides a restful API. It is necessary for the dashboard.\n</details>\n<details>\n<summary>statistics module</summary>\nThe Statistics Module saves some statistics of the cloud. The data is displayed on the dashboard.\n</details>\n<details>\n<summary>chat + tab module</summary>\nThe Chat + Tab Module provides prefixes and suffixes in the tablist and adds a chat configuration.\n</details>\n  \nIf you have any question you can contact us via [discord](https://discord.gg/mpzs4h8).",
+            "memberNames": [
+                "panda",
+                "simplecloud",
+                "fllip"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/791.webp?v=1"
+        },
+        {
+            "createdAt": "2023-05-20T09:03:30.230986Z",
+            "id": 817,
+            "name": "BetterJoinSpawn",
+            "namespace": {
+                "owner": "tomikcz987",
+                "slug": "BetterJoinSpawn"
+            },
+            "stats": {
+                "views": 4913,
+                "downloads": 401,
+                "recentViews": 531,
+                "recentDownloads": 6,
+                "stars": 2,
+                "watchers": 2
+            },
+            "category": "misc",
+            "description": "Highly configurable plugin, join/leave/quit/login messages, Authme/PAPI support , tp on join/login , ...",
+            "lastUpdated": "2023-07-18T17:23:10.743507Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "spawn",
+                    "authme",
+                    "join",
+                    "login"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.10",
+                    "1.10.1",
+                    "1.10.2",
+                    "1.11",
+                    "1.11.1",
+                    "1.11.2",
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.8",
+                    "1.9",
+                    "1.9.1",
+                    "1.9.2",
+                    "1.9.3",
+                    "1.9.4"
+                ]
+            },
+            "mainPageContent": "**Why this plugin**\n\nAllows you to set messages/titles for players when they join/login/register/disconnect/..., or play sounds or launch fireworks and everything is optional, so plugin can be used anywhere with other plugins\n\n**Features**\n\n* Teleport to spawn or login location on join/login/respawn or using /spawn command.\n* Teleport to last location after /login\n* Configurable join/leave/quit messages or option to hide them.\n* Commands on join/login/register performed as console/player\n* Support for AuthMe/LoginSecurity/OpeNLogin plugin with additional messages for login and registration.\n* Titles, sounds and fireworks for all events for enhanced player experience. (TheAPI required)\n* Colors and hex colors for customizing messages. (example &#43ffb2 &a &4 &3)\n* PlaceholderAPI support \n* Plugin has ability to work with vanish plugins, by checking if another plugin hides join/leave messages, if this happens message will remain hidden and firework will not appear\n* Everything can be turned on and off\n* Plugin can be restarted via plugman or command\n* Configuration updates automatically when new options are set in new versions\n\n**What is required**\n\n* Spigot/Paper/... 1.8+\n* Java 8+\n\n**What is required for some features**\n\n* [TheAPI](https://www.spigotmc.org/resources/theapi.72679/) (titles/subtitles)\n* [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) (placeholders)\n* [Authme](https://www.spigotmc.org/resources/authmereloaded.6269/) (messages,teleport after /login)\n\n**Commands**\n\n* /betterjoinspawn (reload)\nperms: betterjoinspawn.reload\n\n\n* /spawn (player name)\nperms: *betterjoinspawn.others \n(Needed when teleporting another player)*\n\n\n* /setspawn [joinspawn/loginspawn] \nperms: *betterjoinspawn.setspawn\n\nExplanation: \n[] required      () optional\njoinspawn - on join \nloginspawn - on login after /login /register*\n\n**Setup**\n\n* open config.yml\n* turn on what you want and need (**everything is off***)\n\n* set up your own messages\n* set spawns via /setspawn\n* restart/reload plugin\n* test whether features are working\n\n**Support/bug reports/suggestions**\n\n* Discussion on spigotmc.org\n\n* Discord server https://discord.gg/VrQhPWhAnZ (WIP)\n\n**What might be added**\n\n* support for other login plugins? (definitely)\n* bungeecord support (maybe)\n* actionbar\nmissing something? **Write it now**\n\n[https://bstats.org/plugin/bukkit/BetterJoinSpawn/18481](https://bstats.org/plugin/bukkit/BetterJoinSpawn/18481)\n\n![https://bstats.org/signatures/bukkit/BetterJoinSpawn.svg](https://bstats.org/signatures/bukkit/BetterJoinSpawn.svg)\n\n**Plugin is new and may still contain bugs**\n**Do not report errors/bugs in reviews because they cannot be resolved there**",
+            "memberNames": [
+                "tomikcz987"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/817.webp?v=1"
+        }
+    ]
+}

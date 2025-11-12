@@ -1,0 +1,181 @@
+{
+    "createdAt": "2022-12-31T20:04:25.895662Z",
+    "id": 31,
+    "name": "ViaVersion",
+    "namespace": {
+        "owner": "ViaVersion",
+        "slug": "ViaVersion"
+    },
+    "stats": {
+        "views": 670911,
+        "downloads": 317803,
+        "recentViews": 41241,
+        "recentDownloads": 20901,
+        "stars": 379,
+        "watchers": 234
+    },
+    "category": "misc",
+    "description": "Allow newer Java Edition versions to connect, why lose players after a Minecraft update?",
+    "lastUpdated": "2025-11-03T17:57:38.014732Z",
+    "visibility": "public",
+    "userActions": {
+        "starred": false,
+        "watching": false,
+        "flagged": false
+    },
+    "settings": {
+        "links": [
+            {
+                "id": 0,
+                "type": "top",
+                "title": "top",
+                "links": [
+                    {
+                        "id": 1,
+                        "name": "Issues",
+                        "url": "https://github.com/ViaVersion/ViaVersion/issues"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Source",
+                        "url": "https://github.com/ViaVersion/ViaVersion/"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Support",
+                        "url": "https://discord.gg/ViaVersion"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Wiki",
+                        "url": "https://docs.viaversion.com/"
+                    },
+                    {
+                        "id": 5,
+                        "name": "Donate",
+                        "url": "https://github.com/sponsors/kennytv/sponsorships?sponsor=kennytv&tier_id=385613&preview=false"
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "type": "sidebar",
+                "title": "Early-Access builds",
+                "links": [
+                    {
+                        "id": 0,
+                        "name": "GitHub Sponsors",
+                        "url": "https://github.com/sponsors/kennytv/sponsorships?sponsor=kennytv&tier_id=385613&preview=false"
+                    }
+                ]
+            }
+        ],
+        "tags": [
+            "SUPPORTS_FOLIA"
+        ],
+        "license": {
+            "name": "GPL",
+            "url": "https://github.com/ViaVersion/ViaVersion/blob/master/LICENSE",
+            "type": "GPL"
+        },
+        "keywords": [
+            "viaversion",
+            "via",
+            "connect",
+            "protocol",
+            "compatbility"
+        ],
+        "sponsors": "<center>\n  \n[![https://www.ej-technologies.com/images/product_banners/jprofiler_large.png](https://www.ej-technologies.com/images/product_banners/jprofiler_large.png)](https://www.ej-technologies.com/products/jprofiler/overview.html)\n[![https://ci.viaversion.com/userContent/images/S.png](https://ci.viaversion.com/userContent/images/S.png)](https://shockbyte.com/partner/viaversion)\n  </center>",
+        "donation": {
+            "subject": "",
+            "enable": false
+        }
+    },
+    "supportedPlatforms": {
+        "PAPER": [
+            "1.10",
+            "1.10.1",
+            "1.10.2",
+            "1.11",
+            "1.11.1",
+            "1.11.2",
+            "1.12",
+            "1.12.1",
+            "1.12.2",
+            "1.13",
+            "1.13.1",
+            "1.13.2",
+            "1.14",
+            "1.14.1",
+            "1.14.2",
+            "1.14.3",
+            "1.14.4",
+            "1.15",
+            "1.15.1",
+            "1.15.2",
+            "1.16",
+            "1.16.1",
+            "1.16.2",
+            "1.16.3",
+            "1.16.4",
+            "1.16.5",
+            "1.17",
+            "1.17.1",
+            "1.18",
+            "1.18.1",
+            "1.18.2",
+            "1.19",
+            "1.19.1",
+            "1.19.2",
+            "1.19.3",
+            "1.19.4",
+            "1.20",
+            "1.20.1",
+            "1.20.2",
+            "1.20.3",
+            "1.20.4",
+            "1.20.5",
+            "1.20.6",
+            "1.21",
+            "1.21.1",
+            "1.21.10",
+            "1.21.2",
+            "1.21.3",
+            "1.21.4",
+            "1.21.5",
+            "1.21.6",
+            "1.21.7",
+            "1.21.8",
+            "1.21.9",
+            "1.8",
+            "1.8.8",
+            "1.9",
+            "1.9.1",
+            "1.9.2",
+            "1.9.3",
+            "1.9.4"
+        ],
+        "WATERFALL": [
+            "1.11",
+            "1.12",
+            "1.13",
+            "1.14",
+            "1.15",
+            "1.16",
+            "1.17",
+            "1.18",
+            "1.19",
+            "1.20"
+        ],
+        "VELOCITY": [
+            "3.0",
+            "3.1",
+            "3.2",
+            "3.3",
+            "3.4"
+        ]
+    },
+    "mainPageContent": null,
+    "memberNames": null,
+    "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/31.webp?v=1"
+}

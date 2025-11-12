@@ -1,0 +1,18 @@
+{
+    "createdAt": "2022-12-03T17:18:20.445164Z",
+    "id": 1,
+    "name": "MiniDigger",
+    "tagline": null,
+    "roles": [
+        1,
+        4
+    ],
+    "projectCount": 3,
+    "locked": false,
+    "nameHistory": [],
+    "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/6b77cbb1-3992-48ac-8adf-134f5e0a21f0.webp?v=1",
+    "socials": {
+        "github": "MiniDigger"
+    },
+    "isOrganization": false
+}

@@ -1,0 +1,1908 @@
+{
+    "pagination": {
+        "count": 194,
+        "limit": 25,
+        "offset": 0
+    },
+    "result": [
+        {
+            "createdAt": "2024-06-16T19:38:46.240655Z",
+            "id": 2120,
+            "name": "SunVote",
+            "namespace": {
+                "owner": "Fayns",
+                "slug": "SunVote"
+            },
+            "stats": {
+                "views": 892,
+                "downloads": 17,
+                "recentViews": 103,
+                "recentDownloads": 1,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "SunVote: Simple and customizable voting plugin for your Minecraft server!",
+            "lastUpdated": "2024-06-16T19:43:36.287204Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5"
+                ]
+            },
+            "mainPageContent": "SunVote is a powerful Minecraft plugin that allows administrators and players to easily create and participate in server-wide votes. With full configuration through the config.yml file, support for colored messages, and flexible functionality, SunVote will become an indispensable tool on your server!\n\n**Key Features:**\n\n* Create votes by administrators.\n* Players can vote using the /vote command.\n* View vote results with the /votesource command.\n* Fully configurable through the config.yml file.\n* Support for colored messages using the & symbol.\n* Easy configuration reload with the /votereload command.\n\n**Commands and Permissions:**\n\n* /vote <name> <vote> - allows players to participate in active votes.\n* /votesource <name> - displays the results of the specified vote.\n* /votesource broadcast <name> - announces the results of the vote to all players on the server.\n* /votereload - reloads the plugin's configuration file.\n* /vote create <name> - creates a new vote (for administrators).\n* /vote remove <name> - removes the specified vote (for administrators).\n\n**Permissions:**\n\n* sunvote.vote - allows players to vote.\n* sunvote.admin - allows administrators to create, remove, view vote results, and use the /votereload command.\n\n**Configuration:**\nThe config.yml file allows you to customize all plugin messages. Example configuration:\n\n```yaml\n## config.yml\nmessages:\n  vote_created: \"Vote created successfully!\"\n  vote_removed: \"Vote removed successfully!\"\n  vote_casted: \"Vote casted successfully!\"\n  vote_invalid_number: \"Please enter a valid number for the vote.\"\n  vote_usage: \"Usage: /vote <vote_name> <vote>\"\n  vote_only_players: \"Only players can vote!\"\n  admin_usage: \"Usage: /<command> <create/remove/results/broadcast/reload> <vote_name>\"\n  unknown_action: \"Unknown action: \"\n  results_header: \"Results for the vote \"\n  reload_success: \"Configuration reloaded successfully!\"\n\n\"\n```",
+            "memberNames": [
+                "fayns"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/2120.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-20T01:03:49.067577Z",
+            "id": 327,
+            "name": "JadedChat",
+            "namespace": {
+                "owner": "JadedMC",
+                "slug": "JadedChat"
+            },
+            "stats": {
+                "views": 3354,
+                "downloads": 25,
+                "recentViews": 210,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "Feature-Rich JSON Chat Plugin with regex chat filtering and loads more!",
+            "lastUpdated": "2025-02-27T05:52:38.311853Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": "https://github.com/JadedMC/JadedChat/blob/master/LICENSE.txt",
+                    "type": "MIT"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.10",
+                    "1.10.1",
+                    "1.10.2",
+                    "1.11",
+                    "1.11.1",
+                    "1.11.2",
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1",
+                    "1.21.2",
+                    "1.21.3",
+                    "1.21.4",
+                    "1.8",
+                    "1.9",
+                    "1.9.1",
+                    "1.9.2",
+                    "1.9.3",
+                    "1.9.4"
+                ]
+            },
+            "mainPageContent": "<center><img src=\"https://i.imgur.com/nnmdoKV.png\"/></center>\n<center><a href=\"https://github.com/JadedMC/JadedChat\">Source Code</a> | <a href=\"https://github.com/JadedMC/JadedChat/wiki\">Wiki</a> | <a href=\"https://github.com/JadedMC/JadedChat/issues\">Support</a></center><br/>\n\nJadedChat is a feature-rich JSON chat plugin for [Paper](http://www.papermc.io) servers running Minecraft 1.8 or later. It allows you to fully customize your chat easily using the [MiniMessage](https://docs.advntr.dev/minimessage/format.html) format and PlaceholderAPI. It also contains an API to allow developers to have better control over chat without interfering with other plugins. It can be as simple or complicated as you desire, doing everything from just simple chat formatting to large multi-channel systems with regex chat filtering and BungeeCord support.\n\n>⚠️ This plugin is in early development. The API is likely to change between now and a full release.\n\n## Features\n* Unlimited number of chat channels.\n* Separate chat formats for each chat channel.\n* Ability to toggle using colors, decorations (bold, italics, etc) per chat format.\n* Configurable text replacements with the \"emote\" system.\n* Custom Join/Quit Messages\n* Private Messages with Social Spy\n* Regex filtering\n* Cross-server chat using BungeeCord\n* DiscordSRV support\n* LuckPerms support\n* Display held items in chat using <item>\n\n## Requirements\n* Java 17 or newer\n* Server Software with Spigot API.\n* Minecraft 1.8 or later\n* PlaceholderAPI\n\n## Commands\n| Command | Aliases | Permission Node | Description |\n| ------- | ------- | --------------- | ----------- |\n| **/jadedchat** | **/jc** | **jadedchat.admin** | **Main plugin command** |\n| /jadedchat channels | /jc list | | Lists all currently loaded chat channels. |\n| /jadedchat reload | | | Reloads plugin configuration files. |\n| /channel < channel > [ message ] | /chat, /ch | None | Allows a player to switch chat channels |\n| /message < player > < message > | /msg, /whisper, /w, /tell, /pm, /dm | None | Allows a player to privately message another player. |\n| /reply < message > | /r | None | Replies to the most recently received private message. |\n| /socialspy | /spy, /ss | jadedchat.socialspy | Allows you to spy on private messages. |\n\n## Permissions\n| Permission | Description |\n| ---------- | ----------- |\n| jadedchat.showitem | Gives the player access to < item > |\n| jadedchat.filter.view | Gives the player access to view filtered chat messages |\n| jadedchat.bypass.regexfilter | Allows the player to bypass the regex filter |\n| jadedchat.bypass.repeatfilter | Allows the player to bypass the repeat message filter |\n\n## Planned Features\n* Per-channel chat cooldowns\n* Logging Chat to MySQL\n* MOTD when joining the server\n* Automated announcements\n\n## Support\nThis plugin is still in early development. Due to this, we do not yet have any proper avenues of support set up. In the meantime, create an issue [here](https://github.com/JadedMC/JadedChat/issues) and I will respond as soon as possible.\n\n## bStats\n<a href=\"https://bstats.org/plugin/bukkit/JadedChat/17832\"><img src=\"https://bstats.org/signatures/bukkit/JadedChat.svg\"/></a>",
+            "memberNames": [
+                "firewolf8385",
+                "jadedmc"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/eea0b6d3-83c8-4f72-91ed-b2729c0b36c3.webp?v=1"
+        },
+        {
+            "createdAt": "2023-07-12T18:39:03.03003Z",
+            "id": 1038,
+            "name": "SimpleTranslations",
+            "namespace": {
+                "owner": "nekoneko2872",
+                "slug": "SimpleTranslations"
+            },
+            "stats": {
+                "views": 901,
+                "downloads": 9,
+                "recentViews": 63,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "Translate all languages with Deepl's API",
+            "lastUpdated": "2023-07-12T18:43:25.394191Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "translations",
+                    "Japanses"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4"
+                ]
+            },
+            "mainPageContent": "# SimpleTranslations  \nThis plugin enables translations into various languages using Deepl's translation API (https://www.deepl.com/ja/pro-api?cta=header-pro-api/)\nThis plugin can currently only translate from English to Japanese and from Japanese to English. This plugin can currently only translate from English to Japanese and from Japanese to English.\nThis is because only two translations can be specified, one for the target and one for the source.\nMore major languages, such as Chinese, will be added in the near future.\n\nReload config.yml by running /api_reload\n/api_reload Also, you must have \"reload.api\" privileges to run the above command.\n\nFound a bug? Things don't work? Come to my support server! ↓↓\n\nhttps://discord.gg/EnETvsZvU3/\n\nconfig.yml\ndeepl_api_key: \"DEEPL_API_KEY\"\nDEEPL_API_KEY Enter your own here\n\nIf you help us, we will advertise your server under this description",
+            "memberNames": [
+                "nekoneko2872"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/1038.webp?v=2"
+        },
+        {
+            "createdAt": "2023-07-28T08:51:03.573365Z",
+            "id": 1085,
+            "name": "TAnnouncer",
+            "namespace": {
+                "owner": "Mine_Alex",
+                "slug": "TAnnouncer"
+            },
+            "stats": {
+                "views": 1634,
+                "downloads": 60,
+                "recentViews": 79,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "Simple auto broadcast plugin",
+            "lastUpdated": "2023-08-22T09:58:40.973588Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [
+                    "SUPPORTS_FOLIA"
+                ],
+                "license": {
+                    "name": "Unspecified",
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.10",
+                    "1.10.1",
+                    "1.10.2",
+                    "1.11",
+                    "1.11.1",
+                    "1.11.2",
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.8",
+                    "1.9",
+                    "1.9.1",
+                    "1.9.2",
+                    "1.9.3",
+                    "1.9.4"
+                ]
+            },
+            "mainPageContent": "![](https://i.ibb.co/tz7f8jY/186b4c26408ffe09dfa5cd9c79c632210037412b.gif)\n## TAnnouncer\nSimple auto broadcast plugin\n\n## Features\n- Auto broadcast\n- Placeholders\n- Customizable broadcast\n- Customizable time\n- Multiple titles\n- PlaceholderAPI support\n\n## Commands\n- /tannouncer reload\n- /tannouncer version\n\n## Permissions\n- tannouncer.reload\n- tannouncer.version\n\n## Dependencies\n- PlaceholderAPI",
+            "memberNames": [
+                "mine_alex"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/1085.webp?v=1"
+        },
+        {
+            "createdAt": "2023-05-17T03:27:14.831666Z",
+            "id": 813,
+            "name": "ChatLab",
+            "namespace": {
+                "owner": "ShaklyMC",
+                "slug": "ChatLab"
+            },
+            "stats": {
+                "views": 2210,
+                "downloads": 18,
+                "recentViews": 184,
+                "recentDownloads": 1,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "ChatLab is chat plugin whose purpose is to be an optimized plugin and have the necessary options for users.",
+            "lastUpdated": "2024-09-03T20:18:39.052007Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": "Links",
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "GitHub",
+                                "url": "https://github.com/devblook/chatlab"
+                            },
+                            {
+                                "id": 1,
+                                "name": "Discord Support",
+                                "url": "https://discord.gg/HzTJ2Rtsw7"
+                            },
+                            {
+                                "id": 2,
+                                "name": "Wiki",
+                                "url": "https://github.com/devblook/chatlab/wiki"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "GPL",
+                    "url": null,
+                    "type": "GPL"
+                },
+                "keywords": [
+                    "chat"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4"
+                ]
+            },
+            "mainPageContent": "![plugin-background](https://cdn.modrinth.com/data/cached_images/80dc7f40af34076f1dd59b6a10d73a2806e4cde1.png)\nChatLab is chat plugin whose purpose is to be an optimized plugin and have the necessary options for users.\n\n## Features:\nWith this plugin can do:\n\n- Private messages.\n- Ignore or un-ignore a player, and see the list of ignored players.\n- Use the chat format (compability with MiniPlaceholders).\n- Divide chat format per group/permission (with optional op-format).\n- Watch private messages.\n- Toggle private messages.",
+            "memberNames": [
+                "shaklymc"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/813.webp?v=2"
+        },
+        {
+            "createdAt": "2024-08-13T12:38:08.803662Z",
+            "id": 2421,
+            "name": "ChatHook",
+            "namespace": {
+                "owner": "Kredwi",
+                "slug": "ChatHook"
+            },
+            "stats": {
+                "views": 407,
+                "downloads": 0,
+                "recentViews": 30,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "Small plugin that sends a message from a chat to your external server.",
+            "lastUpdated": "2024-08-13T13:11:56.705519Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Source Code",
+                                "url": "https://github.com/kredwi/ChatHook"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "Unspecified",
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "chat",
+                    "post",
+                    "request"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1"
+                ]
+            },
+            "mainPageContent": "# <center>**ChatHook**</center>\n####  <center> Sending Chat Messages to an External Server </center>\n<center> A simple plugin that allows you to send a player's chat message to an external server. It is well suited for creating a chat on a website or for Discord web hooks.</center>\n\n## <center> **WARNING** </center>\n### <center>FOR THE PLUGIN, YOU NEED A BACKEND SERVER TO ACCEPT REQUESTS FROM THE PLUGIN </center>\n\n### **Required dependencies**\n\n* **[PlaceholdersAPI](https://hangar.papermc.io/HelpChat/PlaceholderAPI)**\n\n### **Commands**\n\n* **/chathook reload** - reload plugin config\n\n### **Permissions**\n\n* **chathook.use -** Permission to use plugin commands\n\n### <center>**config.yml**</center>\n\n```yaml\n# Author: Kredwi\n# Issues: https://github.com/kredwi/chathook/issues\ndebug: false # Enable debug mode (true - enabled, false - disabled).\nasync: true # Use asynchronous requests, if disabled, chat messages can be sent with a significant delay\ntimeout: 5000 # Timeout in milliseconds, after which the connection will be closed.\nrequest_url: \"http://localhost:8439\" # The address of the server to which requests will be sent.\nauthorization: \"\" # Authorization token, if not needed, leave the field empty\nconfig-version: 1 # Config version\n\n# Message sector\nmessage_sector:\n error_invalid_command: \"§cThis command does not exist\"\n config_is_reloaded: \"§aConfiguration successfully reloaded\"\n no_arguments: \"§cNot enough arguments\"\n no_permissions: \"§cYou do not have enough permissions\"\n\n# List of player nicknames whose messages will not be sent to the server\ndisabled_players:\n - Kredwi\n - igor\n\n# Other information that will be sent in the request\nother_information:\n key_1: \"%player_ip%\"\n key_2: \"%player_name%\"\n```",
+            "memberNames": [
+                "kredwi"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/2421.webp?v=1"
+        },
+        {
+            "createdAt": "2025-06-29T10:34:56.765634Z",
+            "id": 4448,
+            "name": "AlexCustomMSG",
+            "namespace": {
+                "owner": "LoveStudio",
+                "slug": "AlexCustomMSG"
+            },
+            "stats": {
+                "views": 459,
+                "downloads": 6,
+                "recentViews": 67,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "A lovingly crafted private messaging plugin by LoveStudio",
+            "lastUpdated": "2025-06-29T10:48:20.988589Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Source Code",
+                                "url": "https://github.com/wolnefury/AlexCustomMsg"
+                            },
+                            {
+                                "id": 1,
+                                "name": "Documentation",
+                                "url": "https://lovestudio.gitbook.io/alexcustommsg/"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [
+                    "SUPPORTS_FOLIA"
+                ],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "MIT"
+                },
+                "keywords": [
+                    "chat",
+                    "msg",
+                    "privatemessages",
+                    "placeholderapi",
+                    "folia"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1",
+                    "1.21.2",
+                    "1.21.3",
+                    "1.21.4",
+                    "1.21.5",
+                    "1.21.6"
+                ]
+            },
+            "mainPageContent": "> ✨ A modern, soft, customizable private messaging plugin — built with love, emotion, and full PlaceholderAPI support.\n\n## **💖 Why AlexCustomMSG?**\nOther /msg plugins? They’re fine.\nBut AlexCustomMSG isn’t just fine — it’s ✨ yours. It’s deeply customizable, gentle on the eyes, powerful in its logic, and soft in its intention.\n\nWe believe that communication in Minecraft should feel beautiful — not just functional. Whether you're a cozy server admin, a roleplay worldbuilder, or just someone who wants messages to feel personal, this plugin is made with love for you. 🥺💞\n\n## **🌟 Features**\n- ✉️ Custom /msg and /r commands with color formatting & hover/click events\n- 🔕 Ignore system with persistent UUID support (even works offline!)\n- 💬 Multi-line messages with full config.yml support\n- 🎨 Fully PlaceholderAPI-compatible\n- 🔊 Configurable sounds for incoming messages\n- 🪶 Reloadable config without restart\n- 🌈 Soft and simple UX — easy to use, yet powerful\n- 🧩 Plug-and-play — no external dependencies required (but PlaceholderAPI supported!)\n\n## **🔐 Permissions Support**\nGranular permissions for `/msg`, `/r`, `/ignore`, `/unignore`, `/ignorelist`, `/forceunignore` and `/acmsgreload`.\nOr just give `acmsg.*` for full access 🧙‍♂️\n\n## **⚙️ Compatibility**\n| ✔ Feature          | ✅ Status                        |\n| ------------------ | ------------------------------- |\n| Minecraft Versions | 1.18.2 – 1.21+                  |\n| Java Versions      | Java 17+                        |\n| Server Software    | Paper, Purpur, Spigot, Folia    |\n| PlaceholderAPI     | Optional, but fully supported ✅ |\n\n## **🥹 Final Words**\nYou can download a dozen /msg plugins.\nBut only one of them was built with love.\n\n> AlexCustomMSG — because even whispers deserve to feel warm. 💌🌿",
+            "memberNames": [
+                "wolnefury",
+                "lovestudio"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/169dcefa-967e-4afd-b68a-1efe3bd4db1e.webp?v=1"
+        },
+        {
+            "createdAt": "2025-06-25T00:47:13.597139Z",
+            "id": 4424,
+            "name": "BlockReports",
+            "namespace": {
+                "owner": "Jelly-Pudding",
+                "slug": "BlockReports"
+            },
+            "stats": {
+                "views": 959,
+                "downloads": 72,
+                "recentViews": 215,
+                "recentDownloads": 18,
+                "stars": 1,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "Prevents chat reporting by neutralising Minecraft's chat signature system and blocking report-related functionality.",
+            "lastUpdated": "2025-10-12T01:23:29.367167Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "GitHub Repository",
+                                "url": "https://github.com/Jelly-Pudding/BlockReports/tree/main"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "MIT",
+                    "url": "https://github.com/Jelly-Pudding/BlockReports/blob/main/LICENSE",
+                    "type": "MIT"
+                },
+                "keywords": [
+                    "chat",
+                    "report",
+                    "block",
+                    "prevent",
+                    "stop"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.21.10",
+                    "1.21.6",
+                    "1.21.7",
+                    "1.21.8"
+                ]
+            },
+            "mainPageContent": "# BlockReports Plugin\n**BlockReports** is a Minecraft Paper 1.21.10 plugin that prevents chat reporting by neutralising Minecraft's chat signature system and blocking report-related functionality.\n\n## Installation\n1. Download the latest release [here](https://github.com/Jelly-Pudding/BlockReports/releases/latest).\n2. Place the `.jar` file in your Minecraft server's `plugins` folder.\n3. Restart your server.\n\n## Features\n* **Strips chat signatures** - Converts signed chat messages to unsigned system messages which makes reports unverifiable.\n* **Hides warning popups** - Eliminates the annoying \"Chat messages can't be verified\" popup for players.\n* **Neutralises chat sessions** - Intercepts chat session update packets and replaces public keys with null values to prevent secure signature establishment.\n* **Prevents chat-related kicks** - Stops players from being kicked for signature validation issues.\n* **Automatic server configuration** - Disables `enforce-secure-profile` in server properties (this setting forces players to have signed profiles to join).\n* **Lightweight and efficient** - Minimal performance impact with targeted packet manipulation.\n\n## Commands\n* `/blockreports reload` - Reloads the plugin configuration.\n\n## Permissions\n* `blockreports.admin` - Allows use of BlockReports commands. (Default: op)\n\n## Configuration\nThe plugin creates a `config.yml` file with the following options:\n\n```yaml\n# Strip chat signatures from outgoing chat packets.\n# This converts signed chat messages to unsigned system messages.\nstrip-server-signatures: true\n\n# Hide the secure chat warning popup.\nhide-secure-chat-warning: true\n\n# Neutralise chat session update packets from clients.\n# This intercepts incoming chat session packets and replaces the public key with null,\n# preventing secure chat establishment while maintaining proper packet flow to avoid kick issues.\nneutralise-chat-sessions: true\n\n# Prevent kicks related to chat reporting.\n# This handles various kick scenarios related to secure chat.\nprevent-chat-kicks: true\n\n# Enable debug logging - only enable this for development\n# as it's verbose.\nenable-logging: false\n```\n\n## How It Works\nBlockReports operates by:\n1. **Intercepting outbound chat packets** and removing cryptographic signatures.\n2. **Pretends the enforce-secure-profile flag is true** in login packets to prevent client warnings.\n3. **Neutralising incoming chat session updates** to prevent signature key establishment.\n4. **Converting signed messages to system messages** that cannot be reported.\n\nThis approach ensures chat reports become unverifiable and ineffective while maintaining full chat functionality.\n\n## Support Me\n[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K715TC1R)",
+            "memberNames": [
+                "jelly-pudding"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/4424.webp?v=6"
+        },
+        {
+            "createdAt": "2025-05-14T16:45:28.885103Z",
+            "id": 4234,
+            "name": "BetterMSG",
+            "namespace": {
+                "owner": "Larrox",
+                "slug": "BetterMSG"
+            },
+            "stats": {
+                "views": 482,
+                "downloads": 9,
+                "recentViews": 67,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "A better way to chat with online friends on your server.",
+            "lastUpdated": "2025-08-13T04:20:44.760981Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": "MIT",
+                    "url": null,
+                    "type": "MIT"
+                },
+                "keywords": [
+                    "essentialsx-msg",
+                    "msg",
+                    "msgplugin",
+                    "whisper"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1",
+                    "1.21.2",
+                    "1.21.3",
+                    "1.21.4",
+                    "1.21.5",
+                    "1.21.6",
+                    "1.21.7",
+                    "1.21.8"
+                ]
+            },
+            "mainPageContent": "## A better way of the /msg command.\n\n### See Documentation or github for help.\n\nIf you have any issues with the plugin, feel free to open a issue on the [GitHub repo](https://github.com/copyandbuild/bettermsg/issues).\n\n### Dont forget give this a star if you appreciate the plugin :)",
+            "memberNames": [
+                "larrox"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/4234.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-22T20:08:28.448386Z",
+            "id": 369,
+            "name": "hyacinthhello",
+            "namespace": {
+                "owner": "blueb",
+                "slug": "hyacinthhello"
+            },
+            "stats": {
+                "views": 1849,
+                "downloads": 42,
+                "recentViews": 279,
+                "recentDownloads": 1,
+                "stars": 1,
+                "watchers": 1
+            },
+            "category": "chat",
+            "description": "Simple plugin for players to set their own custom join, leave, and death messages.",
+            "lastUpdated": "2025-07-11T21:25:22.762242Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": []
+                    }
+                ],
+                "tags": [
+                    "ADDON"
+                ],
+                "license": {
+                    "name": "ARR",
+                    "url": null,
+                    "type": "Other"
+                },
+                "keywords": [
+                    "join",
+                    "joinmessages",
+                    "chat",
+                    "leavemessages",
+                    "deathmessages"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1",
+                    "1.21.2",
+                    "1.21.3",
+                    "1.21.4",
+                    "1.21.5",
+                    "1.21.6",
+                    "1.21.7"
+                ],
+                "VELOCITY": [
+                    "3.0",
+                    "3.1",
+                    "3.1.0",
+                    "3.1.1",
+                    "3.2",
+                    "3.3",
+                    "3.4"
+                ]
+            },
+            "mainPageContent": "# HyacinthHello\n\nSimple plugin for players to set their own custom join, leave, and death messages.\n\nMessages can be set from `/joinmsg`, `/leavemsg`, and `/deathmsg` and are stored in the plugin directory under `PlayerDatabase`.\n\nSee a demo at https://www.youtube.com/watch?v=L6Li0QnvPis.\n\n## Commands\n\nMessages are set with commands. You can clear a message by passing a blank value.\n- `/joinmsg [message]`\n- `/leavemsg [message]`\n- `/deathmsg [message]`\n\nModerators can override messages of other users if they have the `hyacinthhello.mod` permission node.\n- `/hh mod joinmsg [user] [message]`\n- `/hh mod leavemsg [user] [message]`\n- `/hh mod deathmsg [user] [message]`\n\n## Configuration\n\nThe configuration allows you to modify how the plugin looks. Here's an example:\n\n```yaml\nenabled: true # Whether to enable the plugin\nproxy-mode: true # Whether to enable Velocity support (see below)\nprefix: \"\" # Prefix before command responses\nwrapper-left: \"&e&o\" # Prefix for messages\nwrapper-right: \"\" # Suffix for messages\nmaximum-message-length: 60 # Checked when player sets message\nregex-filters: # Regex filters don't need to be wrapped in /\n  - \"simpleexactmatch\"\n  - \"t[a-zA-Z]st\"\nuse-proxy-default-messages: false # Disables default join, leave, and death messages so that HyacinthHello Velocity can broadcast them to the entire network. See more under Velocity.\n```\n\n## Permissions\n\n- `hyacinthhello.use` to use any commands\n- `hyacinthhello.mod` to use mod commands\n- `hyacinthhello.joinmsg` to set and have join messages sent\n- `hyacinthhello.leavemsg` to set and have leave messages sent\n- `hyacinthhello.deathmsg` to set and have death messages sent\n- `hyacinthhello.color` to use color in messages\n\n## Placeholders\n\nEach message type has its own placeholder. Placeholders will not include the wrappers set in the config.\n- `%hyacinthhello_join%`\n- `%hyacinthhello_leave%`\n- `%hyacinthhello_death%`\n\nPlaceholders will also have color and formatting in them if the player has permission. You can exclude that:\n- `%hyacinthhello_join-clean%`\n- `%hyacinthhello_leave-clean%`\n- `%hyacinthhello_death-clean%`\n\nYou can also pass a username to get a specific player's message.\n- `%hyacinthhello_join_[username]%`\n\n## Velocity\n\nWith HyacinthHello Velocity, you can have HyacinthHello's custom messages broadcasted across your entire network.\n\nThe Velocity plugin can just forward to the other servers, or take over all join, leave, and death messages across the proxy. The latter option is recommended.\n\nRequires Redis.\n\nOn your server:\n\n```yaml\nproxy-mode: true\nproxy-redis:\n  address: 0.0.0.0 # Your redis address, this is likely fine\n  port: 6379 # Your redis port, this is likely fine\n  channel: hyacinthhello # Leave default, unless you have multiple proxies with HyacinthHello\n```\n\nOn your proxy:\n\n```yaml\n# Variables:\n#   {p}   player name\n#   {s}   server name\n#   {m}   forwarded message\nredis:\n  address: 0.0.0.0 # Your redis address, this is likely fine\n  port: 6379 # Your redis port, this is likely fine\n  prefix: hyacinthhello # Leave default, unless you have multiple proxies with HyacinthHello\n\noverride-backends: true # Overrides default and custom messages. \njoin-message: '<yellow>{p} joined {s}' # Allows setting custom formatting for join\nleave-message: '<yellow>{p} left {s}' # Allows setting custom formatting for leave\ndeath-message: '<yellow>{m}' # Just wraps over the message forwarded from backend servers\n\nwrapper-left: '&e&o'\nwrapper-right: ''\n```",
+            "memberNames": [
+                "blueb"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/436c3178-95f4-4bdf-bbba-9dd472971f6c.webp?v=1"
+        },
+        {
+            "createdAt": "2025-05-11T02:33:51.596871Z",
+            "id": 4217,
+            "name": "RemmyChat",
+            "namespace": {
+                "owner": "NoximityCollective",
+                "slug": "RemmyChat"
+            },
+            "stats": {
+                "views": 1082,
+                "downloads": 32,
+                "recentViews": 165,
+                "recentDownloads": 2,
+                "stars": 1,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "A modern Minecraft chat plugin with MiniMessage formatting, multi-channel support, private messaging, and advanced moder",
+            "lastUpdated": "2025-07-11T20:28:36.864754Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Source",
+                                "url": "https://github.com/NoximityCollective/RemmyChat/tree/master"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "GPL",
+                    "url": "https://github.com/NoximityCollective/RemmyChat/blob/master/LICENSE",
+                    "type": "GPL"
+                },
+                "keywords": [
+                    "chat",
+                    "light",
+                    "customizable"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.21",
+                    "1.21.7"
+                ]
+            },
+            "mainPageContent": "# RemmyChat\n\n**RemmyChat** is a lightweight, feature-rich chat management solution for PaperMC servers that enhances player communication with a clean, modern design.\n\n<img src=\"https://img.shields.io/badge/Version-1.4.5-green\" alt=\"Version\"> <img src=\"https://img.shields.io/badge/License-GPL--3.0-orange\" alt=\"License\"> <img src=\"https://img.shields.io/badge/Supporterd MC Version-1.21.7-aqua\" alt=\"Supporterd MC Version\"> <a href=\"https://remmychat.noximity.com\"><img src=\"https://img.shields.io/badge/Documentation-Wiki-brightgreen\" alt=\"Documentation\"></a>\n\n## Overview\n\nRemmyChat transforms your server's communication with a sleek, modern interface while providing powerful customization through MiniMessage formatting. From immersive proximity chat to comprehensive anti-spam features, RemmyChat balances simplicity with functionality to create the perfect chat experience.\n\n![Overview Image](https://cdn.modrinth.com/data/kcImu7Wi/images/75ae522ff749334639ce6184a3e2e22d92e9e991.jpeg)\n\n## Features\n\n- **Advanced MiniMessage Formatting** — Rich text with colors, gradients, hover effects, and clickable elements\n- **Multi-Channel System** — Global, local, staff, and trade channels with completely customizable formats\n- **Proximity Chat** — Configurable radius-based local chat for immersive gameplay\n- **Private Messaging System** — Seamless player-to-player communication with reply functionality\n- **Message Toggle** — Allow players to enable/disable private messages\n- **Social Spy** — Staff monitoring of player private messages\n- **Flexible Permission System** — Granular control over all plugin features and channels\n- **Group-Based Formatting** — Different chat formats based on player permissions\n- **Custom Placeholders** — Create reusable text elements for consistency across formats\n- **Template System** — Hover templates, channel prefixes, and name styles for easy configuration\n- **Interactive Elements** — Hoverable player names with customizable information tooltips\n- **Automatic URL Detection** — Link formatting with configurable click-to-open functionality\n- **Chat Cooldown** — Configurable anti-spam system to prevent message flooding\n- **Message Persistence** — Database storage for player preferences and chat history\n- **PlaceholderAPI Integration** — Unlimited customization possibilities\n- **LuckPerms Integration** — Seamless permission management\n- **Optimized Performance** — Minimal resource usage even on busy servers\n\n![Features Image](https://cdn.modrinth.com/data/kcImu7Wi/images/1155be08ccbcc31c638d9daedcc38b8e581c200e.jpeg)\n\n## Symbols & Emoji Replacement\n\nRemmyChat supports custom symbols and emoji replacement in chat messages. You can define your own codes (like :smile:, :diamond:, etc.) and their replacements (emoji, text, or MiniMessage) in a separate `symbols.yml` file. This feature works with both Unicode emojis and custom resource pack textures.\n\n![Symbols GIF](https://cdn.modrinth.com/data/kcImu7Wi/images/fbf28197353848d8962d7f8d813a7836d850ad51.gif)\n\n### How it works\n- Players can type codes like `:smile:` in chat.\n- The plugin will automatically replace these codes with whatever you configure in `symbols.yml`.\n- Supports case-insensitive codes and dashes (e.g., `:smile-face:`).\n- Works seamlessly with resource packs for custom textures and emojis.\n\n### Example `symbols.yml`\n```yaml\nsymbols:\n  \":smile:\": \"😄\"\n  \":heart:\": \"❤️\"\n  \":star:\": \"⭐\"\n  \":smile-face:\": \"😊\"\n```\n\nYou can add as many codes as you want. The replacement can be any string, emoji, or MiniMessage component. Resource pack textures will display correctly for players using the appropriate resource pack.\n\n## Getting Started\n\nInstallation is straightforward:\n\n1. Download the latest RemmyChat release\n2. Place the JAR file in your server's `plugins` folder\n3. Restart your server\n4. Configuration files will be generated automatically\n\nFor detailed setup instructions and advanced configuration, visit our [official documentation](https://remmychat.noximity.com).\n\n![Getting Started Image](https://cdn.modrinth.com/data/kcImu7Wi/images/48e4546417fe67875a2507bde87e93be6a266198.jpeg)\n\n## Configuration\n\nRemmyChat's configuration is highly flexible while remaining intuitive. Here's a sample of what you can accomplish:\n\n### Channel Configuration\n\n```yaml\n# Channel configurations\nchannels:\n  global:\n    permission: \"\" # Empty means everyone can use\n    radius: -1     # -1 means global chat\n    prefix: \"\"     # No prefix for global\n    hover: \"player-info\"\n    display-name: \"\"\n\n  local:\n    permission: \"remmychat.channel.local\"\n    radius: 100    # Chat radius in blocks\n    prefix: \"local\" \n    hover: \"local-chat\"\n    display-name: \"<gray>[Local]</gray>\"\n\n  staff:\n    permission: \"remmychat.channel.staff\"\n    radius: -1\n    prefix: \"staff\"\n    hover: \"staff-chat\"\n    display-name: \"<gold>[Staff]</gold>\"\n```\n\n### Custom Formatting\n\n```yaml\n# Group-based formatting with customizable styles\ngroups:\n  admin:\n    name-style: \"admin\"\n    prefix: \"\"\n    format: \"%admin-hover% %player_name%: %default-message%\"\n\n  vip:\n    name-style: \"vip\"\n    prefix: \"\"\n    format: \"<click:suggest_command:'/msg %player_name%'><hover:show_text:'VIP Player'>%vip-prefix%</hover></click> %player_name%: %default-message%\"\n```\n\n### Interactive Templates\n\n```yaml\n# Templates for reuse across formats\ntemplates:\n  hovers:\n    player-info: \"<#778899>Player information\\n<#F8F9FA>Name: <#E8E8E8>%player_name%\\n<#F8F9FA>Click to message\"\n    \n  name-styles:\n    default: \"<#4A90E2>%player_name%\"\n    owner: \"<bold><gradient:#FF0000:#FFAA00>%player_name%</gradient></bold>\"\n    admin: \"<italic><color:#CC44FF>%player_name%</color></italic>\"\n```\n\n![Configuration Image](https://cdn.modrinth.com/data/kcImu7Wi/images/154da5ba69d238aab11a09bb1c795b9e76e24edc.jpeg)\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/remchat channel <name>` | Switch between chat channels | `remmychat.use` |\n| `/remchat reload` | Reload plugin configuration | `remmychat.admin` |\n| `/msg <player> <message>` | Send private message | `remmychat.msg` |\n| `/reply <message>` | Reply to last private message | `remmychat.msg` |\n| `/msgtoggle` | Toggle receiving private messages | `remmychat.msgtoggle` |\n| `/socialspy` | Monitor private messages between players | `remmychat.socialspy` |\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `remmychat.use` | Basic plugin access | `true` |\n| `remmychat.msg` | Send private messages | `true` |\n| `remmychat.msgtoggle` | Toggle private messages | `true` |\n| `remmychat.msgtoggle.bypass` | Bypass message toggle | `op` |\n| `remmychat.socialspy` | Use social spy feature | `op` |\n| `remmychat.admin` | Administrative access | `op` |\n| `remmychat.channel.<name>` | Access to specific channel | Varies |\n\n## Integration\n\n### PlaceholderAPI\n\nRemmyChat automatically integrates with PlaceholderAPI if installed, allowing you to use any placeholders in your chat formats.\n\n### LuckPerms\n\nWhen LuckPerms is detected, RemmyChat can use permission groups for chat formatting, simplifying setup for servers with existing permission structures.\n\n## For Developers\n\n### Building with Gradle\n\nThis project uses Gradle for building and requires Java 21 or higher.\n\nTo build:\n\n```sh\n./gradlew build\n```\n\nThe output JAR will be in the `build/libs` directory.\n\n## Support & Development\n\n- **Documentation**: [remmychat.noximity.com](https://remmychat.noximity.com)\n- **Website**: [noximity.com](https://noximity.com)  \n- **Issues & Feature Requests**: Please use our GitHub issues tracker\n- **Version**: 1.4.5\n- **License**: GPL-3.0",
+            "memberNames": [
+                "tehzombijesus",
+                "matcldr",
+                "noximitycollective"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/4217.webp?v=4"
+        },
+        {
+            "createdAt": "2024-09-29T03:42:31.0253Z",
+            "id": 2619,
+            "name": "Where_Did_I_Die",
+            "namespace": {
+                "owner": "AlcoholicEyeball",
+                "slug": "Where_Did_I_Die"
+            },
+            "stats": {
+                "views": 531,
+                "downloads": 24,
+                "recentViews": 63,
+                "recentDownloads": 1,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "It's always so hard to know where you died, well after you died.",
+            "lastUpdated": "2024-09-29T03:45:09.871931Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "Die",
+                    "Coords"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.21.1"
+                ]
+            },
+            "mainPageContent": "Where Did I Die? Provides you with the location where you died. Quite convenient, especially if you couldn't look at f3 in time.",
+            "memberNames": [
+                "alcoholiceyeball"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/2619.webp?v=2"
+        },
+        {
+            "createdAt": "2024-05-25T20:29:29.625508Z",
+            "id": 2064,
+            "name": "Simplewelcome",
+            "namespace": {
+                "owner": "Kodaren",
+                "slug": "Simplewelcome"
+            },
+            "stats": {
+                "views": 1819,
+                "downloads": 99,
+                "recentViews": 222,
+                "recentDownloads": 5,
+                "stars": 1,
+                "watchers": 2
+            },
+            "category": "chat",
+            "description": "This plugin is perfect for servers that want a custom message when a player joins.",
+            "lastUpdated": "2024-05-25T20:33:03.699116Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [
+                    "ADDON"
+                ],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "Simple",
+                    "welcome",
+                    "plugin",
+                    "easy"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6"
+                ]
+            },
+            "mainPageContent": "# Simplewelcome  \nThis plugin is perfect for servers that want a custom message when a player joins. With a new fancy message the server looks more professional and will make more players to join.\n\nFeatures\n\nMessage when player join\n\nFully changable welcome message.\n\n \n\n***How to install the plugin into spigot or paper server.***\n\n[Click here to go to the Youtube video.](https://youtu.be/xHrgbj9nHcE/xHrgbj9nHcE)\n\n***(Only a example video this guy did not make the plugin but its the same installation for all plugins)***\n\n \n\n***How to use the plugin.***\n\nIts a easy to use plugin. When the plugin is downloaded and ready to use you can change the welcome message in two diffrent ways. First way to change the welcome message is to simply join your server and type /setwelcomemessage and your new message for example /setwelcomemessage Welcome to the server. To next way to change the welcome message is to go into the plugins folder and go into SimpleWelcome folder and then open up the config.yml file. In the config.yml is should say join-message: 'Welcome to the server %player%!'. If you want to change the welcome message you simply change \"Welcome to server %player%!\" to whatever you want to change it to. For example \"join-message: 'Welcome to the best server ever!'.  If you want it to say \"Welcome to the server Kodaren\" for example in the game you will need to add %player% after the message for example \"Welcome to the server %player%\". When adding player name it MOST be %player% it will not work with %PLAYER%.",
+            "memberNames": [
+                "kodaren"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/265e9e44-e0c5-4877-b7d0-65f4cb9666c9.webp?v=1"
+        },
+        {
+            "createdAt": "2023-10-31T23:23:46.062362Z",
+            "id": 1394,
+            "name": "tags",
+            "namespace": {
+                "owner": "broccoli",
+                "slug": "tags"
+            },
+            "stats": {
+                "views": 1452,
+                "downloads": 31,
+                "recentViews": 120,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "modern tags plugin",
+            "lastUpdated": "2023-11-03T22:37:31.622814Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Github",
+                                "url": "https://github.com/broccolai/tags"
+                            },
+                            {
+                                "id": 1,
+                                "name": "Discord",
+                                "url": "https://discord.gg/DWmHjN7AVD"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "Unspecified",
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2"
+                ]
+            },
+            "mainPageContent": "# Tags\n\n### Integrations\n\nbasic - chat text replacement %tag%, supports all component features, hover etc.\n\npapi - tags are serialized to legacy text, colours and formatting are still supported \n\n### commands & permissions\n\n**PLAYER**\n* /tags select (tag) - \"tags.command.user.select\"\n* /tags list - \"tags.command.user.list\"\n* /tags info (tag) - \"tags.command.user.info\"\n* /tags menu - \"tags.command.user.menu\"\n\n**ADMIN**\n* /tagsadmin give (target) (tag) - \"tags.command.admin.give\"\n* /tagsadmin remove (target) (tag) - \"tags.command.admin.remove\"\n* /tagsadmin list (target) - \"tags.command.admin.list\"\n* /tagsadmin set (target) (tag) - \"tags.command.admin.set\"\n\n**TAGS**\n\ntag possesion is backed by permissions, you may give them manually with the permission `tags.tag.[id]` or with the in game commands\n\n### configuration\nall configuration is done within the config.conf file, and is explained there\n\n### support\nsupport is given on github issues or my discord\n\nhttps://discord.gg/DWmHjN7AVD",
+            "memberNames": [
+                "broccoli"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/3c9b1fe6-3634-4181-b56f-a73e80ab3a33.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-23T08:28:08.592462Z",
+            "id": 582,
+            "name": "ChatFormatter",
+            "namespace": {
+                "owner": "7AGAM",
+                "slug": "ChatFormatter"
+            },
+            "stats": {
+                "views": 3784,
+                "downloads": 165,
+                "recentViews": 285,
+                "recentDownloads": 1,
+                "stars": 0,
+                "watchers": 1
+            },
+            "category": "chat",
+            "description": "ChatFormatter plugin with LuckPerms and PlaceholderAPI support!",
+            "lastUpdated": "2023-06-13T20:49:16.201706Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": "Unspecified",
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.10",
+                    "1.10.1",
+                    "1.10.2",
+                    "1.11",
+                    "1.11.1",
+                    "1.11.2",
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.8",
+                    "1.9",
+                    "1.9.1",
+                    "1.9.2",
+                    "1.9.3",
+                    "1.9.4"
+                ]
+            },
+            "mainPageContent": "**ChatFormatter**\n\nChatFormatter allows you to fully costomize your servers chat with placeholders and color codes.\nThe plugin **supports PlaceholdersAPI** and **Color Codes**.\nIt also comatible with **LuckPerms**.\n\nEverything can be customized in the config.\n\nWith the permission **cf.colors** you can use color codes in your messages.\n\n**Requirements:**\nIf you want to use placeholders from [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) you need it on your server.\n**\nCommands:\n /chatformatter** - Reloads the plugin**\n/cf** - Reloads the plugin\n\n**Permissions:**\n**cf.reload** - To reload the plugin with /cf\n**cr.colors** - To use color codes in messages\n\n```\n# Plugin default Placeholders:\n#\n# {name} - Username of the player.\n# {displayname} - Displayname of the player.\n# {world} - Name of the world the player is in.\n# {message} - Message that the player has sent.\n# ----------------------------------------------\n# The Chat format: [You can use the plugin placeholders or you can use placeholders form PlaceholdersAPI]\nChatFormat: '{displayname}&r: {message}'\n# -------------------------------------------------------\n# The plugin messages:\nmessages:\n  reload: '&7[&9ChatFormatter&7] &aSucessfully reloaded the plugin'\n  noperms: '&7[&9ChatFormatter&7] &cYou do not have the permission for that'\n```\n\n\n**Downloads:**\n- 1000\n- 500\n- 200\n- 100\n- 50 ✔️\n- 20 ✔️\n- 10 ✔️\n\nThanks to everyone how uses this plugin!",
+            "memberNames": [
+                "7agam"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/582.webp?v=1"
+        },
+        {
+            "createdAt": "2024-02-03T02:16:26.411887Z",
+            "id": 1693,
+            "name": "MarkdownChat",
+            "namespace": {
+                "owner": "carolinaisslaying",
+                "slug": "MarkdownChat"
+            },
+            "stats": {
+                "views": 1080,
+                "downloads": 33,
+                "recentViews": 76,
+                "recentDownloads": 1,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "Implements markdown-style chat formatting in Minecraft using the MineDown library",
+            "lastUpdated": "2025-05-28T06:13:41.24615Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "GitHub",
+                                "url": "https://github.com/carolinaisslaying/MarkdownChat"
+                            },
+                            {
+                                "id": 1,
+                                "name": "Discord",
+                                "url": "https://discord.gg/VVTJhkKc4G"
+                            },
+                            {
+                                "id": 2,
+                                "name": "Donate",
+                                "url": "https://github.com/sponsors/carolinaisslaying"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [
+                    "SUPPORTS_FOLIA"
+                ],
+                "license": {
+                    "name": "AGPL",
+                    "url": "https://github.com/carolinaisslaying/MarkdownChat/blob/main/LICENCE",
+                    "type": "AGPL"
+                },
+                "keywords": [
+                    "markdown",
+                    "chat",
+                    "minedown"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1",
+                    "1.21.2",
+                    "1.21.3",
+                    "1.21.4",
+                    "1.21.5"
+                ]
+            },
+            "mainPageContent": "# MarkdownChat\n\n[<img alt=\"Available on Modrinth\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg\">](https://modrinth.com/plugin/markdownchat)\n[<img alt=\"See me on GitHub\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/github-singular_vector.svg\">](https://github.com/carolinaisslaying)\n[<img alt=\"Chat on Discord\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-singular_vector.svg\">](https://discord.gg/VVTJhkKc4G)\n\n## About\nThis is a simplistic and lightweight plugin that allows you to use Markdown in your server's Minecraft chat. It implements Phoenix616's [MineDown library](https://github.com/Phoenix616/MineDown). \n\nThis plugin has been made with compatibility of 1.20.x Paper and Folia in mind. Due to its simplistic nature, it may not function correctly with other chat plugins. Please [report these issues](https://github.com/carolinaisslaying/MarkdownChat/issues) to me and I will look into fixing them.\n\nThis plugin has been tested and works on 1.20.x and 1.21.x.\n\n## Syntax\nThe the full syntax provided by the MineDown library is available [here](https://wiki.phoenix616.dev/library/minedown/syntax). Simply use the syntax in a regular global chat message, and voila!\n\n\n## Permissions\nThis plugin defaults to allowing all users to use markdown chat formatting, however, it has a permission node `markdownchat.use` if you wish to limit who can utilise the chat formatting.\n\n![Demonstration image](https://cdn.modrinth.com/data/cached_images/adaf4129c05e815aa0c4b5a6fc7b1d333753f1e6.png)",
+            "memberNames": [
+                "carolinaisslaying"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/1693.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-23T13:38:45.591315Z",
+            "id": 617,
+            "name": "BungeeHelp",
+            "namespace": {
+                "owner": "alex3025",
+                "slug": "BungeeHelp"
+            },
+            "stats": {
+                "views": 1141,
+                "downloads": 14,
+                "recentViews": 100,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 1
+            },
+            "category": "chat",
+            "description": "Write custom help messages for your bungeecord network.",
+            "lastUpdated": "2023-04-23T13:44:57.786732Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "chat",
+                    "help",
+                    "bungeecord",
+                    "message"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "WATERFALL": [
+                    "1.16"
+                ]
+            },
+            "mainPageContent": "<br>![https://i.imgur.com/AGUMfqn.png](https://i.imgur.com/AGUMfqn.png)\n## Introduction\nWith this BungeeCord plugin, you can customize the /help message per server and much more...\n\n## Commands & Permissions\n**/bungeehelp** - Shows info about the plugin.<br>\n**/bh help** *bungeehelp.help* - Shows all the plugin's commands and permissions.<br>\n**/bh reload** *bungeehelp.reload* - Reloads the configuration.\n\n**bungeehelp.view** - Allow the user to use help commands.<br>\n**bungeehelp.cooldown.bypass** - Allow use to bypass the command cooldown.<br>\n**bungeehelp.updatenotify** - Allow the users with this permission to get a message if a new version of the plugin is avaiable.\n\n\n### If you have any problem, feel free to contact me!\nAnd don't forget to leave a review if you like the plugin. :)",
+            "memberNames": [
+                "alex3025"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/617.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-23T20:36:59.247538Z",
+            "id": 664,
+            "name": "MiniTell",
+            "namespace": {
+                "owner": "Kitteh",
+                "slug": "MiniTell"
+            },
+            "stats": {
+                "views": 2222,
+                "downloads": 9,
+                "recentViews": 192,
+                "recentDownloads": 0,
+                "stars": 1,
+                "watchers": 1
+            },
+            "category": "chat",
+            "description": "Simply /tell except with MiniMessage",
+            "lastUpdated": "2023-04-23T20:58:03.287233Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "GPL"
+                },
+                "keywords": [
+                    "minimessage",
+                    "minitell",
+                    "tell"
+                ],
+                "sponsors": "Sponsors for my work, and a way for you to sponsor me, can be found [here](https://github.com/sponsors/mbax)",
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.19.4"
+                ]
+            },
+            "mainPageContent": "# MiniTell  \n\nA simple plugin for simply sending messages formatted using MiniMessage.\n\n![Image demonstrating the function](https://i.imgur.com/lWNgKR9.png)\n\n### MiniMessage Web Viewer\n\n[Click here!](https://webui.advntr.dev/)\n\n### Permission\n\n`minitell.tell` - Lets a user send a minimessage message.\n\n### [Source](https://github.com/KittehOrg/MiniTell)",
+            "memberNames": [
+                "mbaxter",
+                "kitteh"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/664.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-22T23:39:26.073398Z",
+            "id": 505,
+            "name": "BetterMessages",
+            "namespace": {
+                "owner": "JustDoom",
+                "slug": "BetterMessages"
+            },
+            "stats": {
+                "views": 25579,
+                "downloads": 4709,
+                "recentViews": 972,
+                "recentDownloads": 118,
+                "stars": 25,
+                "watchers": 6
+            },
+            "category": "chat",
+            "description": "Better messages for your server, join/leave messages, world change messages and more!",
+            "lastUpdated": "2024-02-11T08:39:13.236842Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "Source",
+                                "url": "https://github.com/JustDoom/Better-Messages"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [],
+                "license": {
+                    "name": "GPL",
+                    "url": null,
+                    "type": "GPL"
+                },
+                "keywords": [
+                    "custom",
+                    "messages",
+                    "edit",
+                    "join",
+                    "leave"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.10",
+                    "1.10.1",
+                    "1.10.2",
+                    "1.11",
+                    "1.11.1",
+                    "1.11.2",
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.8",
+                    "1.9",
+                    "1.9.1",
+                    "1.9.2",
+                    "1.9.3",
+                    "1.9.4"
+                ],
+                "WATERFALL": [
+                    "1.19",
+                    "1.20"
+                ],
+                "VELOCITY": [
+                    "3.1",
+                    "3.2",
+                    "3.3"
+                ]
+            },
+            "mainPageContent": "# **Introduction**\n### Better messages does it's best to do exactly as the name suggests! It adds better configurable messages. You can also disable, configure, and randomise the messages! Designed as an alternative to essentials custom join messages with even more features!\n\n# **Features**\n- Custom join/leave messages\n- Disable any message that you can configure\n- Bukkit/Hex colour code and PlaceHolders support!\n- Randomised messages\n- Reload command\n- Have messages show on certain counts (e.g. 1st, 5th, 10th join etc)\n- Dimension/World change messages\n- Multiple line messages\n- Supports prefixes and suffixes!\n- YML data saving\n- Make the messages send to certain people\n- Permission specific messages\n- Run commands\n\n# **Planned Features**\n- Command for editing the config in-game\n- Message chance (Chance for a message to be used)\n- Custom death and advancement messages\n- Get notified when you're mentioned in the chat!\n- Message radius\n\n# **Built-in PlaceHolders**\n- **{player}** player that joined or left/player the event is about (Includes prefix/suffix)\n- **{from}** name of the world a player left from (World Change only)\n- **{to}** name of the world a player entered (World Change only)\n\n# **Stats**\n![https://bstats.org/signatures/bukkit/Better%20Messages.svg](https://bstats.org/signatures/bukkit/Better%20Messages.svg)\n\n\n## <center>**DO NOT REPORT BUGS IN THE REVIEWS**</center>",
+            "memberNames": [
+                "justdoom"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/505.webp?v=1"
+        },
+        {
+            "createdAt": "2023-04-23T14:18:34.717709Z",
+            "id": 631,
+            "name": "UwUChat",
+            "namespace": {
+                "owner": "lesxmore",
+                "slug": "UwUChat"
+            },
+            "stats": {
+                "views": 2901,
+                "downloads": 43,
+                "recentViews": 102,
+                "recentDownloads": 0,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "Everything is better with a little uwu~",
+            "lastUpdated": "2023-09-03T09:18:41.234391Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": "Unspecified",
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "Chat",
+                    "Fun",
+                    "Misc",
+                    "UwU"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1"
+                ]
+            },
+            "mainPageContent": "![](https://i.imgur.com/sTZmvH7.png)\nUwU Chat is the ultimate plugin for adding a touch of kawaii to your server! Whether you want to spice up your conversations or just spread some wholesome fun, UwU Chat has got you covered. With its customizable chance and a variety of adorable suffixes to choose from, your chat messages will never be the same!\n\n---\n\n**Plug and Play**\nJust download and put it in your plugins folder.\n\n![https://i.imgur.com/vV0QC4s.png](https://i.imgur.com/vV0QC4s.png)\n\n**Soft Dependency**\n[Brewery plugin](https://www.spigotmc.org/resources/brewery.3082/) - Get *UwU'ed* while drunk.\n\n---\n\n**Commands**\n\n* **/uwuchatreload -** Reloads the configuration of the plugin\n* **/uwuchattoggle -** Lets players turn the UwUChat on and off whenever they want.\n\n---\n\n**Config**\n```\n\n# UwUChat\n# UwU Kaomoji https://cutekaomoji.com/characters/uwu/\n\n# Translation chances based on player permissions (0-100)\nhigh-translation-chance: 50\nmedium-translation-chance: 25\nlow-translation-chance: 10\n\ntranslation-chance: 25\nsuffixes:\n  - \"~\"\n  - \"(◡ ω ◡)\"\n  - \"(⑅˘꒳˘)\"\n  - \"Uwu\"\n  - \"uwU\"\n  - \"ÚwÚ\"\n  - \"uwu\"\n  - \"☆w☆\"\n  - \"✧w✧\"\n  - \"♥w♥\"\n  - \"(˘ᵕ˘)\"\n\n# Translation color (format: \"&x\" where x is a color code or color name)\ntranslation-color: \"&d\"\n\n# List of commands to run when a player sends a UwU message\nuwu-commands:\n  - \"give %player% cookie 1\"\n\nbrewery-hook: true\n\n```\n\n\nHey thewe! Youw feedback, suggestions, and bug weports would be supew hewpfuw in the thwead. I would be weally gwateful if uwu could shawe youw thoughts and hewp me improve the plugin. Don't be shy, wet me know what uwu think! (◡ ω ◡)",
+            "memberNames": [
+                "lesxmore"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/631.webp?v=1"
+        },
+        {
+            "createdAt": "2023-05-05T07:25:03.962728Z",
+            "id": 769,
+            "name": "SimpleChatGames",
+            "namespace": {
+                "owner": "EpicEbic",
+                "slug": "SimpleChatGames"
+            },
+            "stats": {
+                "views": 1961,
+                "downloads": 44,
+                "recentViews": 115,
+                "recentDownloads": 1,
+                "stars": 1,
+                "watchers": 1
+            },
+            "category": "chat",
+            "description": "Fun chat games for your members",
+            "lastUpdated": "2023-05-25T05:41:35.61158Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "MIT"
+                },
+                "keywords": [
+                    "chat",
+                    "games",
+                    "chatgame",
+                    "chatgames"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4"
+                ]
+            },
+            "mainPageContent": "## **SimpleChatGames**\nThe only chat games plugin you'll need again!\nSupport:\n[![https://static.jeff-media.com/img/button_discord.png](https://static.jeff-media.com/img/button_discord.png)](https://discord.gg/bpg46sdstm)\n\nCurrent Games:\n\n* Unscrable\n* Trivia\n* Math\n* Copy\n\n<details>\n<summary>copy example game</summary>\n\n@[YouTube](https://youtu.be/vasjd4zgdD8)\n\n</details>\n\n<details>\n<summary>math example game</summary>\n\n\n@[YouTube](https://youtu.be/eOoCMEHPOg0)\n\n</details>\n\n<details>\n<summary>triviaexample game</summary>\n\n\n@[YouTube](https://youtu.be/EWoP3bpoImM)\n\n</details>\n\n<details>\n<summary>unscramble example game</summary>\n\n\n@[YouTube](https://youtu.be/5OwGMfKoEwc)\n</details>\n<details>\n<summary>unscramble example game</summary>\n\n\n\n</details>\n\n\n## **Commands**\n/cg lb - Shows the top 10 chat game winners\n/cg skip - Skips to the next game\n/cg reward - Allows you to add/set/remove/disable rewards\n- /cg reward set command give %player_name% diamond 1 (example)\n- /cg reward set economy 500 **(REQUIRES VAULT)**\n- /cg reward set item (This takes the item from your hand)\n/cg reload - Reloads config.yml and restarts game timer\n\n### **Configuration**\nAll messages are configurable in each games respective config\nEach game can go on for different amounts of time (all in seconds)\nTrivia and Unscrable questions are configurable, while copy and math are auto generated but you can choose the length and how high/low the numbers can go\n\nDefault Configs: \n<details>\n<summary>default config.yml</summary>\n\n\n```yaml\nupdate-checker:\n#   interval: 2 hours\n  enabled: true\n\n# Debug: true enables the following\n# Games starting 20 seconds after startup\n# Time between games becomes 1 minute\n# Send op's the answer to all questions\n# Removes minimum players needed\n# Disables rewards\ndebug: false\n\ngames:\n#   interval: 5 Minutes\n  players: 2\n  not-enough-players-message: \"<green>Not enough players online\"\n\n\nrewards:\n  item: disabled\n  economy: disabled\n  command: disabled\n```\n\n\n\n</details>\n\n<details>\n<summary>default messages.yml</summary>\n\n\n```yaml\nno-permission: \"<red>You do not have permission for this\"\nleaderboard:\n  info-message: \"<green>Page %number% of the leaderboard\"\n  info-line: \" <dark_gray>-</dark_gray><yellow>%player_name%  %wins%\"\nskip-game: \"<green>Game skipped!\"\nitem-given: \"<green>You have received x%item_count% %item_name%\"\nmoney-given: \"<green>You have received $%amount%\"\ncommand-usage: /cg <reward|leaderboard|skip|reload>\n```\n\n\n</details>\n\n<details>\n<summary>default copy.yml</summary>\n\n\n```\n# duration: 20 seconds\nenabled: true\nmessages:\n  start: \"<green>Copy <white>%word%</white> to win a prize!\"\n  end:\n    won: \"<green><bold>!</bold> <white>%player_name%</white> has won the round in <yellow>%time%<yellow> <white>seconds</white>!\"\n    timed-out: \"<green><bold>!</bold> No one won that round\"\n\npossible-characters: \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\"\nword-length: 15\n```\n\n\n</details>\n\n<details>\n<summary>default maths.yml</summary>\n\n\n```yaml\n# duration: 30 seconds\nenabled: true\nmessages:\n  start: \"<green>Solve <white>%question%</white><green> to win a prize!\"\n  end:\n    won: \"<green><bold>!</bold> <white>%player_name%</white> has won the round in <yellow>%time%<yellow> <white>seconds</white>!\"\n    timed-out: \"<green><bold>!</bold> No one won that round, the answer was %answer%\"\n\nnumbers:\n  lowest: 1\n  highest: 200\n```\n\n\n</details>\n\n<details>\n<summary>default trivia.yml</summary>\n\n\n```yaml\n# duration: 30 seconds\nenabled: true\nmessages:\n  start: \"<green>Solve <white>%question%</white><green> to win a prize!\"\n  end:\n    won: \"<green><bold>!</bold> <white>%player_name%</white> has won the round in <yellow>%time%<yellow> <white>seconds</white>!\"\n    timed-out: \"<green><bold>!</bold> No one won that round, the answer was %answers%\"\n\nquestions:\n  What is the name of the block used to craft torches?:\n    answers:\n      - stick\n      - coal\n  What is the name of the hostile mob that explodes?:\n    answers:\n      - creeper\n  What is the name of the game mode where players have infinite resources?:\n    answers:\n      - creative mode\n  What is the name of the tool used to break dirt and stone blocks?:\n    answers:\n      - pickaxe\n  What is the name of the block that players spawn on when they first join a world?:\n    answers:\n      - grass block\n  What is the name of the red, fiery dimension that can be accessed through a Nether portal?:\n    answers:\n      - Nether\n  What is the name of the flying creature that drops leather when killed?:\n    answers:\n      - bat\n  What is the name of the neutral mob that can be tamed with bones?:\n    answers:\n      - wolf\n  What is the name of the material used to create armor?:\n    answers:\n      - iron\n      - diamond\n      - gold\n  What is the name of the food that restores the most hunger points?:\n    answers:\n      - golden carrot\n      - cooked porkchop\n      - steak\n  What is the name of the rare ore that can be found underground?:\n    answers:\n      - diamond\n  What is the name of the block that is used to create a bed?:\n    answers:\n      - wool\n  What is the name of the block that grows wheat?:\n    answers:\n      - farmland\n  What is the name of the block that can be used to make a furnace?:\n    answers:\n      - cobblestone\n  What is the name of the block that can be used to craft arrows?:\n    answers:\n      - flint\n      - stick\n      - feather\n  What is the name of the material used to create tools and weapons?:\n    answers:\n      - iron\n      - diamond\n      - gold\n  What is the name of the block that can be used to create a ladder?:\n    answers:\n      - sticks\n  What is the name of the passive mob that can be milked?:\n    answers:\n      - cow\n  What is the name of the item used to craft a fishing rod?:\n    answers:\n      - string\n  What is the name of the item used to craft a bow?:\n    answers:\n      - sticks\n      - string\n  What is the name of the block that can be used to create a door?:\n    answers:\n      - wood planks\n  What is the name of the block that can be used to create a boat?:\n    answers:\n      - wood planks\n  What is the name of the block that can be used to create a chest?:\n    answers:\n      - chest\n  What is the name of the block that can be used to create a crafting table?:\n    answers:\n      - wood planks\n  What is the name of the block that can be used to create a fence?:\n    answers:\n      - wood planks\n  What is the name of the block that can be used to create a fence gate?:\n    answers:\n      - wood planks\n  What is the name of the block that can be used to create a pressure plate?:\n    answers:\n      - wood planks\n      - stone\n  What is the name of the item used to craft a map?:\n    answers:\n      - paper\n      - compass\n  What is the name of the block that can be used to create a jukebox?:\n    answers:\n      - wood planks\n      - diamond\n  What is the name of the block that can be used to create a note block?:\n    answers:\n      - wood planks\n      - redstone\n  What is the name of the block that can be used to create a piston?:\n    answers:\n      - wood planks\n      - cobblestone\n      - iron ingot\n      - redstone\n  What is the name of the block that can be used to create a sticky piston?:\n    answers:\n      - wood planks\n      - cobblestone\n      - iron ingot\n      - redstone\n      - slime ball\n  What is the name of the block that can be used to create a redstone lamp?:\n    answers:\n      - glowstone\n      - redstone\n  What is the name of the block that can be used to create a lever?:\n    answers:\n      - cobblestone\n      - stick\n  What is the name of the block that can be used to create a redstone torch?:\n    answers:\n      - redstone\n      - stick\n  What is the name of the block that can be used to create a button?:\n    answers:\n      - stone\n      - wood planks\n  What is the name of the block that can be used to create a comparator?:\n    answers:\n      - redstone torch\n      - nether quartz\n      - stone\n  What is the name of the block that can be used to create a dispenser?:\n    answers:\n      - cobblestone\n      - redstone\n      - bow\n    What is the name of the block that can be used to create a dropper?:\n      answers:\n        - cobblestone\n        - redstone\n    What is the name of the block that can be used to create a hopper?:\n      answers:\n        - iron ingot\n        - chest\n    What is the name of the block that can be used to create a beacon?:\n      answers:\n        - obsidian\n        - glass\n        - nether star\n    What is the name of the block that can be used to create a brewing stand?:\n      answers:\n        - blaze rod\n        - cobblestone\n    What is the name of the block that can be used to create a daylight sensor?:\n      answers:\n        - glass\n        - nether quartz\n        - wood slab\n    What is the name of the block that can be used to create a comparator?:\n      answers:\n        - redstone torch\n        - nether quartz\n        - stone\n    What is the name of the block that can be used to create a daylight detector?:\n      answers:\n        - daylight sensor\n    What is the name of the block that can be used to create a redstone repeater?:\n      answers:\n        - redstone torch\n        - stone\n        - redstone dust\n    What is the name of the block that can be used to create a furnace?:\n      answers:\n        - cobblestone\n        - iron ingot\n    What is the name of the block that can be used to create a smoker?:\n      answers:\n        - wood logs\n        - furnace\n    What is the name of the block that can be used to create a blast furnace?:\n      answers:\n        - iron ingot\n        - furnace\n        - smooth stone\n    What is the name of the block that can be used to create a crafting table?:\n      answers:\n        - wood planks\n    What is the name of the block that can be used to create a chest?:\n      answers:\n        - wood planks\n    What is the name of the block that can be used to create a trapdoor?:\n      answers:\n        - wood planks\n        - iron ingot\n    What is the name of the block that can be used to create a fence gate?:\n      answers:\n        - wood planks\n        - stick\n    What is the name of the block that can be used to create a ladder?:\n      answers:\n        - stick\n    What is the name of the block that can be used to create a sign?:\n      answers:\n        - wood planks\n    What is the name of the block that can be used to create a bed?:\n      answers:\n        - wool\n        - wood planks\n    What is the name of the block that can be used to create a painting?:\n      answers:\n        - wool\n        - stick\n    What is the name of the block that can be used to create a carpet?:\n      answers:\n        - wool\n        - wood planks\n    What is the name of the block that can be used to create a fence?:\n      answers:\n        - wood planks\n        - stick\n    What is the name of the block that can be used to create a pressure plate?:\n      answers:\n        - wood planks\n        - stone\n        - iron ingot\n```\n\n\n</details>\n\n<details>\n<summary>default unscramble.yml</summary>\n\n\n```yaml\n# duration: 20 seconds\nenabled: true\nmessages:\n  start: \"<green>Unscramble <white>%word%</white> to win a prize!\"\n  end:\n    won: \"<green><bold>!</bold> <white>%player_name%</white> has won the round in <yellow>%time%<yellow> <white>seconds</white>!\"\n    timed-out: \"<green><bold>!</bold> No one won that round, the answer was %word%\"\nwords:\n  - minecraft\n  - digging\n  - diamond\n  - emerald\n  - gold\n  - iron\n  - grass\n  - creeper\n  - zombie\n  - skeleton\n  - steve\n  - enderman\n  - nether\n  - overworld\n  - redstone\n  - tnt\n  - pickaxe\n  - sword\n  - bow\n  - arrow\n  - enchantment\n  - potion\n  - beacon\n  - villager\n  - farming\n  - brewing\n  - crafting\n  - anvil\n  - furnace\n  - coal\n  - lava\n  - water\n  - tree\n  - wood\n  - planks\n  - slime\n  - magma cube\n  - ghast\n  - blaze\n  - elytra\n  - shulker\n  - end portal\n  - dragon egg\n  - obsidian\n  - bedrock\n  - minecart\n  - rail\n  - redstone dust\n  - lever\n  - button\n  - pressure plate\n  - trapdoor\n  - fence\n  - stairs\n  - chest\n  - ender chest\n  - beacon\n  - totem of undying\n  - trident\n  - turtle\n  - rabbit\n  - chicken\n  - cow\n  - pig\n  - sheep\n  - horse\n  - donkey\n  - llama\n  - polar bear\n  - dolphin\n  - salmon\n  - cod\n  - pufferfish\n  - fishing rod\n  - enchanted golden apple\n  - spider\n  - cave spider\n  - silverfish\n  - ender dragon\n  - wither\n  - pillager\n  - ravager\n  - illusioner\n  - phantom\n  - cat\n  - wolf\n  - ocelot\n  - parrot\n  - panda\n  - bee\n  - adventure\n  - armor\n  - axe\n  - biome\n  - bow\n  - brewing\n  - campfire\n  - cave\n  - chicken\n  - crafting\n  - creeper\n  - desert\n  - diamond\n  - dragon\n  - dungeon\n  - emerald\n  - enchanting\n  - ender\n  - experience\n  - farm\n  - fishing\n  - food\n  - forest\n  - furnace\n  - ghost\n  - gold\n  - grass\n  - guardians\n  - horse\n  - iron\n  - jungle\n  - ladder\n  - lantern\n  - lava\n  - minecart\n  - mob\n  - monster\n  - mushroom\n  - nether\n  - obsidian\n  - ocean\n  - ores\n  - panda\n  - pig\n  - piston\n  - player\n  - poison\n  - portal\n  - potion\n  - rabbit\n  - redstone\n  - sand\n  - sheep\n  - shovel\n  - skeleton\n  - slime\n  - snow\n  - spawn\n  - spider\n  - steak\n  - sword\n  - thunder\n  - TNT\n  - tools\n  - tree\n  - treasure\n  - village\n  - water\n  - weapons\n  - wolf\n  - zombie\n  - shield\n  - hopper\n  - beacon\n  - elytra\n  - totem\n  - trident\n  - scaffolding\n  - honeycomb\n  - honey\n  - berry\n  - lantern\n  - boat\n  - cartography\n  - crossbow\n  - diamond armor\n  - diamond tools\n  - end portal\n  - ghast\n  - blaze\n  - ender dragon\n  - wither\n  - beacon\n  - bookshelf\n  - cauldron\n  - chest\n  - dispenser\n  - dropper\n  - enchantment table\n  - glass\n  - glowstone\n  - jukebox\n  - lever\n  - piston\n  - redstone torch\n  - sticky piston\n  - tripwire\n  - water bucket\n  - lava bucket\n  - wheat\n```\n\n\n</details>\n\n\n![https://bstats.org/signatures/bukkit/SimpleChatGames.svg](https://bstats.org/signatures/bukkit/SimpleChatGames.svg)",
+            "memberNames": [
+                "epicebic"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/769.webp?v=1"
+        },
+        {
+            "createdAt": "2023-05-05T17:12:12.643766Z",
+            "id": 771,
+            "name": "UltimateShout",
+            "namespace": {
+                "owner": "ChimpGamer",
+                "slug": "UltimateShout"
+            },
+            "stats": {
+                "views": 1113,
+                "downloads": 16,
+                "recentViews": 126,
+                "recentDownloads": 1,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "A plugin to allow your players to shout in the chat!",
+            "lastUpdated": "2024-03-21T14:15:45.66264Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.10",
+                    "1.10.1",
+                    "1.10.2",
+                    "1.11",
+                    "1.11.1",
+                    "1.11.2",
+                    "1.12",
+                    "1.12.1",
+                    "1.12.2",
+                    "1.13",
+                    "1.13.1",
+                    "1.13.2",
+                    "1.14",
+                    "1.14.1",
+                    "1.14.2",
+                    "1.14.3",
+                    "1.14.4",
+                    "1.15",
+                    "1.15.1",
+                    "1.15.2",
+                    "1.16",
+                    "1.16.1",
+                    "1.16.2",
+                    "1.16.3",
+                    "1.16.4",
+                    "1.16.5",
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.8",
+                    "1.9",
+                    "1.9.1",
+                    "1.9.2",
+                    "1.9.3",
+                    "1.9.4"
+                ]
+            },
+            "mainPageContent": "With this plugin you can allow your players to shout in the chat. It's easy to use and fully configurable.\n\n**Features:**\n\n* Configurable format\n* Shortcut shout fast\n* Configurable cooldown\n* Vault and PlaceholderAPI support\n\n\n\n<details>\n<summary>commands</summary>\n\n\n- /shout\n- /shout reload\n- /shout \\<message>\n\n</details>\n\n\n<details>\n<summary>permissions</summary>\n\n\nultimateshout.shout.use\nultimateshout.shout.nocooldown\nultimateshout.shout.reload\n\n</details>\n\n\n<details>\n<summary>default config</summary>\n\n\n```yaml\n# The format of the message that will appear in the chat when shouting\n# You can use the following placeholders:\n# %playername%\n# %displayname%\n# With Vault you can use:\n# %vault_prefix%\n# %vault_suffix%\n# %vault_rank%\n# %vault_prefix_color%\n# %vault_suffix_color%\n# If you have PlaceholderAPI installed you can use all placeholders from PlaceholderAPI in here aswell.\nformat: '&c&l|| &4&lSHOUT &c&l|| &r%vault_prefix% &e%playername% &8» &r%message%'\n\n# Shows the player how to use the command.\nhelp: '&7Please use &6/shout <message>'\n\n# Cooldown in seconds. Force players to wait before shouting again.\n# Set cooldown to -1 to disable cooldown.\ncooldown: 300\n\n# The message the players receive when they are in cooldown\ncooldownMessage: '&6You''ll have to wait %cooldown% second(s) before shouting again.'\n\n# With the shortcut you can allow players to just use <shortcut><message> in chat.\n# Example: !I'm shouting a nice message. If the shortcut is empty this feature is disabled\nshortcut: '!'\n```\n\n\n</details>\n\n\nIf you have any suggestion please use the discussion section to post your suggestion and not the review section.",
+            "memberNames": [
+                "chimpgamer"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/771.webp?v=1"
+        },
+        {
+            "createdAt": "2023-07-07T15:35:27.852108Z",
+            "id": 1023,
+            "name": "DiscordConnector",
+            "namespace": {
+                "owner": "Tamion",
+                "slug": "DiscordConnector"
+            },
+            "stats": {
+                "views": 3942,
+                "downloads": 135,
+                "recentViews": 264,
+                "recentDownloads": 1,
+                "stars": 1,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "Customizable Plugin that connects Discord and Minecraft",
+            "lastUpdated": "2023-10-02T15:20:45.897813Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "MIT"
+                },
+                "keywords": [
+                    "discord",
+                    "chat",
+                    "console"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.20.1",
+                    "1.20.2"
+                ]
+            },
+            "mainPageContent": "## **DiscordConnector**\nA Minecraft Plugin that connects Discord and Minecraft\n\n[![https://img.shields.io/badge/Documentation-37a779?style=for-the-badge](https://img.shields.io/badge/Documentation-37a779?style=for-the-badge)](https://nottamion.github.io/DiscordConnector/)\n\nFor questions or help please contact me on Discord: tamion or SpigotMC.",
+            "memberNames": [
+                "tamion"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/1023.webp?v=1"
+        },
+        {
+            "createdAt": "2023-06-01T11:58:46.932536Z",
+            "id": 872,
+            "name": "MyNick",
+            "namespace": {
+                "owner": "wildmaster84",
+                "slug": "MyNick"
+            },
+            "stats": {
+                "views": 2022,
+                "downloads": 183,
+                "recentViews": 224,
+                "recentDownloads": 3,
+                "stars": 0,
+                "watchers": 0
+            },
+            "category": "chat",
+            "description": "Very basic nick plugin for users to set a custom display name.",
+            "lastUpdated": "2023-06-01T12:03:34.982123Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [],
+                "tags": [
+                    "SUPPORTS_FOLIA"
+                ],
+                "license": {
+                    "name": null,
+                    "url": null,
+                    "type": "Unspecified"
+                },
+                "keywords": [
+                    "nick",
+                    "nickname"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4"
+                ]
+            },
+            "mainPageContent": "# MyNick  \nMyNick is a basic nick plugin made for Folia servers that are just for hanging out with friends.\n\nThis plugin does not have permission nodes or admin commands, just /nick <nickname>.\nThis also supports Hex Code!",
+            "memberNames": [
+                "wildmaster84"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/default/default.webp?v=0"
+        },
+        {
+            "createdAt": "2023-09-09T11:55:30.015203Z",
+            "id": 1264,
+            "name": "AutoMessage",
+            "namespace": {
+                "owner": "imDMK",
+                "slug": "AutoMessage"
+            },
+            "stats": {
+                "views": 4825,
+                "downloads": 570,
+                "recentViews": 410,
+                "recentDownloads": 29,
+                "stars": 4,
+                "watchers": 3
+            },
+            "category": "chat",
+            "description": "⚡ AutoMessage is a high-performance plugin for fully customizable automatic server-wide broadcasts.",
+            "lastUpdated": "2025-07-06T11:38:25.964455Z",
+            "visibility": "public",
+            "userActions": null,
+            "settings": {
+                "links": [
+                    {
+                        "id": 0,
+                        "type": "top",
+                        "title": null,
+                        "links": [
+                            {
+                                "id": 0,
+                                "name": "GitHub",
+                                "url": "https://github.com/imDMK/AutoMessage"
+                            },
+                            {
+                                "id": 2,
+                                "name": "Bugs and suggestions",
+                                "url": "https://github.com/imDMK/AutoMessage/issues/new/choose"
+                            },
+                            {
+                                "id": 1,
+                                "name": "Like the plugin? Star",
+                                "url": "https://github.com/imDMK/AutoMessage"
+                            },
+                            {
+                                "id": 3,
+                                "name": "Donate",
+                                "url": "https://www.buymeacoffee.com/imdmk"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [
+                    "ADDON"
+                ],
+                "license": {
+                    "name": "GPL",
+                    "url": "https://github.com/imDMK/AutoMessage/blob/main/LICENSE",
+                    "type": "GPL"
+                },
+                "keywords": [
+                    "automessage",
+                    "auto",
+                    "message",
+                    "broadcast",
+                    "plugin"
+                ],
+                "sponsors": null,
+                "donation": {
+                    "subject": "",
+                    "enable": false
+                }
+            },
+            "supportedPlatforms": {
+                "PAPER": [
+                    "1.17",
+                    "1.17.1",
+                    "1.18",
+                    "1.18.1",
+                    "1.18.2",
+                    "1.19",
+                    "1.19.1",
+                    "1.19.2",
+                    "1.19.3",
+                    "1.19.4",
+                    "1.20",
+                    "1.20.1",
+                    "1.20.2",
+                    "1.20.3",
+                    "1.20.4",
+                    "1.20.5",
+                    "1.20.6",
+                    "1.21",
+                    "1.21.1",
+                    "1.21.2",
+                    "1.21.3",
+                    "1.21.4",
+                    "1.21.5",
+                    "1.21.6",
+                    "1.21.7"
+                ]
+            },
+            "mainPageContent": "# 💬 AutoMessage — Ultra-Efficient Broadcasting System\n### 🚀 Lightweight. Customizable. Blazing Fast.\n\n**AutoMessage** is a high-performance plugin for fully customizable automatic server-wide broadcasts. No lag. No hassle. Just clean, dynamic message delivery across chat, actionbars, titles, and bossbars — all with nearly zero performance impact.\n\n---\n\n## 🧠 Features\n\n✅ **Multiple broadcast types**  \n• Chat  \n• ActionBar  \n• Title & Subtitle  \n• BossBar (fully configurable: color, style, duration, progress, etc.)\n\n✅ **Advanced configuration**  \n• Create/edit/delete messages directly  \n• Toggle automatic messages at any time  \n• Support for various broadcast modes  \n• Dynamic intervals between messages  \n• Full MiniMessage & Adventure API formatting\n\n✅ **Command support**  \n• `/automessage delay`  \n• `/automessage reload`  \n• You can even configure a command like you want!\n\n✅ **Zero-lag optimized**  \nBuilt with efficiency in mind — AutoMessage has no noticeable impact on server performance, even with hundreds of players online.\n\n✅ **Adventure API support**  \nIntegrates with [Kyori Adventure](https://github.com/KyoriPowered/adventure) for rich message styling and component-based formatting.\n\n---\n\n## ✨ Showcase\n![AutoMessage Chat Preview](https://raw.githubusercontent.com/imDMK/AutoMessage/refs/heads/main/assets/automessage-preview.gif)\n\n---\n\n## 🛠️ Feedback & Support\n\nFound a bug? Have a suggestion? Want to contribute?  \nOpen an issue on [GitHub Issues](https://github.com/imDMK/AutoMessage/issues) — your feedback is welcome!\n\n---\n\n## ⭐ Like the plugin?\n\nIf you enjoy using **AutoMessage**, please consider leaving a ⭐ rating on [SpigotMC](https://www.spigotmc.org/resources/automessage.112363/)!  \nIt helps support future development and lets others discover it too.",
+            "memberNames": [
+                "imdmk"
+            ],
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/1264.webp?v=3"
+        }
+    ]
+}

@@ -1,0 +1,424 @@
+{
+    "pagination": {
+        "count": 1599,
+        "limit": 25,
+        "offset": 0
+    },
+    "result": [
+        {
+            "createdAt": "2022-12-03T17:18:20.445164Z",
+            "id": 1,
+            "name": "MiniDigger",
+            "tagline": null,
+            "roles": [
+                4,
+                1
+            ],
+            "projectCount": 3,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/6b77cbb1-3992-48ac-8adf-134f5e0a21f0.webp?v=1",
+            "socials": {
+                "github": "MiniDigger"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-22T14:04:13.95166Z",
+            "id": 2,
+            "name": "kennytv",
+            "tagline": "Turning the world upsidedown.",
+            "roles": [
+                4,
+                1
+            ],
+            "projectCount": 10,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/1f5a6c0e-3242-487d-9b73-f8e398bd5625.webp?v=1",
+            "socials": {
+                "website": "https://kennytv.eu/"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-22T14:07:55.822265Z",
+            "id": 3,
+            "name": "lynxplay",
+            "tagline": "",
+            "roles": [
+                3,
+                5
+            ],
+            "projectCount": 1,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/9737f15f-061f-4e5a-8d65-a172a12923a1.webp?v=1",
+            "socials": {
+                "github": "lynxplay",
+                "discord": "lynxplay#0001"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-22T14:20:08.320636Z",
+            "id": 4,
+            "name": "ViaVersion",
+            "tagline": "Easing the gap between Minecraft updates by allowing players to connect with different versions.",
+            "roles": [
+                100
+            ],
+            "projectCount": 6,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/759a1cce-652c-481d-8810-ad32d74f246b.webp?v=5",
+            "socials": {},
+            "isOrganization": true
+        },
+        {
+            "createdAt": "2022-12-22T14:30:14.974908Z",
+            "id": 5,
+            "name": "Noah",
+            "tagline": null,
+            "roles": [
+                3,
+                5
+            ],
+            "projectCount": 1,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/3243a5c5-c47d-4b83-bc6b-c0aaf13c8acd.webp?v=4",
+            "socials": {
+                "github": "NoahvdAa",
+                "discord": "noah.pm"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-22T18:19:36.674354Z",
+            "id": 12,
+            "name": "cubxity",
+            "tagline": "Fullstack Developer, Sysadmin & DevOps.",
+            "roles": [],
+            "projectCount": 1,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/40688c52-bfc1-4427-b8c6-5ecb9af55939.webp?v=1",
+            "socials": {
+                "github": "Cubxity",
+                "discord": "Cubxity#7801"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-22T19:29:38.697033Z",
+            "id": 15,
+            "name": "NotMyFault",
+            "tagline": "",
+            "roles": [
+                3,
+                5
+            ],
+            "projectCount": 4,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/91647d69-0576-494d-bab5-a29be4600518.webp?v=1",
+            "socials": {
+                "github": "NotMyFault",
+                "discord": null
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-22T19:31:19.630755Z",
+            "id": 16,
+            "name": "IntellectualSites",
+            "tagline": "",
+            "roles": [
+                100
+            ],
+            "projectCount": 3,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/8dbb6270-d3b3-4380-8e02-a141473c4066.webp?v=1",
+            "socials": {},
+            "isOrganization": true
+        },
+        {
+            "createdAt": "2022-12-22T20:14:52.825062Z",
+            "id": 17,
+            "name": "Machine_Maker",
+            "tagline": "​",
+            "roles": [
+                2,
+                5
+            ],
+            "projectCount": 3,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/5440efbd-4276-42be-ae78-956c276541b8.webp?v=1",
+            "socials": {
+                "github": "Machine-Maker",
+                "discord": "machinemaker"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-22T20:34:45.427378Z",
+            "id": 19,
+            "name": "pop4959",
+            "tagline": "",
+            "roles": [],
+            "projectCount": 3,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/b4635bb6-b1b0-4af8-afff-1e46619dbc75.webp?v=1",
+            "socials": {
+                "github": "pop4959",
+                "discord": "pop4959#1781"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-23T06:56:40.965561Z",
+            "id": 23,
+            "name": "EngineHub",
+            "tagline": "We're an open source group that works on a bunch of Minecraft mods/plugins; https://enginehub.org/",
+            "roles": [
+                100
+            ],
+            "projectCount": 2,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/f7f01687-7aa7-44d7-80f2-6e1b5b604928.webp?v=1",
+            "socials": {},
+            "isOrganization": true
+        },
+        {
+            "createdAt": "2022-12-23T14:47:28.890204Z",
+            "id": 26,
+            "name": "sulu",
+            "tagline": "",
+            "roles": [],
+            "projectCount": 2,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/default/default.webp?v=0",
+            "socials": {
+                "github": null,
+                "discord": null
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-23T19:22:20.138346Z",
+            "id": 28,
+            "name": "GeyserMC",
+            "tagline": "Bringing together the Minecraft community, one project at a time.",
+            "roles": [
+                100
+            ],
+            "projectCount": 2,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/6b29b027-d402-4ef3-a018-91dac893ea6f.webp?v=1",
+            "socials": {},
+            "isOrganization": true
+        },
+        {
+            "createdAt": "2022-12-23T19:35:36.619118Z",
+            "id": 29,
+            "name": "Alessio",
+            "tagline": "I eat bars",
+            "roles": [],
+            "projectCount": 1,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/e58a24de-a9d9-4151-8995-0003880c34ab.webp?v=1",
+            "socials": {
+                "github": "AlessioGr",
+                "discord": "Alessio 🍣#9584"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-23T19:37:39.497513Z",
+            "id": 30,
+            "name": "SlimeDog",
+            "tagline": "SlimeDog resources reached end-of-life in July 2024. See individual resources for details.",
+            "roles": [],
+            "projectCount": 7,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/49c2000f-9c2c-48e4-80bd-5a1369c0b7c4.webp?v=3",
+            "socials": {
+                "github": "SlimeDog",
+                "discord": null
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-23T20:01:01.363223Z",
+            "id": 35,
+            "name": "Redned",
+            "tagline": null,
+            "roles": [],
+            "projectCount": 11,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/12d06624-bfce-46d2-81a9-536bf5d488ec.webp?v=1",
+            "socials": {
+                "github": "Redned235",
+                "discord": "redned"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-23T20:20:42.198528Z",
+            "id": 39,
+            "name": "CORE",
+            "tagline": "",
+            "roles": [
+                100
+            ],
+            "projectCount": 1,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/default/default.webp?v=0",
+            "socials": {},
+            "isOrganization": true
+        },
+        {
+            "createdAt": "2022-12-23T21:25:23.056728Z",
+            "id": 41,
+            "name": "jmp",
+            "tagline": "✫✫✫",
+            "roles": [
+                5
+            ],
+            "projectCount": 6,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/9d4954ff-eb60-432f-a715-cd34d33868bf.webp?v=1",
+            "socials": {
+                "github": "jpenilla",
+                "discord": "jmp#3822"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-23T23:07:09.436279Z",
+            "id": 43,
+            "name": "Phoenix616",
+            "tagline": "Moep!",
+            "roles": [],
+            "projectCount": 5,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/d5d3d512-4227-4c3f-89b8-147d7fcc9df3.webp?v=1",
+            "socials": {
+                "github": "Phoenix616",
+                "website": "https://phoenix616.dev",
+                "youtube": "@phoenix_616"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-24T00:19:35.501306Z",
+            "id": 47,
+            "name": "HelpChat",
+            "tagline": "",
+            "roles": [
+                100
+            ],
+            "projectCount": 2,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/71d3bd05-2715-4b3f-983f-a68cb0231e37.webp?v=1",
+            "socials": {},
+            "isOrganization": true
+        },
+        {
+            "createdAt": "2022-12-24T00:42:01.757692Z",
+            "id": 49,
+            "name": "ArcanePlugins",
+            "tagline": "We're passionate about delivering high-quality free and open-source software such as LevelledMobs.",
+            "roles": [
+                100
+            ],
+            "projectCount": 8,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/dbb995d2-982e-44a5-9aca-4c19458d41fc.webp?v=1",
+            "socials": {},
+            "isOrganization": true
+        },
+        {
+            "createdAt": "2022-12-24T00:47:15.000077Z",
+            "id": 50,
+            "name": "Vicarious",
+            "tagline": "",
+            "roles": [],
+            "projectCount": 1,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/0791591d-6081-4e85-b5cd-3474907080d6.webp?v=1",
+            "socials": {
+                "github": "Draycia",
+                "discord": "Vicarious#0001"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-24T00:55:52.489439Z",
+            "id": 52,
+            "name": "Spottedleaf",
+            "tagline": "",
+            "roles": [
+                5
+            ],
+            "projectCount": 1,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/d1b40db4-ce1c-496a-83c8-09e168511741.webp?v=1",
+            "socials": {
+                "github": "Spottedleaf",
+                "discord": "spottedleaf"
+            },
+            "isOrganization": false
+        },
+        {
+            "createdAt": "2022-12-24T01:25:52.460796Z",
+            "id": 54,
+            "name": "DenizenScript",
+            "tagline": "Scriptable minecraft!",
+            "roles": [
+                100
+            ],
+            "projectCount": 1,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/default/default.webp?v=0",
+            "socials": {},
+            "isOrganization": true
+        },
+        {
+            "createdAt": "2022-12-24T13:44:13.037459Z",
+            "id": 61,
+            "name": "FivePB",
+            "tagline": "",
+            "roles": [
+                5
+            ],
+            "projectCount": 1,
+            "locked": false,
+            "nameHistory": null,
+            "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/a8190d44-ba69-430b-90d8-3f1097aa94ab.webp?v=1",
+            "socials": {
+                "github": "Xernium",
+                "discord": "fivepb"
+            },
+            "isOrganization": false
+        }
+    ]
+}
