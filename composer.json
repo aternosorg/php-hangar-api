@@ -29,9 +29,14 @@
         "phpunit/phpunit": "^12.4"
     },
     "autoload": {
-        "psr-4": { "Aternos\\HangarApi\\" : "lib/" }
+        "psr-4": {
+            "Aternos\\HangarApi\\": "lib/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "Aternos\\HangarApi\\Test\\" : "test/" }
+        "psr-4": {
+            "Aternos\\HangarApi\\Test\\": "test/",
+            "Aternos\\HangarApi\\Tests\\": "tests/"
+        }
     }
 }
