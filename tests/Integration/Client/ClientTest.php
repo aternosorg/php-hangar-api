@@ -132,7 +132,7 @@ class ClientTest extends TestCase
      * Test case for getProjects
      * @throws ApiException
      */
-    public function testGetProjects()
+    public function testGetProjects(): void
     {
         $projectList = $this->apiClient->getProjects();
         $this->assertFalse($projectList->hasPreviousPage());
@@ -169,7 +169,7 @@ class ClientTest extends TestCase
      * Test case for getProjects with a specified category
      * @throws ApiException
      */
-    public function testGetProjectsInCategory()
+    public function testGetProjectsInCategory(): void
     {
         $options = new ProjectSearchOptions();
         $options->setCategory(ProjectCategory::ADMIN_TOOLS);
@@ -211,7 +211,7 @@ class ClientTest extends TestCase
      * Test case for getProjects with a specified owner
      * @throws ApiException
      */
-    public function testGetProjectsByOwner()
+    public function testGetProjectsByOwner(): void
     {
         $options = new ProjectSearchOptions();
         $options->setOwner("Aternos");
@@ -234,7 +234,7 @@ class ClientTest extends TestCase
      * Test case for getProjects sorting by the shortest duration since the last update
      * @throws ApiException
      */
-    public function testGetRecentlyUpdatedProjects()
+    public function testGetRecentlyUpdatedProjects(): void
     {
         $options = new ProjectSearchOptions();
         $options->setLimit(10);
@@ -256,7 +256,7 @@ class ClientTest extends TestCase
      * Test case for getProjects sorting by the longest duration since the last update
      * @throws ApiException
      */
-    public function testGetNotRecentlyUpdatedProjects()
+    public function testGetNotRecentlyUpdatedProjects(): void
     {
         $options = new ProjectSearchOptions();
         $options->setLimit(10);
@@ -278,7 +278,7 @@ class ClientTest extends TestCase
      * Test case for getProject
      * @throws ApiException
      */
-    public function testGetProject()
+    public function testGetProject(): void
     {
         $project = $this->apiClient->getProject("mclogs");
         $this->assertNotNull($project);
@@ -299,7 +299,7 @@ class ClientTest extends TestCase
      * Test case for fetching members of a project
      * @throws ApiException
      */
-    public function testGetProjectMembers()
+    public function testGetProjectMembers(): void
     {
         $project = $this->apiClient->getProject("motdgg");
         $this->assertNotNull($project);
@@ -317,7 +317,7 @@ class ClientTest extends TestCase
      * Test case for fetching users watching a project
      * @throws ApiException
      */
-    public function testGetProjectWatchers()
+    public function testGetProjectWatchers(): void
     {
         $project = $this->apiClient->getProject("motdgg");
         $this->assertNotNull($project);
@@ -349,7 +349,7 @@ class ClientTest extends TestCase
      * Test case for fetching project day stats
      * @throws ApiException
      */
-    public function testGetDailyProjectStats()
+    public function testGetDailyProjectStats(): void
     {
         if (!getenv("HANGAR_API_KEY")) {
             $this->markTestSkipped("This test requires authentication.");
@@ -378,7 +378,7 @@ class ClientTest extends TestCase
      * This is currently broken because hangar returns an HTTP 500 error: https://github.com/HangarMC/Hangar/issues/1140
      * @throws ApiException
      */
-    public function testGetDailyProjectVersionStats()
+    public function testGetDailyProjectVersionStats(): void
     {
         if (!getenv("HANGAR_API_KEY")) {
             $this->markTestSkipped("This test requires authentication.");
@@ -413,7 +413,7 @@ class ClientTest extends TestCase
      * Test case for getUsers
      * @throws ApiException
      */
-    public function testGetUsers()
+    public function testGetUsers(): void
     {
         $users = $this->apiClient->getUsers();
         $this->assertFalse($users->hasPreviousPage());
@@ -454,7 +454,7 @@ class ClientTest extends TestCase
      * Test case for getUser
      * @throws ApiException
      */
-    public function testGetUser()
+    public function testGetUser(): void
     {
         $user = $this->apiClient->getUser("Aternos");
         $this->assertNotNull($user);
@@ -466,14 +466,14 @@ class ClientTest extends TestCase
      * Test case for getProjectsWatchedByUser
      * @throws ApiException
      */
-    public function testGetProjectsWatchedByUser()
+    public function testGetProjectsWatchedByUser(): void
     {
         $user = $this->apiClient->getUser("Julian");
         $this->assertNotNull($user);
         $this->assertNotNull($user->getData());
         $this->assertEquals("Julian", $user->getData()->getName());
 
-        $watched =  $user->getWatchedProjects();
+        $watched = $user->getWatchedProjects();
         $this->assertValidResultList($watched);
 
         foreach ($watched as $project) {
@@ -485,14 +485,14 @@ class ClientTest extends TestCase
      * Test case for getProjectsStarredByUser
      * @throws ApiException
      */
-    public function testGetProjectsStarredByUser()
+    public function testGetProjectsStarredByUser(): void
     {
         $user = $this->apiClient->getUser("Julian");
         $this->assertNotNull($user);
         $this->assertNotNull($user->getData());
         $this->assertEquals("Julian", $user->getData()->getName());
 
-        $starred =  $user->getStarredProjects();
+        $starred = $user->getStarredProjects();
         $this->assertValidResultList($starred);
 
         foreach ($starred as $project) {
@@ -504,10 +504,10 @@ class ClientTest extends TestCase
      * Test case for getStaff
      * @throws ApiException
      */
-    public function testGetStaff()
+    public function testGetStaff(): void
     {
         $pagination = (new RequestPagination())->setLimit(1);
-        $users = $this->apiClient->getStaff("",$pagination);
+        $users = $this->apiClient->getStaff("", $pagination);
         $this->assertFalse($users->hasPreviousPage());
 
         $firstUserOfPage = [];
@@ -546,7 +546,7 @@ class ClientTest extends TestCase
      * Test case for getAuthors
      * @throws ApiException
      */
-    public function testGetAuthors()
+    public function testGetAuthors(): void
     {
         $pagination = (new RequestPagination())->setLimit(10);
         $users = $this->apiClient->getAuthors("", $pagination);
@@ -588,7 +588,7 @@ class ClientTest extends TestCase
      * Test case for getProjectPage and getProjectMainPage
      * @throws ApiException
      */
-    public function testGetProjectPage()
+    public function testGetProjectPage(): void
     {
         $page = $this->apiClient->getProjectMainPage("mclogs");
         $this->assertNotNull($page);
