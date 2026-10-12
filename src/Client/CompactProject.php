@@ -6,9 +6,9 @@ use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\List\ProjectMemberList;
 use Aternos\HangarApi\Client\List\ProjectVersionList;
 use Aternos\HangarApi\Client\List\UserList;
-use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Model\DayProjectStats;
+use Aternos\HangarApi\Model\Platform;
 use Aternos\HangarApi\Model\ProjectCompact;
 use DateTime;
 

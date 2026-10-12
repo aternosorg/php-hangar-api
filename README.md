@@ -58,12 +58,12 @@ You can apply filters and change the sort order when searching for projects.
 All options are optional and can be combined.
 
 ```php
-use Aternos\HangarApi\Client\Options\ProjectCategory;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortField;
+use Aternos\HangarApi\Model\Category;
 
 $options = new ProjectSearchOptions();
-$options->setCategory(ProjectCategory::ADMIN_TOOLS);
+$options->setCategory(Category::ADMIN_TOOLS);
 $options->setQuery("mclogs");
 $options->setSortField(ProjectSortField::UPDATED);
 $projects = $hangarClient->getProjects($options);
