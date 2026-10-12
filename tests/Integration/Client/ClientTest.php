@@ -557,6 +557,58 @@ class ClientTest extends TestCase
     }
 
     /**
+     * Test that the sort field and order are kept when loading the next page of starred projects
+     * @throws ApiException
+     */
+    public function testGetProjectsStarredByUserSortedByStarsKeepsSortOnNextPage(): void
+    {
+        $starred = $this->apiClient->getProjectsStarredByUser("kennytv", ProjectSortField::STARS, ProjectSortOrder::DESC, 3);
+        $stars = [];
+        for ($i = 0; $i < 2; $i++) {
+            $this->assertValidResultList($starred);
+            foreach ($starred as $project) {
+                $this->assertValidCompactProject($project);
+                $stars[] = $project->getData()->getStats()->getStars();
+            }
+            $starred = $starred->getNextPage();
+        }
+
+        $sorted = $stars;
+        rsort($sorted);
+        $this->assertSame($sorted, $stars);
+    }
+
+    /**
+     * Test that the API accepts a sort field in a sort order for starred projects
+     * @throws ApiException
+     */
+    #[DataProvider('projectSortProvider')]
+    public function testProjectsStarredByUserSortIsSupported(ProjectSortField $sortField, ProjectSortOrder $sortOrder): void
+    {
+        if ($sortField === ProjectSortField::UPDATED) {
+            $this->markTestSkipped("The Hangar API currently responds with HTTP 500 when sorting by 'updated' on this endpoint");
+        }
+
+        $starred = $this->apiClient->getProjectsStarredByUser("kennytv", $sortField, $sortOrder, 1);
+        $this->assertValidResultList($starred);
+    }
+
+    /**
+     * Test that the API accepts a sort field in a sort order for watched projects
+     * @throws ApiException
+     */
+    #[DataProvider('projectSortProvider')]
+    public function testProjectsWatchedByUserSortIsSupported(ProjectSortField $sortField, ProjectSortOrder $sortOrder): void
+    {
+        if ($sortField === ProjectSortField::UPDATED) {
+            $this->markTestSkipped("The Hangar API currently responds with HTTP 500 when sorting by 'updated' on this endpoint");
+        }
+
+        $watched = $this->apiClient->getProjectsWatchedByUser("kennytv", $sortField, $sortOrder, 1);
+        $this->assertValidResultList($watched);
+    }
+
+    /**
      * Test case for getting the projects of a user
      * @throws ApiException
      */

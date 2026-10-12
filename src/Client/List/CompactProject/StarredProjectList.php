@@ -14,6 +14,6 @@ class StarredProjectList extends CompactProjectList
 {
     public function getOffset(int $offset): static
     {
-        return $this->client->getProjectsStarredByUser($this->username, $this->limit, $offset);
+        return $this->client->getProjectsStarredByUser($this->username, $this->sortField, $this->sortOrder, $this->limit, $offset);
     }
 }

@@ -4,6 +4,8 @@ namespace Aternos\HangarApi\Client\List;
 
 use Aternos\HangarApi\Client\CompactProject;
 use Aternos\HangarApi\Client\HangarAPIClient;
+use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortField;
+use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortOrder;
 use Aternos\HangarApi\Model\PaginatedResultProjectCompact;
 use Aternos\HangarApi\Model\ProjectCompact as CompactProjectModel;
 
@@ -20,6 +22,8 @@ abstract class CompactProjectList extends ResultList
         protected HangarAPIClient     $client,
         PaginatedResultProjectCompact $result,
         protected string              $username,
+        protected ?ProjectSortField   $sortField = null,
+        protected ProjectSortOrder    $sortOrder = ProjectSortOrder::ASC,
         protected int                 $limit = 25,
     )
     {

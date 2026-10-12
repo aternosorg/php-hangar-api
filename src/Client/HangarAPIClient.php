@@ -20,6 +20,8 @@ use Aternos\HangarApi\Client\List\User\ProjectWatcherList;
 use Aternos\HangarApi\Client\List\User\StaffList;
 use Aternos\HangarApi\Client\List\UserList;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
+use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortField;
+use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortOrder;
 use Aternos\HangarApi\Client\Options\UserSearch\AuthorSortField;
 use Aternos\HangarApi\Client\Options\UserSearch\StaffSortField;
 use Aternos\HangarApi\Client\Options\UserSearch\UserSearchOptions;
@@ -517,20 +519,36 @@ class HangarAPIClient
     /**
      * Get a list of projects a user is watching
      * @param string $username
+     * Note: The Hangar API currently responds with HTTP 500 when sorting by {@see ProjectSortField::UPDATED}
+     * @param ProjectSortField|null $sortField Optional field to sort the results by
+     * @param ProjectSortOrder $sortOrder
      * @param int $limit
      * @param int $offset
      * @return WatchedProjectList
      * @throws ApiException
      */
-    public function getProjectsWatchedByUser(string $username, int $limit = 25, int $offset = 0): WatchedProjectList
+    public function getProjectsWatchedByUser(
+        string            $username,
+        ?ProjectSortField $sortField = null,
+        ProjectSortOrder  $sortOrder = ProjectSortOrder::ASC,
+        int               $limit = 25,
+        int               $offset = 0,
+    ): WatchedProjectList
     {
         $this->authenticate();
 
-        $result = $this->users->getUserWatching($username, limit: $limit, offset: $offset);
+        $result = $this->users->getUserWatching(
+            $username,
+            $sortField?->getSortParameter($sortOrder),
+            $limit,
+            $offset,
+        );
         return new WatchedProjectList(
             $this,
             $result,
             $username,
+            $sortField,
+            $sortOrder,
             $limit,
         );
     }
@@ -538,20 +556,36 @@ class HangarAPIClient
     /**
      * Get a list of projects a user has starred
      * @param string $username
+     * Note: The Hangar API currently responds with HTTP 500 when sorting by {@see ProjectSortField::UPDATED}
+     * @param ProjectSortField|null $sortField Optional field to sort the results by
+     * @param ProjectSortOrder $sortOrder
      * @param int $limit
      * @param int $offset
      * @return StarredProjectList
      * @throws ApiException
      */
-    public function getProjectsStarredByUser(string $username, int $limit = 25, int $offset = 0): StarredProjectList
+    public function getProjectsStarredByUser(
+        string            $username,
+        ?ProjectSortField $sortField = null,
+        ProjectSortOrder  $sortOrder = ProjectSortOrder::ASC,
+        int               $limit = 25,
+        int               $offset = 0,
+    ): StarredProjectList
     {
         $this->authenticate();
 
-        $result = $this->users->showStarred($username, limit: $limit, offset: $offset);
+        $result = $this->users->showStarred(
+            $username,
+            $sortField?->getSortParameter($sortOrder),
+            $limit,
+            $offset,
+        );
         return new StarredProjectList(
             $this,
             $result,
             $username,
+            $sortField,
+            $sortOrder,
             $limit,
         );
     }
