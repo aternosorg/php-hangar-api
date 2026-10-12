@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
@@ -30,7 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Aternos\\HangarApi\\": "lib/"
+            "Aternos\\HangarApi\\": "src/"
         }
     },
     "autoload-dev": {
