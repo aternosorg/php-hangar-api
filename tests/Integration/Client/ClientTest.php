@@ -10,7 +10,6 @@ use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortField;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortOrder;
 use Aternos\HangarApi\Model\ProjectNamespace;
-use Aternos\HangarApi\Model\RequestPagination;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
@@ -71,7 +70,7 @@ class ClientTest extends TestCase
         $this->assertNotNull($project->getData()->getStats()->getStars());
         $this->assertNotNull($project->getData()->getStats()->getWatchers());
         $this->assertNotNull($project->getData()->getCategory());
-        $this->assertNotNull(ProjectCategory::from($project->getData()->getCategory()));
+        $this->assertNotNull(ProjectCategory::from($project->getData()->getCategory()->value));
         $this->assertNotNull($project->getData()->getLastUpdated());
         $this->assertNotNull($project->getData()->getVisibility());
         $this->assertNotNull($project->getData()->getDescription());
@@ -92,7 +91,7 @@ class ClientTest extends TestCase
         $this->assertNotNull($project->getData()->getStats()->getStars());
         $this->assertNotNull($project->getData()->getStats()->getWatchers());
         $this->assertNotNull($project->getData()->getCategory());
-        $this->assertNotNull(ProjectCategory::from($project->getData()->getCategory()));
+        $this->assertNotNull(ProjectCategory::from($project->getData()->getCategory()->value));
         $this->assertNotNull($project->getData()->getLastUpdated());
         $this->assertNotNull($project->getData()->getVisibility());
     }
@@ -184,7 +183,7 @@ class ClientTest extends TestCase
 
             foreach ($projectList as $project) {
                 $this->assertValidProject($project);
-                $this->assertEquals(ProjectCategory::ADMIN_TOOLS->value, $project->getData()->getCategory());
+                $this->assertEquals(ProjectCategory::ADMIN_TOOLS->value, $project->getData()->getCategory()->value);
             }
 
             $this->assertTrue($projectList->hasNextPage());
@@ -200,7 +199,7 @@ class ClientTest extends TestCase
 
             foreach ($projectList as $project) {
                 $this->assertValidProject($project);
-                $this->assertEquals(ProjectCategory::ADMIN_TOOLS->value, $project->getData()->getCategory());
+                $this->assertEquals(ProjectCategory::ADMIN_TOOLS->value, $project->getData()->getCategory()->value);
             }
             $this->assertTrue($projectList->hasNextPage());
         }
@@ -506,8 +505,7 @@ class ClientTest extends TestCase
      */
     public function testGetStaff(): void
     {
-        $pagination = (new RequestPagination())->setLimit(1);
-        $users = $this->apiClient->getStaff("", $pagination);
+        $users = $this->apiClient->getStaff(limit: 1);
         $this->assertFalse($users->hasPreviousPage());
 
         $firstUserOfPage = [];
@@ -548,8 +546,7 @@ class ClientTest extends TestCase
      */
     public function testGetAuthors(): void
     {
-        $pagination = (new RequestPagination())->setLimit(10);
-        $users = $this->apiClient->getAuthors("", $pagination);
+        $users = $this->apiClient->getAuthors(limit: 10);
         $this->assertFalse($users->hasPreviousPage());
 
         $firstUserOfPage = [];
