@@ -277,6 +277,60 @@ class ClientTest extends TestCase
     }
 
     /**
+     * Test case for getProjects sorting by slug
+     * @throws ApiException
+     */
+    public function testGetProjectsSortedBySlug(): void
+    {
+        $options = new ProjectSearchOptions();
+        $options->setLimit(10);
+        $options->setSortField(ProjectSortField::SLUG);
+        $options->setSortOrder(ProjectSortOrder::ASC);
+        $projectList = $this->apiClient->getProjects($options);
+        $this->assertValidResultList($projectList);
+
+        $lastSlug = null;
+        foreach ($projectList as $project) {
+            $this->assertValidProject($project);
+            $slug = $project->getSlug();
+            if ($lastSlug !== null) {
+                $this->assertLessThanOrEqual(0, strcasecmp($lastSlug, $slug));
+            }
+            $lastSlug = $slug;
+        }
+    }
+
+    /**
+     * All combinations of project sort fields and sort orders
+     * @return array<string, array{ProjectSortField, ProjectSortOrder}>
+     */
+    public static function projectSortProvider(): array
+    {
+        $data = [];
+        foreach (ProjectSortField::cases() as $sortField) {
+            foreach (ProjectSortOrder::cases() as $sortOrder) {
+                $data[$sortField->name . " " . $sortOrder->name] = [$sortField, $sortOrder];
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * Test that the API accepts a sort field in a sort order
+     * @throws ApiException
+     */
+    #[DataProvider('projectSortProvider')]
+    public function testProjectSortIsSupported(ProjectSortField $sortField, ProjectSortOrder $sortOrder): void
+    {
+        $options = new ProjectSearchOptions();
+        $options->setLimit(1);
+        $options->setSortField($sortField);
+        $options->setSortOrder($sortOrder);
+        $projectList = $this->apiClient->getProjects($options);
+        $this->assertValidResultList($projectList);
+    }
+
+    /**
      * Test case for getProject
      * @throws ApiException
      */
@@ -311,7 +365,7 @@ class ClientTest extends TestCase
         $members = $project->getMembers();
         $this->assertValidResultList($members);
         $this->assertNotEmpty(array_filter($members->getResults(), function ($member) {
-            return $member->getUser() == "Aternos";
+            return $member->getUser() === "Aternos";
         }));
     }
 
@@ -329,7 +383,7 @@ class ClientTest extends TestCase
         $watchers = $project->getWatchers();
         $this->assertValidResultList($watchers);
         $this->assertNotEmpty(array_filter($watchers->getResults(), function ($watcher) {
-            return $watcher->getData()->getName() == "Julian";
+            return $watcher->getData()->getName() === "Julian";
         }));
 
         foreach ($watchers as $watcher) {
