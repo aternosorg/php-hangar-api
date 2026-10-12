@@ -15,7 +15,7 @@ enum ProjectSortField: string
     case VIEWS = 'views';
     case NEWEST = 'newest';
     case UPDATED = 'updated';
-    case ONLY_RELEVANCE = 'only_relevance';
     case RECENT_VIEWS = 'recent_views';
     case RECENT_DOWNLOADS = 'recent_downloads';
+    case SLUG = 'slug';
 }

@@ -8,8 +8,11 @@ use Aternos\HangarApi\Client\List\ResultList;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortField;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortOrder;
+use Aternos\HangarApi\Client\Options\UserSearch\AuthorSortField;
+use Aternos\HangarApi\Client\Options\UserSearch\StaffSortField;
 use Aternos\HangarApi\Model\Category;
 use Aternos\HangarApi\Model\ProjectNamespace;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
@@ -274,6 +277,60 @@ class ClientTest extends TestCase
     }
 
     /**
+     * Test case for getProjects sorting by slug
+     * @throws ApiException
+     */
+    public function testGetProjectsSortedBySlug(): void
+    {
+        $options = new ProjectSearchOptions();
+        $options->setLimit(10);
+        $options->setSortField(ProjectSortField::SLUG);
+        $options->setSortOrder(ProjectSortOrder::ASC);
+        $projectList = $this->apiClient->getProjects($options);
+        $this->assertValidResultList($projectList);
+
+        $lastSlug = null;
+        foreach ($projectList as $project) {
+            $this->assertValidProject($project);
+            $slug = $project->getSlug();
+            if ($lastSlug !== null) {
+                $this->assertLessThanOrEqual(0, strcasecmp($lastSlug, $slug));
+            }
+            $lastSlug = $slug;
+        }
+    }
+
+    /**
+     * All combinations of project sort fields and sort orders
+     * @return array<string, array{ProjectSortField, ProjectSortOrder}>
+     */
+    public static function projectSortProvider(): array
+    {
+        $data = [];
+        foreach (ProjectSortField::cases() as $sortField) {
+            foreach (ProjectSortOrder::cases() as $sortOrder) {
+                $data[$sortField->name . " " . $sortOrder->name] = [$sortField, $sortOrder];
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * Test that the API accepts a sort field in a sort order
+     * @throws ApiException
+     */
+    #[DataProvider('projectSortProvider')]
+    public function testProjectSortIsSupported(ProjectSortField $sortField, ProjectSortOrder $sortOrder): void
+    {
+        $options = new ProjectSearchOptions();
+        $options->setLimit(1);
+        $options->setSortField($sortField);
+        $options->setSortOrder($sortOrder);
+        $projectList = $this->apiClient->getProjects($options);
+        $this->assertValidResultList($projectList);
+    }
+
+    /**
      * Test case for getProject
      * @throws ApiException
      */
@@ -308,7 +365,7 @@ class ClientTest extends TestCase
         $members = $project->getMembers();
         $this->assertValidResultList($members);
         $this->assertNotEmpty(array_filter($members->getResults(), function ($member) {
-            return $member->getUser() == "Aternos";
+            return $member->getUser() === "Aternos";
         }));
     }
 
@@ -326,7 +383,7 @@ class ClientTest extends TestCase
         $watchers = $project->getWatchers();
         $this->assertValidResultList($watchers);
         $this->assertNotEmpty(array_filter($watchers->getResults(), function ($watcher) {
-            return $watcher->getData()->getName() == "Julian";
+            return $watcher->getData()->getName() === "Julian";
         }));
 
         foreach ($watchers as $watcher) {
@@ -500,6 +557,28 @@ class ClientTest extends TestCase
     }
 
     /**
+     * Test case for getting the projects of a user
+     * @throws ApiException
+     */
+    public function testGetProjectsOfUser(): void
+    {
+        $user = $this->apiClient->getUser("Aternos");
+        $this->assertNotNull($user);
+        $this->assertNotNull($user->getData());
+        $this->assertEquals("Aternos", $user->getData()->getName());
+
+        $projects = $user->getProjects();
+        $this->assertValidResultList($projects);
+
+        foreach ($projects as $project) {
+            $this->assertValidProject($project);
+            $this->assertEquals("Aternos", $project->getData()->getNamespace()->getOwner());
+        }
+
+        $this->assertGreaterThanOrEqual(2, $projects->getPagination()->getCount());
+    }
+
+    /**
      * Test case for getStaff
      * @throws ApiException
      */
@@ -579,6 +658,75 @@ class ClientTest extends TestCase
             $this->assertTrue($users->hasNextPage());
         }
         $this->assertFalse($users->hasPreviousPage());
+    }
+
+    /**
+     * All staff sort fields
+     * @return array<string, array{StaffSortField}>
+     */
+    public static function staffSortProvider(): array
+    {
+        $data = [];
+        foreach (StaffSortField::cases() as $sortField) {
+            $data[$sortField->name] = [$sortField];
+        }
+        return $data;
+    }
+
+    /**
+     * Test that the API accepts a staff sort field
+     * @throws ApiException
+     */
+    #[DataProvider('staffSortProvider')]
+    public function testStaffSortIsSupported(StaffSortField $sortField): void
+    {
+        $users = $this->apiClient->getStaff(sort: $sortField, limit: 1);
+        $this->assertValidResultList($users);
+    }
+
+    /**
+     * All author sort fields
+     * @return array<string, array{AuthorSortField}>
+     */
+    public static function authorSortProvider(): array
+    {
+        $data = [];
+        foreach (AuthorSortField::cases() as $sortField) {
+            $data[$sortField->name] = [$sortField];
+        }
+        return $data;
+    }
+
+    /**
+     * Test that the API accepts an author sort field
+     * @throws ApiException
+     */
+    #[DataProvider('authorSortProvider')]
+    public function testAuthorSortIsSupported(AuthorSortField $sortField): void
+    {
+        $users = $this->apiClient->getAuthors(sort: $sortField, limit: 1);
+        $this->assertValidResultList($users);
+    }
+
+    /**
+     * Test that the sort field is kept when loading the next page of authors
+     * @throws ApiException
+     */
+    public function testGetAuthorsSortedByNameKeepsSortOnNextPage(): void
+    {
+        $users = $this->apiClient->getAuthors(sort: AuthorSortField::NAME, limit: 5);
+        $names = [];
+        for ($i = 0; $i < 2; $i++) {
+            $this->assertValidResultList($users);
+            foreach ($users as $user) {
+                $names[] = $user->getData()->getName();
+            }
+            $users = $users->getNextPage();
+        }
+
+        $sorted = $names;
+        usort($sorted, strcasecmp(...));
+        $this->assertSame($sorted, $names);
     }
 
     /**
