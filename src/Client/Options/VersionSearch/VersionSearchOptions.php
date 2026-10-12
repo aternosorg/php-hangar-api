@@ -2,8 +2,8 @@
 
 namespace Aternos\HangarApi\Client\Options\VersionSearch;
 
-use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Project;
+use Aternos\HangarApi\Model\Platform;
 
 /**
  * Class VersionSearchOptions

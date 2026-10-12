@@ -5,10 +5,10 @@ namespace Aternos\HangarApi\Test\Integration\Client;
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Client\List\ResultList;
-use Aternos\HangarApi\Client\Options\ProjectCategory;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortField;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortOrder;
+use Aternos\HangarApi\Model\Category;
 use Aternos\HangarApi\Model\ProjectNamespace;
 use PHPUnit\Framework\TestCase;
 
@@ -70,7 +70,7 @@ class ClientTest extends TestCase
         $this->assertNotNull($project->getData()->getStats()->getStars());
         $this->assertNotNull($project->getData()->getStats()->getWatchers());
         $this->assertNotNull($project->getData()->getCategory());
-        $this->assertNotNull(ProjectCategory::from($project->getData()->getCategory()->value));
+        $this->assertNotSame(Category::UNKNOWN_DEFAULT_OPEN_API, $project->getData()->getCategory());
         $this->assertNotNull($project->getData()->getLastUpdated());
         $this->assertNotNull($project->getData()->getVisibility());
         $this->assertNotNull($project->getData()->getDescription());
@@ -91,7 +91,7 @@ class ClientTest extends TestCase
         $this->assertNotNull($project->getData()->getStats()->getStars());
         $this->assertNotNull($project->getData()->getStats()->getWatchers());
         $this->assertNotNull($project->getData()->getCategory());
-        $this->assertNotNull(ProjectCategory::from($project->getData()->getCategory()->value));
+        $this->assertNotSame(Category::UNKNOWN_DEFAULT_OPEN_API, $project->getData()->getCategory());
         $this->assertNotNull($project->getData()->getLastUpdated());
         $this->assertNotNull($project->getData()->getVisibility());
     }
@@ -171,7 +171,7 @@ class ClientTest extends TestCase
     public function testGetProjectsInCategory(): void
     {
         $options = new ProjectSearchOptions();
-        $options->setCategory(ProjectCategory::ADMIN_TOOLS);
+        $options->setCategory(Category::ADMIN_TOOLS);
         $options->setLimit(10);
         $projectList = $this->apiClient->getProjects($options);
         $this->assertFalse($projectList->hasPreviousPage());
@@ -183,7 +183,7 @@ class ClientTest extends TestCase
 
             foreach ($projectList as $project) {
                 $this->assertValidProject($project);
-                $this->assertEquals(ProjectCategory::ADMIN_TOOLS->value, $project->getData()->getCategory()->value);
+                $this->assertSame(Category::ADMIN_TOOLS, $project->getData()->getCategory());
             }
 
             $this->assertTrue($projectList->hasNextPage());
@@ -199,7 +199,7 @@ class ClientTest extends TestCase
 
             foreach ($projectList as $project) {
                 $this->assertValidProject($project);
-                $this->assertEquals(ProjectCategory::ADMIN_TOOLS->value, $project->getData()->getCategory()->value);
+                $this->assertSame(Category::ADMIN_TOOLS, $project->getData()->getCategory());
             }
             $this->assertTrue($projectList->hasNextPage());
         }

@@ -2,9 +2,9 @@
 
 namespace Aternos\HangarApi\Client\Options\ProjectSearch;
 
-use Aternos\HangarApi\Client\Options\Platform;
-use Aternos\HangarApi\Client\Options\ProjectCategory;
-use Aternos\HangarApi\Client\Options\Tag;
+use Aternos\HangarApi\Model\Category;
+use Aternos\HangarApi\Model\Platform;
+use Aternos\HangarApi\Model\Tag;
 
 /**
  * Class ProjectSearchOptions
@@ -19,7 +19,7 @@ class ProjectSearchOptions
     protected bool $prioritizeExactMatch = true;
     protected ?ProjectSortField $sortField = null;
     protected ProjectSortOrder $sortOrder = ProjectSortOrder::ASC;
-    protected ?ProjectCategory $category = null;
+    protected ?Category $category = null;
     protected ?Platform $platform = null;
     protected ?string $owner = null;
     protected ?string $query = null;
@@ -138,18 +138,18 @@ class ProjectSearchOptions
     }
 
     /**
-     * @return ProjectCategory|null
+     * @return Category|null
      */
-    public function getCategory(): ?ProjectCategory
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
     /**
-     * @param ProjectCategory|null $category
+     * @param Category|null $category
      * @return $this
      */
-    public function setCategory(?ProjectCategory $category): static
+    public function setCategory(?Category $category): static
     {
         $this->category = $category;
         return $this;
