@@ -20,6 +20,8 @@ use Aternos\HangarApi\Client\List\User\ProjectWatcherList;
 use Aternos\HangarApi\Client\List\User\StaffList;
 use Aternos\HangarApi\Client\List\UserList;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
+use Aternos\HangarApi\Client\Options\UserSearch\AuthorSortField;
+use Aternos\HangarApi\Client\Options\UserSearch\StaffSortField;
 use Aternos\HangarApi\Client\Options\UserSearch\UserSearchOptions;
 use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Configuration;
@@ -576,13 +578,13 @@ class HangarAPIClient
      *
      * Requires the view_public_info permission
      * @param string $query Search query. Default: "" (all)
-     * @param string|null $sort Optional name of the field to sort the results by
+     * @param StaffSortField|null $sort Optional field to sort the results by
      * @param int $limit
      * @param int $offset
      * @return StaffList
      * @throws ApiException
      */
-    public function getStaff(string $query = "", ?string $sort = null, int $limit = 25, int $offset = 0): StaffList
+    public function getStaff(string $query = "", ?StaffSortField $sort = null, int $limit = 25, int $offset = 0): StaffList
     {
         $this->authenticate();
 
@@ -590,7 +592,7 @@ class HangarAPIClient
             throw new ApiException('You need the view_public_info permission to view staff');
         }
 
-        $result = $this->users->getStaff($query, $sort, $limit, $offset);
+        $result = $this->users->getStaff($query, $sort?->value, $limit, $offset);
         return new StaffList(
             $this,
             $result,
@@ -603,17 +605,17 @@ class HangarAPIClient
     /**
      * Search the API for project authors matching the search query
      * @param string $query Search query. Default: "" (all)
-     * @param string|null $sort Optional name of the field to sort the results by
+     * @param AuthorSortField|null $sort Optional field to sort the results by
      * @param int $limit
      * @param int $offset
      * @return AuthorList
      * @throws ApiException
      */
-    public function getAuthors(string $query = "", ?string $sort = null, int $limit = 25, int $offset = 0): AuthorList
+    public function getAuthors(string $query = "", ?AuthorSortField $sort = null, int $limit = 25, int $offset = 0): AuthorList
     {
         $this->authenticate();
 
-        $result = $this->users->getAuthors($query, $sort, $limit, $offset);
+        $result = $this->users->getAuthors($query, $sort?->value, $limit, $offset);
         return new AuthorList(
             $this,
             $result,
