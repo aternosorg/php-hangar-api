@@ -1,6 +1,7 @@
 invokerPackage: Aternos\HangarApi
 artifactVersion: 5.1.1
-generatorName: php
+generatorName: php-nextgen
 outputDir: .
 sourceFolder: src
 inputSpec: https://hangar.papermc.io/v3/api-docs/public
+enumUnknownDefaultCase: true

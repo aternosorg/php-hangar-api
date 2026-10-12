@@ -15,6 +15,7 @@ composer require aternos/hangar-api
 ## Usage
 
 The main entry point for the API is the `HangarAPIClient` class.
+
 ```php
 <?php
 use Aternos\HangarApi\Client\HangarAPIClient;
@@ -55,10 +56,9 @@ foreach ($projects as $project) {
 ### Search for Projects with Options
 You can apply filters and change the sort order when searching for projects.
 All options are optional and can be combined.
+
 ```php
-use \Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
-use \Aternos\HangarApi\Client\Options\ProjectCategory;
-use \Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortField;
+use Aternos\HangarApi\Client\Options\ProjectCategory;use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortField;
 
 $options = new ProjectSearchOptions();
 $options->setCategory(ProjectCategory::ADMIN_TOOLS);
