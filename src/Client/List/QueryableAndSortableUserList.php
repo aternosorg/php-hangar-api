@@ -7,7 +7,8 @@ use Aternos\HangarApi\Model\PaginatedResultUser;
 
 /**
  * This class enhances the UserList and gives it the ability to be queried and sorted.
- * The search query parameter is required and the sort parameter is optional.
+ * The search query parameter is required. The sort parameter is optional and defined
+ * by the subclasses, because each endpoint supports different sort fields.
  *
  * @package Aternos\HangarApi\Client\List
  * @description A queryable and paginated list of users
@@ -20,7 +21,6 @@ class QueryableAndSortableUserList extends UserList
         HangarAPIClient     $client,
         PaginatedResultUser $result,
         protected string    $query,
-        protected ?string   $sort = null,
         protected int       $limit = 25,
     )
     {
