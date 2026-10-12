@@ -187,7 +187,7 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        $result = $this->projects->getProjects($options->getPagination(),
+        $result = $this->projects->getProjects(
             $options->isPrioritizeExactMatch(),
             $options->getSortParameter(),
             $options->getCategory()?->value,
@@ -198,6 +198,8 @@ class HangarAPIClient
             $options->getLicense(),
             $options->getVersion(),
             $options->getTag()?->value,
+            limit: $options->getPagination()->getLimit(),
+            offset: $options->getPagination()->getOffset(),
         );
 
         return new ProjectList($this, $result, $options);
@@ -246,7 +248,7 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectWatchers($slugOrId, $pagination);
+        $result = $this->projects->getProjectWatchers($slugOrId, limit: $pagination->getLimit(), offset: $pagination->getOffset());
         return new ProjectWatcherList(
             $this,
             $result,
@@ -298,7 +300,7 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectStarGazers($slugOrId, $pagination);
+        $result = $this->projects->getProjectStargazers($slugOrId, limit: $pagination->getLimit(), offset: $pagination->getOffset());
         return new ProjectStarGazersList(
             $this,
             $result,
@@ -322,7 +324,7 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->projects->getProjectMembers($slugOrId, $pagination);
+        $result = $this->projects->getProjectMembers($slugOrId, limit: $pagination->getLimit(), offset: $pagination->getOffset());
         return new ProjectMemberList($this, $result, $slugOrId, $pagination);
     }
 
@@ -348,10 +350,11 @@ class HangarAPIClient
 
         $result = $this->versions->listVersions(
             $options->getProjectSlugOrId(),
-            $options->getPagination(),
             $options->isIncludeHiddenChannels(),
             $options->getChannel(),
             $options->getPlatform()?->value,
+            limit: $options->getPagination()->getLimit(),
+            offset: $options->getPagination()->getOffset(),
         );
 
         return new ProjectVersionList($this, $result, $options);
@@ -488,7 +491,12 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        $result = $this->users->showUsers($options->getQuery(), $options->getPagination(), $options->getSort()?->value);
+        $result = $this->users->showUsers(
+            $options->getQuery(),
+            $options->getSort()?->value,
+            limit: $options->getPagination()->getLimit(),
+            offset: $options->getPagination()->getOffset(),
+        );
         return new UserList(
             $this,
             $result,
@@ -531,7 +539,7 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->users->getUserWatching($username, $pagination);
+        $result = $this->users->getUserWatching($username, limit: $pagination->getLimit(), offset: $pagination->getOffset());
         return new WatchedProjectList(
             $this,
             $result,
@@ -555,7 +563,7 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->users->showStarred($username, $pagination);
+        $result = $this->users->showStarred($username, limit: $pagination->getLimit(), offset: $pagination->getOffset());
         return new StarredProjectList(
             $this,
             $result,
@@ -603,7 +611,7 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->users->getStaff($query, $pagination, $sort);
+        $result = $this->users->getStaff($query, $sort, limit: $pagination->getLimit(), offset: $pagination->getOffset());
         return new StaffList(
             $this,
             $result,
@@ -629,7 +637,7 @@ class HangarAPIClient
             ->setOffset(0)
             ->setLimit(25);
 
-        $result = $this->users->getAuthors($query, $pagination);
+        $result = $this->users->getAuthors($query, $sort, limit: $pagination->getLimit(), offset: $pagination->getOffset());
         return new AuthorList(
             $this,
             $result,
