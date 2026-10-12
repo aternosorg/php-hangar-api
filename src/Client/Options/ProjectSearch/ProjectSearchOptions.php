@@ -174,7 +174,7 @@ class ProjectSearchOptions
     }
 
     /**
-     * @return string|null
+     * @return string|null name of the project owner (user or organization), not the id
      */
     public function getOwner(): ?string
     {
@@ -182,7 +182,8 @@ class ProjectSearchOptions
     }
 
     /**
-     * @param string|null $owner
+     * Only return projects owned by this user or organization
+     * @param string|null $owner name of the project owner, not the id
      * @return $this
      */
     public function setOwner(?string $owner): static

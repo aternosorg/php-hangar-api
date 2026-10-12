@@ -64,13 +64,14 @@ class User
 
     /**
      * Get a list of projects owned by the user
+     * The projects are searched by the name of the user, see {@see ProjectSearchOptions::setOwner()}
      * @return ProjectList
      * @throws ApiException
      */
     public function getProjects(): ProjectList
     {
         $options = new ProjectSearchOptions();
-        $options->setOwner($this->user->getId());
+        $options->setOwner($this->user->getName());
         return $this->client->getProjects($options);
     }
 }

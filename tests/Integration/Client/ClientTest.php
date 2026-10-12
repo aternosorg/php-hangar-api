@@ -500,6 +500,28 @@ class ClientTest extends TestCase
     }
 
     /**
+     * Test case for getting the projects of a user
+     * @throws ApiException
+     */
+    public function testGetProjectsOfUser(): void
+    {
+        $user = $this->apiClient->getUser("Aternos");
+        $this->assertNotNull($user);
+        $this->assertNotNull($user->getData());
+        $this->assertEquals("Aternos", $user->getData()->getName());
+
+        $projects = $user->getProjects();
+        $this->assertValidResultList($projects);
+
+        foreach ($projects as $project) {
+            $this->assertValidProject($project);
+            $this->assertEquals("Aternos", $project->getData()->getNamespace()->getOwner());
+        }
+
+        $this->assertGreaterThanOrEqual(2, $projects->getPagination()->getCount());
+    }
+
+    /**
      * Test case for getStaff
      * @throws ApiException
      */
