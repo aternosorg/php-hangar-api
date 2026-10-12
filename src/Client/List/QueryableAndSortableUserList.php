@@ -4,7 +4,6 @@ namespace Aternos\HangarApi\Client\List;
 
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Model\PaginatedResultUser;
-use Aternos\HangarApi\Model\RequestPagination;
 
 /**
  * This class enhances the UserList and gives it the ability to be queried and sorted.
@@ -18,11 +17,11 @@ class QueryableAndSortableUserList extends UserList
 {
 
     public function __construct(
-        HangarAPIClient $client,
+        HangarAPIClient     $client,
         PaginatedResultUser $result,
-        protected RequestPagination $requestPagination,
-        protected string $query,
-        protected ?string $sort = null,
+        protected string    $query,
+        protected ?string   $sort = null,
+        protected int       $limit = 25,
     )
     {
         parent::__construct($client, $result, null);

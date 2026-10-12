@@ -19,8 +19,8 @@ use Aternos\HangarApi\Model\Project as ProjectModel;
 class ProjectList extends ResultList
 {
     public function __construct(
-        protected HangarAPIClient $client,
-        PaginatedResultProject $result,
+        protected HangarAPIClient       $client,
+        PaginatedResultProject          $result,
         protected ?ProjectSearchOptions $options,
     )
     {

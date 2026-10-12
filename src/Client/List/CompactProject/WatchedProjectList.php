@@ -14,8 +14,6 @@ class WatchedProjectList extends CompactProjectList
 {
     public function getOffset(int $offset): static
     {
-        $pagination = clone $this->requestPagination;
-        $pagination->setOffset($offset);
-        return $this->client->getProjectsWatchedByUser($this->username, $pagination);
+        return $this->client->getProjectsWatchedByUser($this->username, $this->limit, $offset);
     }
 }

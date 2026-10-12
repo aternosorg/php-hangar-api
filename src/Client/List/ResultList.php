@@ -25,7 +25,7 @@ abstract class ResultList implements Iterator, ArrayAccess, Countable
         /**
          * @var T[]
          */
-        protected array $results,
+        protected array      $results,
     )
     {
     }
@@ -126,8 +126,8 @@ abstract class ResultList implements Iterator, ArrayAccess, Countable
      *
      * When called on the first page this will return all results.
      *
-     * @throws ApiException
      * @return T[]
+     * @throws ApiException
      */
     public function getResultsFromFollowingPages(): array
     {

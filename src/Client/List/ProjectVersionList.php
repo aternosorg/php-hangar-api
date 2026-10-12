@@ -18,8 +18,8 @@ use Aternos\HangarApi\Model\Version as VersionModel;
 class ProjectVersionList extends ResultList
 {
     public function __construct(
-        protected HangarAPIClient $client,
-        PaginatedResultVersion $result,
+        protected HangarAPIClient      $client,
+        PaginatedResultVersion         $result,
         protected VersionSearchOptions $options,
     )
     {
@@ -38,7 +38,7 @@ class ProjectVersionList extends ResultList
         $options = clone $this->options;
         $options->setOffset($offset);
         return $this->client->getProjectVersions(
-            $this->options->getProject() ?? $this->options->getProjectSlugOrId()->getSlug(),
+            $options->getProject() ?? $options->getProjectSlugOrId(),
             $options
         );
     }

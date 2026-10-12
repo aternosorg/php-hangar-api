@@ -14,8 +14,6 @@ class StarredProjectList extends CompactProjectList
 {
     public function getOffset(int $offset): static
     {
-        $pagination = clone $this->requestPagination;
-        $pagination->setOffset($offset);
-        return $this->client->getProjectsStarredByUser($this->username, $pagination);
+        return $this->client->getProjectsStarredByUser($this->username, $this->limit, $offset);
     }
 }

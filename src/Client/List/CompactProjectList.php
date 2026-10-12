@@ -6,7 +6,6 @@ use Aternos\HangarApi\Client\CompactProject;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Model\PaginatedResultProjectCompact;
 use Aternos\HangarApi\Model\ProjectCompact as CompactProjectModel;
-use Aternos\HangarApi\Model\RequestPagination;
 
 /**
  * Class CompactProjectList
@@ -18,10 +17,10 @@ use Aternos\HangarApi\Model\RequestPagination;
 abstract class CompactProjectList extends ResultList
 {
     public function __construct(
-        protected HangarAPIClient               $client,
+        protected HangarAPIClient     $client,
         PaginatedResultProjectCompact $result,
-        protected string                        $username,
-        protected RequestPagination             $requestPagination,
+        protected string              $username,
+        protected int                 $limit = 25,
     )
     {
         parent::__construct($result->getPagination(), array_map(function (CompactProjectModel $project) {

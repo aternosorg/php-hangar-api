@@ -4,7 +4,6 @@ namespace Aternos\HangarApi\Client\Options\VersionSearch;
 
 use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Project;
-use Aternos\HangarApi\Model\RequestPagination;
 
 /**
  * Class VersionSearchOptions
@@ -18,7 +17,9 @@ class VersionSearchOptions
 
     protected ?Project $project = null;
 
-    protected RequestPagination $pagination;
+    protected int $offset = 0;
+
+    protected int $limit = 25;
 
     protected ?string $channel = null;
 
@@ -28,9 +29,6 @@ class VersionSearchOptions
 
     public function __construct(string $projectSlugOrId)
     {
-        $this->pagination = (new RequestPagination())
-            ->setOffset(0)
-            ->setLimit(25);
         $this->projectSlugOrId = $projectSlugOrId;
     }
 
@@ -72,29 +70,11 @@ class VersionSearchOptions
     }
 
     /**
-     * @return RequestPagination
-     */
-    public function getPagination(): RequestPagination
-    {
-        return $this->pagination;
-    }
-
-    /**
-     * @param RequestPagination $pagination
-     * @return $this
-     */
-    public function setPagination(RequestPagination $pagination): static
-    {
-        $this->pagination = $pagination;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getOffset(): int
     {
-        return $this->pagination->getOffset();
+        return $this->offset;
     }
 
     /**
@@ -103,7 +83,7 @@ class VersionSearchOptions
      */
     public function setOffset(int $offset): static
     {
-        $this->pagination->setOffset($offset);
+        $this->offset = $offset;
         return $this;
     }
 
@@ -112,7 +92,7 @@ class VersionSearchOptions
      */
     public function getLimit(): int
     {
-        return $this->pagination->getLimit();
+        return $this->limit;
     }
 
     /**
@@ -121,7 +101,7 @@ class VersionSearchOptions
      */
     public function setLimit(int $limit): static
     {
-        $this->pagination->setLimit($limit);
+        $this->limit = $limit;
         return $this;
     }
 

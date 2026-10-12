@@ -2,8 +2,6 @@
 
 namespace Aternos\HangarApi\Client\Options\UserSearch;
 
-use Aternos\HangarApi\Model\RequestPagination;
-
 /**
  * Class UserSearchOptions
  *
@@ -12,43 +10,20 @@ use Aternos\HangarApi\Model\RequestPagination;
  */
 class UserSearchOptions
 {
-    protected RequestPagination $pagination;
+    protected int $offset = 0;
+
+    protected int $limit = 25;
 
     protected string $query = '';
 
     protected ?UserSortField $sort = null;
-
-    public function __construct()
-    {
-        $this->pagination = (new RequestPagination())
-            ->setOffset(0)
-            ->setLimit(25);
-    }
-
-    /**
-     * @return RequestPagination
-     */
-    public function getPagination(): RequestPagination
-    {
-        return $this->pagination;
-    }
-
-    /**
-     * @param RequestPagination $pagination
-     * @return UserSearchOptions
-     */
-    public function setPagination(RequestPagination $pagination): UserSearchOptions
-    {
-        $this->pagination = $pagination;
-        return $this;
-    }
 
     /**
      * @return int
      */
     public function getOffset(): int
     {
-        return $this->pagination->getOffset();
+        return $this->offset;
     }
 
     /**
@@ -57,7 +32,7 @@ class UserSearchOptions
      */
     public function setOffset(int $offset): static
     {
-        $this->pagination->setOffset($offset);
+        $this->offset = $offset;
         return $this;
     }
 
@@ -66,7 +41,7 @@ class UserSearchOptions
      */
     public function getLimit(): int
     {
-        return $this->pagination->getLimit();
+        return $this->limit;
     }
 
     /**
@@ -75,7 +50,7 @@ class UserSearchOptions
      */
     public function setLimit(int $limit): static
     {
-        $this->pagination->setLimit($limit);
+        $this->limit = $limit;
         return $this;
     }
 

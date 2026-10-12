@@ -5,7 +5,6 @@ namespace Aternos\HangarApi\Client\List\User;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Client\List\UserList;
 use Aternos\HangarApi\Model\PaginatedResultUser;
-use Aternos\HangarApi\Model\RequestPagination;
 
 /**
  * Class ProjectStarGazersList
@@ -19,7 +18,7 @@ class ProjectStarGazersList extends UserList
         HangarAPIClient             $client,
         PaginatedResultUser         $result,
         protected string            $projectSlug,
-        protected RequestPagination $requestPagination,
+        protected int               $limit = 25,
     )
     {
         parent::__construct($client, $result, null);
@@ -27,8 +26,6 @@ class ProjectStarGazersList extends UserList
 
     public function getOffset(int $offset): static
     {
-        $pagination = clone $this->requestPagination;
-        $pagination->setOffset($offset);
-        return $this->client->getProjectStarGazers($this->projectSlug, $pagination);
+        return $this->client->getProjectStarGazers($this->projectSlug, $this->limit, $offset);
     }
 }

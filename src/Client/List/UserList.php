@@ -18,8 +18,8 @@ use Aternos\HangarApi\Model\User as UserModel;
 class UserList extends ResultList
 {
     public function __construct(
-        protected HangarAPIClient $client,
-        PaginatedResultUser $result,
+        protected HangarAPIClient    $client,
+        PaginatedResultUser          $result,
         protected ?UserSearchOptions $options,
     )
     {

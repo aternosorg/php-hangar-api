@@ -14,8 +14,6 @@ class AuthorList extends QueryableAndSortableUserList
 {
     public function getOffset(int $offset): static
     {
-        $pagination = clone $this->requestPagination;
-        $pagination->setOffset($offset);
-        return $this->client->getAuthors($this->query, $pagination, $this->sort);
+        return $this->client->getAuthors($this->query, $this->sort, $this->limit, $offset);
     }
 }

@@ -14,8 +14,6 @@ class StaffList extends QueryableAndSortableUserList
 {
     public function getOffset(int $offset): static
     {
-        $pagination = clone $this->requestPagination;
-        $pagination->setOffset($offset);
-        return $this->client->getStaff($this->query, $pagination, $this->sort);
+        return $this->client->getStaff($this->query, $this->sort, $this->limit, $offset);
     }
 }

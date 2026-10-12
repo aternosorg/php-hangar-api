@@ -6,7 +6,6 @@ use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Model\PaginatedResultProjectMember;
 use Aternos\HangarApi\Model\ProjectMember;
-use Aternos\HangarApi\Model\RequestPagination;
 
 /**
  * Class ProjectMemberList
@@ -18,10 +17,10 @@ use Aternos\HangarApi\Model\RequestPagination;
 class ProjectMemberList extends ResultList
 {
     public function __construct(
-        protected HangarAPIClient $client,
+        protected HangarAPIClient    $client,
         PaginatedResultProjectMember $result,
-        protected string            $projectSlug,
-        protected RequestPagination $requestPagination,
+        protected string             $projectSlug,
+        protected int                $limit = 25,
     )
     {
         parent::__construct($result->getPagination(), $result->getResult() ?? []);
@@ -34,8 +33,6 @@ class ProjectMemberList extends ResultList
      */
     public function getOffset(int $offset): static
     {
-        $pagination = clone $this->requestPagination;
-        $pagination->setOffset($offset);
-        return $this->client->getProjectMembers($this->projectSlug, $pagination);
+        return $this->client->getProjectMembers($this->projectSlug, $this->limit, $offset);
     }
 }

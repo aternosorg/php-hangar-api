@@ -5,7 +5,6 @@ namespace Aternos\HangarApi\Client\Options\ProjectSearch;
 use Aternos\HangarApi\Client\Options\Platform;
 use Aternos\HangarApi\Client\Options\ProjectCategory;
 use Aternos\HangarApi\Client\Options\Tag;
-use Aternos\HangarApi\Model\RequestPagination;
 
 /**
  * Class ProjectSearchOptions
@@ -15,7 +14,8 @@ use Aternos\HangarApi\Model\RequestPagination;
  */
 class ProjectSearchOptions
 {
-    protected RequestPagination $pagination;
+    protected int $offset = 0;
+    protected int $limit = 25;
     protected bool $prioritizeExactMatch = true;
     protected ?ProjectSortField $sortField = null;
     protected ProjectSortOrder $sortOrder = ProjectSortOrder::ASC;
@@ -27,37 +27,12 @@ class ProjectSearchOptions
     protected ?string $version = null;
     protected ?Tag $tag = null;
 
-    public function __construct()
-    {
-        $this->pagination = (new RequestPagination())
-            ->setOffset(0)
-            ->setLimit(25);
-    }
-
-    /**
-     * @return RequestPagination
-     */
-    public function getPagination(): RequestPagination
-    {
-        return $this->pagination;
-    }
-
-    /**
-     * @param RequestPagination $pagination
-     * @return $this
-     */
-    public function setPagination(RequestPagination $pagination): static
-    {
-        $this->pagination = $pagination;
-        return $this;
-    }
-
     /**
      * @return int
      */
     public function getOffset(): int
     {
-        return $this->pagination->getOffset();
+        return $this->offset;
     }
 
     /**
@@ -66,7 +41,7 @@ class ProjectSearchOptions
      */
     public function setOffset(int $offset): static
     {
-        $this->pagination->setOffset($offset);
+        $this->offset = $offset;
         return $this;
     }
 
@@ -75,7 +50,7 @@ class ProjectSearchOptions
      */
     public function getLimit(): int
     {
-        return $this->pagination->getLimit();
+        return $this->limit;
     }
 
     /**
@@ -84,7 +59,7 @@ class ProjectSearchOptions
      */
     public function setLimit(int $limit): static
     {
-        $this->pagination->setLimit($limit);
+        $this->limit = $limit;
         return $this;
     }
 

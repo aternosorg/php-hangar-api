@@ -26,11 +26,9 @@ use Aternos\HangarApi\Configuration;
 use Aternos\HangarApi\Model\DayProjectStats;
 use Aternos\HangarApi\Model\NamedPermission;
 use Aternos\HangarApi\Model\PageEditForm;
-use Aternos\HangarApi\Model\RequestPagination;
 use Aternos\HangarApi\Model\StringContent;
 use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
-use DateTimeInterface;
 use GuzzleHttp\ClientInterface;
 
 /**
@@ -150,7 +148,7 @@ class HangarAPIClient
 
     /**
      * Check if the user has all the given permissions for a project
-     * @param string[] $permissions (value of {@see NamedPermission})
+     * @param NamedPermission[] $permissions
      * @param string|null $project
      * @return bool
      * @throws ApiException
@@ -167,12 +165,12 @@ class HangarAPIClient
 
     /**
      * Check if the user has a specific permission
-     * @param string $permission (value of {@see NamedPermission})
+     * @param NamedPermission $permission
      * @param string|null $project
      * @return bool
      * @throws ApiException
      */
-    public function hasPermission(string $permission, ?string $project = null): bool
+    public function hasPermission(NamedPermission $permission, ?string $project = null): bool
     {
         return $this->hasPermissions([$permission], $project);
     }
@@ -193,13 +191,12 @@ class HangarAPIClient
             $options->getCategory()?->value,
             $options->getPlatform()?->value,
             $options->getOwner(),
-            $options->getQuery(),
-            null,
-            $options->getLicense(),
-            $options->getVersion(),
-            $options->getTag()?->value,
-            limit: $options->getPagination()->getLimit(),
-            offset: $options->getPagination()->getOffset(),
+            query: $options->getQuery(),
+            license: $options->getLicense(),
+            version: $options->getVersion(),
+            tag: $options->getTag()?->value,
+            limit: $options->getLimit(),
+            offset: $options->getOffset(),
         );
 
         return new ProjectList($this, $result, $options);
@@ -236,24 +233,21 @@ class HangarAPIClient
     /**
      * Get a list of people watching a project
      * @param string $slugOrId
-     * @param RequestPagination|null $pagination
+     * @param int $limit
+     * @param int $offset
      * @return ProjectWatcherList
      * @throws ApiException
      */
-    public function getProjectWatchers(string $slugOrId, ?RequestPagination $pagination = null): ProjectWatcherList
+    public function getProjectWatchers(string $slugOrId, int $limit = 25, int $offset = 0): ProjectWatcherList
     {
         $this->authenticate();
 
-        $pagination ??= (new RequestPagination())
-            ->setOffset(0)
-            ->setLimit(25);
-
-        $result = $this->projects->getProjectWatchers($slugOrId, limit: $pagination->getLimit(), offset: $pagination->getOffset());
+        $result = $this->projects->getProjectWatchers($slugOrId, $limit, $offset);
         return new ProjectWatcherList(
             $this,
             $result,
             $slugOrId,
-            $pagination,
+            $limit,
         );
     }
 
@@ -280,52 +274,46 @@ class HangarAPIClient
 
         return $this->projects->showProjectStats(
             $slugOrId,
-            $from->format(DateTimeInterface::RFC3339),
-            $to->format(DateTimeInterface::RFC3339)
+            $from,
+            $to,
         );
     }
 
     /**
      * Get a list of people starring a project
      * @param string $slugOrId
-     * @param RequestPagination|null $pagination
+     * @param int $limit
+     * @param int $offset
      * @return ProjectStarGazersList
      * @throws ApiException
      */
-    public function getProjectStarGazers(string $slugOrId, ?RequestPagination $pagination = null): ProjectStarGazersList
+    public function getProjectStarGazers(string $slugOrId, int $limit = 25, int $offset = 0): ProjectStarGazersList
     {
         $this->authenticate();
 
-        $pagination ??= (new RequestPagination())
-            ->setOffset(0)
-            ->setLimit(25);
-
-        $result = $this->projects->getProjectStargazers($slugOrId, limit: $pagination->getLimit(), offset: $pagination->getOffset());
+        $result = $this->projects->getProjectStargazers($slugOrId, $limit, $offset);
         return new ProjectStarGazersList(
             $this,
             $result,
             $slugOrId,
-            $pagination,
+            $limit,
         );
     }
 
     /**
      * Get a list of members of a project
      * @param string $slugOrId
-     * @param RequestPagination|null $pagination
+     * @param int $limit
+     * @param int $offset
      * @return ProjectMemberList
      * @throws ApiException
      */
-    public function getProjectMembers(string $slugOrId, ?RequestPagination $pagination = null): ProjectMemberList
+    public function getProjectMembers(string $slugOrId, int $limit = 25, int $offset = 0): ProjectMemberList
     {
         $this->authenticate();
 
-        $pagination ??= (new RequestPagination())
-            ->setOffset(0)
-            ->setLimit(25);
-
-        $result = $this->projects->getProjectMembers($slugOrId, limit: $pagination->getLimit(), offset: $pagination->getOffset());
-        return new ProjectMemberList($this, $result, $slugOrId, $pagination);
+        $result = $this->projects->getProjectMembers($slugOrId, $limit, $offset);
+        return new ProjectMemberList($this, $result, $slugOrId, $limit);
     }
 
     /**
@@ -336,8 +324,8 @@ class HangarAPIClient
      * @throws ApiException
      */
     public function getProjectVersions(
-        string|Project $project,
-        VersionSearchOptions     $options,
+        string|Project       $project,
+        VersionSearchOptions $options,
     ): ProjectVersionList
     {
         $this->authenticate();
@@ -353,8 +341,8 @@ class HangarAPIClient
             $options->isIncludeHiddenChannels(),
             $options->getChannel(),
             $options->getPlatform()?->value,
-            limit: $options->getPagination()->getLimit(),
-            offset: $options->getPagination()->getOffset(),
+            limit: $options->getLimit(),
+            offset: $options->getOffset(),
         );
 
         return new ProjectVersionList($this, $result, $options);
@@ -420,7 +408,7 @@ class HangarAPIClient
     {
         $this->authenticate();
 
-        $result = $this->versions->showVersionById($versionId);
+        $result = $this->versions->showVersionById((string)$versionId);
         return new Version(
             $this,
             $result,
@@ -453,8 +441,8 @@ class HangarAPIClient
         return $this->versions->showVersionStats(
             $projectSlugOrId,
             $versionNameOrId,
-            $from->format(DateTimeInterface::RFC3339),
-            $to->format(DateTimeInterface::RFC3339),
+            $from,
+            $to,
         );
     }
 
@@ -476,9 +464,9 @@ class HangarAPIClient
         $to ??= new DateTime();
 
         return $this->versions->showVersionStatsById(
-            $versionId,
-            $from->format(DateTimeInterface::RFC3339),
-            $to->format(DateTimeInterface::RFC3339),
+            (string)$versionId,
+            $from,
+            $to,
         );
     }
 
@@ -494,8 +482,8 @@ class HangarAPIClient
         $result = $this->users->showUsers(
             $options->getQuery(),
             $options->getSort()?->value,
-            limit: $options->getPagination()->getLimit(),
-            offset: $options->getPagination()->getOffset(),
+            limit: $options->getLimit(),
+            offset: $options->getOffset(),
         );
         return new UserList(
             $this,
@@ -527,48 +515,42 @@ class HangarAPIClient
     /**
      * Get a list of projects a user is watching
      * @param string $username
-     * @param RequestPagination|null $pagination
+     * @param int $limit
+     * @param int $offset
      * @return WatchedProjectList
      * @throws ApiException
      */
-    public function getProjectsWatchedByUser(string $username, ?RequestPagination $pagination = null): WatchedProjectList
+    public function getProjectsWatchedByUser(string $username, int $limit = 25, int $offset = 0): WatchedProjectList
     {
         $this->authenticate();
 
-        $pagination ??= (new RequestPagination())
-            ->setOffset(0)
-            ->setLimit(25);
-
-        $result = $this->users->getUserWatching($username, limit: $pagination->getLimit(), offset: $pagination->getOffset());
+        $result = $this->users->getUserWatching($username, limit: $limit, offset: $offset);
         return new WatchedProjectList(
             $this,
             $result,
             $username,
-            $pagination,
+            $limit,
         );
     }
 
     /**
      * Get a list of projects a user has starred
      * @param string $username
-     * @param RequestPagination|null $pagination
+     * @param int $limit
+     * @param int $offset
      * @return StarredProjectList
      * @throws ApiException
      */
-    public function getProjectsStarredByUser(string $username, ?RequestPagination $pagination = null): StarredProjectList
+    public function getProjectsStarredByUser(string $username, int $limit = 25, int $offset = 0): StarredProjectList
     {
         $this->authenticate();
 
-        $pagination ??= (new RequestPagination())
-            ->setOffset(0)
-            ->setLimit(25);
-
-        $result = $this->users->showStarred($username, limit: $pagination->getLimit(), offset: $pagination->getOffset());
+        $result = $this->users->showStarred($username, limit: $limit, offset: $offset);
         return new StarredProjectList(
             $this,
             $result,
             $username,
-            $pagination,
+            $limit,
         );
     }
 
@@ -594,12 +576,13 @@ class HangarAPIClient
      *
      * Requires the view_public_info permission
      * @param string $query Search query. Default: "" (all)
-     * @param RequestPagination|null $pagination
      * @param string|null $sort Optional name of the field to sort the results by
+     * @param int $limit
+     * @param int $offset
      * @return StaffList
      * @throws ApiException
      */
-    public function getStaff(string $query = "", ?RequestPagination $pagination = null, ?string $sort = null): StaffList
+    public function getStaff(string $query = "", ?string $sort = null, int $limit = 25, int $offset = 0): StaffList
     {
         $this->authenticate();
 
@@ -607,43 +590,36 @@ class HangarAPIClient
             throw new ApiException('You need the view_public_info permission to view staff');
         }
 
-        $pagination ??= (new RequestPagination())
-            ->setOffset(0)
-            ->setLimit(25);
-
-        $result = $this->users->getStaff($query, $sort, limit: $pagination->getLimit(), offset: $pagination->getOffset());
+        $result = $this->users->getStaff($query, $sort, $limit, $offset);
         return new StaffList(
             $this,
             $result,
-            $pagination,
             $query,
-            $sort
+            $sort,
+            $limit,
         );
     }
 
     /**
      * Search the API for project authors matching the search query
      * @param string $query Search query. Default: "" (all)
-     * @param RequestPagination|null $pagination
      * @param string|null $sort Optional name of the field to sort the results by
+     * @param int $limit
+     * @param int $offset
      * @return AuthorList
      * @throws ApiException
      */
-    public function getAuthors(string $query = "", ?RequestPagination $pagination = null, ?string $sort = null): AuthorList
+    public function getAuthors(string $query = "", ?string $sort = null, int $limit = 25, int $offset = 0): AuthorList
     {
         $this->authenticate();
 
-        $pagination ??= (new RequestPagination())
-            ->setOffset(0)
-            ->setLimit(25);
-
-        $result = $this->users->getAuthors($query, $sort, limit: $pagination->getLimit(), offset: $pagination->getOffset());
+        $result = $this->users->getAuthors($query, $sort, $limit, $offset);
         return new AuthorList(
             $this,
             $result,
-            $pagination,
             $query,
-            $sort
+            $sort,
+            $limit,
         );
     }
 
