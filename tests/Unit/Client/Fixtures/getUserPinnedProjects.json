@@ -1,0 +1,46 @@
+[
+  {
+    "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/246.webp?v=3",
+    "category": "admin_tools",
+    "createdAt": "2023-04-05T09:53:36.675083Z",
+    "description": "Paste, share & analyse your Minecraft logs",
+    "id": 246,
+    "lastUpdated": "2026-09-22T09:44:44.604219Z",
+    "name": "mclogs",
+    "namespace": {
+      "owner": "Aternos",
+      "slug": "mclogs"
+    },
+    "stats": {
+      "views": 24012,
+      "downloads": 771,
+      "recentViews": 1069,
+      "recentDownloads": 4,
+      "stars": 6,
+      "watchers": 5
+    },
+    "visibility": "public"
+  },
+  {
+    "createdAt": "2022-12-31T20:04:25.895662Z",
+    "id": 33,
+    "name": "ViaVersion",
+    "namespace": {
+      "owner": "ViaVersion",
+      "slug": "ViaVersion"
+    },
+    "description": "Allow newer Java Edition versions to connect, why lose players after a Minecraft update?",
+    "stats": {
+      "views": 1169941,
+      "downloads": 510507,
+      "recentViews": 48533,
+      "recentDownloads": 23417,
+      "stars": 472,
+      "watchers": 272
+    },
+    "category": "misc",
+    "lastUpdated": "2026-10-12T16:42:09.857019Z",
+    "visibility": "public",
+    "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/31.webp?v=1"
+  }
+]

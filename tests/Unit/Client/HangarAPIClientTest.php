@@ -253,7 +253,10 @@ class HangarAPIClientTest extends ClientTestCase
      */
     public function testGetProjectVersionsOfProjectUsesProjectId(): void
     {
-        $client = $this->createClient([new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getProject.json")), new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/listVersions.json"))]);
+        $client = $this->createClient([
+            new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getProject.json")),
+            new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/listVersions.json"))
+        ]);
         $project = $client->getProject("mclogs");
 
         $client->getProjectVersions($project, new VersionSearchOptions("mclogs"));
@@ -303,7 +306,10 @@ class HangarAPIClientTest extends ClientTestCase
      */
     public function testGetVersionOfProjectUsesProjectId(): void
     {
-        $client = $this->createClient([new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getProject.json")), new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/showVersion.json"))]);
+        $client = $this->createClient([
+            new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getProject.json")),
+            new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/showVersion.json"))
+        ]);
         $project = $client->getProject("mclogs");
 
         $version = $client->getVersion($project, "3.3.4");
