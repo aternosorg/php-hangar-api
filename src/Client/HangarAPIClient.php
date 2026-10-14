@@ -32,8 +32,10 @@ use Aternos\HangarApi\Model\NamedPermission;
 use Aternos\HangarApi\Model\PageEditForm;
 use Aternos\HangarApi\Model\StringContent;
 use Aternos\HangarApi\Model\VersionStats;
+use Composer\InstalledVersions;
 use DateTime;
 use GuzzleHttp\ClientInterface;
+use OutOfBoundsException;
 
 /**
  * Class HangarAPIClient
@@ -43,6 +45,10 @@ use GuzzleHttp\ClientInterface;
  */
 class HangarAPIClient
 {
+    /**
+     * Name of this package on packagist, used to look up the installed version
+     */
+    public const string PACKAGE_NAME = "aternos/hangar-api";
 
     protected Configuration $configuration;
 
@@ -74,7 +80,33 @@ class HangarAPIClient
         $this->apiKey = $apiKey;
         $this->httpClient = $httpClient;
         $this->setConfiguration($configuration ?? (new Configuration())
-            ->setUserAgent($userAgent ?? "php-hangar-api/2.0.0"));
+            ->setUserAgent($userAgent ?? static::getDefaultUserAgent()));
+    }
+
+    /**
+     * Get the installed version of this library, e.g. "5.1.1" or "dev-master"
+     * Returns "unknown" if the version cannot be determined, e.g. if the library was not installed using composer.
+     *
+     * @return string
+     */
+    public static function getLibraryVersion(): string
+    {
+        try {
+            return InstalledVersions::getPrettyVersion(static::PACKAGE_NAME) ?? "unknown";
+        } catch (OutOfBoundsException) {
+            return "unknown";
+        }
+    }
+
+    /**
+     * Get the user agent that identifies this library, e.g. "aternos/php-hangar-api/5.1.1"
+     * It is used unless a different user agent is set with {@see setUserAgent()}.
+     *
+     * @return string
+     */
+    public static function getDefaultUserAgent(): string
+    {
+        return "aternos/php-hangar-api/" . static::getLibraryVersion();
     }
 
     /**
@@ -114,8 +146,9 @@ class HangarAPIClient
     }
 
     /**
-     * Set the user agent used for HTTP requests
-     * @param string $userAgent
+     * Set the user agent used for HTTP requests.
+     * This replaces the default user agent of this library, see {@see getDefaultUserAgent()}.
+     * @param string $userAgent user agent identifying your application, ideally including contact information
      * @return $this
      */
     public function setUserAgent(string $userAgent): static
