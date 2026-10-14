@@ -1,0 +1,26 @@
+{
+  "pagination": {
+    "count": 1,
+    "limit": 2,
+    "offset": 0
+  },
+  "result": [
+    {
+      "user": "Aternos",
+      "userId": 196,
+      "title": "Owner",
+      "permissions": [
+        "edit_subject_settings",
+        "manage_subject_members",
+        "is_subject_owner",
+        "is_subject_member",
+        "edit_page",
+        "delete_project",
+        "create_version",
+        "edit_version",
+        "delete_version",
+        "edit_channels"
+      ]
+    }
+  ]
+}
