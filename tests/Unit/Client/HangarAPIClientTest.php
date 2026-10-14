@@ -472,5 +472,6 @@ class HangarAPIClientTest extends ClientTestCase
 
         $this->assertGetRequest("/pages/page/mclogs", ["path" => "config"]);
         $this->assertSame("# Config", $page->getContent());
+        $this->assertSame("config", $page->getPath());
     }
 }

@@ -738,6 +738,7 @@ class HangarAPIClient
             $this,
             $projectSlugOrId,
             $this->pages->getPage($projectSlugOrId, $path),
+            $path,
         );
     }
 
