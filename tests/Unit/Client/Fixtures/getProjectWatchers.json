@@ -1,0 +1,39 @@
+{
+  "pagination": {
+    "count": 1,
+    "limit": 2,
+    "offset": 0
+  },
+  "result": [
+    {
+      "createdAt": "2022-12-22T21:12:48.308915Z",
+      "id": 100,
+      "name": "user1",
+      "tagline": null,
+      "roles": [
+        null
+      ],
+      "projectCount": 2,
+      "locked": false,
+      "nameHistory": [],
+      "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/default.webp",
+      "socials": {},
+      "isOrganization": false
+    },
+    {
+      "createdAt": "2022-12-23T07:02:05.556496Z",
+      "id": 101,
+      "name": "user2",
+      "tagline": null,
+      "roles": [
+        5
+      ],
+      "projectCount": 0,
+      "locked": false,
+      "nameHistory": [],
+      "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/default.webp",
+      "socials": {},
+      "isOrganization": false
+    }
+  ]
+}

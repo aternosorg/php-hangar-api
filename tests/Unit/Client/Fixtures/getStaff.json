@@ -1,0 +1,43 @@
+{
+  "pagination": {
+    "count": 17,
+    "limit": 2,
+    "offset": 0
+  },
+  "result": [
+    {
+      "createdAt": "2022-12-03T17:18:20.445164Z",
+      "id": 1,
+      "name": "MiniDigger",
+      "tagline": null,
+      "roles": [
+        1
+      ],
+      "projectCount": 3,
+      "locked": false,
+      "nameHistory": null,
+      "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/6b77cbb1-3992-48ac-8adf-134f5e0a21f0.webp?v=1",
+      "socials": {
+        "github": "MiniDigger"
+      },
+      "isOrganization": false
+    },
+    {
+      "createdAt": "2022-12-22T14:04:13.95166Z",
+      "id": 2,
+      "name": "kennytv",
+      "tagline": "Turning the world upsidedown.",
+      "roles": [
+        1
+      ],
+      "projectCount": 12,
+      "locked": false,
+      "nameHistory": null,
+      "avatarUrl": "https://hangarcdn.papermc.io/avatars/user/1f5a6c0e-3242-487d-9b73-f8e398bd5625.webp?v=3",
+      "socials": {
+        "website": "https://kennytv.eu/"
+      },
+      "isOrganization": false
+    }
+  ]
+}
