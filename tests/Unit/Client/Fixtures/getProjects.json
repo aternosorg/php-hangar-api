@@ -1,0 +1,160 @@
+{
+  "pagination": {
+    "count": 3998,
+    "limit": 2,
+    "offset": 0
+  },
+  "result": [
+    {
+      "createdAt": "2026-08-11T14:37:10.072145Z",
+      "publishedAt": "2026-08-11T14:38:19.196581Z",
+      "id": 6785,
+      "name": "WirelessRedstoneTrigger",
+      "namespace": {
+        "owner": "xeef",
+        "slug": "WirelessRedstoneTrigger"
+      },
+      "stats": {
+        "views": 685,
+        "downloads": 11,
+        "recentViews": 317,
+        "recentDownloads": 4,
+        "stars": 0,
+        "watchers": 0
+      },
+      "category": "misc",
+      "description": "A simple Folia/Paper plugin for the simplest wireless redstone activator/trigger by right clicking an enchanted stick.",
+      "lastUpdated": "2026-08-11T14:43:36.358171Z",
+      "visibility": "public",
+      "userActions": null,
+      "settings": {
+        "links": [
+          {
+            "id": 0,
+            "type": "sidebar",
+            "title": "Links",
+            "links": [
+              {
+                "id": 0,
+                "name": "GitHub source code",
+                "url": "https://github.com/0xEAF/WirelessRedstoneTrigger"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "SUPPORTS_FOLIA"
+        ],
+        "license": {
+          "name": null,
+          "url": "https://github.com/0xEAF/WirelessRedstoneTrigger/blob/main/LICENSE",
+          "type": "MIT"
+        },
+        "keywords": [
+          "wirelessredstone",
+          "redstone",
+          "wireless",
+          "gameplay"
+        ],
+        "sponsors": null,
+        "unlisted": false,
+        "donation": {
+          "subject": "",
+          "enable": false
+        }
+      },
+      "supportedPlatforms": {
+        "PAPER": [
+          "26.1",
+          "26.1.1",
+          "26.1.2",
+          "26.2"
+        ]
+      },
+      "mainPageContent": "## About\nShortened page content",
+      "memberNames": [
+        "xeef"
+      ],
+      "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/6785.webp?v=1"
+    },
+    {
+      "createdAt": "2026-10-10T15:00:40.355717Z",
+      "publishedAt": "2026-10-10T15:40:48.685295Z",
+      "id": 7312,
+      "name": "BetterChat_by_TIS199",
+      "namespace": {
+        "owner": "TIS199",
+        "slug": "BetterChat_by_TIS199"
+      },
+      "stats": {
+        "views": 36,
+        "downloads": 0,
+        "recentViews": 36,
+        "recentDownloads": 0,
+        "stars": 1,
+        "watchers": 0
+      },
+      "category": "chat",
+      "description": "Per-player AI chat translation and country flags. Paper, Folia, Velocity, BungeeCord.",
+      "lastUpdated": "2026-10-12T13:27:09.80501Z",
+      "visibility": "public",
+      "userActions": null,
+      "settings": {
+        "links": [
+          {
+            "id": 0,
+            "type": "top",
+            "title": null,
+            "links": [
+              {
+                "id": 0,
+                "name": "Github",
+                "url": "https://github.com/TISnoob/BetterChat"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "SUPPORTS_FOLIA"
+        ],
+        "license": {
+          "name": "GPL",
+          "url": "https://www.gnu.org/licenses/gpl-3.0.en.html",
+          "type": "GPL"
+        },
+        "keywords": [
+          "chat",
+          "translation",
+          "flag",
+          "language"
+        ],
+        "sponsors": null,
+        "unlisted": false,
+        "donation": {
+          "subject": "",
+          "enable": false
+        }
+      },
+      "supportedPlatforms": {
+        "PAPER": [
+          "26.1",
+          "26.1.1",
+          "26.1.2",
+          "26.2",
+          "26.3"
+        ],
+        "WATERFALL": [
+          "1.21"
+        ],
+        "VELOCITY": [
+          "4.2.1"
+        ]
+      },
+      "mainPageContent": "## About\nShortened page content",
+      "memberNames": [
+        "tis199"
+      ],
+      "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/7312.webp?v=2"
+    }
+  ]
+}
