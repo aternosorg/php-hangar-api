@@ -5,14 +5,9 @@ namespace Aternos\HangarApi\Test\Unit\Client;
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Composer\InstalledVersions;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
 
-class HangarAPIClientTest extends TestCase
+class HangarAPIClientTest extends ClientTestCase
 {
     public function testGetLibraryVersionReturnsInstalledVersion(): void
     {
@@ -36,12 +31,11 @@ class HangarAPIClientTest extends TestCase
      */
     public function testDefaultUserAgentIsSentWithRequests(): void
     {
-        $history = [];
-        $client = new HangarAPIClient(httpClient: $this->createHttpClient($history));
+        $client = $this->createClient([new Response(200, [], "1.0.0")]);
 
         $client->getLatestReleaseVersion("mclogs");
 
-        $this->assertEquals(HangarAPIClient::getDefaultUserAgent(), $history[0]['request']->getHeaderLine("User-Agent"));
+        $this->assertEquals(HangarAPIClient::getDefaultUserAgent(), $this->getRequest()->getHeaderLine("User-Agent"));
     }
 
     /**
@@ -49,12 +43,11 @@ class HangarAPIClientTest extends TestCase
      */
     public function testUserAgentFromConstructorReplacesDefaultUserAgent(): void
     {
-        $history = [];
-        $client = new HangarAPIClient(httpClient: $this->createHttpClient($history), userAgent: "test-agent/1.0");
+        $client = $this->createClient([new Response(200, [], "1.0.0")], "test-agent/1.0");
 
         $client->getLatestReleaseVersion("mclogs");
 
-        $this->assertEquals("test-agent/1.0", $history[0]['request']->getHeaderLine("User-Agent"));
+        $this->assertEquals("test-agent/1.0", $this->getRequest()->getHeaderLine("User-Agent"));
     }
 
     /**
@@ -62,27 +55,11 @@ class HangarAPIClientTest extends TestCase
      */
     public function testSetUserAgentReplacesDefaultUserAgent(): void
     {
-        $history = [];
-        $client = new HangarAPIClient(httpClient: $this->createHttpClient($history));
+        $client = $this->createClient([new Response(200, [], "1.0.0")]);
 
         $this->assertSame($client, $client->setUserAgent("test-agent/1.0"));
         $client->getLatestReleaseVersion("mclogs");
 
-        $this->assertEquals("test-agent/1.0", $history[0]['request']->getHeaderLine("User-Agent"));
-    }
-
-    /**
-     * Create an HTTP client that answers with a plain text version string and records all requests
-     *
-     * @param array $history
-     * @return Client
-     */
-    protected function createHttpClient(array &$history): Client
-    {
-        $handlerStack = HandlerStack::create(new MockHandler([
-            new Response(200, [], "1.0.0"),
-        ]));
-        $handlerStack->push(Middleware::history($history));
-        return new Client(['handler' => $handlerStack]);
+        $this->assertEquals("test-agent/1.0", $this->getRequest()->getHeaderLine("User-Agent"));
     }
 }

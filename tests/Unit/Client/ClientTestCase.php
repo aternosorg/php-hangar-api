@@ -35,13 +35,14 @@ abstract class ClientTestCase extends TestCase
      * Create a client that answers every request with one of the given responses, in order,
      * and records all requests in {@see $requests}
      * @param Response[] $responses
+     * @param string|null $userAgent user agent passed to the constructor of the client
      * @return HangarAPIClient
      */
-    protected function createClient(array $responses = []): HangarAPIClient
+    protected function createClient(array $responses = [], ?string $userAgent = null): HangarAPIClient
     {
         $stack = HandlerStack::create(new MockHandler($responses));
         $stack->push(Middleware::history($this->requests));
-        return new HangarAPIClient(httpClient: new Client(['handler' => $stack]));
+        return new HangarAPIClient(httpClient: new Client(['handler' => $stack]), userAgent: $userAgent);
     }
 
     /**
