@@ -1,0 +1,53 @@
+{
+  "pagination": {
+    "count": 2,
+    "limit": 2,
+    "offset": 0
+  },
+  "result": [
+    {
+      "createdAt": "2022-12-24T16:00:15.69127Z",
+      "id": 23,
+      "name": "Essentials",
+      "namespace": {
+        "owner": "EssentialsX",
+        "slug": "Essentials"
+      },
+      "description": "The essential plugin suite for Paper! (and Spigot)",
+      "stats": {
+        "views": 379924,
+        "downloads": 112537,
+        "recentViews": 8310,
+        "recentDownloads": 2424,
+        "stars": 345,
+        "watchers": 177
+      },
+      "category": "admin_tools",
+      "lastUpdated": "2026-05-31T15:48:54.559387Z",
+      "visibility": "public",
+      "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/23.webp?v=3"
+    },
+    {
+      "createdAt": "2023-04-22T20:49:00.765629Z",
+      "id": 433,
+      "name": "ProtocolLib",
+      "namespace": {
+        "owner": "dmulloy2",
+        "slug": "ProtocolLib"
+      },
+      "description": "Provides read/write access to the Minecraft protocol",
+      "stats": {
+        "views": 143529,
+        "downloads": 27143,
+        "recentViews": 4752,
+        "recentDownloads": 1081,
+        "stars": 138,
+        "watchers": 111
+      },
+      "category": "dev_tools",
+      "lastUpdated": "2025-08-07T05:05:45.929708Z",
+      "visibility": "public",
+      "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/433.webp?v=1"
+    }
+  ]
+}
