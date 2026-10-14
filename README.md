@@ -23,13 +23,18 @@ use Aternos\HangarApi\Client\HangarAPIClient;
 // create an API client. This is the main entry point for the API
 $hangarClient = new HangarAPIClient();
 
-// set a user agent (recommended)
-$hangarClient->setUserAgent('aternos/php-hangar-api-example');
+// set a user agent identifying your application (recommended)
+$hangarClient->setUserAgent("my-app/1.0.0 (contact@example.com)");
 
 // set an api key (optional)
 $hangarClient->setApiKey("api-key");
 ```
 The API Key is only required for non-public requests but if it is provided, it will be used for all requests.
+
+### User Agent
+It is recommended to set a user agent that identifies your application, ideally including contact information.
+If you don't set a user agent, the client sends its own user agent including the installed version,
+e.g. `aternos/php-hangar-api/5.1.1`. A user agent set with `setUserAgent()` replaces it.
 
 ## Result Lists
 Most methods return a paginated result list which contains a list of results on the current page and methods to
