@@ -30,4 +30,5 @@ README.md
 docs/
 composer.json
 phpunit.xml.dist
-test/
+tests/Api/*
+tests/Model/*
