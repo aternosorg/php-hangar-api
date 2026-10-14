@@ -1,0 +1,71 @@
+{
+  "createdAt": "2026-09-22T09:44:44.604219Z",
+  "id": 30673,
+  "projectId": 246,
+  "name": "3.3.4",
+  "visibility": "public",
+  "description": "- List 26.3 support",
+  "stats": {
+    "totalDownloads": 2,
+    "platformDownloads": {
+      "PAPER": 1,
+      "VELOCITY": 1
+    }
+  },
+  "author": "matthias",
+  "reviewState": "reviewed",
+  "channel": {
+    "createdAt": "2023-04-05T09:53:36.728761Z",
+    "name": "Release",
+    "description": null,
+    "color": "#14b8a6",
+    "flags": [
+      "PINNED",
+      "FROZEN",
+      "SENDS_NOTIFICATIONS"
+    ]
+  },
+  "pinnedStatus": "CHANNEL",
+  "downloads": {
+    "PAPER": {
+      "fileInfo": {
+        "name": "mclogs-bukkit-26.1-3.3.4-all.jar",
+        "sizeBytes": 1586302,
+        "sha256Hash": "7996b31fab0330d322ecb762edb775111e75f7c5c9c95a309ff93e8a5274906a"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/Aternos/mclogs/versions/3.3.4/PAPER/mclogs-bukkit-26.1-3.3.4-all.jar"
+    },
+    "VELOCITY": {
+      "fileInfo": {
+        "name": "mclogs-velocity-26.1-3.3.4-all.jar",
+        "sizeBytes": 530088,
+        "sha256Hash": "5640263aa4f10fee359227472e244a041acf429c3c9ae4e6413aa10414742fd5"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/Aternos/mclogs/versions/3.3.4/VELOCITY/mclogs-velocity-26.1-3.3.4-all.jar"
+    }
+  },
+  "pluginDependencies": {},
+  "platformDependencies": {
+    "PAPER": [
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2",
+      "26.3"
+    ],
+    "VELOCITY": [
+      "3.5"
+    ]
+  },
+  "platformDependenciesFormatted": {
+    "PAPER": [
+      "26.1-26.3"
+    ],
+    "VELOCITY": [
+      "3.5"
+    ]
+  },
+  "memberNames": null
+}

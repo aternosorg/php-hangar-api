@@ -1,0 +1,53 @@
+{
+  "pagination": {
+    "count": 9,
+    "limit": 2,
+    "offset": 0
+  },
+  "result": [
+    {
+      "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/246.webp?v=3",
+      "category": "admin_tools",
+      "createdAt": "2023-04-05T09:53:36.675083Z",
+      "description": "Paste, share & analyse your Minecraft logs",
+      "id": 246,
+      "lastUpdated": "2026-09-22T09:44:44.604219Z",
+      "name": "mclogs",
+      "namespace": {
+        "owner": "Aternos",
+        "slug": "mclogs"
+      },
+      "stats": {
+        "views": 24012,
+        "downloads": 771,
+        "recentViews": 1069,
+        "recentDownloads": 4,
+        "stars": 6,
+        "watchers": 5
+      },
+      "visibility": "public"
+    },
+    {
+      "createdAt": "2022-12-23T22:17:33.804966Z",
+      "id": 13,
+      "name": "MiniMOTD",
+      "namespace": {
+        "owner": "jmp",
+        "slug": "MiniMOTD"
+      },
+      "description": "Minecraft plugin/mod to set the server list MOTD using MiniMessage for formatting, supporting RGB colors",
+      "stats": {
+        "views": 91874,
+        "downloads": 22837,
+        "recentViews": 2616,
+        "recentDownloads": 489,
+        "stars": 118,
+        "watchers": 61
+      },
+      "category": "admin_tools",
+      "lastUpdated": "2026-09-18T00:58:56.1207Z",
+      "visibility": "public",
+      "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/13.webp?v=1"
+    }
+  ]
+}
