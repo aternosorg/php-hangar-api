@@ -18,4 +18,20 @@ enum ProjectSortField: string
     case RECENT_VIEWS = 'recent_views';
     case RECENT_DOWNLOADS = 'recent_downloads';
     case SLUG = 'slug';
+
+    /**
+     * Get the sort parameter for an API request
+     *
+     * Returns the sort field value with a minus sign in front if the sort order is descending.
+     * @param ProjectSortOrder $sortOrder
+     * @return string
+     */
+    public function getSortParameter(ProjectSortOrder $sortOrder = ProjectSortOrder::ASC): string
+    {
+        if ($sortOrder === ProjectSortOrder::DESC) {
+            return '-' . $this->value;
+        }
+
+        return $this->value;
+    }
 }

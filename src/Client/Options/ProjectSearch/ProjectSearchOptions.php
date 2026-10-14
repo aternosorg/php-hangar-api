@@ -126,15 +126,7 @@ class ProjectSearchOptions
      */
     public function getSortParameter(): ?string
     {
-        if ($this->sortField === null) {
-            return null;
-        }
-
-        if ($this->sortOrder === ProjectSortOrder::DESC) {
-            return '-' . $this->sortField->value;
-        }
-
-        return $this->sortField->value;
+        return $this->sortField?->getSortParameter($this->sortOrder);
     }
 
     /**
