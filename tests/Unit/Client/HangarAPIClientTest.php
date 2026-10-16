@@ -16,11 +16,16 @@ use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Client\Project;
 use Aternos\HangarApi\Client\User;
 use Aternos\HangarApi\Client\Version;
+use Aternos\HangarApi\Configuration;
 use Aternos\HangarApi\Model\Category;
 use Aternos\HangarApi\Model\Platform;
 use Aternos\HangarApi\Model\ProjectMember;
 use Aternos\HangarApi\Model\Tag;
 use Composer\InstalledVersions;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 
 class HangarAPIClientTest extends ClientTestCase
@@ -88,13 +93,27 @@ class HangarAPIClientTest extends ClientTestCase
 
         $projects = $client->getProjects();
 
-        $this->assertGetRequest("/projects", ["prioritizeExactMatch" => "1", "limit" => "25", "offset" => "0"]);
+        $this->assertGetRequest("/projects", ["prioritizeExactMatch" => "true", "limit" => "25", "offset" => "0"]);
         foreach (["sort", "category", "platform", "owner", "query", "license", "version", "tag"] as $parameter) {
             $this->assertArrayNotHasKey($parameter, $this->getQuery());
         }
         $this->assertCount(2, $projects);
         $this->assertContainsOnlyInstancesOf(Project::class, $projects->getResults());
         $this->assertSame("WirelessRedstoneTrigger", $projects[0]->getSlug());
+    }
+
+    /**
+     * @throws ApiException
+     */
+    public function testBooleanQueryParametersAreSentAsStringWithCustomConfiguration(): void
+    {
+        $stack = HandlerStack::create(new MockHandler([new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getProjects.json"))]));
+        $stack->push(Middleware::history($this->requests));
+        $client = new HangarAPIClient(new Configuration(), httpClient: new Client(['handler' => $stack]));
+
+        $client->getProjects(new ProjectSearchOptions()->setPrioritizeExactMatch(false));
+
+        $this->assertSame("false", $this->getQuery()["prioritizeExactMatch"]);
     }
 
     /**
@@ -120,7 +139,7 @@ class HangarAPIClientTest extends ClientTestCase
         $client->getProjects($options);
 
         $this->assertGetRequest("/projects", [
-            "prioritizeExactMatch" => "0",
+            "prioritizeExactMatch" => "false",
             "sort" => "-stars",
             "category" => "chat",
             "platform" => "PAPER",
@@ -214,7 +233,7 @@ class HangarAPIClientTest extends ClientTestCase
         $versions = $client->getProjectVersions("mclogs", new VersionSearchOptions("mclogs"));
 
         $this->assertGetRequest("/projects/mclogs/versions", [
-            "includeHiddenChannels" => "1",
+            "includeHiddenChannels" => "true",
             "limit" => "25",
             "offset" => "0",
         ]);
@@ -240,7 +259,7 @@ class HangarAPIClientTest extends ClientTestCase
         $client->getProjectVersions("mclogs", $options);
 
         $this->assertGetRequest("/projects/mclogs/versions", [
-            "includeHiddenChannels" => "0",
+            "includeHiddenChannels" => "false",
             "channel" => "Release",
             "platform" => "PAPER",
             "limit" => "2",

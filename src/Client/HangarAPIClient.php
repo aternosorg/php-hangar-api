@@ -116,6 +116,14 @@ class HangarAPIClient
     public function setConfiguration(Configuration $configuration): static
     {
         $this->configuration = $configuration;
+        $this->configuration->setBooleanFormatForQueryString(Configuration::BOOLEAN_FORMAT_STRING);
+
+        // The ObjectSerializer reads the boolean query string format from the default configuration
+        // instead of the one used for the request, so it has to be set there as well.
+        // Without this, boolean query parameters are sent as 1/0.
+        Configuration::getDefaultConfiguration()
+            ->setBooleanFormatForQueryString(Configuration::BOOLEAN_FORMAT_STRING);
+
         $this->projects = new ProjectsApi($this->httpClient, $this->configuration);
         $this->versions = new VersionsApi($this->httpClient, $this->configuration);
         $this->users = new UsersApi($this->httpClient, $this->configuration);
