@@ -6,6 +6,7 @@
         "hangar",
         "papermc",
         "plugins",
+        "minecraft",
         "php",
         "api"
     ],
@@ -36,7 +37,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Aternos\\HangarApi\\Test\\": "tests/"
+            "Aternos\\HangarApi\\Tests\\": "tests/"
         }
     }
 }

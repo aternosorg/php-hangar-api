@@ -1,13 +1,13 @@
 <?php
 
-namespace Aternos\HangarApi\Test\Unit\Client\List;
+namespace Aternos\HangarApi\Tests\Unit\Client\List;
 
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Client\List\ProjectList;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Model\PaginatedResultProject;
-use Aternos\HangarApi\Test\Unit\Client\ClientTestCase;
+use Aternos\HangarApi\Tests\Unit\Client\ClientTestCase;
 
 class ProjectListTest extends ClientTestCase
 {
