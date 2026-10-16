@@ -1,12 +1,12 @@
 <?php
 
-namespace Aternos\HangarApi\Test\Unit\Client\List;
+namespace Aternos\HangarApi\Tests\Unit\Client\List;
 
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\List\ResultList;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Client\Project;
-use Aternos\HangarApi\Test\Unit\Client\ClientTestCase;
+use Aternos\HangarApi\Tests\Unit\Client\ClientTestCase;
 use GuzzleHttp\Psr7\Response;
 
 /**

@@ -1,13 +1,13 @@
 <?php
 
-namespace Aternos\HangarApi\Test\Unit\Client\List\User;
+namespace Aternos\HangarApi\Tests\Unit\Client\List\User;
 
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Client\List\User\AuthorList;
 use Aternos\HangarApi\Client\Options\UserSearch\AuthorSortField;
 use Aternos\HangarApi\Model\PaginatedResultUser;
-use Aternos\HangarApi\Test\Unit\Client\ClientTestCase;
+use Aternos\HangarApi\Tests\Unit\Client\ClientTestCase;
 
 class AuthorListTest extends ClientTestCase
 {

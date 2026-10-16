@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\HangarApi\Test\Integration\Client;
+namespace Aternos\HangarApi\Tests\Integration\Client;
 
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;

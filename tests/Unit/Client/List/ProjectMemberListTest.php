@@ -1,12 +1,12 @@
 <?php
 
-namespace Aternos\HangarApi\Test\Unit\Client\List;
+namespace Aternos\HangarApi\Tests\Unit\Client\List;
 
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
 use Aternos\HangarApi\Client\List\ProjectMemberList;
 use Aternos\HangarApi\Model\PaginatedResultProjectMember;
-use Aternos\HangarApi\Test\Unit\Client\ClientTestCase;
+use Aternos\HangarApi\Tests\Unit\Client\ClientTestCase;
 
 class ProjectMemberListTest extends ClientTestCase
 {

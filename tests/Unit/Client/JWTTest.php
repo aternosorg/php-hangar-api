@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\HangarApi\Test\Unit\Client;
+namespace Aternos\HangarApi\Tests\Unit\Client;
 
 use Aternos\HangarApi\Client\JWT;
 use PHPUnit\Framework\TestCase;

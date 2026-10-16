@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\HangarApi\Test\Unit\Client\List\CompactProject;
+namespace Aternos\HangarApi\Tests\Unit\Client\List\CompactProject;
 
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
@@ -8,7 +8,7 @@ use Aternos\HangarApi\Client\List\CompactProject\StarredProjectList;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortField;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortOrder;
 use Aternos\HangarApi\Model\PaginatedResultProjectCompact;
-use Aternos\HangarApi\Test\Unit\Client\ClientTestCase;
+use Aternos\HangarApi\Tests\Unit\Client\ClientTestCase;
 
 class StarredProjectListTest extends ClientTestCase
 {

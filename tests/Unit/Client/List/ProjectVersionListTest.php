@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\HangarApi\Test\Unit\Client\List;
+namespace Aternos\HangarApi\Tests\Unit\Client\List;
 
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
@@ -9,7 +9,7 @@ use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Client\Project;
 use Aternos\HangarApi\Model\PaginatedResultVersion;
 use Aternos\HangarApi\Model\Project as ProjectModel;
-use Aternos\HangarApi\Test\Unit\Client\ClientTestCase;
+use Aternos\HangarApi\Tests\Unit\Client\ClientTestCase;
 
 class ProjectVersionListTest extends ClientTestCase
 {
