@@ -70,22 +70,17 @@ class HangarAPIClient
 
     protected PagesApi $pages;
 
-    /**
-     * @param string|null $apiKey API key used for authentication, see {@see setApiKey()}
-     * @param Configuration|null $configuration Configuration used for all requests. If null, a new configuration
-     * with the default user agent of this library is created, see {@see getDefaultUserAgent()}.
-     * @param ClientInterface|null $httpClient HTTP client used for all requests, see {@see setHttpClient()}
-     */
     public function __construct(
-        ?string          $apiKey = null,
         ?Configuration   $configuration = null,
+        ?string          $apiKey = null,
         ?ClientInterface $httpClient = null,
+        ?string          $userAgent = null,
     )
     {
         $this->apiKey = $apiKey;
         $this->httpClient = $httpClient;
         $this->setConfiguration($configuration ?? (new Configuration())
-            ->setUserAgent(static::getDefaultUserAgent()));
+            ->setUserAgent($userAgent ?? static::getDefaultUserAgent()));
     }
 
     /**

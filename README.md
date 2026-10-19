@@ -40,8 +40,6 @@ Most endpoints are public. Some endpoints (e.g. the daily stats of projects and 
 require an API key, which you can create in your [account settings](https://hangar.papermc.io/auth/settings/api-keys).
 If an API key is set, it is used for all requests. The client exchanges it for a JWT automatically.
 ```php
-$hangarClient = new HangarAPIClient("your-api-key");
-// or
 $hangarClient->setApiKey("your-api-key");
 ```
 
@@ -69,15 +67,13 @@ try {
 
 ### Custom HTTP Client or Configuration
 You can pass your own [Guzzle](https://docs.guzzlephp.org/) client, e.g. to set timeouts or add middlewares,
-and your own `Aternos\HangarApi\Configuration`.
-Each client creates its own configuration if none is passed, so changes to `Configuration::getDefaultConfiguration()`
-do not affect the client. A configuration passed to the client is used as is, so set your user agent on it.
+and your own `Aternos\HangarApi\Configuration`:
 ```php
 use Aternos\HangarApi\Configuration;
 use GuzzleHttp\Client;
 
 $hangarClient = new HangarAPIClient(
-    configuration: new Configuration()->setUserAgent("my-app/1.0.0 (contact@example.com)"),
+    configuration: new Configuration(),
     httpClient: new Client(["timeout" => 10]),
 );
 // or
