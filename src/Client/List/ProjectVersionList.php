@@ -13,9 +13,9 @@ use Aternos\HangarApi\Model\Version as VersionModel;
  *
  * @package Aternos\HangarApi\Client\List
  * @description A paginated list of versions
- * @extends ResultList<Version>
+ * @extends PaginatedList<Version>
  */
-class ProjectVersionList extends ResultList
+class ProjectVersionList extends PaginatedList
 {
     public function __construct(
         protected HangarAPIClient      $client,

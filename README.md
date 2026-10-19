@@ -86,10 +86,10 @@ $hangarClient = new HangarAPIClient(
 $hangarClient->setHttpClient(new Client(["timeout" => 10]));
 ```
 
-## Result Lists
-Most methods return a paginated result list which contains a list of results on the current page and methods to
-navigate to the next and previous page. The result list implements `Iterator`, `ArrayAccess` and `Countable` so
-you can use it like an array. It also has a `getResults()` method which returns the underlying array of results.
+## Paginated Lists
+Most methods return a paginated list (`Aternos\HangarApi\Client\List\PaginatedList`) which contains the results
+on the current page and methods to navigate to the next and previous page. The list implements `Iterator`,
+`ArrayAccess` and `Countable` so you can use it like an array. It also has a `getResults()` method which returns the underlying array of results.
 ```php
 $projects = $hangarClient->getProjects();
 

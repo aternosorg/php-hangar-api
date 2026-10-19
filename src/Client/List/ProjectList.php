@@ -14,9 +14,9 @@ use Aternos\HangarApi\Model\Project as ProjectModel;
  *
  * @package Aternos\HangarApi\Client\List
  * @description A paginated list of projects
- * @extends ResultList<Project>
+ * @extends PaginatedList<Project>
  */
-class ProjectList extends ResultList
+class ProjectList extends PaginatedList
 {
     public function __construct(
         protected HangarAPIClient       $client,

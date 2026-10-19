@@ -3,16 +3,16 @@
 namespace Aternos\HangarApi\Tests\Unit\Client\List;
 
 use Aternos\HangarApi\ApiException;
-use Aternos\HangarApi\Client\List\ResultList;
+use Aternos\HangarApi\Client\List\PaginatedList;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Client\Project;
 use Aternos\HangarApi\Tests\Unit\Client\ClientTestCase;
 use GuzzleHttp\Psr7\Response;
 
 /**
- * Tests the behavior that all lists share through {@see ResultList} using a project list
+ * Tests the behavior that all lists share through {@see PaginatedList} using a project list
  */
-class ResultListTest extends ClientTestCase
+class PaginatedListTest extends ClientTestCase
 {
     /**
      * Response with the projects from the getProjects fixture and the given pagination

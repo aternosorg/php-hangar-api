@@ -4,7 +4,7 @@ namespace Aternos\HangarApi\Tests\Integration\Client;
 
 use Aternos\HangarApi\ApiException;
 use Aternos\HangarApi\Client\HangarAPIClient;
-use Aternos\HangarApi\Client\List\ResultList;
+use Aternos\HangarApi\Client\List\PaginatedList;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortField;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSortOrder;
@@ -97,10 +97,10 @@ class ClientTest extends TestCase
         $this->assertNotNull($project->getVisibility());
     }
 
-    protected function assertValidResultList($list): void
+    protected function assertValidPaginatedList($list): void
     {
         $this->assertNotNull($list);
-        $this->assertInstanceOf(ResultList::class, $list);
+        $this->assertInstanceOf(PaginatedList::class, $list);
         $this->assertNotEmpty($list);
         $this->assertNotNull($list->getResults());
         $this->assertNotEmpty($list->getResults());
@@ -139,7 +139,7 @@ class ClientTest extends TestCase
 
         $firstProjectOfPages = [];
         for ($i = 0; $i < 3; $i++) {
-            $this->assertValidResultList($projectList);
+            $this->assertValidPaginatedList($projectList);
             $firstProjectOfPages[$i] = $projectList[0];
 
             foreach ($projectList as $project) {
@@ -154,7 +154,7 @@ class ClientTest extends TestCase
             $this->assertTrue($projectList->hasPreviousPage());
             $projectList = $projectList->getPreviousPage();
 
-            $this->assertValidResultList($projectList);
+            $this->assertValidPaginatedList($projectList);
             $this->assertTrue($this->isSameProject($firstProjectOfPages[$i], $projectList[0]));
 
             foreach ($projectList as $project) {
@@ -179,7 +179,7 @@ class ClientTest extends TestCase
 
         $firstProjectOfPages = [];
         for ($i = 0; $i < 3; $i++) {
-            $this->assertValidResultList($projectList);
+            $this->assertValidPaginatedList($projectList);
             $firstProjectOfPages[$i] = $projectList[0];
 
             foreach ($projectList as $project) {
@@ -195,7 +195,7 @@ class ClientTest extends TestCase
             $this->assertTrue($projectList->hasPreviousPage());
             $projectList = $projectList->getPreviousPage();
 
-            $this->assertValidResultList($projectList);
+            $this->assertValidPaginatedList($projectList);
             $this->assertTrue($this->isSameProject($firstProjectOfPages[$i], $projectList[0]));
 
             foreach ($projectList as $project) {
@@ -217,7 +217,7 @@ class ClientTest extends TestCase
         $options->setOwner("Aternos");
         $options->setLimit(10);
         $projectList = $this->apiClient->getProjects($options);
-        $this->assertValidResultList($projectList);
+        $this->assertValidPaginatedList($projectList);
 
         foreach ($projectList as $project) {
             $this->assertValidProject($project);
@@ -241,7 +241,7 @@ class ClientTest extends TestCase
         $options->setSortField(ProjectSortField::UPDATED);
         $options->setSortOrder(ProjectSortOrder::DESC);
         $projectList = $this->apiClient->getProjects($options);
-        $this->assertValidResultList($projectList);
+        $this->assertValidPaginatedList($projectList);
 
         $lastUpdated = time();
         foreach ($projectList as $project) {
@@ -263,7 +263,7 @@ class ClientTest extends TestCase
         $options->setSortField(ProjectSortField::UPDATED);
         $options->setSortOrder(ProjectSortOrder::ASC);
         $projectList = $this->apiClient->getProjects($options);
-        $this->assertValidResultList($projectList);
+        $this->assertValidPaginatedList($projectList);
 
         $lastUpdated = 0;
         foreach ($projectList as $project) {
@@ -285,7 +285,7 @@ class ClientTest extends TestCase
         $options->setSortField(ProjectSortField::SLUG);
         $options->setSortOrder(ProjectSortOrder::ASC);
         $projectList = $this->apiClient->getProjects($options);
-        $this->assertValidResultList($projectList);
+        $this->assertValidPaginatedList($projectList);
 
         $lastSlug = null;
         foreach ($projectList as $project) {
@@ -325,7 +325,7 @@ class ClientTest extends TestCase
         $options->setSortField($sortField);
         $options->setSortOrder($sortOrder);
         $projectList = $this->apiClient->getProjects($options);
-        $this->assertValidResultList($projectList);
+        $this->assertValidPaginatedList($projectList);
     }
 
     /**
@@ -361,7 +361,7 @@ class ClientTest extends TestCase
         $this->assertEquals("Aternos", $project->getNamespace()->getOwner());
 
         $members = $project->fetchMembers();
-        $this->assertValidResultList($members);
+        $this->assertValidPaginatedList($members);
         $this->assertNotEmpty(array_filter($members->getResults(), function ($member) {
             return $member->getUser() === "Aternos";
         }));
@@ -379,14 +379,14 @@ class ClientTest extends TestCase
         $this->assertEquals("Aternos", $project->getNamespace()->getOwner());
 
         $watchers = $project->fetchWatchers();
-        $this->assertValidResultList($watchers);
+        $this->assertValidPaginatedList($watchers);
         $this->assertNotEmpty(array_filter($watchers->getResults(), function ($watcher) {
             return $watcher->getName() === "Julian";
         }));
 
         foreach ($watchers as $watcher) {
             $projects = $watcher->fetchWatchedProjects();
-            $this->assertValidResultList($projects);
+            $this->assertValidPaginatedList($projects);
 
             if ($projects->hasNextPage()) {
                 // let's ignore people watching hundreds of projects to not spam the api
@@ -443,7 +443,7 @@ class ClientTest extends TestCase
         $this->assertValidProject($project);
 
         $versions = $project->fetchVersions();
-        $this->assertValidResultList($versions);
+        $this->assertValidPaginatedList($versions);
         foreach ($versions as $version) {
             foreach ($version->getStats()->getPlatformDownloads() as $downloads) {
                 if ($downloads > 0) {
@@ -474,7 +474,7 @@ class ClientTest extends TestCase
 
         $firstUserOfPage = [];
         for ($i = 0; $i < 3; $i++) {
-            $this->assertValidResultList($users);
+            $this->assertValidPaginatedList($users);
             $firstUserOfPage[$i] = $users[0];
 
             foreach ($users as $user) {
@@ -490,7 +490,7 @@ class ClientTest extends TestCase
             $this->assertTrue($users->hasPreviousPage());
             $users = $users->getPreviousPage();
 
-            $this->assertValidResultList($users);
+            $this->assertValidPaginatedList($users);
             $this->assertEquals($firstUserOfPage[$i]->getName(), $users[0]->getName());
 
             foreach ($users as $user) {
@@ -524,7 +524,7 @@ class ClientTest extends TestCase
         $this->assertEquals("Julian", $user->getName());
 
         $watched = $user->fetchWatchedProjects();
-        $this->assertValidResultList($watched);
+        $this->assertValidPaginatedList($watched);
 
         foreach ($watched as $project) {
             $this->assertValidCompactProject($project);
@@ -542,7 +542,7 @@ class ClientTest extends TestCase
         $this->assertEquals("Julian", $user->getName());
 
         $starred = $user->fetchStarredProjects();
-        $this->assertValidResultList($starred);
+        $this->assertValidPaginatedList($starred);
 
         foreach ($starred as $project) {
             $this->assertValidCompactProject($project);
@@ -558,7 +558,7 @@ class ClientTest extends TestCase
         $starred = $this->apiClient->getProjectsStarredByUser("kennytv", ProjectSortField::STARS, ProjectSortOrder::DESC, 3);
         $stars = [];
         for ($i = 0; $i < 2; $i++) {
-            $this->assertValidResultList($starred);
+            $this->assertValidPaginatedList($starred);
             foreach ($starred as $project) {
                 $this->assertValidCompactProject($project);
                 $stars[] = $project->getStats()->getStars();
@@ -583,7 +583,7 @@ class ClientTest extends TestCase
         }
 
         $starred = $this->apiClient->getProjectsStarredByUser("kennytv", $sortField, $sortOrder, 1);
-        $this->assertValidResultList($starred);
+        $this->assertValidPaginatedList($starred);
     }
 
     /**
@@ -598,7 +598,7 @@ class ClientTest extends TestCase
         }
 
         $watched = $this->apiClient->getProjectsWatchedByUser("kennytv", $sortField, $sortOrder, 1);
-        $this->assertValidResultList($watched);
+        $this->assertValidPaginatedList($watched);
     }
 
     /**
@@ -612,7 +612,7 @@ class ClientTest extends TestCase
         $this->assertEquals("Aternos", $user->getName());
 
         $projects = $user->fetchProjects();
-        $this->assertValidResultList($projects);
+        $this->assertValidPaginatedList($projects);
 
         foreach ($projects as $project) {
             $this->assertValidProject($project);
@@ -633,7 +633,7 @@ class ClientTest extends TestCase
 
         $firstUserOfPage = [];
         for ($i = 0; $i < 3; $i++) {
-            $this->assertValidResultList($users);
+            $this->assertValidPaginatedList($users);
             $firstUserOfPage[$i] = $users[0];
 
             foreach ($users as $user) {
@@ -649,7 +649,7 @@ class ClientTest extends TestCase
             $this->assertTrue($users->hasPreviousPage());
             $users = $users->getPreviousPage();
 
-            $this->assertValidResultList($users);
+            $this->assertValidPaginatedList($users);
             $this->assertEquals($firstUserOfPage[$i]->getName(), $users[0]->getName());
 
             foreach ($users as $user) {
@@ -672,7 +672,7 @@ class ClientTest extends TestCase
 
         $firstUserOfPage = [];
         for ($i = 0; $i < 3; $i++) {
-            $this->assertValidResultList($users);
+            $this->assertValidPaginatedList($users);
             $firstUserOfPage[$i] = $users[0];
 
             foreach ($users as $user) {
@@ -688,7 +688,7 @@ class ClientTest extends TestCase
             $this->assertTrue($users->hasPreviousPage());
             $users = $users->getPreviousPage();
 
-            $this->assertValidResultList($users);
+            $this->assertValidPaginatedList($users);
             $this->assertEquals($firstUserOfPage[$i]->getName(), $users[0]->getName());
 
             foreach ($users as $user) {
@@ -721,7 +721,7 @@ class ClientTest extends TestCase
     public function testStaffSortIsSupported(StaffSortField $sortField): void
     {
         $users = $this->apiClient->getStaff(sort: $sortField, limit: 1);
-        $this->assertValidResultList($users);
+        $this->assertValidPaginatedList($users);
     }
 
     /**
@@ -745,7 +745,7 @@ class ClientTest extends TestCase
     public function testAuthorSortIsSupported(AuthorSortField $sortField): void
     {
         $users = $this->apiClient->getAuthors(sort: $sortField, limit: 1);
-        $this->assertValidResultList($users);
+        $this->assertValidPaginatedList($users);
     }
 
     /**
@@ -757,7 +757,7 @@ class ClientTest extends TestCase
         $users = $this->apiClient->getAuthors(sort: AuthorSortField::NAME, limit: 5);
         $names = [];
         for ($i = 0; $i < 2; $i++) {
-            $this->assertValidResultList($users);
+            $this->assertValidPaginatedList($users);
             foreach ($users as $user) {
                 $names[] = $user->getName();
             }
