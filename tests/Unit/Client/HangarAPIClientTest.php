@@ -62,13 +62,35 @@ class HangarAPIClientTest extends ClientTestCase
     /**
      * @throws ApiException
      */
-    public function testUserAgentFromConstructorReplacesDefaultUserAgent(): void
+    public function testConfigurationFromConstructorIsUsed(): void
     {
-        $client = $this->createClient([new Response(200, [], "1.0.0")], "test-agent/1.0");
+        $configuration = new Configuration()
+            ->setHost("https://hangar.example.com")
+            ->setUserAgent("test-agent/1.0");
+        $client = $this->createClient([new Response(200, [], "1.0.0")], configuration: $configuration);
 
         $client->getLatestReleaseVersion("mclogs");
 
+        $this->assertEquals("hangar.example.com", $this->getRequest()->getUri()->getHost());
         $this->assertEquals("test-agent/1.0", $this->getRequest()->getHeaderLine("User-Agent"));
+    }
+
+    /**
+     * @throws ApiException
+     */
+    public function testApiKeyFromConstructorIsUsedForAuthentication(): void
+    {
+        $client = $this->createClient([
+            new Response(200, [], json_encode(["token" => "test-jwt", "expiresIn" => 3600])),
+            new Response(200, [], "1.0.0"),
+        ], "test-api-key");
+
+        $client->getLatestReleaseVersion("mclogs");
+
+        $this->assertEquals("POST", $this->getRequest(0)->getMethod());
+        $this->assertEquals("/api/v1/authenticate", $this->getRequest(0)->getUri()->getPath());
+        $this->assertEquals(["apiKey" => "test-api-key"], $this->getQuery(0));
+        $this->assertEquals("Bearer test-jwt", $this->getRequest(1)->getHeaderLine("Authorization"));
     }
 
     /**

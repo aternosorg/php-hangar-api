@@ -3,6 +3,7 @@
 namespace Aternos\HangarApi\Tests\Unit\Client;
 
 use Aternos\HangarApi\Client\HangarAPIClient;
+use Aternos\HangarApi\Configuration;
 use Aternos\HangarApi\Model\Pagination;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -35,14 +36,19 @@ abstract class ClientTestCase extends TestCase
      * Create a client that answers every request with one of the given responses, in order,
      * and records all requests in {@see $requests}
      * @param Response[] $responses
-     * @param string|null $userAgent user agent passed to the constructor of the client
+     * @param string|null $apiKey API key passed to the constructor of the client
+     * @param Configuration|null $configuration configuration passed to the constructor of the client
      * @return HangarAPIClient
      */
-    protected function createClient(array $responses = [], ?string $userAgent = null): HangarAPIClient
+    protected function createClient(
+        array          $responses = [],
+        ?string        $apiKey = null,
+        ?Configuration $configuration = null,
+    ): HangarAPIClient
     {
         $stack = HandlerStack::create(new MockHandler($responses));
         $stack->push(Middleware::history($this->requests));
-        return new HangarAPIClient(httpClient: new Client(['handler' => $stack]), userAgent: $userAgent);
+        return new HangarAPIClient($apiKey, $configuration, new Client(['handler' => $stack]));
     }
 
     /**
