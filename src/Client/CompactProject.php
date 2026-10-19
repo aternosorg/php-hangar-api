@@ -18,39 +18,27 @@ use DateTime;
  * @package Aternos\HangarApi\Client
  * @description This class wraps a compact project (a project with fewer fields) and allows you to fetch additional data.
  */
-class CompactProject
+class CompactProject extends ProjectCompact
 {
+    /**
+     * @param HangarAPIClient $client
+     * @param ProjectCompact $data
+     */
     public function __construct(
         protected HangarAPIClient $client,
-        protected ProjectCompact  $project,
+        ProjectCompact            $data,
     )
     {
+        parent::__construct($data->container);
     }
 
     /**
-     * @return ProjectCompact
-     */
-    public function getData(): ProjectCompact
-    {
-        return $this->project;
-    }
-
-    /**
-     * Get the slug of this project (shorthand for getData()->getNamespace()->getSlug())
+     * Get the slug of this project (shorthand for getNamespace()->getSlug())
      * @return string
      */
     public function getSlug(): string
     {
-        return $this->project->getNamespace()->getSlug();
-    }
-
-    /**
-     * Get the id of this project (shorthand for getData()->getId())
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->project->getId();
+        return $this->getNamespace()->getSlug();
     }
 
     /**
@@ -111,7 +99,7 @@ class CompactProject
     {
         return $this->client->getDailyProjectStats(
             $this->getId(),
-            $from ?? $this->getData()->getCreatedAt(),
+            $from ?? $this->getCreatedAt(),
             $to
         );
     }
@@ -143,7 +131,7 @@ class CompactProject
      */
     public function getOwner(): User
     {
-        return $this->client->getUser($this->project->getNamespace()->getOwner());
+        return $this->client->getUser($this->getNamespace()->getOwner());
     }
 
     /**

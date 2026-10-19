@@ -3,6 +3,7 @@
 namespace Aternos\HangarApi\Client;
 
 use Aternos\HangarApi\ApiException;
+use Aternos\HangarApi\Model\Version as VersionModel;
 use Aternos\HangarApi\Model\VersionStats;
 use DateTime;
 
@@ -12,15 +13,22 @@ use DateTime;
  * @package Aternos\HangarApi\Client
  * @description This class wraps a version of a project on hangar and allows you to fetch additional data.
  */
-class Version
+class Version extends VersionModel
 {
+    /**
+     * @param HangarAPIClient $client
+     * @param VersionModel $data
+     * @param string $projectSlugOrId slug or id of the project this version belongs to
+     * @param Project|null $project the project this version belongs to, if it is already known
+     */
     public function __construct(
-        protected HangarAPIClient                  $client,
-        protected \Aternos\HangarApi\Model\Version $version,
-        protected string                           $projectSlugOrId,
-        protected ?Project                         $project = null,
+        protected HangarAPIClient $client,
+        VersionModel              $data,
+        protected string          $projectSlugOrId,
+        protected ?Project        $project = null,
     )
     {
+        parent::__construct($data->container);
     }
 
     /**
@@ -48,14 +56,6 @@ class Version
     }
 
     /**
-     * @return \Aternos\HangarApi\Model\Version
-     */
-    public function getData(): \Aternos\HangarApi\Model\Version
-    {
-        return $this->version;
-    }
-
-    /**
      * Fetch a daily list of statistics for this version
      * Days without downloads/views are not be included
      * @param DateTime|null $from default: version creation date
@@ -66,8 +66,8 @@ class Version
     public function getDailyStats(?DateTime $from = null, ?DateTime $to = null): array
     {
         return $this->client->getDailyVersionStatsById(
-            $this->getData()->getId(),
-            $from ?? $this->getData()->getCreatedAt(),
+            $this->getId(),
+            $from ?? $this->getCreatedAt(),
             $to
         );
     }

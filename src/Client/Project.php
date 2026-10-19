@@ -9,6 +9,7 @@ use Aternos\HangarApi\Client\List\UserList;
 use Aternos\HangarApi\Client\Options\VersionSearch\VersionSearchOptions;
 use Aternos\HangarApi\Model\DayProjectStats;
 use Aternos\HangarApi\Model\Platform;
+use Aternos\HangarApi\Model\Project as ProjectModel;
 use DateTime;
 
 /**
@@ -17,39 +18,27 @@ use DateTime;
  * @package Aternos\HangarApi\Client
  * @description This class wraps a full project on hangar and allows you to fetch additional data.
  */
-class Project
+class Project extends ProjectModel
 {
+    /**
+     * @param HangarAPIClient $client
+     * @param ProjectModel $data
+     */
     public function __construct(
-        protected HangarAPIClient                  $client,
-        protected \Aternos\HangarApi\Model\Project $project,
+        protected HangarAPIClient $client,
+        ProjectModel              $data,
     )
     {
+        parent::__construct($data->container);
     }
 
     /**
-     * @return \Aternos\HangarApi\Model\Project
-     */
-    public function getData(): \Aternos\HangarApi\Model\Project
-    {
-        return $this->project;
-    }
-
-    /**
-     * Get the slug of this project (shorthand for getData()->getNamespace()->getSlug())
+     * Get the slug of this project (shorthand for getNamespace()->getSlug())
      * @return string
      */
     public function getSlug(): string
     {
-        return $this->project->getNamespace()->getSlug();
-    }
-
-    /**
-     * Get the id of this project (shorthand for getData()->getId())
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->project->getId();
+        return $this->getNamespace()->getSlug();
     }
 
     /**
@@ -101,7 +90,7 @@ class Project
     {
         return $this->client->getDailyProjectStats(
             $this->getId(),
-            $from ?? $this->getData()->getCreatedAt(),
+            $from ?? $this->getCreatedAt(),
             $to
         );
     }
@@ -133,7 +122,7 @@ class Project
      */
     public function getOwner(): User
     {
-        return $this->client->getUser($this->project->getNamespace()->getOwner());
+        return $this->client->getUser($this->getNamespace()->getOwner());
     }
 
     /**

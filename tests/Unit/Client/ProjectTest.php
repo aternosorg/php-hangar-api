@@ -39,7 +39,7 @@ class ProjectTest extends ClientTestCase
         $version = $project->getVersion("3.3.4");
 
         $this->assertGetRequest("/projects/246/versions/3.3.4", index: 1);
-        $this->assertSame("3.3.4", $version->getData()->getName());
+        $this->assertSame("3.3.4", $version->getName());
     }
 
     /**
@@ -98,7 +98,7 @@ class ProjectTest extends ClientTestCase
         ]);
         $project = $client->getProject("mclogs");
 
-        $this->assertSame("Aternos", $project->getOwner()->getData()->getName());
+        $this->assertSame("Aternos", $project->getOwner()->getName());
         $this->assertGetRequest("/users/Aternos", index: 1);
     }
 

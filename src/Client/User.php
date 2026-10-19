@@ -7,6 +7,7 @@ use Aternos\HangarApi\Client\List\CompactProject\StarredProjectList;
 use Aternos\HangarApi\Client\List\CompactProject\WatchedProjectList;
 use Aternos\HangarApi\Client\List\ProjectList;
 use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
+use Aternos\HangarApi\Model\User as UserModel;
 
 /**
  * Class User
@@ -14,22 +15,18 @@ use Aternos\HangarApi\Client\Options\ProjectSearch\ProjectSearchOptions;
  * @package Aternos\HangarApi\Client
  * @description This class wraps a hangar user and allows you to fetch additional data.
  */
-class User
+class User extends UserModel
 {
+    /**
+     * @param HangarAPIClient $client
+     * @param UserModel $data
+     */
     public function __construct(
         protected HangarAPIClient $client,
-        protected \Aternos\HangarApi\Model\User $user,
+        UserModel                 $data,
     )
     {
-    }
-
-    /**
-     * Get the user data
-     * @return \Aternos\HangarApi\Model\User
-     */
-    public function getData(): \Aternos\HangarApi\Model\User
-    {
-        return $this->user;
+        parent::__construct($data->container);
     }
 
     /**
@@ -39,7 +36,7 @@ class User
      */
     public function getWatchedProjects(): WatchedProjectList
     {
-        return $this->client->getProjectsWatchedByUser($this->user->getId());
+        return $this->client->getProjectsWatchedByUser($this->getId());
     }
 
     /**
@@ -49,7 +46,7 @@ class User
      */
     public function getStarredProjects(): StarredProjectList
     {
-        return $this->client->getProjectsStarredByUser($this->user->getId());
+        return $this->client->getProjectsStarredByUser($this->getId());
     }
 
     /**
@@ -59,7 +56,7 @@ class User
      */
     public function getPinnedProjects(): array
     {
-        return $this->client->getProjectsPinnedByUser($this->user->getId());
+        return $this->client->getProjectsPinnedByUser($this->getId());
     }
 
     /**
@@ -71,7 +68,7 @@ class User
     public function getProjects(): ProjectList
     {
         $options = new ProjectSearchOptions();
-        $options->setOwner($this->user->getName());
+        $options->setOwner($this->getName());
         return $this->client->getProjects($options);
     }
 }
