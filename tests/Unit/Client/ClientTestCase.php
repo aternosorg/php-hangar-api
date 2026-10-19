@@ -52,7 +52,7 @@ abstract class ClientTestCase extends TestCase
     }
 
     /**
-     * Create an empty paginated result model, e.g. to create a result list without sending a request
+     * Create an empty paginated result model, e.g. to create a paginated list without sending a request
      * @template T
      * @param class-string<T> $class generated model class, e.g. PaginatedResultUser
      * @param int $offset

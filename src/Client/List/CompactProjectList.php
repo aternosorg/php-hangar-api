@@ -14,9 +14,9 @@ use Aternos\HangarApi\Model\ProjectCompact as CompactProjectModel;
  *
  * @package Aternos\HangarApi\Client\List
  * @description A paginated list of compact projects
- * @extends ResultList<CompactProject>
+ * @extends PaginatedList<CompactProject>
  */
-abstract class CompactProjectList extends ResultList
+abstract class CompactProjectList extends PaginatedList
 {
     public function __construct(
         protected HangarAPIClient     $client,

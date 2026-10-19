@@ -12,9 +12,9 @@ use Aternos\HangarApi\Model\ProjectMember;
  *
  * @package Aternos\HangarApi\Client\List
  * @description A paginated list of project members
- * @extends ResultList<ProjectMember>
+ * @extends PaginatedList<ProjectMember>
  */
-class ProjectMemberList extends ResultList
+class ProjectMemberList extends PaginatedList
 {
     public function __construct(
         protected HangarAPIClient    $client,

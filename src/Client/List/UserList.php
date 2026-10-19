@@ -13,9 +13,9 @@ use Aternos\HangarApi\Model\User as UserModel;
  *
  * @package Aternos\HangarApi\Client\List
  * @description A paginated list of users
- * @extends ResultList<User>
+ * @extends PaginatedList<User>
  */
-class UserList extends ResultList
+class UserList extends PaginatedList
 {
     public function __construct(
         protected HangarAPIClient    $client,
