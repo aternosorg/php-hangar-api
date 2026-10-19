@@ -9,13 +9,13 @@ use Countable;
 use Iterator;
 
 /**
- * Class ResultList
+ * Class PaginatedList
  *
  * @package Aternos\HangarApi\Client\List
  * @description A paginated list of results
  * @template T
  */
-abstract class ResultList implements Iterator, ArrayAccess, Countable
+abstract class PaginatedList implements Iterator, ArrayAccess, Countable
 {
     protected int $iterator = 0;
 
