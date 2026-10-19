@@ -89,7 +89,7 @@ class HangarAPIClient
     }
 
     /**
-     * Get the installed version of this library, e.g. "5.1.1" or "dev-master"
+     * Get the installed version of this library, e.g. "6.0.0" or "dev-master"
      * Returns "unknown" if the version cannot be determined, e.g. if the library was not installed using composer.
      *
      * @return string
@@ -104,7 +104,7 @@ class HangarAPIClient
     }
 
     /**
-     * Get the user agent that identifies this library, e.g. "aternos/php-hangar-api/5.1.1"
+     * Get the user agent that identifies this library, e.g. "aternos/php-hangar-api/6.0.0"
      * It is used unless a different user agent is set with {@see setUserAgent()}.
      *
      * @return string
