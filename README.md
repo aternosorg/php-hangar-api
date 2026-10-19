@@ -35,7 +35,7 @@ $hangarClient->setUserAgent("my-app/1.0.0 (contact@example.com)");
 ### User Agent
 It is recommended to set a user agent that identifies your application, ideally including contact information.
 If you don't set a user agent, the client sends its own user agent including the installed version,
-e.g. `aternos/php-hangar-api/5.1.1`. A user agent set with `setUserAgent()` replaces it.
+e.g. `aternos/php-hangar-api/6.0.0`. A user agent set with `setUserAgent()` replaces it.
 
 ### Authentication
 Most endpoints are public. Some endpoints (e.g. the daily stats of projects and versions or editing pages)
