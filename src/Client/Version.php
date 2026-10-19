@@ -41,11 +41,12 @@ class Version extends VersionModel
     }
 
     /**
-     * Get the project this version belongs to
+     * Fetch the project this version belongs to
+     * This sends a request to the Hangar API only if the project is not known yet.
      * @return Project
      * @throws ApiException
      */
-    public function getProject(): Project
+    public function fetchProject(): Project
     {
         if ($this->project) {
             return $this->project;
@@ -58,12 +59,13 @@ class Version extends VersionModel
     /**
      * Fetch a daily list of statistics for this version
      * Days without downloads/views are not be included
+     * This sends a request to the Hangar API every time it is called.
      * @param DateTime|null $from default: version creation date
      * @param DateTime|null $to default: now
      * @return array<string, VersionStats>
      * @throws ApiException
      */
-    public function getDailyStats(?DateTime $from = null, ?DateTime $to = null): array
+    public function fetchDailyStats(?DateTime $from = null, ?DateTime $to = null): array
     {
         return $this->client->getDailyVersionStatsById(
             $this->getId(),

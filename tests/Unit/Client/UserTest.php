@@ -12,7 +12,7 @@ class UserTest extends ClientTestCase
     /**
      * @throws ApiException
      */
-    public function testGetWatchedProjects(): void
+    public function testFetchWatchedProjects(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getUser.json")),
@@ -20,7 +20,7 @@ class UserTest extends ClientTestCase
         ]);
         $user = $client->getUser("Aternos");
 
-        $projects = $user->getWatchedProjects();
+        $projects = $user->fetchWatchedProjects();
 
         $this->assertGetRequest("/users/196/watching", index: 1);
         $this->assertContainsOnlyInstancesOf(CompactProject::class, $projects->getResults());
@@ -29,7 +29,7 @@ class UserTest extends ClientTestCase
     /**
      * @throws ApiException
      */
-    public function testGetStarredProjects(): void
+    public function testFetchStarredProjects(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getUser.json")),
@@ -37,7 +37,7 @@ class UserTest extends ClientTestCase
         ]);
         $user = $client->getUser("Aternos");
 
-        $projects = $user->getStarredProjects();
+        $projects = $user->fetchStarredProjects();
 
         $this->assertGetRequest("/users/196/starred", index: 1);
         $this->assertContainsOnlyInstancesOf(CompactProject::class, $projects->getResults());
@@ -46,7 +46,7 @@ class UserTest extends ClientTestCase
     /**
      * @throws ApiException
      */
-    public function testGetPinnedProjects(): void
+    public function testFetchPinnedProjects(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getUser.json")),
@@ -54,7 +54,7 @@ class UserTest extends ClientTestCase
         ]);
         $user = $client->getUser("Aternos");
 
-        $projects = $user->getPinnedProjects();
+        $projects = $user->fetchPinnedProjects();
 
         $this->assertGetRequest("/users/196/pinned", index: 1);
         $this->assertContainsOnlyInstancesOf(CompactProject::class, $projects);
@@ -63,7 +63,7 @@ class UserTest extends ClientTestCase
     /**
      * @throws ApiException
      */
-    public function testGetProjects(): void
+    public function testFetchProjects(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getUser.json")),
@@ -71,7 +71,7 @@ class UserTest extends ClientTestCase
         ]);
         $user = $client->getUser("Aternos");
 
-        $projects = $user->getProjects();
+        $projects = $user->fetchProjects();
 
         $this->assertGetRequest("/projects", ["owner" => "Aternos"], 1);
         $this->assertContainsOnlyInstancesOf(Project::class, $projects->getResults());

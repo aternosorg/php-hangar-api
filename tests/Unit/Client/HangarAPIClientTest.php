@@ -315,7 +315,7 @@ class HangarAPIClientTest extends ClientTestCase
         $version = $client->getVersion($project, "3.3.4");
 
         $this->assertGetRequest("/projects/246/versions/3.3.4", index: 1);
-        $this->assertSame($project, $version->getProject());
+        $this->assertSame($project, $version->fetchProject());
         $this->assertRequestCount(2);
     }
 

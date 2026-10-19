@@ -42,13 +42,14 @@ class Project extends ProjectModel
     }
 
     /**
-     * Get all versions of this project (paginated)
+     * Fetch all versions of this project (paginated)
+     * This sends a request to the Hangar API every time it is called.
      * @param string|null $channel
      * @param Platform|null $platform
      * @return ProjectVersionList
      * @throws ApiException
      */
-    public function getVersions(?string $channel = null, ?Platform $platform = null): ProjectVersionList
+    public function fetchVersions(?string $channel = null, ?Platform $platform = null): ProjectVersionList
     {
         $options = new VersionSearchOptions($this->getId());
         $options->setProject($this);
@@ -58,35 +59,38 @@ class Project extends ProjectModel
     }
 
     /**
-     * get a single version
+     * Fetch a single version
+     * This sends a request to the Hangar API every time it is called.
      * @param string $name
      * @return Version
      * @throws ApiException
      */
-    public function getVersion(string $name): Version
+    public function fetchVersion(string $name): Version
     {
         return $this->client->getVersion($this, $name);
     }
 
     /**
-     * Get all watchers of this project (paginated)
+     * Fetch all watchers of this project (paginated)
+     * This sends a request to the Hangar API every time it is called.
      * @return UserList
      * @throws ApiException
      */
-    public function getWatchers(): UserList
+    public function fetchWatchers(): UserList
     {
         return $this->client->getProjectWatchers($this->getId());
     }
 
     /**
-     * Get a list of daily project stats
+     * Fetch a list of daily project stats
      * Days without downloads/views will not be included
+     * This sends a request to the Hangar API every time it is called.
      * @param DateTime|null $from default: project creation date
      * @param DateTime|null $to default: now
      * @return array<string, DayProjectStats>
      * @throws ApiException
      */
-    public function getDailyStats(?DateTime $from = null, ?DateTime $to = null): array
+    public function fetchDailyStats(?DateTime $from = null, ?DateTime $to = null): array
     {
         return $this->client->getDailyProjectStats(
             $this->getId(),
@@ -96,52 +100,57 @@ class Project extends ProjectModel
     }
 
     /**
-     * Get a list of users who starred this project (paginated)
+     * Fetch a list of users who starred this project (paginated)
+     * This sends a request to the Hangar API every time it is called.
      * @return UserList
      * @throws ApiException
      */
-    public function getStarGazers(): UserList
+    public function fetchStarGazers(): UserList
     {
         return $this->client->getProjectStarGazers($this->getId());
     }
 
     /**
-     * Get a list of users who are members of this project (paginated)
+     * Fetch a list of users who are members of this project (paginated)
+     * This sends a request to the Hangar API every time it is called.
      * @return ProjectMemberList
      * @throws ApiException
      */
-    public function getMembers(): ProjectMemberList
+    public function fetchMembers(): ProjectMemberList
     {
         return $this->client->getProjectMembers($this->getId());
     }
 
     /**
-     * Get the owner of this project
+     * Fetch the owner of this project
+     * This sends a request to the Hangar API every time it is called.
      * @return User
      * @throws ApiException
      */
-    public function getOwner(): User
+    public function fetchOwner(): User
     {
         return $this->client->getUser($this->getNamespace()->getOwner());
     }
 
     /**
-     * Get the main page of this project
+     * Fetch the main page of this project
+     * This sends a request to the Hangar API every time it is called.
      * @return ProjectPage
      * @throws ApiException
      */
-    public function getMainPage(): ProjectPage
+    public function fetchMainPage(): ProjectPage
     {
         return $this->client->getProjectMainPage($this->getId());
     }
 
     /**
-     * Get a page of this project
+     * Fetch a page of this project
+     * This sends a request to the Hangar API every time it is called.
      * @param string $path
      * @return ProjectPage
      * @throws ApiException
      */
-    public function getPage(string $path): ProjectPage
+    public function fetchPage(string $path): ProjectPage
     {
         return $this->client->getProjectPage($this->getId(), $path);
     }

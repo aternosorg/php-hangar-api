@@ -38,12 +38,12 @@ class ProjectPage
     }
 
     /**
-     * Get the project this page belongs to
-     * This method will make an API request if the project is not set
+     * Fetch the project this page belongs to
+     * This sends a request to the Hangar API only if the project is not known yet.
      * @return Project
      * @throws ApiException
      */
-    public function getProject(): Project
+    public function fetchProject(): Project
     {
         return $this->project ??= $this->client->getProject($this->projectSlugOrId);
     }

@@ -30,42 +30,46 @@ class User extends UserModel
     }
 
     /**
-     * Get a list of projects this user is watching
+     * Fetch a list of projects this user is watching
+     * This sends a request to the Hangar API every time it is called.
      * @return WatchedProjectList
      * @throws ApiException
      */
-    public function getWatchedProjects(): WatchedProjectList
+    public function fetchWatchedProjects(): WatchedProjectList
     {
         return $this->client->getProjectsWatchedByUser($this->getId());
     }
 
     /**
-     * Get a list of projects this user has starred
+     * Fetch a list of projects this user has starred
+     * This sends a request to the Hangar API every time it is called.
      * @return StarredProjectList
      * @throws ApiException
      */
-    public function getStarredProjects(): StarredProjectList
+    public function fetchStarredProjects(): StarredProjectList
     {
         return $this->client->getProjectsStarredByUser($this->getId());
     }
 
     /**
-     * Get a list of projects this user has pinned
+     * Fetch a list of projects this user has pinned
+     * This sends a request to the Hangar API every time it is called.
      * @return CompactProject[]
      * @throws ApiException
      */
-    public function getPinnedProjects(): array
+    public function fetchPinnedProjects(): array
     {
         return $this->client->getProjectsPinnedByUser($this->getId());
     }
 
     /**
-     * Get a list of projects owned by the user
+     * Fetch a list of projects owned by the user
      * The projects are searched by the name of the user, see {@see ProjectSearchOptions::setOwner()}
+     * This sends a request to the Hangar API every time it is called.
      * @return ProjectList
      * @throws ApiException
      */
-    public function getProjects(): ProjectList
+    public function fetchProjects(): ProjectList
     {
         $options = new ProjectSearchOptions();
         $options->setOwner($this->getName());
