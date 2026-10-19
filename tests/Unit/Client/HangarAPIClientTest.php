@@ -338,7 +338,7 @@ class HangarAPIClientTest extends ClientTestCase
         $version = $client->getVersion("mclogs", "3.3.4");
 
         $this->assertGetRequest("/projects/mclogs/versions/3.3.4");
-        $this->assertSame(30673, $version->getData()->getId());
+        $this->assertSame(30673, $version->getId());
         $this->assertSame("mclogs", $version->getProjectSlugOrId());
     }
 
@@ -356,7 +356,7 @@ class HangarAPIClientTest extends ClientTestCase
         $version = $client->getVersion($project, "3.3.4");
 
         $this->assertGetRequest("/projects/246/versions/3.3.4", index: 1);
-        $this->assertSame($project, $version->getProject());
+        $this->assertSame($project, $version->fetchProject());
         $this->assertRequestCount(2);
     }
 
@@ -370,7 +370,7 @@ class HangarAPIClientTest extends ClientTestCase
         $version = $client->getVersionById(30673);
 
         $this->assertGetRequest("/versions/30673");
-        $this->assertSame("3.3.4", $version->getData()->getName());
+        $this->assertSame("3.3.4", $version->getName());
     }
 
     /**
@@ -415,8 +415,8 @@ class HangarAPIClientTest extends ClientTestCase
         $user = $client->getUser("Aternos");
 
         $this->assertGetRequest("/users/Aternos");
-        $this->assertSame(196, $user->getData()->getId());
-        $this->assertSame("Aternos", $user->getData()->getName());
+        $this->assertSame(196, $user->getId());
+        $this->assertSame("Aternos", $user->getName());
     }
 
     /**

@@ -11,7 +11,7 @@ class CompactProjectTest extends ClientTestCase
     /**
      * @throws ApiException
      */
-    public function testGetProject(): void
+    public function testFetchProject(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/showStarred.json")),
@@ -19,14 +19,14 @@ class CompactProjectTest extends ClientTestCase
         ]);
         $compactProject = $client->getProjectsStarredByUser("Aternos")[0];
 
-        $this->assertInstanceOf(Project::class, $compactProject->getProject());
+        $this->assertInstanceOf(Project::class, $compactProject->fetchProject());
         $this->assertGetRequest("/projects/246", index: 1);
     }
 
     /**
      * @throws ApiException
      */
-    public function testGetVersions(): void
+    public function testFetchVersions(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/showStarred.json")),
@@ -34,7 +34,7 @@ class CompactProjectTest extends ClientTestCase
         ]);
         $project = $client->getProjectsStarredByUser("Aternos")[0];
 
-        $versions = $project->getVersions("Release");
+        $versions = $project->fetchVersions("Release");
 
         $this->assertGetRequest("/projects/246/versions", ["channel" => "Release"], 1);
         $this->assertSame("246", $versions[0]->getProjectSlugOrId());
@@ -43,7 +43,7 @@ class CompactProjectTest extends ClientTestCase
     /**
      * @throws ApiException
      */
-    public function testGetVersion(): void
+    public function testFetchVersion(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/showStarred.json")),
@@ -51,7 +51,7 @@ class CompactProjectTest extends ClientTestCase
         ]);
         $project = $client->getProjectsStarredByUser("Aternos")[0];
 
-        $project->getVersion("3.3.4");
+        $project->fetchVersion("3.3.4");
 
         $this->assertGetRequest("/projects/246/versions/3.3.4", index: 1);
     }
@@ -59,7 +59,7 @@ class CompactProjectTest extends ClientTestCase
     /**
      * @throws ApiException
      */
-    public function testGetWatchers(): void
+    public function testFetchWatchers(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/showStarred.json")),
@@ -67,14 +67,14 @@ class CompactProjectTest extends ClientTestCase
         ]);
         $project = $client->getProjectsStarredByUser("Aternos")[0];
 
-        $this->assertCount(2, $project->getWatchers());
+        $this->assertCount(2, $project->fetchWatchers());
         $this->assertGetRequest("/projects/246/watchers", index: 1);
     }
 
     /**
      * @throws ApiException
      */
-    public function testGetStarGazers(): void
+    public function testFetchStarGazers(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/showStarred.json")),
@@ -82,14 +82,14 @@ class CompactProjectTest extends ClientTestCase
         ]);
         $project = $client->getProjectsStarredByUser("Aternos")[0];
 
-        $this->assertCount(2, $project->getStarGazers());
+        $this->assertCount(2, $project->fetchStarGazers());
         $this->assertGetRequest("/projects/246/stargazers", index: 1);
     }
 
     /**
      * @throws ApiException
      */
-    public function testGetMembers(): void
+    public function testFetchMembers(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/showStarred.json")),
@@ -97,14 +97,14 @@ class CompactProjectTest extends ClientTestCase
         ]);
         $project = $client->getProjectsStarredByUser("Aternos")[0];
 
-        $this->assertCount(1, $project->getMembers());
+        $this->assertCount(1, $project->fetchMembers());
         $this->assertGetRequest("/projects/246/members", index: 1);
     }
 
     /**
      * @throws ApiException
      */
-    public function testGetOwner(): void
+    public function testFetchOwner(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/showStarred.json")),
@@ -112,7 +112,7 @@ class CompactProjectTest extends ClientTestCase
         ]);
         $project = $client->getProjectsStarredByUser("Aternos")[0];
 
-        $project->getOwner();
+        $project->fetchOwner();
 
         $this->assertGetRequest("/users/Aternos", index: 1);
     }
@@ -120,7 +120,31 @@ class CompactProjectTest extends ClientTestCase
     /**
      * @throws ApiException
      */
-    public function testGetMainPage(): void
+    public function testFetchDailyStats(): void
+    {
+        $client = $this->createClient([
+            new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getUserPinnedProjects.json")),
+            new Response(200, [], json_encode(["token" => "test-jwt", "expiresIn" => 3600])),
+            new Response(200, [], json_encode(["result" => true])),
+            new Response(200, [], json_encode(["2026-01-01" => ["downloads" => 3, "views" => 5]])),
+        ]);
+        $project = $client->getProjectsPinnedByUser("Aternos")[0];
+        $client->setApiKey("test-api-key");
+
+        $stats = $project->fetchDailyStats();
+
+        $this->assertEquals("/api/v1/authenticate", $this->getRequest(1)->getUri()->getPath());
+        $this->assertGetRequest("/permissions/hasAll", ["permissions" => "is_subject_member", "project" => "246"], 2);
+        $this->assertEquals("/api/v1/projects/246/stats", $this->getRequest(3)->getUri()->getPath());
+        $this->assertSame("2023-04-05T09:53:36+00:00", $this->getQuery(3)["fromDate"]);
+        $this->assertArrayHasKey("toDate", $this->getQuery(3));
+        $this->assertSame(3, $stats["2026-01-01"]->getDownloads());
+    }
+
+    /**
+     * @throws ApiException
+     */
+    public function testFetchMainPage(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/showStarred.json")),
@@ -128,14 +152,14 @@ class CompactProjectTest extends ClientTestCase
         ]);
         $project = $client->getProjectsStarredByUser("Aternos")[0];
 
-        $this->assertSame("# Main page", $project->getMainPage()->getContent());
+        $this->assertSame("# Main page", $project->fetchMainPage()->getContent());
         $this->assertGetRequest("/pages/main/246", index: 1);
     }
 
     /**
      * @throws ApiException
      */
-    public function testGetPage(): void
+    public function testFetchPage(): void
     {
         $client = $this->createClient([
             new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/showStarred.json")),
@@ -143,7 +167,7 @@ class CompactProjectTest extends ClientTestCase
         ]);
         $project = $client->getProjectsStarredByUser("Aternos")[0];
 
-        $this->assertSame("# Config", $project->getPage("config")->getContent());
+        $this->assertSame("# Config", $project->fetchPage("config")->getContent());
         $this->assertGetRequest("/pages/page/246", ["path" => "config"], 1);
     }
 }
