@@ -22,10 +22,6 @@ use Aternos\HangarApi\Model\Platform;
 use Aternos\HangarApi\Model\ProjectMember;
 use Aternos\HangarApi\Model\Tag;
 use Composer\InstalledVersions;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 
 class HangarAPIClientTest extends ClientTestCase
@@ -129,9 +125,10 @@ class HangarAPIClientTest extends ClientTestCase
      */
     public function testBooleanQueryParametersAreSentAsStringWithCustomConfiguration(): void
     {
-        $stack = HandlerStack::create(new MockHandler([new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getProjects.json"))]));
-        $stack->push(Middleware::history($this->requests));
-        $client = new HangarAPIClient(new Configuration(), httpClient: new Client(['handler' => $stack]));
+        $client = $this->createClient(
+            [new Response(200, [], file_get_contents(__DIR__ . "/Fixtures/getProjects.json"))],
+            configuration: new Configuration(),
+        );
 
         $client->getProjects(new ProjectSearchOptions()->setPrioritizeExactMatch(false));
 
