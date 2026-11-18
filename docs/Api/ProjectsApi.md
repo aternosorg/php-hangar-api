@@ -569,7 +569,7 @@ No authorization required
 ## `getProjects()`
 
 ```php
-getProjects($prioritize_exact_match, $sort, $category, $platform, $owner, $q, $query, $license, $version, $tag, $member, $limit, $offset): \Aternos\HangarApi\Model\PaginatedResultProject
+getProjects($prioritize_exact_match, $sort, $category, $platform, $owner, $query, $q, $license, $version, $tag, $member, $limit, $offset): \Aternos\HangarApi\Model\PaginatedResultProject
 ```
 
 Searches the projects on Hangar
@@ -598,8 +598,8 @@ $sort = 'sort_example'; // string | Used to sort the result
 $category = 'category_example'; // string | A category to filter for
 $platform = 'platform_example'; // string | A platform to filter for
 $owner = 'owner_example'; // string | The author of the project
-$q = 'q_example'; // string | Deprecated: Use 'query' instead
 $query = 'query_example'; // string | The query to use when searching
+$q = 'q_example'; // string | Deprecated: Use 'query' instead
 $license = 'license_example'; // string | A license to filter for
 $version = 'version_example'; // string | A platform version to filter for
 $tag = 'tag_example'; // string | A tag to filter for
@@ -608,7 +608,7 @@ $limit = 1; // string | The maximum amount of items to return
 $offset = 0; // string | Where to start searching
 
 try {
-    $result = $apiInstance->getProjects($prioritize_exact_match, $sort, $category, $platform, $owner, $q, $query, $license, $version, $tag, $member, $limit, $offset);
+    $result = $apiInstance->getProjects($prioritize_exact_match, $sort, $category, $platform, $owner, $query, $q, $license, $version, $tag, $member, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->getProjects: ', $e->getMessage(), PHP_EOL;
@@ -624,8 +624,8 @@ try {
 | **category** | **string**| A category to filter for | [optional] |
 | **platform** | **string**| A platform to filter for | [optional] |
 | **owner** | **string**| The author of the project | [optional] |
-| **q** | **string**| Deprecated: Use &#39;query&#39; instead | [optional] |
 | **query** | **string**| The query to use when searching | [optional] |
+| **q** | **string**| Deprecated: Use &#39;query&#39; instead | [optional] |
 | **license** | **string**| A license to filter for | [optional] |
 | **version** | **string**| A platform version to filter for | [optional] |
 | **tag** | **string**| A tag to filter for | [optional] |
